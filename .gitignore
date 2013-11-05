@@ -11,4 +11,5 @@
 /composer.phar
 
 /.idea/
-/.DS_*
+/composer.phar
+.DS_*
