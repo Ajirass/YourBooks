@@ -1,0 +1,7 @@
+your_books_user:
+    resource: "@YourBooksUserBundle/Resources/config/routing/fos_user.yml"
+    prefix:   /
+
+your_books_user_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: YourBooksUserBundle:Default:index }

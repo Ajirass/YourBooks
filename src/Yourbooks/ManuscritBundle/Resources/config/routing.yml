@@ -1,3 +1,0 @@
-yourbooks_manuscrit_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: YourbooksManuscritBundle:Default:index }

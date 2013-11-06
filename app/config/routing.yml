@@ -1,4 +1,4 @@
-yourbooks_manuscrit:
-    resource: "@YourbooksManuscritBundle/Resources/config/routing.yml"
+your_books_user:
+    resource: "@YourBooksUserBundle/Resources/config/routing.yml"
     prefix:   /
 

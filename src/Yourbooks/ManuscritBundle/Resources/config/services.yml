@@ -1,7 +1,0 @@
-parameters:
-#    yourbooks_manuscrit.example.class: Yourbooks\ManuscritBundle\Example
-
-services:
-#    yourbooks_manuscrit.example:
-#        class: %yourbooks_manuscrit.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
