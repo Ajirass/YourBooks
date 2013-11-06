@@ -1,10 +1,10 @@
 <?php
 
-namespace Acme\HelloBundle\DataFixtures\ORM;
+namespace YourBooks\UserBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Irvyne\UserBundle\Entity\User;
+use YourBooks\UserBundle\Entity\User;
 
 class LoadUserData implements FixtureInterface
 {
@@ -25,10 +25,10 @@ class LoadUserData implements FixtureInterface
         $user = new User();
         $user->setUsername('user');
         $user->setPlainPassword('user');
-        $user->setEmail('fake@thibaud-bardin.com');
+        $user->setEmail('fak@thibaud-bardin.com');
         $user->addRole('ROLE_USER');
         $user->setEnabled(true);
-        $manager->persist($userAdmin);
+        $manager->persist($user);
 
         $manager->flush();
     }
