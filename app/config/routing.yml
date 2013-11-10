@@ -1,4 +1,16 @@
+your_books_book:
+    resource: "@YourBooksBookBundle/Resources/config/routing.yml"
+    prefix:   /
+
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+
 your_books_user:
     resource: "@YourBooksUserBundle/Resources/config/routing.yml"
     prefix:   /
 
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin

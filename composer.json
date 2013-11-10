@@ -23,7 +23,9 @@
         "doctrine/doctrine-fixtures-bundle": "v2.2.0",
         "willdurand/faker-bundle": "@stable",
         "friendsofsymfony/user-bundle": "~1.3.0",
-        "sonata-project/admin-bundle": "2.2.7"
+        "sonata-project/admin-bundle": "2.2.7",
+        "sonata-project/doctrine-orm-admin-bundle": "2.2.4",
+        "simplethings/entity-audit-bundle": "0.5.1"
     },
     "scripts": {
         "post-install-cmd": [

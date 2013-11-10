@@ -20,8 +20,15 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Bazinga\Bundle\FakerBundle\BazingaFakerBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\jQueryBundle\SonatajQueryBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
 
             new YourBooks\UserBundle\YourBooksUserBundle(),
+            new YourBooks\BookBundle\YourBooksBookBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
