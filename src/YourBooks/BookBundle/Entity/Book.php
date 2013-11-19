@@ -3,6 +3,8 @@
 namespace YourBooks\BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use YourBooks\UserBundle\Entity\User;
 
 /**
  * Book
@@ -19,22 +21,78 @@ class Book
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255)
      */
-    private $name;
+    protected $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="content", type="text")
+     * @ORM\Column(name="summary", type="text")
      */
-    private $content;
+    protected $summary;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="file_path", type="string", length=255)
+     */
+    protected $file;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    protected $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    protected $updatedAt;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="enabled", type="boolean", nullable=true)
+     */
+    protected $enabled;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="reader_validation", type="boolean", nullable=true)
+     */
+    protected $readerValidation;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="edited", type="boolean", nullable=true)
+     */
+    protected $edited;
+
+    /**
+     * @var User
+     */
+    protected $author;
+
+    /**
+     * @var ArrayCollection
+     */
+    protected $readers;
+
+    /**
+     * @var User
+     */
+    protected $editor;
 
     /**
      * Get id
@@ -47,48 +105,186 @@ class Book
     }
 
     /**
-     * Set name
+     * Set title
      *
-     * @param string $name
+     * @param string $title
      * @return Book
      */
-    public function setName($name)
+    public function setTitle($title)
     {
-        $this->name = $name;
+        $this->title = $title;
     
         return $this;
     }
 
     /**
-     * Get name
+     * Get title
      *
      * @return string 
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
-     * Set content
+     * Set summary
      *
-     * @param string $content
+     * @param string $summary
      * @return Book
      */
-    public function setContent($content)
+    public function setSummary($summary)
     {
-        $this->content = $content;
+        $this->summary = $summary;
     
         return $this;
     }
 
     /**
-     * Get content
+     * Get summary
      *
      * @return string 
      */
-    public function getContent()
+    public function getSummary()
     {
-        return $this->content;
+        return $this->summary;
+    }
+
+    /**
+     * Set file
+     *
+     * @param string $file
+     * @return Book
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    
+        return $this;
+    }
+
+    /**
+     * Get file
+     *
+     * @return string 
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Book
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Book
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set enabled
+     *
+     * @param boolean $enabled
+     * @return Book
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+    
+        return $this;
+    }
+
+    /**
+     * Get enabled
+     *
+     * @return boolean 
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * Set readerValidation
+     *
+     * @param boolean $readerValidation
+     * @return Book
+     */
+    public function setReaderValidation($readerValidation)
+    {
+        $this->readerValidation = $readerValidation;
+    
+        return $this;
+    }
+
+    /**
+     * Get readerValidation
+     *
+     * @return boolean 
+     */
+    public function getReaderValidation()
+    {
+        return $this->readerValidation;
+    }
+
+    /**
+     * Set edited
+     *
+     * @param boolean $edited
+     * @return Book
+     */
+    public function setEdited($edited)
+    {
+        $this->edited = $edited;
+    
+        return $this;
+    }
+
+    /**
+     * Get edited
+     *
+     * @return boolean 
+     */
+    public function getEdited()
+    {
+        return $this->edited;
     }
 }
