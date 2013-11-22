@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
             new YourBooks\UserBundle\YourBooksUserBundle(),
             new YourBooks\BookBundle\YourBooksBookBundle(),

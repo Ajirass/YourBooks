@@ -2,7 +2,7 @@ services:
     sonata.admin.book:
         class: YourBooks\BookBundle\Admin\BookAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Post" }
+            - { name: sonata.admin, manager_type: orm, group: "Book", label: "Book" }
         arguments:
             - ~
             - YourBooks\BookBundle\Entity\Book

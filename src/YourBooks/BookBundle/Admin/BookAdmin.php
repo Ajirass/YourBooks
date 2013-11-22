@@ -13,8 +13,9 @@ class BookAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name', null, array('label' => 'Titre : '))
-            ->add('content', null, array('label' => 'Contenu : '))
+            ->add('title', null, array('label' => 'Titre : '))
+            ->add('summary', null, array('label' => 'Résumé : '))
+            ->add('file', 'file')
         ;
     }
 
@@ -22,16 +23,26 @@ class BookAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
-            ;
+            ->add('title', null, array('label' => 'Titre : '))
+            ->add('enabled', null, array('label' => 'Autorisé par l\'administrateur ?'))
+            ->add('readerValidation', null, array('label' => 'Validation lecteur ?'))
+            ->add('edited', null, array('label' => 'Édité ?'))
+            //->add('author')
+            //->add('readers')
+            //->add('editor')
+        ;
     }
 
     // Fields to be shown on lists
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name')
-            ->add('content')
-            ;
+            ->addIdentifier('id')
+            ->add('title')
+            ->add('summary')
+            ->add('enabled', null, array('label' => 'Autorisé par l\'administrateur ?'))
+            ->add('readerValidation', null, array('label' => 'Validation lecteur ?'))
+            ->add('edited', null, array('label' => 'Édité ?'))
+        ;
     }
 }
