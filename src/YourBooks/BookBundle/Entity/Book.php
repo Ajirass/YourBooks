@@ -49,7 +49,7 @@ class Book
     /**
      * @var string
      *
-     * @ORM\Column(name="file_path", type="string", length=255, nullable=true)
+     * @ORM\Column(name="file_path", type="string", length=255)
      */
     protected $fileName;
 
@@ -396,12 +396,15 @@ class Book
         // the entity from being persisted to the database on error
         $this->getFile()->move($this->getUploadRootDir(), $this->fileName);
 
-        // check if we have an old image
+        // check if we have an old file path
         if (isset($this->temp)) {
-            // delete the old image
-            unlink($this->getUploadRootDir().'/'.$this->temp);
-            // clear the temp image path
-            $this->temp = null;
+            // check if we have a true path
+            if (is_file($filePath = $this->getUploadRootDir().'/'.$this->temp)) {
+                // delete the old file
+                unlink($filePath);
+                // clear the temp file path
+                $this->temp = null;
+            }
         }
         $this->file = null;
     }
