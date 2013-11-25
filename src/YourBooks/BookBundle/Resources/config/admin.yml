@@ -7,5 +7,11 @@ services:
             - ~
             - YourBooks\BookBundle\Entity\Book
             - ~
-        calls:
-            - [ setTranslationDomain, [AcmeDemoBundle]]
+    sonata.admin.book_category:
+        class: YourBooks\BookBundle\Admin\BookCategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Book", label: "Category" }
+        arguments:
+            - ~
+            - YourBooks\BookBundle\Entity\BookCategory
+            - ~

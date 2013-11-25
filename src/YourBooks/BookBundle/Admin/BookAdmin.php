@@ -15,6 +15,7 @@ class BookAdmin extends Admin
         $formMapper
             ->add('title', null, array('label' => 'Titre : '))
             ->add('summary', null, array('label' => 'Résumé : '))
+            ->add('category', null, array('label' => 'Catégorie : '))
             ->add('file', 'file')
         ;
     }
@@ -25,6 +26,7 @@ class BookAdmin extends Admin
         $datagridMapper
             ->add('title', null, array('label' => 'Titre : '))
             ->add('enabled', null, array('label' => 'Autorisé par l\'administrateur ?'))
+            ->add('sendByReader', null, array('label' => 'Envoyé par le lecteur ?'))
             ->add('readerValidation', null, array('label' => 'Validation lecteur ?'))
             ->add('edited', null, array('label' => 'Édité ?'))
             //->add('author')
@@ -41,6 +43,7 @@ class BookAdmin extends Admin
             ->add('title')
             ->add('summary')
             ->add('enabled', null, array('label' => 'Autorisé par l\'administrateur ?'))
+            ->add('sendByReader', null, array('label' => 'Envoyé par le lecteur ?'))
             ->add('readerValidation', null, array('label' => 'Validation lecteur ?'))
             ->add('edited', null, array('label' => 'Édité ?'))
         ;

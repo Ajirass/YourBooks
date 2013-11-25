@@ -42,7 +42,10 @@ class Book
     protected $summary;
 
     /**
-     * @Assert\File(maxSize="6000000")
+     * @Assert\File(
+     *      mimeTypes={"application/pdf", "application/x-pdf"},
+     *      mimeTypesMessage="Only PDF"
+     * )
      */
     protected $file;
 
@@ -79,6 +82,13 @@ class Book
     /**
      * @var bool
      *
+     * @ORM\Column(name="send_by_reader", type="boolean", nullable=true)
+     */
+    protected $sendByReader;
+
+    /**
+     * @var bool
+     *
      * @ORM\Column(name="reader_validation", type="boolean", nullable=true)
      */
     protected $readerValidation;
@@ -92,18 +102,31 @@ class Book
 
     /**
      * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
      */
     protected $author;
 
     /**
      * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Application\Sonata\UserBundle\Entity\User", cascade={"persist"})
      */
     protected $readers;
 
     /**
      * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
      */
     protected $editor;
+
+    /**
+     * @var BookCategory
+     *
+     * @ORM\ManyToOne(targetEntity="YourBooks\BookBundle\Entity\BookCategory", inversedBy="books", cascade={"persist"})
+     */
+    protected $category;
 
     private $temp;
 
@@ -113,6 +136,7 @@ class Book
     public function __construct()
     {
         $this->enabled = false;
+        $this->sendByReader = false;
         $this->readerValidation = false;
         $this->edited = false;
     }
@@ -287,6 +311,29 @@ class Book
     }
 
     /**
+     * Set sendByReader
+     *
+     * @param boolean $sendByReader
+     * @return Book
+     */
+    public function setSendByReader($sendByReader)
+    {
+        $this->sendByReader = $sendByReader;
+
+        return $this;
+    }
+
+    /**
+     * Get sendByReader
+     *
+     * @return boolean
+     */
+    public function getSendByReader()
+    {
+        return $this->sendByReader;
+    }
+
+    /**
      * Set readerValidation
      *
      * @param boolean $readerValidation
@@ -330,6 +377,108 @@ class Book
     public function getEdited()
     {
         return $this->edited;
+    }
+
+    /**
+     * Set author
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $author
+     * @return Book
+     */
+    public function setAuthor(\Application\Sonata\UserBundle\Entity\User $author = null)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \Application\Sonata\UserBundle\Entity\User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Add readers
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $readers
+     * @return Book
+     */
+    public function addReader(\Application\Sonata\UserBundle\Entity\User $readers)
+    {
+        $this->readers[] = $readers;
+
+        return $this;
+    }
+
+    /**
+     * Remove readers
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $readers
+     */
+    public function removeReader(\Application\Sonata\UserBundle\Entity\User $readers)
+    {
+        $this->readers->removeElement($readers);
+    }
+
+    /**
+     * Get readers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReaders()
+    {
+        return $this->readers;
+    }
+
+    /**
+     * Set editor
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $editor
+     * @return Book
+     */
+    public function setEditor(\Application\Sonata\UserBundle\Entity\User $editor = null)
+    {
+        $this->editor = $editor;
+
+        return $this;
+    }
+
+    /**
+     * Get editor
+     *
+     * @return \Application\Sonata\UserBundle\Entity\User
+     */
+    public function getEditor()
+    {
+        return $this->editor;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \YourBooks\BookBundle\Entity\BookCategory $category
+     * @return Book
+     */
+    public function setCategory(\YourBooks\BookBundle\Entity\BookCategory $category = null)
+    {
+        $this->category = $category;
+        $category->addBook($this);
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \YourBooks\BookBundle\Entity\BookCategory
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 
     /**

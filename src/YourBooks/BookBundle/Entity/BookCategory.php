@@ -31,6 +31,8 @@ class BookCategory
 
     /**
      * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="YourBooks\BookBundle\Entity\Book", mappedBy="category")
      */
     protected $books;
 
@@ -63,6 +65,54 @@ class BookCategory
      * @return string 
      */
     public function getName()
+    {
+        return $this->name;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->books = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add books
+     *
+     * @param \YourBooks\BookBundle\Entity\Book $books
+     * @return BookCategory
+     */
+    public function addBook(\YourBooks\BookBundle\Entity\Book $books)
+    {
+        $this->books[] = $books;
+    
+        return $this;
+    }
+
+    /**
+     * Remove books
+     *
+     * @param \YourBooks\BookBundle\Entity\Book $books
+     */
+    public function removeBook(\YourBooks\BookBundle\Entity\Book $books)
+    {
+        $this->books->removeElement($books);
+    }
+
+    /**
+     * Get books
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBooks()
+    {
+        return $this->books;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
     {
         return $this->name;
     }
