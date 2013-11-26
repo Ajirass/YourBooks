@@ -1,4 +1,6 @@
 /web/bundles/
+/web/css/
+/web/js/
 /web/uploads/*
 !web/uploads/books/.gitkeep
 /app/bootstrap.php.cache

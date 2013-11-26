@@ -1,3 +1,7 @@
+your_books_main:
+    resource: "@YourBooksMainBundle/Resources/config/routing.yml"
+    prefix:   /
+
 your_books_book:
     resource: "@YourBooksBookBundle/Resources/config/routing.yml"
     prefix:   /

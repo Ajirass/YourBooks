@@ -128,6 +128,13 @@ class Book
      */
     protected $category;
 
+    /**
+     * @var BookReview
+     *
+     * @ORM\OneToOne(targetEntity="YourBooks\BookBundle\Entity\BookReview", mappedBy="book")
+     */
+    protected $review;
+
     private $temp;
 
     /**
@@ -482,6 +489,29 @@ class Book
     }
 
     /**
+     * Set review
+     *
+     * @param \YourBooks\BookBundle\Entity\BookReview $review
+     * @return Book
+     */
+    public function setReview(\YourBooks\BookBundle\Entity\BookReview $review = null)
+    {
+        $this->review = $review;
+
+        return $this;
+    }
+
+    /**
+     * Get review
+     *
+     * @return \YourBooks\BookBundle\Entity\BookReview
+     */
+    public function getReview()
+    {
+        return $this->review;
+    }
+
+    /**
      * @return null|string
      */
     public function getAbsolutePath()
@@ -567,4 +597,14 @@ class Book
             unlink($file);
         }
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->title;
+    }
+
+
 }

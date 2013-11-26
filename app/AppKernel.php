@@ -33,6 +33,7 @@ class AppKernel extends Kernel
 
             #new YourBooks\UserBundle\YourBooksUserBundle(),
             new YourBooks\BookBundle\YourBooksBookBundle(),
+            new YourBooks\MainBundle\YourBooksMainBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

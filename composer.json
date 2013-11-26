@@ -28,7 +28,8 @@
         "sonata-project/user-bundle": "~2.2.0",
         "sonata-project/easy-extends-bundle": "~2.1",
         "simplethings/entity-audit-bundle": "0.5.1",
-        "stof/doctrine-extensions-bundle": "~1.1"
+        "stof/doctrine-extensions-bundle": "~1.1",
+        "leafo/lessphp": "~0.4@dev"
     },
     "scripts": {
         "post-install-cmd": [

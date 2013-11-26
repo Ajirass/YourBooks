@@ -4,6 +4,7 @@ namespace YourBooks\BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use YourBooks\UserBundle\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
 use YourBooks\BookBundle\Entity\Book;
 
 /**
@@ -80,12 +81,16 @@ class BookReview
     protected $problems;
 
     /**
-     * @var User
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Application\Sonata\UserBundle\Entity\User", cascade={"persist"})
      */
     protected $reader;
 
     /**
      * @var Book
+     *
+     * @ORM\OneToOne(targetEntity="YourBooks\BookBundle\Entity\Book", inversedBy="review", cascade={"persist"})
      */
     protected $book;
 
@@ -189,5 +194,175 @@ class BookReview
     public function getProblems()
     {
         return $this->problems;
+    }
+
+    /**
+     * Set criteria2
+     *
+     * @param integer $criteria2
+     * @return BookReview
+     */
+    public function setCriteria2($criteria2)
+    {
+        $this->criteria2 = $criteria2;
+    
+        return $this;
+    }
+
+    /**
+     * Get criteria2
+     *
+     * @return integer 
+     */
+    public function getCriteria2()
+    {
+        return $this->criteria2;
+    }
+
+    /**
+     * Set criteria3
+     *
+     * @param integer $criteria3
+     * @return BookReview
+     */
+    public function setCriteria3($criteria3)
+    {
+        $this->criteria3 = $criteria3;
+    
+        return $this;
+    }
+
+    /**
+     * Get criteria3
+     *
+     * @return integer 
+     */
+    public function getCriteria3()
+    {
+        return $this->criteria3;
+    }
+
+    /**
+     * Set criteria4
+     *
+     * @param integer $criteria4
+     * @return BookReview
+     */
+    public function setCriteria4($criteria4)
+    {
+        $this->criteria4 = $criteria4;
+    
+        return $this;
+    }
+
+    /**
+     * Get criteria4
+     *
+     * @return integer 
+     */
+    public function getCriteria4()
+    {
+        return $this->criteria4;
+    }
+
+    /**
+     * Set criteria5
+     *
+     * @param integer $criteria5
+     * @return BookReview
+     */
+    public function setCriteria5($criteria5)
+    {
+        $this->criteria5 = $criteria5;
+    
+        return $this;
+    }
+
+    /**
+     * Get criteria5
+     *
+     * @return integer 
+     */
+    public function getCriteria5()
+    {
+        return $this->criteria5;
+    }
+
+    /**
+     * Set book
+     *
+     * @param \YourBooks\BookBundle\Entity\Book $book
+     * @return BookReview
+     */
+    public function setBook(\YourBooks\BookBundle\Entity\Book $book = null)
+    {
+        $this->book = $book;
+    
+        return $this;
+    }
+
+    /**
+     * Get book
+     *
+     * @return \YourBooks\BookBundle\Entity\Book 
+     */
+    public function getBook()
+    {
+        return $this->book;
+    }
+
+    /**
+     * Set reader
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $reader
+     * @return BookReview
+     */
+    public function setReader(\Application\Sonata\UserBundle\Entity\User $reader = null)
+    {
+        $this->reader = $reader;
+    
+        return $this;
+    }
+
+    /**
+     * Get reader
+     *
+     * @return \Application\Sonata\UserBundle\Entity\User 
+     */
+    public function getReader()
+    {
+        return $this->reader;
+    }
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->reader = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add reader
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $reader
+     * @return BookReview
+     */
+    public function addReader(\Application\Sonata\UserBundle\Entity\User $reader)
+    {
+        $this->reader[] = $reader;
+    
+        return $this;
+    }
+
+    /**
+     * Remove reader
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $reader
+     */
+    public function removeReader(\Application\Sonata\UserBundle\Entity\User $reader)
+    {
+        $this->reader->removeElement($reader);
     }
 }

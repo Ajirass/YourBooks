@@ -15,3 +15,11 @@ services:
             - ~
             - YourBooks\BookBundle\Entity\BookCategory
             - ~
+    sonata.admin.book_review:
+            class: YourBooks\BookBundle\Admin\BookReviewAdmin
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: "Book", label: "Review" }
+            arguments:
+                - ~
+                - YourBooks\BookBundle\Entity\BookReview
+                - ~
