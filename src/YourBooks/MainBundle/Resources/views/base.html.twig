@@ -1,6 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block stylesheets %}
+    {{ parent() }}
     {% stylesheets
     '@YourBooksMainBundle/Resources/public/css/*.css'
     '@YourBooksMainBundle/Resources/public/less/*.less'
@@ -9,4 +10,12 @@
     %}
     <link rel="stylesheet" href="{{ asset_url }}">
     {% endstylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+    '@YourBooksMainBundle/Resources/public/js/*.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

@@ -1,0 +1,19 @@
+your_books_main_editor_homepage:
+    pattern:  /
+    defaults: { _controller: YourBooksMainBundle:Editor:index }
+
+your_books_main_editor_historic:
+    pattern:  /historic
+    defaults: { _controller: YourBooksMainBundle:Editor:historic }
+
+your_books_main_editor_inscription:
+    pattern:  /inscription
+    defaults: { _controller: YourBooksMainBundle:Editor:inscription }
+
+your_books_main_editor_parameters:
+    pattern:  /parameters
+    defaults: { _controller: YourBooksMainBundle:Editor:parameters }
+
+your_books_main_editor_profile:
+    pattern:  /profile
+    defaults: { _controller: YourBooksMainBundle:Editor:profile }

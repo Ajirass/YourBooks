@@ -1,0 +1,39 @@
+{% extends 'YourBooksMainBundle::base.html.twig' %}
+
+{% block body %}
+
+    <aside class="category">
+        <h1>Catégorie</h1>
+        <ul>
+            <li>Romantique</li>
+            <li>Horreur</li>
+            <li>Théâtre</li>
+            <li>Cuisine</li>
+            <li>Fantastique</li>
+            <li>Littérature</li>
+        </ul>
+    </aside>
+
+    <div>
+        <ul>
+            <li><div class="couverture"></div></li>
+            <li><div class="couverture"></div></li>
+            <li><div class="couverture"></div></li>
+            <li><div class="couverture"></div></li>
+
+        </ul>
+    </div>
+
+    <aside class="book">
+        <h2>Titre</h2>
+        <h3>Auteur</h3>
+        <div class="couverture"></div>
+        <a href="#">Téléchargez</a>
+        <h4>Résumé</h4>
+            <p>Lorem Ipsum</p>
+        <h4>Critique</h4>
+            <p>Lorem Ipsum</p>
+        <span>Notes</span>
+    </aside>
+
+{% endblock %}

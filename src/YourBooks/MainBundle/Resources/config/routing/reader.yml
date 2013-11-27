@@ -1,0 +1,15 @@
+your_books_main_reader_homepage:
+    pattern:  /
+    defaults: { _controller: YourBooksMainBundle:Reader:index }
+
+your_books_main_reader_inscription:
+    pattern:  /inscription
+    defaults: { _controller: YourBooksMainBundle:Reader:inscription }
+
+your_books_main_reader_parameters:
+    pattern:  /parameters
+    defaults: { _controller: YourBooksMainBundle:Reader:parameters }
+
+your_books_main_reader_profile:
+    pattern:  /profile
+    defaults: { _controller: YourBooksMainBundle:Reader:profile }

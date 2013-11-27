@@ -1,0 +1,32 @@
+{% extends 'YourBooksMainBundle::base.html.twig' %}
+
+{% block body %}
+    <div class="manuscrits">
+        <h1>Mes manuscrits</h1>
+
+        <div class="book">
+            {% for book in books %}
+                <div class="couverture"></div>
+                <span>Soumis le : {{ book.createdAt|date("d/m/Y") }}</span>
+                <span>Statut : </span>
+                {% if book.readerValidation %}
+                    Soumis aux éditeurs
+                {% elseif book.enabled %}
+                    En cours de lecture et de notation
+                   {% else %}
+                    Pas encore lu
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <form method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input type="submit">
+    </form>
+    <div class="historique">
+        <h1>Historique</h1>
+        <h2>Nombre de livres lus : {{ countBooksRead }}</h2>
+        <h2>Nombre de livres soumis : {{ countBooksSubmit }}</h2>
+    </div>
+{% endblock %}

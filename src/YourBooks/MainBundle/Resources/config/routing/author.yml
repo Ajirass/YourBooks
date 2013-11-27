@@ -1,0 +1,19 @@
+your_books_main_author_homepage:
+    pattern:  /
+    defaults: { _controller: YourBooksMainBundle:Author:index }
+
+your_books_main_author_send_book:
+    pattern:  /send_book
+    defaults: { _controller: YourBooksMainBundle:Author:send }
+
+your_books_main_author_parameters:
+    pattern:  /parameters
+    defaults: { _controller: YourBooksMainBundle:Author:parameters }
+
+your_books_main_author_profile:
+    pattern:  /profile
+    defaults: { _controller: YourBooksMainBundle:Author:profile }
+
+your_books_main_author_inscription:
+    pattern:  /inscription
+    defaults: { _controller: YourBooksMainBundle:Author:inscription }
