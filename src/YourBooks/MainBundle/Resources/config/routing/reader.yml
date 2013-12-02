@@ -13,3 +13,7 @@ your_books_main_reader_parameters:
 your_books_main_reader_profile:
     pattern:  /profile
     defaults: { _controller: YourBooksMainBundle:Reader:profile }
+
+your_books_review_upload:
+    pattern:  /review
+    defaults: { _controller: YourBooksMainBundle:Reader:review }

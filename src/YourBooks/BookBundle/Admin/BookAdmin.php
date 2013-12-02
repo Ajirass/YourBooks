@@ -42,10 +42,10 @@ class BookAdmin extends Admin
             ->addIdentifier('id')
             ->add('title')
             ->add('summary')
-            ->add('enabled', null, array('label' => 'Autorisé par l\'administrateur ?'))
-            ->add('sendByReader', null, array('label' => 'Envoyé par le lecteur ?'))
-            ->add('readerValidation', null, array('label' => 'Validation lecteur ?'))
-            ->add('edited', null, array('label' => 'Édité ?'))
+            ->add('enabled', null, array('label' => 'Autorisé par l\'administrateur ?', 'editable'=>true))
+            ->add('sendByReader', null, array('label' => 'Envoyé par le lecteur ?', 'editable'=>true))
+            ->add('readerValidation', null, array('label' => 'Validation lecteur ?', 'editable'=>true))
+            ->add('edited', null, array('label' => 'Édité ?', 'editable'=>true))
         ;
     }
 }

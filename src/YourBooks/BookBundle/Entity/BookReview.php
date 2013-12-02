@@ -81,9 +81,9 @@ class BookReview
     protected $problems;
 
     /**
-     * @var ArrayCollection
+     * @var User
      *
-     * @ORM\ManyToMany(targetEntity="Application\Sonata\UserBundle\Entity\User", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
      */
     protected $reader;
 
@@ -334,35 +334,4 @@ class BookReview
         return $this->reader;
     }
 
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->reader = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
-    /**
-     * Add reader
-     *
-     * @param \Application\Sonata\UserBundle\Entity\User $reader
-     * @return BookReview
-     */
-    public function addReader(\Application\Sonata\UserBundle\Entity\User $reader)
-    {
-        $this->reader[] = $reader;
-    
-        return $this;
-    }
-
-    /**
-     * Remove reader
-     *
-     * @param \Application\Sonata\UserBundle\Entity\User $reader
-     */
-    public function removeReader(\Application\Sonata\UserBundle\Entity\User $reader)
-    {
-        $this->reader->removeElement($reader);
-    }
 }

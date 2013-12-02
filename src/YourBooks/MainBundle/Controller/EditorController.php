@@ -3,6 +3,11 @@
 namespace YourBooks\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use JMS\SecurityExtraBundle\Annotation\Secure;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use YourBooks\BookBundle\Entity\Book;
+use YourBooks\BookBundle\Form\Type\BookType;
 
 class EditorController extends Controller
 {

@@ -35,4 +35,18 @@ class BookRepository extends EntityRepository
 
         return $qb->getQuery()->getSingleScalarResult();
     }
+
+   // public function booksReading($reader)
+   // {
+       // $qb = $this->createQueryBuilder('b')
+      //      ->join('b.readers', 'r')
+        //    ->where('b.readers = :reader')
+    //  ->andWhere('b.enabled = :enabled')
+    //   ->setParameter(':reader', $reader)
+    //    ->setParameter(':enabled', true)
+    //    ;
+
+    //  return $qb->getQuery()->getResult();
+    //}
 }
+

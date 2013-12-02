@@ -6,27 +6,32 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class BookType extends AbstractType
+class BookReviewType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
             ->add('summary')
-            ->add('category')
-            ->add('file')
-            ;
+            ->add('criteria1')
+            ->add('criteria2')
+            ->add('criteria3')
+            ->add('criteria4')
+            ->add('criteria5')
+            ->add('critic')
+            ->add('problems')
+            ->add('book')
+        ;
     }
 
     public function getName()
     {
-        return 'book_type';
+        return 'book_review_type';
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'YourBooks\BookBundle\Entity\Book',
+            'data_class' => 'YourBooks\BookBundle\Entity\BookReview',
         ));
 
     }
