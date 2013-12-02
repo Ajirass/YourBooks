@@ -3,6 +3,9 @@
 namespace YourBooks\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use JMS\SecurityExtraBundle\Annotation\Secure;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class EditorController extends Controller
 {
@@ -13,7 +16,27 @@ class EditorController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('YourBooksMainBundle:Editor:homepage.html.twig');
+        $em = $this->getDoctrine()->getEntityManager();
+        $repo = $em->getRepository('YourBooksBookBundle:Book');
+        $books = $repo->findOnlyReading();
+        return $this->render('YourBooksMainBundle:Editor:homepage.html.twig', array(
+            'books' => $books,
+        ));
+    }
+
+    public function downloadAction($id=null)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $file = $em->find('YourBooksBookBundle:Book',$id);
+        $path = $file->getAbsolutePath();
+
+        $response = new Response();
+        $response->setContent(file_get_contents($path));
+        $response->headers->set('Content-Type', 'application/force-download'); // modification du content-type pour forcer le téléchargement (sinon le navigateur internet essaie d'afficher le document)
+        $response->headers->set('Content-disposition', 'filename='. $file);
+
+        return $response;
+
     }
 
     /**

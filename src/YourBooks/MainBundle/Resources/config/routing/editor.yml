@@ -17,3 +17,9 @@ your_books_main_editor_parameters:
 your_books_main_editor_profile:
     pattern:  /profile
     defaults: { _controller: YourBooksMainBundle:Editor:profile }
+
+your_books_main_editor_download:
+    pattern:  /download/{id}
+    defaults: { _controller: YourBooksMainBundle:Editor:download }
+    requirements:
+        id: \d+

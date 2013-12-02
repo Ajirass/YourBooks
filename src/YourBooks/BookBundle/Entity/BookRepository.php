@@ -35,4 +35,16 @@ class BookRepository extends EntityRepository
 
         return $qb->getQuery()->getSingleScalarResult();
     }
+
+    public function findOnlyReading()
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->select('b')
+            ->where('b.readerValidation = :readerValidation')
+            ->orderBy('b.createdAt', 'DESC')
+            ->setParameter(':readerValidation', true)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
 }

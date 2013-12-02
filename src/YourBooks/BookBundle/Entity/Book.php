@@ -129,6 +129,13 @@ class Book
     protected $category;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="YourBooks\BookBundle\Entity\BookStatus", mappedBy="book")
+     */
+    protected $statuss;
+
+    /**
      * @var BookReview
      *
      * @ORM\OneToOne(targetEntity="YourBooks\BookBundle\Entity\BookReview", mappedBy="book")
@@ -512,6 +519,39 @@ class Book
     }
 
     /**
+     * Add statuss
+     *
+     * @param \YourBooks\BookBundle\Entity\BookStatus $statuss
+     * @return Book
+     */
+    public function addStatus(\YourBooks\BookBundle\Entity\BookStatus $statuss)
+    {
+        $this->statuss[] = $statuss;
+
+        return $this;
+    }
+
+    /**
+     * Remove statuss
+     *
+     * @param \YourBooks\BookBundle\Entity\BookStatus $statuss
+     */
+    public function removeStatus(\YourBooks\BookBundle\Entity\BookStatus $statuss)
+    {
+        $this->statuss->removeElement($statuss);
+    }
+
+    /**
+     * Get statuss
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStatuss()
+    {
+        return $this->statuss;
+    }
+
+    /**
      * @return null|string
      */
     public function getAbsolutePath()
@@ -605,6 +645,5 @@ class Book
     {
         return $this->title;
     }
-
 
 }

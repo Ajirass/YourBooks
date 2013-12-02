@@ -7,14 +7,16 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class BookCategoryAdmin extends Admin
+class BookStatusAdmin extends Admin
 {
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name', null, array('label' => 'Nom : '))
-            ->add('colorCategory', 'choice', array('label' => 'Couleur catégorie', 'choices' => array('rouge' => 'rouge', 'bleu' => 'bleu', 'jaune' => 'jaune')))
+            ->add('title', null, array('label' => 'Nom : '))
+            ->add('type', null, array('label' => 'Type : '))
+            ->add('user', null, array('label' => 'Utilisateur : '))
+            ->add('books', null, array('label' => 'Manuscrit : '))
         ;
     }
 
@@ -22,7 +24,8 @@ class BookCategoryAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name', null, array('label' => 'Nom : '))
+            ->add('title', null, array('label' => 'Nom : '))
+            ->add('type', null, array('label' => 'Type : '))
         ;
     }
 
@@ -31,8 +34,10 @@ class BookCategoryAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
-            ->add('name', null, array('label' => 'Nom : '))
-            ->add('ColorCategory', null, array('label' => 'Couleur Catégorie : '))
+            ->add('title', null, array('label' => 'Nom : '))
+            ->add('type', null, array('label' => 'Type : '))
+            ->add('user', null, array('label' => 'User : '))
+            ->add('books', null, array('label' => 'Manuscrit : '))
         ;
     }
 }

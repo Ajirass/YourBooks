@@ -15,6 +15,14 @@ services:
             - ~
             - YourBooks\BookBundle\Entity\BookCategory
             - ~
+    sonata.admin.book_status:
+        class: YourBooks\BookBundle\Admin\BookStatusAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Book", label: "Status" }
+        arguments:
+            - ~
+            - YourBooks\BookBundle\Entity\BookStatus
+            - ~
     sonata.admin.book_review:
             class: YourBooks\BookBundle\Admin\BookReviewAdmin
             tags:

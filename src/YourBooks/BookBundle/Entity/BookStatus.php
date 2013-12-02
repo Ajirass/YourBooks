@@ -3,6 +3,8 @@
 namespace YourBooks\BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\ArrayCollection;
 use YourBooks\UserBundle\Entity\User;
 
 /**
@@ -39,14 +41,24 @@ class BookStatus
     /**
      * @var \DateTime
      *
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 
     /**
      * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
      */
     private $user;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToOne(targetEntity="YourBooks\BookBundle\Entity\Book", inversedBy="statuss")
+     */
+    protected $books;
 
 
     /**
@@ -126,5 +138,82 @@ class BookStatus
     public function getDate()
     {
         return $this->date;
+    }
+    
+    /**
+     * Add user
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $user
+     * @return BookStatus
+     */
+    public function addUser(\Application\Sonata\UserBundle\Entity\User $user)
+    {
+        $this->user[] = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $user
+     */
+    public function removeUser(\Application\Sonata\UserBundle\Entity\User $user)
+    {
+        $this->user->removeElement($user);
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $user
+     * @return BookStatus
+     */
+    public function setUser(\Application\Sonata\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Set books
+     *
+     * @param \YourBooks\BookBundle\Entity\Book $books
+     * @return BookStatus
+     */
+    public function setBooks(\YourBooks\BookBundle\Entity\Book $books = null)
+    {
+        $this->books = $books;
+
+        return $this;
+    }
+
+    /**
+     * Get books
+     *
+     * @return \YourBooks\BookBundle\Entity\Book
+     */
+    public function getBooks()
+    {
+        return $this->books;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
     }
 }

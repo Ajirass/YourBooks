@@ -16,11 +16,10 @@
 
     <div>
         <ul>
-            <li><div class="couverture"></div></li>
-            <li><div class="couverture"></div></li>
-            <li><div class="couverture"></div></li>
-            <li><div class="couverture"></div></li>
-
+            {% for book in books %}
+                <li><div class="couverture">{{ book.title }} <br/> {{ book.createdAt|date("d/m/Y") }}</div></li>
+                <a href="{{ path('your_books_main_editor_download', { 'id': book.id }) }}">Téléchargez</a>
+            {% endfor %}
         </ul>
     </div>
 

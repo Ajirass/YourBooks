@@ -30,6 +30,13 @@ class BookCategory
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="color_category", type="string", length=255)
+     */
+    private $colorCategory;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="YourBooks\BookBundle\Entity\Book", mappedBy="category")
@@ -68,14 +75,30 @@ class BookCategory
     {
         return $this->name;
     }
+
     /**
-     * Constructor
+     * Set colorCategory
+     *
+     * @param string $colorCategory
+     * @return BookCategory
      */
-    public function __construct()
+    public function setColorCategory($colorCategory)
     {
-        $this->books = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->colorCategory = $colorCategory;
+
+        return $this;
     }
-    
+
+    /**
+     * Get colorCategory
+     *
+     * @return string
+     */
+    public function getColorCategory()
+    {
+        return $this->colorCategory;
+    }
+
     /**
      * Add books
      *
@@ -110,10 +133,19 @@ class BookCategory
     }
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->books = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * @return string
      */
     public function __toString()
     {
         return $this->name;
     }
+
 }
