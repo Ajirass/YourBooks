@@ -20,10 +20,6 @@
         </div>
     </div>
 
-    <form method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
-        <input type="submit">
-    </form>
     <div class="historique">
         <h1>Historique</h1>
         <h2>Nombre de livres lus : {{ countBooksRead }}</h2>

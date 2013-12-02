@@ -1,0 +1,14 @@
+{% extends 'YourBooksMainBundle::base.html.twig' %}
+
+{% block body %}
+
+        <div class="progressbar">
+            <h1>Review du manuscrit</h1>
+        </div>
+
+        <form method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <input type="submit">
+        </form>
+
+{% endblock %}

@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use YourBooks\BookBundle\Entity\Book;
+use YourBooks\BookBundle\Entity\BookReview;
+use YourBooks\BookBundle\Form\Type\BookReviewType;
 
 class ReaderController extends Controller
 {
@@ -16,7 +19,21 @@ class ReaderController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('YourBooksMainBundle:Main:homepage.html.twig');
+        //$em = $this->getDoctrine()->getEntityManager();
+       // $repo = $em->getRepository('YourBooksBookBundle:Book');
+
+      //  $reader = $this->getUser();
+      //  $books = $repo->booksReading($reader);
+
+
+       // $booksReading = booksReading($reader);
+
+
+        return $this->render('YourBooksMainBundle:Main:homepage.html.twig', array(
+            'books' => $books,
+            //'booksReading' => $booksReading,
+        ));
+
     }
 
     /**
@@ -45,5 +62,31 @@ class ReaderController extends Controller
     public function profileAction()
     {
         return $this->render('YourBooksMainBundle:Main:profile.html.twig');
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Secure(roles="ROLE_READER")
+     */
+    public function reviewAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $repo = $em->getRepository('YourBooksBookBundle:BookReview');
+
+        $reader = $this->getUser();
+        $bookReview = new BookReview();
+        $bookReview->setReader($reader);
+
+        $form = $this->createForm(new BookReviewType(), $bookReview);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em->persist($form->getData());
+            $em->flush();
+        }
+
+        return $this->render('YourBooksMainBundle:Reader:review_upload.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 }

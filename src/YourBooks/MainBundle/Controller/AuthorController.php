@@ -16,7 +16,7 @@ class AuthorController extends Controller
      *
      * @Secure(roles="ROLE_AUTHOR")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
         $repo = $em->getRepository('YourBooksBookBundle:Book');
@@ -27,20 +27,11 @@ class AuthorController extends Controller
         $countBooksSubmit = $repo->countBooksSubmit($author);
         $countBooksRead = $repo->countBooksRead($author);
 
-        $book = new Book();
-        $form = $this->createForm(new BookType(), $book);
-        $form->handleRequest($request);
-        if ($form->isValid()) {
-            $em->persist($form->getData());
-            $em->flush();
-        }
 
         return $this->render('YourBooksMainBundle:Author:homepage.html.twig', array(
             'books' => $books,
             'countBooksSubmit' => $countBooksSubmit,
             'countBooksRead' => $countBooksRead,
-
-            'form' => $form->createView(),
         ));
     }
 
@@ -49,9 +40,26 @@ class AuthorController extends Controller
      *
      * @Secure(roles="ROLE_AUTHOR")
      */
-    public function sendAction()
+    public function sendAction(Request $request)
     {
-        return $this->render('YourBooksMainBundle:Author:book_upload.html.twig');
+        $em = $this->getDoctrine()->getEntityManager();
+        $repo = $em->getRepository('YourBooksBookBundle:Book');
+
+        $author = $this->getUser();
+        $book = new Book();
+        $book->setAuthor($author);
+
+        $form = $this->createForm(new BookType(), $book);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em->persist($form->getData());
+            $em->flush();
+        }
+
+        return $this->render('YourBooksMainBundle:Author:book_upload.html.twig', array(
+            'form' => $form->createView(),
+        ));
+
     }
 
     /**
@@ -77,7 +85,7 @@ class AuthorController extends Controller
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function inscriptionAction()
+    public function inscriptionAction(Request $request)
     {
         return $this->render('YourBooksMainBundle:Author:inscription.html.twig');
     }
