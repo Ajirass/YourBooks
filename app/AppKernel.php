@@ -34,7 +34,7 @@ class AppKernel extends Kernel
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
-            #new YourBooks\UserBundle\YourBooksUserBundle(),
+            new YourBooks\UserBundle\YourBooksUserBundle(),
             new YourBooks\BookBundle\YourBooksBookBundle(),
             new YourBooks\MainBundle\YourBooksMainBundle(),
         );

@@ -10,6 +10,12 @@ your_books_main_reader:
     resource: "@YourBooksMainBundle/Resources/config/routing/reader.yml"
     prefix:   /reader
 
+your_books_main_download_book:
+    pattern:  /download/book/{id}
+    defaults: { _controller: YourBooksMainBundle:Main:downloadBook }
+    requirements:
+        id: \d+
+
 your_books_main_homepage:
     pattern:  /
     defaults: { _controller: YourBooksMainBundle:Main:index }

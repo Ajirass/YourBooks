@@ -138,7 +138,7 @@ class Book
     /**
      * @var BookReview
      *
-     * @ORM\OneToOne(targetEntity="YourBooks\BookBundle\Entity\BookReview", mappedBy="book")
+     * @ORM\OneToMany(targetEntity="YourBooks\BookBundle\Entity\BookReview", mappedBy="book")
      */
     protected $review;
 

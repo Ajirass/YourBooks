@@ -30,7 +30,6 @@ security:
             logout:
                 path:           /admin/logout
             anonymous:          true
-
         main:
             pattern:             .*
             context:             user

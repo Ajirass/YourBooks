@@ -16,6 +16,7 @@ class BookAdmin extends Admin
             ->add('title', null, array('label' => 'Titre : '))
             ->add('summary', null, array('label' => 'Résumé : '))
             ->add('category', null, array('label' => 'Catégorie : '))
+            ->add('readers', null, array('label' => 'Lecteur(s) : '))
             ->add('file', 'file')
         ;
     }

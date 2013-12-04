@@ -71,7 +71,7 @@ class ReaderController extends Controller
      */
     public function reviewAction(Request $request)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('YourBooksBookBundle:BookReview');
 
         $reader = $this->getUser();

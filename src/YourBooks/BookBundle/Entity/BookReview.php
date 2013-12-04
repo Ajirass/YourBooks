@@ -90,7 +90,7 @@ class BookReview
     /**
      * @var Book
      *
-     * @ORM\OneToOne(targetEntity="YourBooks\BookBundle\Entity\Book", inversedBy="review", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="YourBooks\BookBundle\Entity\Book")
      */
     protected $book;
 

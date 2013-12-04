@@ -14,9 +14,9 @@ sonata_user:
     resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
     prefix: /admin
 
-#your_books_user:
-#    resource: "@YourBooksUserBundle/Resources/config/routing.yml"
-#    prefix:   /
+your_books_user:
+    resource: "@YourBooksUserBundle/Resources/config/routing.yml"
+    prefix:   /
 
 _sonata_admin:
     resource: .
