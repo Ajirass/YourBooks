@@ -2,6 +2,14 @@ your_books_user:
     resource: "@YourBooksUserBundle/Resources/config/routing/fos_user.yml"
     prefix:   /
 
+your_books_user_security:
+    resource: "@YourBooksUserBundle/Resources/config/routing/fos_security_custom.yml"
+    prefix:   /
+
+your_books_user_profile:
+    resource: "@YourBooksUserBundle/Resources/config/routing/fos_profile_custom.yml"
+    prefix:   /profile
+
 your_books_user_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: YourBooksUserBundle:Default:index }

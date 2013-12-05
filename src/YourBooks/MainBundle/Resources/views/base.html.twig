@@ -2,14 +2,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {% stylesheets
-    '@YourBooksMainBundle/Resources/public/css/*.css'
-    '@YourBooksMainBundle/Resources/public/less/*.less'
-    filter='lessphp, cssrewrite'
-    output='css/style.css'
-    %}
-    <link rel="stylesheet" href="{{ asset_url }}">
-    {% endstylesheets %}
+
 {% endblock %}
 
 {% block javascripts %}
