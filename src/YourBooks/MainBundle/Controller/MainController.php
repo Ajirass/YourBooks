@@ -9,11 +9,28 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpFoundation\Response;
 use YourBooks\BookBundle\Entity\Book;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class MainController extends Controller
 {
     public function indexAction()
     {
+        if ($this->get('security.context')->isGranted('ROLE_ADMIN'))
+        {
+            return new RedirectResponse($this->generateUrl('sonata_admin_redirect'));
+        } elseif($this->get('security.context')->isGranted('ROLE_READER'))
+        {
+            return new RedirectResponse($this->generateUrl('your_books_main_reader_homepage'));
+        } elseif ($this->get('security.context')->isGranted('ROLE_EDITOR'))
+        {
+            return new RedirectResponse($this->generateUrl('your_books_main_editor_homepage'));
+        } elseif ($this->get('security.context')->isGranted('ROLE_AUTHOR'))
+        {
+            return new RedirectResponse($this->generateUrl('your_books_main_author_homepage'));
+        }
+
+
+
         return $this->render('YourBooksMainBundle:Main:homepage.html.twig');
     }
 

@@ -29,10 +29,12 @@ class ReaderController extends Controller
        // $booksReading = booksReading($reader);
 
 
-        return $this->render('YourBooksMainBundle:Main:homepage.html.twig', array(
-            'books' => $books,
+        return $this->render('YourBooksMainBundle:Reader:homepage.html.twig'
+            //, array(
+         //   'books' => $books,
             //'booksReading' => $booksReading,
-        ));
+     //   )
+    );
 
     }
 
