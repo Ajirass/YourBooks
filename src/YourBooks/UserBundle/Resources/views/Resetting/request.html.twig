@@ -1,9 +1,6 @@
 {% extends "YourBooksUserBundle::layout.html.twig" %}
-
 {% block body %}
-
 {% block fos_user_content %}
-{% include "YourBooksUserBundle:Profile:show_content.html.twig" %}
+{% include "YourBooksUserBundle:Resetting:request_content.html.twig" %}
 {% endblock fos_user_content %}
-
-{% endblock body %}
+{%  endblock body %}

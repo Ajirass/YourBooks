@@ -1,0 +1,19 @@
+your_books_user_resetting_request:
+    pattern:  /request
+    defaults: { _controller: YourBooksUserBundle:Resetting:request }
+    requirements: { _method: GET }
+
+your_books_user_resetting_send_email:
+    pattern:  /send-email
+    defaults: { _controller: YourBooksUserBundle:Resetting:sendEmail }
+    requirements: { _method: POST }
+
+your_books_user_resetting_check_email:
+    pattern:  /check-email
+    defaults: { _controller: YourBooksUserBundle:Resetting:checkEmail }
+    requirements: { _method: GET }
+
+your_books_user_resetting_reset:
+    pattern:  /reset/{token}
+    defaults: { _controller: YourBooksUserBundle:Resetting:reset }
+    requirements: { _method: GET|POST }

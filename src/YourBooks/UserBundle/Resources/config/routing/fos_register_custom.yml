@@ -1,0 +1,18 @@
+your_books_user_registration_register:
+    pattern:  /
+    defaults: { _controller: YourBooksUserBundle:Registration:register }
+
+your_books_user_registration_check_email:
+    pattern:  /check-email
+    defaults: { _controller: YourBooksUserBundle:Registration:checkEmail }
+    requirements: { _method: GET }
+
+your_books_user_registration_confirm:
+    pattern:  /confirm/{token}
+    defaults: { _controller: YourBooksUserBundle:Registration:confirm }
+    requirements: { _method: GET }
+
+your_books_user_registration_confirmed:
+    pattern:  /confirmed
+    defaults: { _controller: YourBooksUserBundle:Registration:confirmed }
+    requirements: { _method: GET }

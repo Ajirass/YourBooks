@@ -10,6 +10,18 @@ your_books_user_profile:
     resource: "@YourBooksUserBundle/Resources/config/routing/fos_profile_custom.yml"
     prefix:   /profile
 
+your_books_user_change_password:
+    resource: "@YourBooksUserBundle/Resources/config/routing/fos_change_password_custom.yml"
+    prefix:   /profile
+
+your_books_user_register:
+    resource: "@YourBooksUserBundle/Resources/config/routing/fos_register_custom.yml"
+    prefix:   /register
+
+your_books_user_resetting:
+    resource: "@YourBooksUserBundle/Resources/config/routing/fos_resetting_custom.yml"
+    prefix:   /resetting
+
 your_books_user_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: YourBooksUserBundle:Default:index }
