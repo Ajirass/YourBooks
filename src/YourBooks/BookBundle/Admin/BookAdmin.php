@@ -12,12 +12,27 @@ class BookAdmin extends Admin
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
+        /*
+        $options = array('required' => false);
+        if (($subject = $this->getSubject()) && $subject->getPhoto()) {
+            $path = $subject->getPhotoWebPath();
+            $options['help'] = '<img src="' . $path . '" />';
+        }
+        */
+        static $options = array();
+        $currentBook = $this->getSubject();
+        if (null !== $currentBook->getFileName())
+            $options = array(
+                'required' => false,
+                'help' => '<a href="/'.$currentBook->getWebPath().'">Download File : '.$currentBook->getFileName().'</a>',
+            );
+
         $formMapper
             ->add('title', null, array('label' => 'Titre : '))
             ->add('summary', null, array('label' => 'Résumé : '))
             ->add('category', null, array('label' => 'Catégorie : '))
             ->add('readers', null, array('label' => 'Lecteur(s) : '))
-            ->add('file', 'file')
+            ->add('file', 'file', $options)
         ;
     }
 
