@@ -25,4 +25,6 @@
         <h2>Nombre de livres lus : {{ countBooksRead }}</h2>
         <h2>Nombre de livres soumis : {{ countBooksSubmit }}</h2>
     </div>
+
+    <a href="{{ path('your_books_main_author_send_book') }}">Soumettre un manuscrit</a>
 {% endblock %}
