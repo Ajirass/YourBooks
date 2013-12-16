@@ -28,6 +28,18 @@ class User extends BaseUser
      */
     protected $id;
 
+    protected $company;
+
+    protected $siret;
+
+    protected $fileCV;
+
+    protected $cv;
+
+    protected $fileMotivationLetter;
+
+    protected $motivationLetter;
+
     /**
      * Get id
      *

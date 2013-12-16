@@ -1,30 +1,31 @@
 {% extends 'YourBooksMainBundle::base.html.twig' %}
 
 {% block body %}
-    <div class="manuscrits">
-        <h1>Mes manuscrits</h1>
+    <div id="home_author">
+        <a class="add_book" href="{{ path('your_books_main_author_send_book') }}">Soumettre<br/>un manuscrit</a>
+        <div class="manuscrits">
+            <h1>Mes manuscrits</h1>
 
-        <div class="book">
-            {% for book in books %}
-                <div class="couverture"></div>
-                <span>Soumis le : {{ book.createdAt|date("d/m/Y") }}</span>
-                <span>Statut : </span>
-                {% if book.readerValidation %}
-                    Soumis aux éditeurs
-                {% elseif book.enabled %}
-                    En cours de lecture et de notation
-                   {% else %}
-                    Pas encore lu
-                {% endif %}
-            {% endfor %}
+            <div class="book">
+                {% for book in books %}
+                    <div class="couverture"></div>
+                    <span>Soumis le : {{ book.createdAt|date("d/m/Y") }}</span>
+                    <span>Statut : </span>
+                    {% if book.readerValidation %}
+                        Soumis aux éditeurs
+                    {% elseif book.enabled %}
+                        En cours de lecture et de notation
+                       {% else %}
+                        Pas encore lu
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="historique">
+            <h1>Historique</h1>
+            <h2>Nombre de livres notés : {{ countBooksRead }}</h2>
+            <h2>Nombre de livres soumis : {{ countBooksSubmit }}</h2>
         </div>
     </div>
-
-    <div class="historique">
-        <h1>Historique</h1>
-        <h2>Nombre de livres lus : {{ countBooksRead }}</h2>
-        <h2>Nombre de livres soumis : {{ countBooksSubmit }}</h2>
-    </div>
-
-    <a href="{{ path('your_books_main_author_send_book') }}">Soumettre un manuscrit</a>
 {% endblock %}
