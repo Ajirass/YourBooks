@@ -12,7 +12,10 @@
         </div>
     </div>
 
-    //TODO boucle sur books
+    {% for book in books %}
+        <h1>{{ book.title }}</h1>
+        //TODO mettre le lien
+    {% endfor %}
 
     <div class="historique">
         <h1>Historique</h1>

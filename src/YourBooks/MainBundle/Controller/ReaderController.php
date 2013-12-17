@@ -38,10 +38,10 @@ class ReaderController extends Controller
         foreach($books as $book) {
             foreach($book->getReaders() as $reader) {
                 if ($reader === $currentUser)
-                    $bookReader[] = $reader;
+                    $bookReader[] = $book;
             }
         }
-        var_dump($bookReader);
+
         return $this->render('YourBooksMainBundle:Reader:homepage.html.twig'
             , array(
                 'books' => $books,
