@@ -1,4 +1,135 @@
-header {
-    color: blue;
-    background: yellow;
+@font-face {
+    font-family: "Futura LT Light";
+    src: url('../fonts/FuturaLT-Light.ttf');
+}
+
+@font-face {
+    font-family: "Futura LT Heavy";
+    src: url('../fonts/FuturaLT-Heavy.ttf');
+}
+
+header
+{
+    background: linear-gradient(to top, #000000, #2e2e2e);
+    background: -webkit-linear-gradient(to top, #000000, #2e2e2e);
+    background: -moz-linear-gradient(to top, #000000, #2e2e2e);
+    background: -o-linear-gradient(to top, #000000, #2e2e2e);
+    background: -ms-linear-gradient(to top, #000000, #2e2e2e);
+    height: 100px;
+    width:100%;
+    margin:auto;
+    margin-bottom:150px;
+}
+
+header .navicon
+{
+    margin:auto;
+
+
+}
+
+header .navicon ul li
+{
+    list-style-type:none;
+    float:left;
+    margin:25px 0 0 0;
+
+}
+
+header .navicon ul li:hover p
+{
+    display:block;
+
+}
+
+header .navicon p
+{
+    display:none;
+    color:#000;
+    width:50px;
+    text-align:center;
+    font-family:'Futura LT';
+    font-size:1.45em;
+    padding-top:10px;
+    margin-left: -10px;
+}
+
+header .navicon img
+{
+
+    padding: 5px 20px;
+}
+
+header .authenticated
+{
+    float:right;
+    margin:auto;
+
+}
+
+header .authenticated .infos
+{
+    float:left;
+    text-align:right;
+    margin-top:20px;
+}
+header .authenticated img
+{
+    height:28px;
+    width:25px;
+    float:right;
+    padding-right:25px;
+    margin-top:40px;
+    margin-left:30px;
+}
+
+header .authenticated p
+{
+    font-family:'Futura LT heavy';
+    font-size:1.6em;
+    color:white;
+    margin:0;
+}
+
+header .authenticated a
+{
+    font-family:'Futura LT light';
+    font-size:1.6em;
+    color:white;
+    text-decoration:none;
+    margin:0;
+}
+
+header .logo
+{
+    color:white;
+    border:2px solid white;
+    padding:0 20px;
+    float:left;
+}
+
+header .not_authenticated
+{
+    float:right;
+    color:white;
+    margin:auto;
+    padding:30px;
+}
+
+
+header .not_authenticated a
+{
+
+    color: white;
+    text-decoration:none;
+    font-family: "Futura LT Light";
+    font-size:1.6em;
+    text-align:right;
+    padding:10px;
+    margin-top:10px;
+}
+
+header .not_authenticated a:first-child
+{
+    border-right: 1px solid white;
 }

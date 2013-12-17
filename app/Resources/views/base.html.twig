@@ -20,22 +20,52 @@
         <script src="{{ asset('bundles/yourbooksmain/js/modernizr-2.7.0.min.js') }}"></script>
     </head>
     <body>
+
+
         <header>
-            <img src="" alt="logo_yourbooks" title="Logo YourBooks">
-            <nav role="navbar">
-                <ul>
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <li><a href="{{ path('your_books_user_profile_show') }}">Welcome {{ app.user.username }}</a></li>
-                        <li><a href="{{ path('your_books_user_security_logout') }}">Se déconnecter</a></li>
-                    {% else %}
-                        <li class="connect">
-                            <a href="{{ path('your_books_user_security_login') }}">Se connecter</a>
-                            <a href="{{ path('your_books_user_registration_register') }}">Créer son compte</a>
-                        </li>
-                    {% endif %}
-                </ul>
+            <img src="" alt="logo_yourbooks" title="Logo YourBooks" class="logo">
+
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+             {% if is_granted('ROLE_AUTHOR') or is_granted('ROLE_EDITOR') or is_granted('ROLE_READER') %}
+                 <nav class="navicon">
+                     <ul>
+                         {% if is_granted('ROLE_AUTHOR')%}
+                             <li><a href="{{ path ('your_books_main_author_send_book') }}"><img src="{{ asset('bundles/yourbooksmain/images/soumettre-manuscrit-blanc.png') }}" alt="Soumettre son manuscrit" title="Soumettre son manuscrit"></a>
+                                 <p>Soumettre un manuscrit</p>
+                             </li>
+                         {% endif %}
+
+                         <li><a href="#"><img src="{{ asset('bundles/yourbooksmain/images/manuscrit-blanc.png') }}" alt="Soumettre son manuscrit" title="Soumettre son manuscrit"></a>
+                             <p>Manuscrit</p>
+                         </li>
+                         <li><a href="{{ path ('your_books_user_profile_edit') }}"><img src="{{ asset('bundles/yourbooksmain/images/reglage-blanc.png') }}" alt="Paramètres" title="Paramètres"></a>
+                             <p>Paramètres</p>
+                         </li>
+                     </ul>
+                 </nav>
+                 <div class="authenticated">
+                     <div class='infos'>
+                         <p>{{ app.user.username }}</p>
+                         <a href="{{ path('your_books_user_profile_show') }}">Voir mon profil</a>
+                     </div>
+                     <a href="{{ path('your_books_user_security_logout') }}"><img src="{{ asset('bundles/yourbooksmain/images/log-out-blanc.png') }}" alt="Logout" title="logout"></a>
+                 </div>
+            {% endif %}
+
+
+
+            {% else %}
+            <nav class="not_authenticated">
+                <a href="{{ path('your_books_user_security_login') }}">Se connecter</a>
+
+                <a href="{{ path('your_books_user_registration_register') }}">S'inscrire</a>
             </nav>
+
+            {% endif %}
+
         </header>
+
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
         <footer>
