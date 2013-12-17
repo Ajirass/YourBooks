@@ -14,6 +14,16 @@ your_books_main_author_profile:
     pattern:  /profile
     defaults: { _controller: YourBooksMainBundle:Author:profile }
 
+your_books_main_author_edit_profile:
+    pattern:  /profile/edit
+    defaults: { _controller: YourBooksMainBundle:Author:editProfile }
+    methods: [get]
+
+your_books_main_author_update_profile:
+    pattern:  /profile/update/
+    defaults: { _controller: YourBooksMainBundle:Author:updateProfile }
+    methods: [post, put]
+
 your_books_main_author_inscription:
     pattern:  /inscription
     defaults: { _controller: YourBooksMainBundle:Author:inscription }

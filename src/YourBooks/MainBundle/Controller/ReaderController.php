@@ -32,8 +32,16 @@ class ReaderController extends Controller
 
         $bookRepo = $this->getDoctrine()->getManager()->getRepository('YourBooksBookBundle:Book');
 
+        $bookReader = array();
         $books = $bookRepo->findAll();
 
+        foreach($books as $book) {
+            foreach($book->getReaders() as $reader) {
+                if ($reader === $currentUser)
+                    $bookReader[] = $reader;
+            }
+        }
+        var_dump($bookReader);
         return $this->render('YourBooksMainBundle:Reader:homepage.html.twig'
             , array(
                 'books' => $books,
