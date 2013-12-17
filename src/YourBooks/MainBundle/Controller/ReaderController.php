@@ -19,21 +19,26 @@ class ReaderController extends Controller
      */
     public function indexAction()
     {
-        //$em = $this->getDoctrine()->getEntityManager();
-       // $repo = $em->getRepository('YourBooksBookBundle:Book');
+        /**
+         * Old code
+         *
+         * $em = $this->getDoctrine()->getEntityManager();
+         * $repo = $em->getRepository('YourBooksBookBundle:Book');
+         * $reader = $this->getUser();
+         * $books = $repo->booksReading($reader);
+         * $booksReading = booksReading($reader);
+         */
+        $currentUser = $this->getUser();
 
-      //  $reader = $this->getUser();
-      //  $books = $repo->booksReading($reader);
+        $bookRepo = $this->getDoctrine()->getManager()->getRepository('YourBooksBookBundle:Book');
 
-
-       // $booksReading = booksReading($reader);
-
+        $books = $bookRepo->findAll();
 
         return $this->render('YourBooksMainBundle:Reader:homepage.html.twig'
-            //, array(
-         //   'books' => $books,
-            //'booksReading' => $booksReading,
-     //   )
+            , array(
+                'books' => $books,
+                //'booksReading' => $booksReading,
+        )
     );
 
     }

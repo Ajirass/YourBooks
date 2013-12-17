@@ -47,4 +47,18 @@ class BookRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+    /*
+    public function findAllBooksForReader($reader)
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->select('count(b.id)')
+            ->where('b.author = :author')
+            ->andWhere('b.readerValidation = :readerValidation')
+            ->setParameter(':author', $reader)
+            ->setParameter(':readerValidation', true)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+    */
 }
