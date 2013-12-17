@@ -66,4 +66,96 @@ class User extends BaseUser
     {
         return 'sonata_user_class';
     }
+    
+    /**
+     * Set company
+     *
+     * @param string $company
+     * @return User
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
+    
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return string 
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * Set siret
+     *
+     * @param string $siret
+     * @return User
+     */
+    public function setSiret($siret)
+    {
+        $this->siret = $siret;
+    
+        return $this;
+    }
+
+    /**
+     * Get siret
+     *
+     * @return string 
+     */
+    public function getSiret()
+    {
+        return $this->siret;
+    }
+
+    /**
+     * Set cv
+     *
+     * @param string $cv
+     * @return User
+     */
+    public function setCv($cv)
+    {
+        $this->cv = $cv;
+    
+        return $this;
+    }
+
+    /**
+     * Get cv
+     *
+     * @return string 
+     */
+    public function getCv()
+    {
+        return $this->cv;
+    }
+
+    /**
+     * Set motivationLetter
+     *
+     * @param string $motivationLetter
+     * @return User
+     */
+    public function setMotivationLetter($motivationLetter)
+    {
+        $this->motivationLetter = $motivationLetter;
+    
+        return $this;
+    }
+
+    /**
+     * Get motivationLetter
+     *
+     * @return string 
+     */
+    public function getMotivationLetter()
+    {
+        return $this->motivationLetter;
+    }
 }
