@@ -28,16 +28,28 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @var string
+     */
     protected $company;
 
+    /**
+     * @var string
+     */
     protected $siret;
 
     protected $fileCV;
 
+    /**
+     * @var string
+     */
     protected $cv;
 
     protected $fileMotivationLetter;
 
+    /**
+     * @var string
+     */
     protected $motivationLetter;
 
     /**
@@ -48,5 +60,10 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getName()
+    {
+        return 'sonata_user_class';
     }
 }

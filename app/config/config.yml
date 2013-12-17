@@ -86,6 +86,9 @@ fos_user:
     user_class:     Application\Sonata\UserBundle\Entity\User
     group:
         group_class: Application\Sonata\UserBundle\Entity\Group
+    registration:
+        form:
+            type: yourbooks_user_registration
 
 sonata_block:
     default_contexts: [cms]

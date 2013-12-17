@@ -10,6 +10,10 @@
             <generator strategy="AUTO" />
         </id>
 
+        <field name="company" column="name" type="string" length="255" nullable="true"/>
+        <field name="siret" column="siret" type="string" length="255" nullable="true"/>
+        <field name="cv" column="cv" type="string" length="255" nullable="true"/>
+        <field name="motivationLetter" column="motivationLetter" type="string" length="255" nullable="true"/>
     </entity>
 
 </doctrine-mapping>

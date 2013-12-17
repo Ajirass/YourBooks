@@ -3,7 +3,11 @@
 {% block body %}
 
 {% block fos_user_content %}
-{% include "YourBooksUserBundle:Profile:show_content.html.twig" %}
+    {% if profile is defined and profile == 'private' %}
+        {% include "YourBooksUserBundle:Profile:show_content_private.html.twig" %}
+    {% else %}
+        {% include "YourBooksUserBundle:Profile:show_content_public.html.twig" %}
+    {% endif %}
 {% endblock fos_user_content %}
 
 {% endblock body %}
