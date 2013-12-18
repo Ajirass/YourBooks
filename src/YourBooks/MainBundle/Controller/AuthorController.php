@@ -21,7 +21,7 @@ class AuthorController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('YourBooksBookBundle:Book');
 
         $author = $this->getUser();
@@ -45,7 +45,7 @@ class AuthorController extends Controller
      */
     public function sendAction(Request $request)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('YourBooksBookBundle:Book');
 
         $author = $this->getUser();

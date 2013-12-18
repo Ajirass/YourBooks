@@ -2,7 +2,6 @@
   font-family: "Futura LT";
   src: url('../fonts/FuturaLT.ttf');
 }
-
 @font-face {
   font-family: 'novecento_wide_bold';
   src: url('../fonts/novecentowide-bold.eot');
@@ -11,7 +10,101 @@
   url('../fonts/novecentowide-bold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-
+}
+@font-face {
+  font-family: 'novecento_wide';
+  src: url('../fonts/novecentowide-normal.eot');
+  src: url('../fonts/novecentowide-normal.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/novecentowide-normal.woff') format('woff'),
+  url('../fonts/novecentowide-normal.ttf') format('truetype'),
+  url('../fonts/novecentowide-normal.svg#novecento_widenormal') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'novecento_widedemibold';
+  src: url('../fonts/novecentowide-demibold.eot');
+  src: url('../fonts/novecentowide-demibold.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/novecentowide-demibold.woff') format('woff'),
+  url('../fonts/novecentowide-demibold.ttf') format('truetype'),
+  url('../fonts/novecentowide-demibold.svg#novecento_widedemibold') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
+.clear{ clear: both;}
 
+/* ==========================================================================
+   Homepage Author
+   ========================================================================== */
+#home_author
+{
+  .manuscrits
+  {
+    padding: 0 80px;
+    h1{font-family: novecento_wide_bold; font-size: 24px; margin-left: 20px;}
+    .book
+    {
+      width: 50%; float: left; margin-bottom: 40px;
+      .couverture
+      {
+        width: 125px; height: 175px; background: #FFF; border-left: solid 6px #ca3e3c; float: left; position: relative;
+        -moz-box-shadow: 5px 5px 20px 0px #9b9b9b;
+        -webkit-box-shadow: 5px 5px 20px 0px #9b9b9b;
+        -o-box-shadow: 5px 5px 20px 0px #9b9b9b;
+        box-shadow: 5px 5px 20px 0px #9b9b9b;
+        filter:progid:DXImageTransform.Microsoft.Shadow(color=#9b9b9b, Direction=134, Strength=20);
+        .title{font-family: "Futura LT"; font-size: 15px; color: #1a0903; padding: 15px 15px 0 15px; display: block;}
+        .category{font-family: "Futura LT"; font-size: 15px; padding: 0 15px 15px 15px; display: block; color: #ca3e3c;}
+      }
+      .createdat
+      {
+        time{display: inline-block; font-family: novecento_widedemibold; margin-left: 20px; margin-top: 5px;}
+        span{text-indent: 15px; font-family: novecento_wide; font-size: 16px; color: #000000; display: inline-block; border-bottom: solid 2px #e3e2e3; padding-right: 20px; padding-top: 5px;}
+      }
+      .block_statut
+      {
+
+        display: inline-block;
+        .statut{text-indent: 15px; font-family: novecento_wide; font-size: 16px; color: #000000; display: inline-block; border-bottom: solid 2px #e3e2e3; padding-right: 42px; padding-top: 5px;}
+        .content_statut
+        {
+          padding-left: 20px; padding-top: 10px; font-family: novecento_widedemibold; font-size: 16px; width: 200px;
+          .progress_bar
+          {
+            position: relative;
+            overflow: hidden;
+            width: 160px; height: 13px; margin-top: 5px;
+            -moz-box-shadow: inset 0px 0px 8px 1px #656565;
+            -webkit-box-shadow: inset 0px 0px 8px 1px #656565;
+            -o-box-shadow: inset 0px 0px 8px 1px #656565;
+            box-shadow: inset 0px 0px 8px 1px #656565;
+            filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=8);
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            .progress
+            {
+              height: 13px; background-color: #c73d3b; display: block; position: relative;
+              -webkit-box-shadow: inset 4px 3px 10px -2px #090907;
+              -moz-box-shadow: inset 4px 3px 10px -2px #090907;
+              -o-box-shadow: inset 4px 3px 10px -2px #090907;
+              box-shadow: inset 4px 3px 10px -2px #090907;
+            }
+            .sendreader{width: 40px;}
+            .reading{width: 80px;}
+            .sendeditor{width: 160px;}
+          }
+          .pourcentage{ font-family: "Futura LT"; font-size: 17px; float: right; margin-top: -18px; margin-right: -5px;
+          }
+        }
+
+      }
+    }
+  }
+
+  .historique
+  {
+    padding: 0 80px;
+  }
+}

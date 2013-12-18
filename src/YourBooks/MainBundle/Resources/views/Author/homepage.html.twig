@@ -2,24 +2,48 @@
 
 {% block body %}
     <div id="home_author">
-        <a class="add_book" href="{{ path('your_books_main_author_send_book') }}">Soumettre<br/>un manuscrit</a>
         <div class="manuscrits">
             <h1>Mes manuscrits</h1>
 
-            <div class="book">
-                {% for book in books %}
-                    <div class="couverture"></div>
-                    <span>Soumis le : {{ book.createdAt|date("d/m/Y") }}</span>
-                    <span>Statut : </span>
-                    {% if book.readerValidation %}
-                        Soumis aux éditeurs
-                    {% elseif book.enabled %}
-                        En cours de lecture et de notation
-                       {% else %}
-                        Pas encore lu
-                    {% endif %}
-                {% endfor %}
-            </div>
+            {% for book in books %}
+                <div class="book">
+
+                        <div class="couverture">
+                            <h3 class="title">{{ book.title }}</h3>
+                            <span class="category">{{ book.category }}</span>
+                        </div>
+                        <div class="createdat">
+                            <span>SOUMIS LE :</span><br>
+                            <time>{{ book.createdAt|date("d/m/Y") }}</time>
+                        </div>
+                        <div class="block_statut">
+                            <span class="statut">Statut :</span>
+                            <div class="content_statut">
+                                {% if book.readerValidation %}
+                                    Soumis aux éditeurs
+                                    <div class="progress_bar">
+                                        <span class="progress sendeditor"></span>
+                                    </div>
+                                    <span class="pourcentage">100%</span>
+                                {% elseif book.sendByReader %}
+                                    En cours de lecture et de notation
+                                    <div class="progress_bar">
+                                        <span class="progress reading"></span>
+                                    </div>
+                                    <span class="pourcentage">50%</span>
+                                {% else %}
+                                    envoyé aux lecteurs
+                                    <div class="progress_bar">
+                                        <span class="progress sendreader"></span>
+                                    </div>
+                                    <span class="pourcentage">25%</span>
+
+                                {% endif %}
+                            </div>
+                        </div>
+                </div>
+            {% endfor %}
+            <div class="clear"></div>
         </div>
 
         <div class="historique">
