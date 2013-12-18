@@ -15,5 +15,7 @@ your_books_main_reader_profile:
     defaults: { _controller: YourBooksMainBundle:Reader:profile }
 
 your_books_review_upload:
-    pattern:  /review
+    pattern:  /review/{id}
     defaults: { _controller: YourBooksMainBundle:Reader:review }
+    requirements:
+        id: \d+

@@ -19,7 +19,6 @@ class BookReviewType extends AbstractType
             ->add('criteria5')
             ->add('critic')
             ->add('problems')
-            ->add('book')
         ;
     }
 

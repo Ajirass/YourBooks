@@ -4,30 +4,14 @@
     <div class="manuscrits">
         <h1>Mes manuscrits</h1>
 
-        <div class="book">
-            <img src="" alt="couverture">
-            <span>Soumis le : </span>
-            <span>Statut : </span>
-            En cours de lecture et de notation
-        </div>
-    </div>
+
 
     {% for book in books %}
-        <h1>{{ book.title }}</h1>
-        //TODO mettre le lien
+        <li><div class="couverture">{{ book.title }} <br/> {{ book.createdAt|date("d/m/Y") }}</div></li>
+        <a href="{{ path('your_books_main_download_book', { 'id': book.id }) }}">Téléchargez</a>
+        <a href="{{ path('your_books_review_upload', { 'id': book.id }) }}">Notez ce manuscrit</a>
+
     {% endfor %}
-
-    <div class="historique">
-        <h1>Historique</h1>
-        <div class="book">
-
-                <div class="couverture"></div>
-                <span>Soumis le : </span>
-    <a href="{{ path('your_books_review_upload') }}">Notez ce manuscrit</a>
-            <!-- TODO rajouter l'id du book en paramètre -->
-        </div>
     </div>
-    <div class="new">
-        <h1>Nouveaux manuscrits</h1>
-    </div>
+
 {% endblock %}
