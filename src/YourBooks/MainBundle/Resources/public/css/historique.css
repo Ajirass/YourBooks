@@ -1,0 +1,124 @@
+@font-face
+{
+    font-family: 'Quicksand';
+    src: url('../fonts/Quicksand_Book.otf');
+}
+
+@font-face
+{
+    font-family: 'Quicksand Bold';
+    src: url('../fonts/Quicksand_Bold.otf');
+}
+
+@font-face
+{
+    font-family: 'High Tower';
+    src: url('../fonts/HTOWERT.ttf');
+}
+
+@font-face
+{
+    font-family: 'Novenceto wide';
+    src: url('../fonts/Novecentowide-Book.otf');
+}
+
+
+.wrapper .historique
+{
+    width:1024px;
+}
+
+.historique h2
+{
+    font-family:"Novecento wide";
+    font-size: 2em;
+}
+
+.historique ul
+{
+    float:left;
+}
+
+.historique ul li{
+
+    font-family: 'Quicksand Bold';
+    font-size: 2em;
+    list-style-type: none;
+    border-bottom: 2px solid #d4d5d4;
+    width: 500px;
+
+}
+
+.historique ul li p
+{
+    display: inline;
+    margin-left: -20px;
+}
+
+.historique ul li span
+{
+    color:#ef4853;
+    font-family: 'Quicksand';
+    float:right;
+    border:none;
+    margin-right: -25px;
+}
+
+.historique input[type=text]
+{
+    text-shadow: 2px 2px 4px #999;
+}
+
+.historique .graph
+{
+    text-align:right;
+}
+
+
+.historique .legend
+{
+    float:right;
+    font-family: 'Hight Tower';
+    font-size: 2em;
+    margin: 25px;
+}
+
+.historique .cercle {
+    width: 15px;
+    height: 15px;
+    float:left;
+    margin: 12px 20px 0px 0px;
+
+
+
+    -webkit-border-radius: 25px;
+    -khtml-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+}
+
+.historique .cercle.un
+{
+    background-color: #ef4853;
+    border: 1px solid #ef4853;
+}
+
+.historique .cercle.deux
+{
+    background-color: #5e051c;
+    border: 1px solid #5e051c;
+}
+
+
+.historique .legend.u
+{
+    color:#ef4853;
+
+
+}
+
+.historique .legend.d
+{
+    color:#5e051c;
+
+}

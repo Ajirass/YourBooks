@@ -30,11 +30,14 @@ class AuthorController extends Controller
         $countBooksSubmit = $repo->countBooksSubmit($author);
         $countBooksRead = $repo->countBooksRead($author);
 
+        $percent = (($countBooksRead)/($countBooksSubmit))*100;
+
 
         return $this->render('YourBooksMainBundle:Author:homepage.html.twig', array(
             'books' => $books,
             'countBooksSubmit' => $countBooksSubmit,
             'countBooksRead' => $countBooksRead,
+            'percent' => $percent,
         ));
     }
 

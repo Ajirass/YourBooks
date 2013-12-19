@@ -46,10 +46,56 @@
             <div class="clear"></div>
         </div>
 
-        <div class="historique">
-            <h1>Historique</h1>
-            <h2>Nombre de livres notés : {{ countBooksRead }}</h2>
-            <h2>Nombre de livres soumis : {{ countBooksSubmit }}</h2>
+        <div class="wrapper">
+            <div class="historique">
+            <h2>Historique</h2>
+
+            <ul>
+                <li><p>Nombre de livres soumis</p> <span>{{ countBooksRead }}</span></li>
+                <li><p>Nombre de livres notés </p><span>{{ countBooksSubmit }}</span></li>
+            </ul>
+
+            <div class="graph">
+
+                <input type="text" value="{{ percent }}" class="dial">
+
+                <div class="infos">
+
+                    <div class="legend u">
+                        <div class="cercle un"></div><span>Livres soumis</span>
+                    </div>
+
+                    <div class="legend d">
+                        <div class="cercle deux"></div><span>Livres notés</span>
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
+        </div>
+        <script>
+
+            $(function() {
+                $(".dial").knob({
+
+                    'bgColor': '#ef4853',
+                    'inputColor' : '#5e051c',
+                    'fgColor' :'#5e051c',
+                    'thickness' : '0.4',
+                    'readOnly' : true,
+                    'skin' : 'tron',
+                    'displayPrevious' : true,
+                    'font' : 'Quicksand Bold',
+                    'width' : '300',
+                    'height' : '300'
+
+                });
+            });
+        </script>
+
+
+
     </div>
 {% endblock %}
