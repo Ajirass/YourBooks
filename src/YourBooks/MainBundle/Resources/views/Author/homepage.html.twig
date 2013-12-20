@@ -51,14 +51,13 @@
             <h2>Historique</h2>
 
             <ul>
-                <li><p>Nombre de livres soumis</p> <span>{{ countBooksRead }}</span></li>
-                <li><p>Nombre de livres notés </p><span>{{ countBooksSubmit }}</span></li>
+                <li><p>Nombre de livres soumis</p><span>{{ countBooksSubmit }}</span></li>
+                <li><p>Nombre de livres notés </p><span>{{ countBooksRead }}</span></li>
             </ul>
 
             <div class="graph">
 
                 <input type="text" value="{{ percent }}" class="dial">
-
                 <div class="infos">
 
                     <div class="legend u">
@@ -75,27 +74,26 @@
 
         </div>
         </div>
-        <script>
-
-            $(function() {
-                $(".dial").knob({
-
-                    'bgColor': '#ef4853',
-                    'inputColor' : '#5e051c',
-                    'fgColor' :'#5e051c',
-                    'thickness' : '0.4',
-                    'readOnly' : true,
-                    'skin' : 'tron',
-                    'displayPrevious' : true,
-                    'font' : 'Quicksand Bold',
-                    'width' : '300',
-                    'height' : '300'
-
-                });
-            });
-        </script>
-
-
 
     </div>
+{% endblock %}
+
+{% block javascripts %}
+   {{ parent() }}
+    <script>
+        $(document).ready(function(){
+            $(".dial").knob({
+                'bgColor': '#ef4853',
+                'inputColor' : '#5e051c',
+                'fgColor' :'#5e051c',
+                'thickness' : '0.4',
+                'readOnly' : true,
+                'skin' : 'tron',
+                'displayPrevious' : true,
+                'font' : 'Quicksand Bold',
+                'width' : '300',
+                'height' : '300'
+            });
+        });
+    </script>
 {% endblock %}

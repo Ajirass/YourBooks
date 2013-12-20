@@ -6,9 +6,6 @@
 {% endblock %}
 
 {% block javascripts %}
-    {% javascripts
-    '@YourBooksMainBundle/Resources/public/js/*.js'
-    %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/yourbooksmain/js/jquery.knob.js') }}"></script>
 {% endblock %}
