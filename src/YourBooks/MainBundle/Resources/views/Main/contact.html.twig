@@ -1,0 +1,15 @@
+{% extends 'YourBooksMainBundle::base.html.twig' %}
+{% block body %}
+{% for label, flashes in app.session.flashbag.all %}
+    {% for flash in flashes %}
+        <div class="alert alert-{{ label }}">
+            {{ flash }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+    <form method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input type="submit">
+    </form>
+{% endblock %}

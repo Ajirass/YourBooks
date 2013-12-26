@@ -15,6 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\Security\Core\SecurityContext;
 use Application\Sonata\UserBundle\Entity\User;
 use YourBooks\UserBundle\Form\RegisterType;
+use YourBooks\MainBundle\Form\Type\ContactType;
 
 class MainController extends Controller
 {
@@ -108,5 +109,48 @@ class MainController extends Controller
         //TODO
 
         return $response;
+    }
+
+
+
+    public function contactAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $repo = $em->getRepository('ApplicationSonataUserBundle:User');
+        $user = $repo->findById(1);
+        $email = $user->getEmail();
+
+        $form = $this->createForm(new ContactType());
+
+        if ($request->isMethod('POST')) {
+            $form->bind($request);
+
+            if ($form->isValid()) {
+                $message = \Swift_Message::newInstance()
+                    ->setSubject($form->get('subject')->getData())
+                    ->setFrom($form->get('email')->getData())
+                    ->setTo($email)
+                    ->setBody(
+                        $this->renderView(
+                            'YourBooksMainBundle:Mail:contact.html.twig',
+                            array(
+                                'name' => $form->get('name')->getData(),
+                                'message' => $form->get('message')->getData()
+                            )
+                        )
+                    );
+
+                $this->get('mailer')->send($message);
+
+                $request->getSession()->getFlashBag()->add('success', 'Your email has been sent! Thanks!');
+
+                return $this->redirect($this->generateUrl('your_books_main_contact'));
+            }
+        }
+
+        return $this->render('YourBooksMainBundle:Main:contact.html.twig', array(
+            'form' => $form->createView()
+        ));
+
     }
 }

@@ -19,3 +19,7 @@ your_books_main_download_book:
 your_books_main_homepage:
     pattern:  /
     defaults: { _controller: YourBooksMainBundle:Main:index }
+
+your_books_main_contact:
+    pattern:  /contact
+    defaults: { _controller: YourBooksMainBundle:Main:contact }
