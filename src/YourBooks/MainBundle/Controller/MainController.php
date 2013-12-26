@@ -117,7 +117,7 @@ class MainController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
         $repo = $em->getRepository('ApplicationSonataUserBundle:User');
-        $user = $repo->findById(1);
+        $user = $repo->find(1);
         $email = $user->getEmail();
 
         $form = $this->createForm(new ContactType());
