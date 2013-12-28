@@ -42,3 +42,8 @@ footer ul li a:active, a:focus
 {
     outline:none;
 }
+
+footer ul li a:active
+{
+    color:#b00101;
+}

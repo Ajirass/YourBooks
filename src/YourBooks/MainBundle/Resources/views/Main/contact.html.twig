@@ -1,15 +1,19 @@
 {% extends 'YourBooksMainBundle::base.html.twig' %}
 {% block body %}
-{% for label, flashes in app.session.flashbag.all %}
-    {% for flash in flashes %}
-        <div class="alert alert-{{ label }}">
-            {{ flash }}
-        </div>
+    <div class="contactForm">
+        <h1>Contact</h1>
+        <p>Si vous souhaitez nous faire part de vos remarques ou si vous avez des
+            questions n'hésitez pas, nous sommes à votre disposition.</p>
+        <form method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+            <input type="submit">
+        </form>
+    </div>
+    {% for label, flashes in app.session.flashbag.all %}
+        {% for flash in flashes %}
+            <div class="alert alert-{{ label }}">
+                {{ flash }}
+            </div>
+        {% endfor %}
     {% endfor %}
-{% endfor %}
-
-    <form method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
-        <input type="submit">
-    </form>
 {% endblock %}
