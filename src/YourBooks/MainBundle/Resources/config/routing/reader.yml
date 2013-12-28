@@ -19,3 +19,9 @@ your_books_review_upload:
     defaults: { _controller: YourBooksMainBundle:Reader:review }
     requirements:
         id: \d+
+
+your_books_main_received:
+    pattern:  /received/{id}
+    defaults: { _controller: YourBooksMainBundle:Reader:received }
+    requirements:
+        id: \d+

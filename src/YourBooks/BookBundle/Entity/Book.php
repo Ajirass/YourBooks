@@ -82,6 +82,13 @@ class Book
     /**
      * @var bool
      *
+     * @ORM\Column(name="received_by_reader", type="boolean", nullable=true)
+     */
+    protected $receivedByReader;
+
+    /**
+     * @var bool
+     *
      * @ORM\Column(name="send_by_reader", type="boolean", nullable=true)
      */
     protected $sendByReader;
@@ -150,6 +157,7 @@ class Book
     public function __construct()
     {
         $this->enabled = false;
+        $this->receivedByReader = false;
         $this->sendByReader = false;
         $this->readerValidation = false;
         $this->edited = false;
@@ -323,6 +331,30 @@ class Book
     {
         return $this->enabled;
     }
+
+    /**
+     * Set receivedByReader
+     *
+     * @param boolean $receivedByReader
+     * @return Book
+     */
+    public function setReceivedByReader($receivedByReader)
+    {
+        $this->receivedByReader = $receivedByReader;
+
+        return $this;
+    }
+
+    /**
+     * Get receivedByReader
+     *
+     * @return boolean
+     */
+    public function getReceivedByReader()
+    {
+        return $this->receivedByReader;
+    }
+
 
     /**
      * Set sendByReader
@@ -646,4 +678,27 @@ class Book
         return $this->title;
     }
 
+
+    /**
+     * Add review
+     *
+     * @param \YourBooks\BookBundle\Entity\BookReview $review
+     * @return Book
+     */
+    public function addReview(\YourBooks\BookBundle\Entity\BookReview $review)
+    {
+        $this->review[] = $review;
+    
+        return $this;
+    }
+
+    /**
+     * Remove review
+     *
+     * @param \YourBooks\BookBundle\Entity\BookReview $review
+     */
+    public function removeReview(\YourBooks\BookBundle\Entity\BookReview $review)
+    {
+        $this->review->removeElement($review);
+    }
 }

@@ -116,4 +116,21 @@ class ReaderController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     *@param Book $book
+     *
+     * @ParamConverter("book", class="YourBooksBookBundle:Book")
+     * @Secure(roles="ROLE_READER")
+     */
+    public function receivedAction(Book $book)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $book->setReceivedByReader(true);
+        $em->flush();
+        return new RedirectResponse($this->generateUrl('your_books_main_reader_homepage'));
+    }
+
+
 }
