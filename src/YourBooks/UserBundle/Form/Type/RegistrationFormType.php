@@ -12,8 +12,8 @@ class RegistrationFormType extends BaseType
         parent::buildForm($builder, $options);
 
         //$builder->add('name');
-        if ('author' === $options['account_type'])
-            $builder->add('dateOfBirth');
+        //if ('author' === $options['account_type'])
+        //    $builder->add('dateOfBirth');
     }
 
     public function getName()

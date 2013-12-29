@@ -12,12 +12,16 @@
 namespace YourBooks\UserBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Exception\AccountStatusException;
 use FOS\UserBundle\Model\UserInterface;
+
+use YourBooks\UserBundle\ConfirmMail\ConfirmMailEvent;
+use YourBooks\UserBundle\ConfirmMail\UserRegisterEvent;
 
 /**
  * Controller managing the registration
@@ -45,6 +49,13 @@ class RegistrationController extends ContainerAware
                 $authUser = true;
                 $route = 'your_books_user_registration_confirmed';
             }
+
+            // On crée l'évènement avec ses 2 arguments
+            $event = new UserRegisterEvent($user);
+
+            // On déclenche l'évènement
+            $dispatcher = $this->container->get('event_dispatcher');
+            $dispatcher->dispatch(ConfirmMailEvent::UserRegisterMail, $event);
 
             $this->setFlash('fos_user_success', 'registration.flash.user_created');
             $url = $this->container->get('router')->generate($route);

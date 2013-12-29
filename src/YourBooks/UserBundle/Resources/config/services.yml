@@ -12,3 +12,8 @@ services:
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: yourbooks_user_registration }
+    yourbooks.user.user_registration_listener:
+            class: YourBooks\UserBundle\ConfirmMail\UserRegistrationListener
+            arguments: [@mailer]
+            tags:
+                - { name: kernel.event_listener, event: userbundle.confirmmail.user_register, method: onUserRegister }
