@@ -86,12 +86,13 @@ class MainController extends Controller
     {
         $user = $this->getUser();
         $readers = $book->getReaders();
+        $readerValidation = $book->getReaderValidation();
 
 
         if($this->get('security.context')->isGranted('ROLE_ADMIN')){
 
         } elseif ($this->get('security.context')->isGranted('ROLE_READER')){
-            if (false === $readers->contains($user))
+            if (false === $readers->contains($user) && false === $readerValidation )
                 throw new AccessDeniedHttpException('Vous n\'avez pas les droits pour accéder à cette page.');
         } elseif ($this->get('security.context')->isGranted('ROLE_EDITOR')){
             if (false === $book->getReaderValidation())
