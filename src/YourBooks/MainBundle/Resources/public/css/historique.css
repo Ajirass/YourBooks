@@ -1,28 +1,3 @@
-@font-face
-{
-    font-family: 'Quicksand';
-    src: url('../fonts/Quicksand_Book.otf');
-}
-
-@font-face
-{
-    font-family: 'Quicksand Bold';
-    src: url('../fonts/Quicksand_Bold.otf');
-}
-
-@font-face
-{
-    font-family: 'High Tower';
-    src: url('../fonts/HTOWERT.ttf');
-}
-
-@font-face
-{
-    font-family: 'Novenceto wide';
-    src: url('../fonts/Novecentowide-Book.otf');
-}
-
-
 .wrapper .historique
 {
     width:1024px;
@@ -30,7 +5,7 @@
 
 .historique h2
 {
-    font-family:"Novecento wide";
+    font-family:"Novecentowide-Book";
     font-size: 2em;
 }
 
@@ -41,7 +16,7 @@
 
 .historique ul li{
 
-    font-family: 'Quicksand Bold';
+    font-family: 'Quicksand-Bold';
     font-size: 2em;
     list-style-type: none;
     border-bottom: 2px solid #d4d5d4;
@@ -58,7 +33,7 @@
 .historique ul li span
 {
     color:#ef4853;
-    font-family: 'Quicksand';
+    font-family: 'Quicksand-Book';
     float:right;
     border:none;
     margin-right: -25px;
@@ -78,7 +53,7 @@
 .historique .legend
 {
     float:right;
-    font-family: 'Hight Tower';
+    font-family: 'HTOWERT';
     font-size: 2em;
     margin: 25px;
 }

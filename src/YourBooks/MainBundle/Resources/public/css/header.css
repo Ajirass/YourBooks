@@ -1,13 +1,3 @@
-@font-face {
-    font-family: "Futura LT Light";
-    src: url('../fonts/FuturaLT-Light.ttf');
-}
-
-@font-face {
-    font-family: "Futura LT Heavy";
-    src: url('../fonts/FuturaLT-Heavy.ttf');
-}
-
 header
 {
     background: linear-gradient(to top, #000000, #2e2e2e);
@@ -47,7 +37,7 @@ header .navicon p
     color:#000;
     width:50px;
     text-align:center;
-    font-family:'Futura LT Regular';
+    font-family:'FuturaLT';
     font-size:23px;
     padding-top:10px;
     margin-left: -10px;
@@ -84,7 +74,7 @@ header .authenticated img
 
 header .authenticated p
 {
-    font-family:'Futura LT heavy';
+    font-family:'FuturaLT-Heavy';
     font-size:26px;
     color:white;
     margin:0;
@@ -92,7 +82,7 @@ header .authenticated p
 
 header .authenticated a
 {
-    font-family:'Futura LT light';
+    font-family:'FuturaLT-Light';
     font-size:26px;
     color:white;
     text-decoration:none;
@@ -121,7 +111,7 @@ header .not_authenticated a
 
     color: white;
     text-decoration:none;
-    font-family: "Futura LT Light";
+    font-family: "FuturaLT-Light";
     font-size:26px;
     text-align:right;
     padding:10px;

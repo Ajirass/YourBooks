@@ -1,17 +1,6 @@
-@font-face
-{
-    font-family: 'Novenceto wide';
-    src: url('../fonts/Novecentowide-Book.otf');
-}
-
-@font-face {
-    font-family: "Futura LT";
-    src: url('../fonts/FuturaLT.ttf');
-}
-
 .alert
 {
-    font-family: 'Futura LT';
+    font-family: 'FuturaLT';
     font-size: 25px;
     display: block;
     margin-top:25px;
@@ -75,7 +64,7 @@
 
 .contactForm label
 {
-    font-family: 'Futura LT';
+    font-family: 'FuturaLT';
     font-size: 19px;
     display: block;
     margin-top:25px;
@@ -83,7 +72,7 @@
 
 .contactForm h1
 {
-    font-family: 'Novenceto wide';
+    font-family: 'Novencetowide-Book';
     font-size: 40px;
     border-bottom: 2px solid #cfc7a3;
     padding-bottom: 10px;
@@ -91,6 +80,6 @@
 
 .contactForm p
 {
-    font-family: 'Novenceto wide';
+    font-family: 'Novencetowide-Book';
     font-size: 19px;
 }
