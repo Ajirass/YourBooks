@@ -70,7 +70,6 @@ class MainController extends Controller
             'last_username' => $lastUsername,
             'error'         => $error,
             'csrf_token' => $csrfToken,
-
             'registrationForm' => $registrationForm,
         ));
     }

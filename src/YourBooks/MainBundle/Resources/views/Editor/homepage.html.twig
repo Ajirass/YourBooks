@@ -1,20 +1,27 @@
 {% extends 'YourBooksMainBundle::base.html.twig' %}
 
 {% block body %}
+    <!-- TODO  li: sous categorie = récupérer le nom + l'image
+    -->
 
     <aside class="category">
-        <h1>Catégorie</h1>
         <ul>
-            <li>Romantique</li>
-            <li>Horreur</li>
-            <li>Théâtre</li>
-            <li>Cuisine</li>
-            <li>Fantastique</li>
-            <li>Littérature</li>
+            <h1>Catégories</h1>
+            <li>
+                {% for category in categories %}
+                    <ul class="{{ category.colorCategory }}">
+                        <span class="title">{{ category.name }}</span>
+                        <li><img src="{{ asset('bundles/yourbooksmain/images/policier.png') }}" alt="policier">Policier</li>
+                        <li><img src="{{ asset('bundles/yourbooksmain/images/philo.png') }}" alt="philo">Philo</li>
+                        <li><img src="{{ asset('bundles/yourbooksmain/images/horreur.png') }}" alt="horreur">Horreur</li>
+                    </ul>
+                {% endfor %}
+            </li>
         </ul>
     </aside>
 
     <div>
+        <h1>Books</h1>
         <ul>
             {% for book in books %}
                 <li><div class="couverture">{{ book.title }} <br/> {{ book.createdAt|date("d/m/Y") }}</div></li>
@@ -24,16 +31,5 @@
         </ul>
     </div>
 
-    <aside class="book">
-        <h2>Titre</h2>
-        <h3>Auteur</h3>
-        <div class="couverture"></div>
-        <a href="#">Téléchargez</a>
-        <h4>Résumé</h4>
-            <p>Lorem Ipsum</p>
-        <h4>Critique</h4>
-            <p>Lorem Ipsum</p>
-        <span>Notes</span>
-    </aside>
 
 {% endblock %}

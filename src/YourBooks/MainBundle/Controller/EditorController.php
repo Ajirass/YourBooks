@@ -18,9 +18,13 @@ class EditorController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
         $repo = $em->getRepository('YourBooksBookBundle:Book');
+        $repoo = $em->getRepository('YourBooksBookBundle:BookCategory');
+
         $books = $repo->findOnlyReading();
+        $categories = $repoo->findAll();
         return $this->render('YourBooksMainBundle:Editor:homepage.html.twig', array(
             'books' => $books,
+            'categories' => $categories,
         ));
     }
 

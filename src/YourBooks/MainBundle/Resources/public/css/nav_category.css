@@ -1,0 +1,95 @@
+.category
+{
+    margin:10px;
+}
+.category ul
+{
+    list-style-type: none;
+    width:180px;
+    margin:0;
+    padding:0;
+}
+.category h1
+{
+    font-family:"FuturaLT";
+    font-size:21px;
+}
+
+.category span.title
+{
+    font-family:"FuturaLT";
+    font-size:16px;
+    color:#ffffff;
+    width:150px;
+    height: 20px;
+    display: block;
+    padding:3px 3px 3px 8px;
+    margin:3px 0;
+}
+
+.category ul.bleu span
+{
+    background:#17239c;
+}
+
+
+
+.category ul.green span
+{
+    background:#337330;
+}
+.category ul.green li:hover, li:focus
+{
+    background:#acc5ae;
+}
+
+
+
+.category ul.rouge span
+{
+    background:#a60508;
+}
+.category ul.rouge li:hover, li:focus
+{
+    background:#d89c9f;
+}
+
+
+.category ul.purple span
+{
+    background:#7c099d;
+}
+
+
+.category ul.orange span
+{
+    background:#ec6c26;
+}
+
+
+.category ul.pink span
+{
+    background:#dd0c6e;
+}
+
+
+.category ul li ul li
+{
+    font-family:"FuturaLT";
+    font-size:13px;
+    margin-left: 20px;
+    border-bottom: solid 1px #b2b2b2;
+    padding:5px 5px 5px 0;
+}
+
+.category ul li ul li:last-child
+{
+    border:none;
+}
+
+.category ul li ul li img
+{
+    max-height: 17px;
+    max-width:14px;
+    margin-right: 5px;
+}

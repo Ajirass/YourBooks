@@ -1,0 +1,64 @@
+.connect
+{
+    background:rgba(0,0,0, 0.5);
+    width:230px;
+}
+
+.connect input
+{
+    display: block;
+    margin-bottom:10px;
+}
+
+.connect h3
+{
+    font-family: "Novecentowide-Bold";
+    font-size: 21px;
+    color:white;
+}
+
+.connect label
+{
+    font-size: 24px;
+    font-family: "FuturaLT";
+    margin:15px 0 0 0;
+
+}
+
+.connect input[type=submit]
+{
+    font-size: 22px;
+    font-family: "FuturaLT";
+    color:#ffffff;
+    padding:3px;
+    background:#b40d0a;
+    border-radius: 10px;
+    border:none;
+    float: right;
+    clear: both;
+    margin-top:20px;
+}
+
+
+.connect input[type=text], input[type=password]
+{
+    width: 190px;
+    height: 30px;
+    box-shadow:1px 1px 2px #C0C0C0 inset;
+    -o-box-shadow:1px 1px 2px #C0C0C0 inset;
+    -moz-box-shadow:1px 1px 2px #C0C0C0 inset;
+    -ms-box-shadow:1px 1px 2px #C0C0C0 inset;
+    -webkit-box-shadow:1px 1px 2px #C0C0C0 inset;
+}
+
+.connect input[type=checkbox]
+{
+    float:left;
+    margin:10px 5px 0 0;
+
+}
+
+.connect label.remember_me
+{
+    float:right;
+}
