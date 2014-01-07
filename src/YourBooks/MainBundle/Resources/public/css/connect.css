@@ -1,8 +1,9 @@
 
 .connect
 {
-    width:230px;
-    margin-top: 50px;
+    float: right;
+    margin: 50px;
+    width: 230px;
 }
 
 .connect input

@@ -24,7 +24,7 @@ class ReaderController extends Controller
      */
     public function indexAction()
     {
-
+       
         $currentUser = $this->getUser();
 
         $bookReader = $currentUser->getBooks();
@@ -96,6 +96,7 @@ class ReaderController extends Controller
 
         return $this->render('YourBooksMainBundle:Reader:review_upload.html.twig', array(
             'form' => $form->createView(),
+            'book' => $book,
         ));
     }
 

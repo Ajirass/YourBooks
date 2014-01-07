@@ -12,11 +12,66 @@ class BookReviewType extends AbstractType
     {
         $builder
             ->add('summary', null, array('label' => 'resumé 2000 caractères max : '))
-            ->add('criteria1', null, array('label' => 'Style d\'écriture : '))
-            ->add('criteria2', null, array('label' => 'Péripéties : '))
-            ->add('criteria3', null, array('label' => 'Interêt : '))
-            ->add('criteria4', null, array('label' => 'Comprehension : '))
-            ->add('criteria5', null, array('label' => 'Dénoument : '))
+            ->add('criteria1', 'choice', array(
+                'choices'   => array(
+                    '1'   => '1',
+                    '2' => '2',
+                    '3'   => '3',
+                    '4'   => '4',
+                    '5'   => '5',
+                ),
+                'label' => 'Style d\'écriture : ',
+                'multiple'  => false,
+                'expanded' => true,
+            ))
+            ->add('criteria2', 'choice', array(
+                'choices'   => array(
+                    '1'   => '1',
+                    '2' => '2',
+                    '3'   => '3',
+                    '4'   => '4',
+                    '5'   => '5',
+                ),
+                'label' => 'Péripéties : ',
+                'multiple'  => false,
+                'expanded' => true,
+            ))
+            ->add('criteria3', 'choice', array(
+                'choices'   => array(
+                    '1'   => '1',
+                    '2' => '2',
+                    '3'   => '3',
+                    '4'   => '4',
+                    '5'   => '5',
+                ),
+                'label' => 'Interêt : ',
+                'multiple'  => false,
+                'expanded' => true,
+            ))
+            ->add('criteria4', 'choice', array(
+                'choices'   => array(
+                    '1'   => '1',
+                    '2' => '2',
+                    '3'   => '3',
+                    '4'   => '4',
+                    '5'   => '5',
+                ),
+                'label' => 'Comprehension : ',
+                'multiple'  => false,
+                'expanded' => true,
+            ))
+            ->add('criteria5', 'choice', array(
+                'choices'   => array(
+                    '1'   => '1',
+                    '2' => '2',
+                    '3'   => '3',
+                    '4'   => '4',
+                    '5'   => '5',
+                ),
+                'label' => 'Dénoument : ',
+                'multiple'  => false,
+                'expanded' => true,
+            ))
             ->add('critic', null, array('label' => 'Analyse objective : '))
             ->add('problems', null, array('label' => 'Problèmes éventuels : '))
         ;
