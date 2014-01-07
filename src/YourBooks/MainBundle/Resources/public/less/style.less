@@ -45,7 +45,7 @@
     h1{font-family: novecento_wide_bold; font-size: 24px; margin-left: 20px;}
     .book
     {
-      width: 50%; float: left; margin-bottom: 40px;
+      width: 50%; float: left; height: 250px;
       .couverture
       {
         width: 125px; height: 175px; background: #FFF; border-left: solid 6px #ca3e3c; float: left; position: relative;
@@ -127,5 +127,57 @@
   .historique
   {
     padding: 0 80px;
+  }
+}
+
+/* ==========================================================================
+   Homepage Reader
+   ========================================================================== */
+
+#home_reader
+{
+  margin: 0 80px; border-bottom: solid 2px #e7e7e7;
+  h1{font-family: novecento_wide_bold; font-size: 24px; margin-left: 20px;}
+  .book
+  {
+    width: 50%; float: left; height: 250px;
+    .couverture
+    {
+      width: 125px; height: 175px; background: #FFF; border-left: solid 6px #ca3e3c; float: left; position: relative;
+      -moz-box-shadow: 5px 5px 20px 0px #9b9b9b;
+      -webkit-box-shadow: 5px 5px 20px 0px #9b9b9b;
+      -o-box-shadow: 5px 5px 20px 0px #9b9b9b;
+      box-shadow: 5px 5px 20px 0px #9b9b9b;
+      filter:progid:DXImageTransform.Microsoft.Shadow(color=#9b9b9b, Direction=134, Strength=20);
+      .title{font-family: "Futura LT"; font-size: 15px; color: #1a0903; padding: 0 15px 0 15px; display: block;}
+      .category{font-family: "Futura LT"; font-size: 15px; padding: 0 15px 15px 15px; display: block; color: #ca3e3c;}
+    }
+    .createdat
+    {
+      time{display: inline-block; font-family: novecento_widedemibold; margin-left: 20px; margin-top: 5px;}
+      span{text-indent: 15px; font-family: novecento_wide; font-size: 16px; color: #000000; display: inline-block; border-bottom: solid 2px #e3e2e3; padding-right: 20px; padding-top: 5px;}
+    }
+  }
+  .block_statut{display: inline-block;}
+  .statut{text-indent: 15px; font-family: novecento_wide; font-size: 16px; color: #000000; display: inline-block; border-bottom: solid 2px #e3e2e3; padding-right: 42px; padding-top: 5px;}
+  .content_statut{display: block; margin: 15px 15px;}
+  .content_statut a{
+    font-family: "Futura LT";
+    font-size: 15px;
+    text-decoration: none;
+    color: #FFF;
+    background: #ca3e3c;
+    padding: 8px 15px;
+    margin-top: 0;
+    display: inline-block;
+    border-radius: 4px;
+    &:hover
+    {
+      -moz-box-shadow: inset 0px 0px 5px 0px #000000;
+      -webkit-box-shadow: inset 0px 0px 5px 0px #000000;
+      -o-box-shadow: inset 0px 0px 5px 0px #000000;
+      box-shadow: inset 0px 0px 5px 0px #000000;
+      filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=NaN, Strength=5);
+    }
   }
 }

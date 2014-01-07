@@ -3,6 +3,13 @@
 {% block body %}
     <div id="home_author">
         <div class="manuscrits">
+            {% for label, flashes in app.session.flashbag.all %}
+                {% for flash in flashes %}
+                    <div class="alert alert-{{ label }}">
+                        {{ flash }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
             <h1>Mes manuscrits</h1>
 
             {% for book in books %}
@@ -26,9 +33,9 @@
                                     </div>
                                     <span class="pourcentage">100%</span>
                                     <div class="icone">
-                                        <img id="auteur" src="{{ asset('bundles/yourbooksmain/images/auteur.png') }}" alt="Auteur"/>
-                                        <img id="lecteur" src="{{ asset('bundles/yourbooksmain/images/lecteur.png') }}" alt="Lecteur"/>
-                                        <img id="editeur" src="{{ asset('bundles/yourbooksmain/images/editeur.png') }}" alt="Editeur"/>
+                                        <img id="auteur" src="{{ asset('bundles/yourbooksmain/images/author/auteur.png') }}" alt="Auteur"/>
+                                        <img id="lecteur" src="{{ asset('bundles/yourbooksmain/images/author/lecteur.png') }}" alt="Lecteur"/>
+                                        <img id="editeur" src="{{ asset('bundles/yourbooksmain/images/author/editeur.png') }}" alt="Editeur"/>
                                         <div class="clear"></div>
                                     </div>
                                 {% elseif book.sendByReader %}
@@ -38,24 +45,35 @@
                                     </div>
                                     <span class="pourcentage">50%</span>
                                     <div class="icone">
-                                        <img id="auteur" src="{{ asset('bundles/yourbooksmain/images/auteur.png') }}" alt="Auteur"/>
-                                        <img id="lecteur" src="{{ asset('bundles/yourbooksmain/images/lecteur.png') }}" alt="Lecteur"/>
-                                        <img id="editeur" src="{{ asset('bundles/yourbooksmain/images/editeur.png') }}" alt="Editeur"/>
+                                        <img id="auteur" src="{{ asset('bundles/yourbooksmain/images/author/auteur.png') }}" alt="Auteur"/>
+                                        <img id="lecteur" src="{{ asset('bundles/yourbooksmain/images/author/lecteur.png') }}" alt="Lecteur"/>
+                                        <img id="editeur" src="{{ asset('bundles/yourbooksmain/images/author/editeur.png') }}" alt="Editeur"/>
                                         <div class="clear"></div>
                                     </div>
-                                {% else %}
+                                {% elseif book.enabled %}
                                     envoyé aux lecteurs
                                     <div class="progress_bar">
                                         <span class="progress sendreader"></span>
                                     </div>
                                     <span class="pourcentage">25%</span>
                                     <div class="icone">
-                                        <img id="auteur" src="{{ asset('bundles/yourbooksmain/images/auteur.png') }}" alt="Auteur"/>
-                                        <img id="lecteur" src="{{ asset('bundles/yourbooksmain/images/lecteur.png') }}" alt="Lecteur"/>
-                                        <img id="editeur" src="{{ asset('bundles/yourbooksmain/images/editeur.png') }}" alt="Editeur"/>
+                                        <img id="auteur" src="{{ asset('bundles/yourbooksmain/images/author/auteur.png') }}" alt="Auteur"/>
+                                        <img id="lecteur" src="{{ asset('bundles/yourbooksmain/images/author/lecteur.png') }}" alt="Lecteur"/>
+                                        <img id="editeur" src="{{ asset('bundles/yourbooksmain/images/author/editeur.png') }}" alt="Editeur"/>
                                         <div class="clear"></div>
                                     </div>
 
+                                {% else %}
+                                    en attente de validation
+                                    <div class="progress_bar">
+                                    </div>
+                                    <span class="pourcentage">0%</span>
+                                    <div class="icone">
+                                        <img id="auteur" src="{{ asset('bundles/yourbooksmain/images/author/auteur.png') }}" alt="Auteur"/>
+                                        <img id="lecteur" src="{{ asset('bundles/yourbooksmain/images/author/lecteur.png') }}" alt="Lecteur"/>
+                                        <img id="editeur" src="{{ asset('bundles/yourbooksmain/images/author/editeur.png') }}" alt="Editeur"/>
+                                        <div class="clear"></div>
+                                    </div>
                                 {% endif %}
                             </div>
                         </div>

@@ -12,6 +12,11 @@ services:
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: yourbooks_user_registration }
+    your_books.profile.form.type:
+            class: YourBooks\UserBundle\Form\Type\ProfileFormType
+            arguments: [%fos_user.model.user.class%]
+            tags:
+                - { name: form.type, alias: yourbooks_user_profile }
     yourbooks.user.user_registration_listener:
             class: YourBooks\UserBundle\ConfirmMail\UserRegistrationListener
             arguments: [@mailer]

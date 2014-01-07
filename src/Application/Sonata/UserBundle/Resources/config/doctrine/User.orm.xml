@@ -2,7 +2,7 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
-                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+                          http://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="Application\Sonata\UserBundle\Entity\User" table="fos_user_user">
 
@@ -10,10 +10,35 @@
             <generator strategy="AUTO" />
         </id>
 
+        <lifecycle-callbacks>
+            <lifecycle-callback type="postRemove" method="removeUploadCV"/>
+            <lifecycle-callback type="postPersist" method="uploadCV"/>
+            <lifecycle-callback type="postUpdate" method="uploadCV"/>
+            <lifecycle-callback type="preUpdate" method="preUploadCV"/>
+            <lifecycle-callback type="prePersist" method="preUploadCV"/>
+        </lifecycle-callbacks>
+
         <field name="company" column="name" type="string" length="255" nullable="true"/>
         <field name="siret" column="siret" type="string" length="255" nullable="true"/>
         <field name="cv" column="cv" type="string" length="255" nullable="true"/>
         <field name="motivationLetter" column="motivationLetter" type="string" length="255" nullable="true"/>
+        <field name="street" column="street" type="string" length="255" nullable="true"/>
+        <field name="zipcode" column="zipcode" type="integer" nullable="true"/>
+        <field name="city" column="city" type="string" length="255" nullable="true"/>
+
+        <many-to-many field="books" target-entity="Yourbooks\BookBundle\Entity\Book">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+            <join-table name="reader_book">
+                <join-columns>
+                    <join-column name="user_id" referenced-column-name="id" nullable="false" unique="false" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="book_id" referenced-column-name="id" column-definition="INT NULL" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
     </entity>
 
 </doctrine-mapping>

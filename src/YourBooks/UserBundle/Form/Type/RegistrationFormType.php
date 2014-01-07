@@ -11,7 +11,10 @@ class RegistrationFormType extends BaseType
     {
         parent::buildForm($builder, $options);
 
-        //$builder->add('name');
+        $builder
+            ->add('fileCV')
+        ;
+        //$builder->add('firstname');
         //if ('author' === $options['account_type'])
         //    $builder->add('dateOfBirth');
     }

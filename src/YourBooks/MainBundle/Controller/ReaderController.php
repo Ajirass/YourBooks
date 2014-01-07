@@ -12,6 +12,9 @@ use YourBooks\BookBundle\Entity\Book;
 use YourBooks\BookBundle\Entity\BookReview;
 use YourBooks\BookBundle\Form\Type\BookReviewType;
 
+use YourBooks\MainBundle\ConfirmMail\ConfirmMailEvent;
+use YourBooks\MainBundle\ConfirmMail\MailEvent;
+
 class ReaderController extends Controller
 {
     /**
@@ -21,31 +24,10 @@ class ReaderController extends Controller
      */
     public function indexAction()
     {
-        /**
-         * Old code
-         *
-         * $em = $this->getDoctrine()->getEntityManager();
-         * $repo = $em->getRepository('YourBooksBookBundle:Book');
-         * $reader = $this->getUser();
-         * $books = $repo->booksReading($reader);
-         * $booksReading = booksReading($reader);
-         */
+
         $currentUser = $this->getUser();
 
-        $bookRepo = $this->getDoctrine()->getManager()->getRepository('YourBooksBookBundle:Book');
-
-        $bookReader = array();
-        $books = $bookRepo->findAll();
-
-        foreach($books as $book) {
-            if (false === ($book->getSendByReader()) )
-            {
-                foreach($book->getReaders() as $reader) {
-                    if ($reader === $currentUser)
-                        $bookReader[] = $book;
-                }
-            }
-        }
+        $bookReader = $currentUser->getBooks();
 
         return $this->render('YourBooksMainBundle:Reader:homepage.html.twig'
             , array(
@@ -114,8 +96,6 @@ class ReaderController extends Controller
 
         return $this->render('YourBooksMainBundle:Reader:review_upload.html.twig', array(
             'form' => $form->createView(),
-            'book'=>$book,
-
         ));
     }
 
@@ -131,6 +111,17 @@ class ReaderController extends Controller
         $em = $this->getDoctrine()->getManager();
         $book->setReceivedByReader(true);
         $em->flush();
+        $user = $this->getUser();
+        $message = "Vous avez confirmez la reception du livre, vous avez 7jours pour le lire.";
+        // On crée l'évènement
+        $event = new MailEvent($user, $message);
+
+        // On déclenche l'évènement
+        $this->get('event_dispatcher')
+            ->dispatch(ConfirmMailEvent::onMailEvent, $event);
+        //$dispatcher = $this->container->get('event_dispatcher');
+        //$dispatcher->dispatch(ConfirmMailEvent::onMailEvent, $event);
+
         return new RedirectResponse($this->generateUrl('your_books_main_reader_homepage'));
     }
 

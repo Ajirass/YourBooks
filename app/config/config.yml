@@ -89,6 +89,9 @@ fos_user:
     registration:
         form:
             type: yourbooks_user_registration
+    profile:
+        form:
+            type: yourbooks_user_profile
 
 sonata_block:
     default_contexts: [cms]

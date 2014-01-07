@@ -11,14 +11,14 @@ class BookReviewType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('summary')
-            ->add('criteria1')
-            ->add('criteria2')
-            ->add('criteria3')
-            ->add('criteria4')
-            ->add('criteria5')
-            ->add('critic')
-            ->add('problems')
+            ->add('summary', null, array('label' => 'resumé 2000 caractères max : '))
+            ->add('criteria1', null, array('label' => 'Style d\'écriture : '))
+            ->add('criteria2', null, array('label' => 'Péripéties : '))
+            ->add('criteria3', null, array('label' => 'Interêt : '))
+            ->add('criteria4', null, array('label' => 'Comprehension : '))
+            ->add('criteria5', null, array('label' => 'Dénoument : '))
+            ->add('critic', null, array('label' => 'Analyse objective : '))
+            ->add('problems', null, array('label' => 'Problèmes éventuels : '))
         ;
     }
 

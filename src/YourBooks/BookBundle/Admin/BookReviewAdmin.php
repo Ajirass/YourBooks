@@ -13,6 +13,7 @@ class BookReviewAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('book', null, array('label' => 'Manuscrit : '))
             ->add('summary', null, array('label' => 'Résumé : '))
             ->add('criteria1', null, array('label' => 'Critère 1 : '))
             ->add('criteria2', null, array('label' => 'Critère 2 : '))
@@ -22,7 +23,6 @@ class BookReviewAdmin extends Admin
             ->add('critic', null, array('label' => 'Critique : '))
             ->add('problems', null, array('label' => 'Problèmes : '))
             ->add('reader', null, array('label' => 'Lecteur : '))
-            ->add('book', null, array('label' => 'Manuscrit : '))
         ;
     }
 
@@ -41,16 +41,16 @@ class BookReviewAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
-            ->add('summary', null, array('label' => 'Résumé : '))
-            ->add('criteria1', null, array('label' => 'Critère 1 : '))
-            ->add('criteria2', null, array('label' => 'Critère 2 : '))
-            ->add('criteria3', null, array('label' => 'Critère 3 : '))
-            ->add('criteria4', null, array('label' => 'Critère 4 : '))
-            ->add('criteria5', null, array('label' => 'Critère 5 : '))
-            ->add('critic', null, array('label' => 'Critique : '))
-            ->add('problems', null, array('label' => 'Problèmes : '))
-            ->add('reader', null, array('label' => 'Lecteur : '))
-            ->add('book', null, array('label' => 'Manuscrit : '))
+            ->add('reader', null, array('label' => 'Lecteur'))
+            ->add('book', null, array('label' => 'Manuscrit'))
+            ->add('summary', null, array('label' => 'Résumé'))
+            ->add('criteria1', null, array('label' => 'Critère 1'))
+            ->add('criteria2', null, array('label' => 'Critère 2'))
+            ->add('criteria3', null, array('label' => 'Critère 3'))
+            ->add('criteria4', null, array('label' => 'Critère 4'))
+            ->add('criteria5', null, array('label' => 'Critère 5'))
+            ->add('critic', null, array('label' => 'Critique'))
+            ->add('problems', null, array('label' => 'Problèmes'))
         ;
     }
 }

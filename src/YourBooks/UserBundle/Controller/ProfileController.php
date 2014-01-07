@@ -71,7 +71,7 @@ class ProfileController extends ContainerAware
      */
     protected function getRedirectionUrl(UserInterface $user)
     {
-        return $this->container->get('router')->generate('fos_user_profile_show');
+        return $this->container->get('router')->generate('your_books_user_profile_show');
     }
 
     /**

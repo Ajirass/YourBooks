@@ -41,6 +41,7 @@ class BookAdmin extends Admin
     {
         $datagridMapper
             ->add('title', null, array('label' => 'Titre : '))
+            ->add('author', null, array('label' => 'Auteur : '))
             ->add('enabled', null, array('label' => 'Autorisé par l\'administrateur ?'))
             ->add('sendByReader', null, array('label' => 'Envoyé par le lecteur ?'))
             ->add('readerValidation', null, array('label' => 'Validation lecteur ?'))
@@ -55,12 +56,13 @@ class BookAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id')
+            ->addIdentifier('createdAt', null, array('label' => 'Crée le'))
             ->add('title')
-            ->add('summary')
+            ->add('author')
             ->add('enabled', null, array('label' => 'Autorisé par l\'administrateur ?', 'editable' => true))
-            ->add('sendByReader', null, array('label' => 'Envoyé par le lecteur ?', 'editable' => true))
-            ->add('readerValidation', null, array('label' => 'Validation lecteur ?', 'editable' => true))
+            ->add('receivedByReader', null, array('label' => 'reçu par le lecteur ?', 'editable' => true))
+            ->add('sendByReader', null, array('label' => 'Notes envoyées ?', 'editable' => true))
+            ->add('readerValidation', null, array('label' => 'Notes validées ?', 'editable' => true))
             ->add('edited', null, array('label' => 'Édité ?', 'editable' => true))
         ;
     }

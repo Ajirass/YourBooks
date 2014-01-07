@@ -3,11 +3,20 @@
 {% block body %}
 
 {% block fos_user_content %}
-    {% if profile is defined and profile == 'private' %}
-        {% include "YourBooksUserBundle:Profile:show_content_private.html.twig" %}
-    {% else %}
-        {% include "YourBooksUserBundle:Profile:show_content_public.html.twig" %}
-    {% endif %}
+    <div id="profil">
+        <h1>MON PROFIL</h1>
+        {% if profile is defined and profile == 'private' %}
+            <a href="{{ path('your_books_user_profile_edit') }}">
+                Modifier profile
+            </a>
+            {% include "YourBooksUserBundle:Profile:show_content_private.html.twig" %}
+        {% else %}
+            <a href="{{ path('your_books_user_profile_edit') }}">
+                Modifier profile
+            </a>
+            {% include "YourBooksUserBundle:Profile:show_content_public.html.twig" %}
+        {% endif %}
+    </div>
 {% endblock fos_user_content %}
 
 {% endblock body %}

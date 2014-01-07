@@ -12,6 +12,9 @@ use YourBooks\BookBundle\Form\Type\BookType;
 use YourBooks\UserBundle\Form\ProfileType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
+use YourBooks\MainBundle\ConfirmMail\ConfirmMailEvent;
+use YourBooks\MainBundle\ConfirmMail\MailEvent;
+
 class AuthorController extends Controller
 {
     /**
@@ -25,7 +28,7 @@ class AuthorController extends Controller
         $repo = $em->getRepository('YourBooksBookBundle:Book');
 
         $author = $this->getUser();
-        $books = $repo->findByAuthor($author);
+        $books = $repo->findByAuthor($author, array('createdAt' => 'DESC'));
 
         $countBooksSubmit = $repo->countBooksSubmit($author);
         $countBooksRead = $repo->countBooksRead($author);
@@ -60,6 +63,18 @@ class AuthorController extends Controller
         if ($form->isValid()) {
             $em->persist($form->getData());
             $em->flush();
+
+            $message = "Manuscrit envoyé";
+            // On crée l'évènement
+            $event = new MailEvent($author, $message);
+
+            // On déclenche l'évènement
+            $this->get('event_dispatcher')
+                ->dispatch(ConfirmMailEvent::onMailEvent, $event);
+
+            $request->getSession()->getFlashBag()->add('success', 'Manuscrit envoyé avec succes');
+
+            return $this->redirect($this->generateUrl('your_books_main_author_homepage'));
         }
 
         return $this->render('YourBooksMainBundle:Author:book_upload.html.twig', array(
