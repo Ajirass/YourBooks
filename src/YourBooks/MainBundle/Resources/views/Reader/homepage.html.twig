@@ -1,21 +1,69 @@
 {% extends 'YourBooksMainBundle::base.html.twig' %}
 
 {% block body %}
-    <div class="manuscrits">
-        <h1>Mes manuscrits</h1>
+    <div id="home_reader">
+        <div class="manuscrits">
+            <h1>Mes manuscrits</h1>
 
+            {% for book in books %}
+                {% if book.receivedByReader and book.sendByReader == false %}
+                    <div class="book">
+                        <div class="couverture">
+                            <h3 class="title">{{ book.title }}</h3>
+                            <span class="category">{{ book.category }}</span>
+                        </div>
+                        <div class="createdat">
+                            <span>SOUMIS LE :</span><br>
+                            <time>{{ book.createdAt|date("d/m/Y") }}</time>
+                        </div>
+                        <div class="block_statut">
+                            <span class="statut">Statut :</span>
+                            <div class="content_statut">
+                                <a href="{{ path('your_books_main_download_book', { 'id': book.id }) }}">Téléchargez</a>
+                                <a href="{{ path('your_books_review_upload', { 'id': book.id }) }}">Notez ce manuscrit</a>
+                            </div>
+                        </div>
+                    </div>
+                {% elseif book.enabled and book.sendByReader == false %}
+                    <div class="book">
+                        <div class="couverture">
+                            <h3 class="title">{{ book.title }}</h3>
+                            <span class="category">{{ book.category }}</span>
+                        </div>
+                        <div class="createdat">
+                            <span>SOUMIS LE :</span><br>
+                            <time>{{ book.createdAt|date("d/m/Y") }}</time>
+                        </div>
+                        <div class="block_statut">
+                            <span class="statut">Statut :</span>
+                            <div class="content_statut">
+                                <a href="{{ path('your_books_main_received', { 'id': book.id }) }}">Confirmez la réception</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <div class="clear"></div>
+        </div>
 
-
-    {% for book in books %}
-        {% if book.receivedByReader %}
-            <li><div class="couverture">{{ book.title }} <br/> {{ book.createdAt|date("d/m/Y") }}</div></li>
-            <a href="{{ path('your_books_main_download_book', { 'id': book.id }) }}">Téléchargez</a>
-            <a href="{{ path('your_books_review_upload', { 'id': book.id }) }}">Notez ce manuscrit</a>
-        {% else %}
-            <li><div class="couverture">{{ book.title }} <br/> {{ book.createdAt|date("d/m/Y") }}</div></li>
-            <a href="{{ path('your_books_main_received', { 'id': book.id }) }}">Confirmez la réception</a>
-        {% endif %}
-    {% endfor %}
+                <div class="historique">
+                    <h2>Historique</h2>
+                    {% for book in books %}
+                        {% if book.sendByReader %}
+                            <div class="book">
+                                <div class="couverture">
+                                    <h3 class="title">{{ book.title }}</h3>
+                                    <span class="category">{{ book.category }}</span>
+                                </div>
+                                <div class="createdat">
+                                    <span>SOUMIS LE :</span><br>
+                                    <time>{{ book.createdAt|date("d/m/Y") }}</time>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="clear"></div>
+                </div>
     </div>
 
 {% endblock %}

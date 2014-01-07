@@ -456,6 +456,7 @@ class Book
     public function addReader(\Application\Sonata\UserBundle\Entity\User $readers)
     {
         $this->readers[] = $readers;
+        $readers->addBook($this);
 
         return $this;
     }
@@ -605,7 +606,7 @@ class Book
     {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+        return __DIR__.'/../../../../../web/'.$this->getUploadDir();
     }
 
     /**
