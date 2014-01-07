@@ -12,7 +12,7 @@
 {
     width:90px;
     background:#d00100;
-    font-family: 'Futura LT';
+    font-family: 'FuturaLT';
     font-size: 21px;
     color:white;
     border-radius: 3px;
@@ -72,7 +72,7 @@
 
 .contactForm h1
 {
-    font-family: 'Novencetowide-Book';
+    font-family: 'Novecentowide-Book';
     font-size: 40px;
     border-bottom: 2px solid #cfc7a3;
     padding-bottom: 10px;
@@ -80,6 +80,6 @@
 
 .contactForm p
 {
-    font-family: 'Novencetowide-Book';
+    font-family: 'Novecentowide-Book';
     font-size: 19px;
 }

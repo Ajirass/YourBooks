@@ -29,5 +29,5 @@ assetic:
 
 swiftmailer:
     transport: gmail
-    username:  godartrobin@gmail.com
+    username:  amelie.vanwaerbeke@gmail.com
     password:

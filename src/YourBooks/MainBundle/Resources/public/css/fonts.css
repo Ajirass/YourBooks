@@ -302,7 +302,7 @@
 }
 
 @font-face {
-    font-family: 'Quicksand Bold';
+    font-family: 'Quicksand-Bold';
     src: url('../fonts/Quicksand-Bold/quicksand_bold-webfont.eot');
     src: url('../fonts/Quicksand-Bold/quicksand_bold-webfont.eot?#iefix') format('embedded-opentype'),
     url('../fonts/Quicksand-Bold/quicksand_bold-webfont.woff') format('woff'),
@@ -314,7 +314,7 @@
 
 
 @font-face {
-    font-family: 'Quicksand Book';
+    font-family: 'Quicksand-Book';
     src: url('../fonts/Quicksand-Book/quicksand_book-webfont.eot');
     src: url('../fonts/Quicksand-Book/quicksand_book-webfont.eot?#iefix') format('embedded-opentype'),
     url('../fonts/Quicksand-Book/quicksand_book-webfont.woff') format('woff'),

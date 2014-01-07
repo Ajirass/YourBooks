@@ -115,10 +115,10 @@ class MainController extends Controller
 
     public function contactAction(Request $request)
     {
-        $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('ApplicationSonataUserBundle:User');
-        $user = $repo->find(1);
-        $email = $user->getEmail();
+        //$em = $this->getDoctrine()->getEntityManager();
+       // $repo = $em->getRepository('ApplicationSonataUserBundle:User');
+        //$user = $repo->find(1);
+        //$email = $user->getEmail();
 
         $form = $this->createForm(new ContactType());
 
@@ -129,7 +129,7 @@ class MainController extends Controller
                 $message = \Swift_Message::newInstance()
                     ->setSubject($form->get('subject')->getData())
                     ->setFrom($form->get('email')->getData())
-                    ->setTo($email)
+                    ->setTo('amelie.vanwaerbeke@gmail.com')
                     ->setBody(
                         $this->renderView(
                             'YourBooksMainBundle:Mail:contact.html.twig',
@@ -142,7 +142,7 @@ class MainController extends Controller
 
                 $this->get('mailer')->send($message);
 
-                $request->getSession()->getFlashBag()->add('success', 'Your email has been sent! Thanks!');
+                $request->getSession()->getFlashBag()->add('success', 'Votre e-mail a bien été envoyé, merci !');
 
                 return $this->redirect($this->generateUrl('your_books_main_contact'));
             }

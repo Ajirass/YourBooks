@@ -24,24 +24,6 @@ header .navicon ul li
 
 }
 
-header .navicon ul li:hover p
-{
-    display:block;
-
-}
-
-header .navicon p
-{
-    display:none;
-    color:#000;
-    width:50px;
-    text-align:center;
-    font-family:'FuturaLT';
-    font-size:23px;
-    padding-top:10px;
-    margin-left: -10px;
-}
-
 header .navicon img
 {
 
@@ -90,10 +72,11 @@ header .authenticated a
 
 header .logo
 {
-    color:white;
-    border:2px solid white;
-    padding:0 20px;
+    margin-top:10px;
     float:left;
+    width:150px;
+    height:83px;
+    margin-left:10px;
 }
 
 header .not_authenticated

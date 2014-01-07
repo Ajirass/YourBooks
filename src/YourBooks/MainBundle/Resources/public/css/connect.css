@@ -1,7 +1,8 @@
+
 .connect
 {
-    background:rgba(0,0,0, 0.5);
     width:230px;
+    margin-top: 50px;
 }
 
 .connect input
@@ -30,7 +31,7 @@
     font-size: 22px;
     font-family: "FuturaLT";
     color:#ffffff;
-    padding:3px;
+    padding:5px;
     background:#b40d0a;
     border-radius: 10px;
     border:none;
@@ -61,4 +62,10 @@
 .connect label.remember_me
 {
     float:right;
+}
+
+.container
+{
+    width:1000px;
+    margin: auto;
 }

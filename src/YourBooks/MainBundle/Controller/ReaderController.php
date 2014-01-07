@@ -114,6 +114,8 @@ class ReaderController extends Controller
 
         return $this->render('YourBooksMainBundle:Reader:review_upload.html.twig', array(
             'form' => $form->createView(),
+            'book'=>$book,
+
         ));
     }
 

@@ -1,19 +1,37 @@
 {% extends 'YourBooksMainBundle::base.html.twig' %}
 
 {% block body %}
-    <h1>Your-Books, le trait d'union entre auteurs et éditeurs</h1>
-    <aside>
+  <div class="home">
+    <h1 class="home">Your-Books, le trait d'union entre auteurs et éditeurs</h1>
+    <ul class="home">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <aside class="home">
         <ul>
             <li>
-                <img src="{{ asset('images/icon-pencil.png') }}" alt="crayon">
+                <img alt="crayon" src="{{ asset('bundles/yourbooksmain/images/auteur.png') }}">
                 <h2>Soumettez votre manuscrit</h2>
             </li>
             <li>
-                <img src="{{ asset('images/icon-lunettes.png') }}" alt="lunettes">
+                <img alt="lunettes" src="{{ asset('bundles/yourbooksmain/images/lecteur.png') }}">
                 <h2>Il est lu et noté par des experts reconnus</h2>
             </li>
             <li>
-                <img src="{{ asset('images/icon-book.png') }}" alt="book">
+                <img alt="book" src="{{ asset('bundles/yourbooksmain/images/editeur.png') }}">
                 <h2>Il est présenté aux éditeurs</h2>
             </li>
         </ul>
@@ -41,9 +59,7 @@
             <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
         </form>
     </div>
-    <div class="inscription">
-        <h3>Pas encore membre ?</h3>
-    </div>
+  </div>
 
     <!-- TODO inclure formulaire d'inscription auteur + formulaire de login  -->
 {% endblock %}

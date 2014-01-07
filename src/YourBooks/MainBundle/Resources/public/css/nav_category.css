@@ -1,11 +1,7 @@
-.category
-{
-    margin:10px;
-}
 .category ul
 {
     list-style-type: none;
-    width:180px;
+    width:160px;
     margin:0;
     padding:0;
 }
@@ -31,14 +27,17 @@
 {
     background:#17239c;
 }
+.category ul.bleu li:hover, li:focus
+{
+    background:#878dcc;
+}
 
 
-
-.category ul.green span
+.category ul.vert span
 {
     background:#337330;
 }
-.category ul.green li:hover, li:focus
+.category ul.vert li:hover, li:focus
 {
     background:#acc5ae;
 }
@@ -55,9 +54,13 @@
 }
 
 
-.category ul.purple span
+.category ul.violet span
 {
     background:#7c099d;
+}
+.category ul.violet li:hover, li:focus
+{
+    background:#b980cc;
 }
 
 
@@ -65,19 +68,30 @@
 {
     background:#ec6c26;
 }
+.category ul.orange li:hover, li:focus
+{
+    background:#f1b291;
+}
 
 
-.category ul.pink span
+.category ul.rose span
 {
     background:#dd0c6e;
 }
+.category ul.rose li:hover, li:focus
+{
+    background:#ee85b6;
+}
 
+.category ul li ul
+{
+    width: 100%;
+}
 
 .category ul li ul li
 {
     font-family:"FuturaLT";
     font-size:13px;
-    margin-left: 20px;
     border-bottom: solid 1px #b2b2b2;
     padding:5px 5px 5px 0;
 }
@@ -87,7 +101,7 @@
     border:none;
 }
 
-.category ul li ul li img
+.category img
 {
     max-height: 17px;
     max-width:14px;

@@ -1,0 +1,100 @@
+.container
+{
+    width:1000px;
+    margin:auto;
+}
+
+.home
+{
+    background:rgba(0,0,0, 0.5);
+}
+
+h1.home {
+    color:white;
+    font-family: "Novecentowide-Book";
+    font-size: 26px;
+    text-align: center;
+}
+
+ul.home
+{
+    margin:auto;
+    width: 490px;
+}
+
+ul.home li {
+    list-style: none;
+    font-size: 20px;
+}
+
+ul.home li:before {
+    content:"·";
+    font-size:120px;
+    vertical-align:middle;
+    line-height:20px;
+    font-family: serif;
+    float:left;
+    color:white;
+    margin-left: -8px;
+}
+
+aside.home
+{
+    clear:both;
+    float:left;
+    margin-top: 50px;
+}
+
+aside.home ul
+{
+    list-style-type: none;
+    height:400px;
+}
+
+aside.home ul li
+{
+    display: block;
+}
+
+aside.home h2
+{
+    color:white;
+    width:180px;
+    float:right;
+    font-family: "Novecentowide-Bold";
+    font-size: 24px;
+
+}
+
+aside.home img
+{
+    float:left;
+    clear:both;
+}
+
+aside.home li:nth-child(1) img
+{
+    width:60px;
+    height:100px;
+    margin-left:30px;
+    transform: rotate(15deg);
+    -moz-transform: rotate(15deg);
+    -o-transform: rotate(15deg);
+    -ms-transform: rotate(15deg);
+    -webkit-transform: rotate(15deg);
+
+}
+
+aside.home li:nth-child(2) img
+{
+    width:130px;
+    height:50px;
+    margin-top: 40px;
+}
+
+aside.home li:nth-child(3) img
+{
+    width:170px;
+    height:90px;
+    margin-right:-10px;
+}
