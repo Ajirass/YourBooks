@@ -33,7 +33,7 @@ class BookAdmin extends Admin
             ->add('category', null, array('label' => 'Catégorie : '))
             ->add('readers', null, array('label' => 'Lecteur(s) : '))
             ->add('file', 'file', $options)
-        ;
+            ;
     }
 
     // Fields to be shown on filter forms
