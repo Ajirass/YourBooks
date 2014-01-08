@@ -1,9 +1,9 @@
-
 .connect
 {
     float: right;
     margin: 50px;
-    width: 230px;
+    width: 260px;
+    color:white;
 }
 
 .connect input
@@ -53,13 +53,6 @@
     -webkit-box-shadow:1px 1px 2px #C0C0C0 inset;
 }
 
-.connect input[type=checkbox]
-{
-    float:left;
-    margin:10px 5px 0 0;
-
-}
-
 .connect label.remember_me
 {
     float:right;
@@ -69,4 +62,27 @@
 {
     width:1000px;
     margin: auto;
+}
+
+input[type=checkbox]#remember_me {
+    display:none;
+}
+
+input[type=checkbox]#remember_me + label[for=remember_me] {
+    padding-left:20px;
+    height:17px;
+    display:inline-block;
+    line-height:15px;
+    background-repeat:no-repeat;
+    background-position: 0 0;
+    vertical-align:middle;
+    cursor:pointer;
+}
+
+input[type=checkbox]#remember_me:checked + label[for=remember_me] {
+    background-position: 0 -17px;
+}
+
+label[for=remember_me]{
+    background-image:url(http://csscheckbox.com/checkboxes/depressed.png);
 }

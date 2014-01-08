@@ -42,6 +42,7 @@ class MainController extends Controller
         ));
         $registrationForm->add('submit', 'submit', array('label' => 'Create'));
 
+
         $request = $this->container->get('request');
         /* @var $request \Symfony\Component\HttpFoundation\Request */
         $session = $request->getSession();
@@ -66,11 +67,47 @@ class MainController extends Controller
 
         $csrfToken = $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate');
 
+        $form = $this->container->get('fos_user.registration.form');
+        $formHandler = $this->container->get('fos_user.registration.form.handler');
+        $confirmationEnabled = $this->container->getParameter('fos_user.registration.confirmation.enabled');
+
+        $process = $formHandler->process($confirmationEnabled);
+        if ($process) {
+            $user = $form->getData();
+
+            $authUser = false;
+            if ($confirmationEnabled) {
+                $this->container->get('session')->set('fos_user_send_confirmation_email/email', $user->getEmail());
+                $route = 'your_books_user_registration_check_email';
+            } else {
+                $authUser = true;
+                $route = 'your_books_user_registration_confirmed';
+            }
+
+            // On crée l'évènement avec ses 2 arguments
+            $event = new UserRegisterEvent($user);
+
+            // On déclenche l'évènement
+            $dispatcher = $this->container->get('event_dispatcher');
+            $dispatcher->dispatch(ConfirmMailEvent::UserRegisterMail, $event);
+
+            $this->setFlash('fos_user_success', 'registration.flash.user_created');
+            $url = $this->container->get('router')->generate($route);
+            $response = new RedirectResponse($url);
+
+            if ($authUser) {
+                $this->authenticateUser($user, $response);
+            }
+
+            return $response;
+        }
+
         return $this->render('YourBooksMainBundle:Main:homepage.html.twig', array(
             'last_username' => $lastUsername,
             'error'         => $error,
             'csrf_token' => $csrfToken,
             'registrationForm' => $registrationForm,
+            'form' => $form->createView()
         ));
     }
 

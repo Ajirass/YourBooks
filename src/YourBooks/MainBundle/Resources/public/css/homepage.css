@@ -4,9 +4,19 @@
     margin:auto;
 }
 
-.home
+div.background
 {
-    background:rgba(0,0,0, 0.5);
+    background: url(../images/backgroundhome.jpg) no-repeat center fixed;
+    -webkit-background-size: cover; /* pour Chrome et Safari */
+    -moz-background-size: cover; /* pour Firefox */
+    -o-background-size: cover; /* pour Opera */
+    background-size: cover; /* version standardisée */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
 }
 
 h1.home {
