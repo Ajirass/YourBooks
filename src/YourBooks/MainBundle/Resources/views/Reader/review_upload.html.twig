@@ -1,17 +1,116 @@
 {% extends 'YourBooksMainBundle::base.html.twig' %}
 
 {% block body %}
-    <div>
-           {{ book.title }}
-    </div>
 
-        <div class="progressbar">
-            <h1>Review du manuscrit</h1>
-        </div>
 
-        <form method="post" {{ form_enctype(form) }}>
-            {{ form_widget(form) }}
-            <input type="submit">
+        <form method="post" {{ form_enctype(form) }} class="review-form">
+
+            <div class="bloc">
+            <div class="progressbar">
+                <h1>Noter un manuscrit</h1>
+
+                <div class="couverture">
+                    <h4 class="title">{{ book.title }}</h4>
+                    <span class="category {{ book.category }}">{{ book.category }}</span>
+                </div>
+                <div class="bloc">
+                <div class="createdat">
+                    <span class="uppercase">Soumis le :</span>
+
+                    <time>{{ book.createdAt|date("d/m/Y") }}</time>
+
+                </div>
+                    <div class="clear"></div>
+                <div class="category">
+                    <span class="uppercase">Catégorie</span>
+
+                    <span class="category-content">{{ book.category }}</span>
+                </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <fieldset class="bloc-stars">
+
+                <h2 class="uppercase">Critères de notation</h2>
+            <div class="stars">
+                {{ form_widget(form.criteria1) }}
+            </div>
+
+                {{ form_label(form.criteria1) }}
+
+            <div class="stars">
+                {{ form_widget(form.criteria2) }}
+            </div>
+                {{ form_label(form.criteria2) }}
+
+            <div class="stars">
+                {{ form_widget(form.criteria3) }}
+            </div>
+                {{ form_label(form.criteria3) }}
+
+            <div class="stars">
+                {{ form_widget(form.criteria4) }}
+            </div>
+                {{ form_label(form.criteria4) }}
+
+            <div class="stars">
+                {{ form_widget(form.criteria5) }}
+            </div>
+                {{ form_label(form.criteria5) }}
+            </fieldset>
+            </div>
+
+            <div class="bloc">
+            <fieldset class="no-stars">
+                {{ form_row(form.summary) }}
+            </fieldset>
+            <fieldset class="no-stars">
+                {{ form_row(form.critic) }}
+            </fieldset>
+            <fieldset class="no-stars">
+                {{ form_row(form.problems) }}
+            </fieldset>
+            </div>
+            <input class="submit" type="submit" >
+            <div class="clear"></div>
         </form>
 
+
 {% endblock %}
+
+{% block javascripts %}
+    <script>
+        // Lorsque le DOM est chargé on applique le Javascript
+        jQuery(document).ready(function() {
+            // On ajoute la classe "js" à la liste pour mettre en place par la suite du code CSS uniquement dans le cas où le Javascript est activé
+            jQuery(".stars").addClass("js");
+            // On passe chaque note à l'état grisé par défaut
+            jQuery(".stars label").addClass("note-off");
+
+            // La première est cochée par défaut
+            jQuery(".stars label:first-of-type").removeClass("note-off");
+            console.log(this);
+            // Au survol de chaque note à la souris
+            jQuery(".stars label").click(function() {
+                // On passe les notes supérieures à l'état inactif (par défaut)
+                jQuery(this).nextAll("label").addClass("note-off");
+                // On passe les notes inférieures à l'état actif
+                jQuery(this).prevAll("label").removeClass("note-off");
+                // On passe la note survolée à l'état actif (par défaut)
+                jQuery(this).removeClass("note-off");
+            });
+            // Lorsque l'on sort du sytème de notation à la souris
+            jQuery(".stars").focusout(function() {
+                // On passe toutes les notes à l'état inactif
+                jQuery(this).children("label").addClass("note-off");
+                // On simule (trigger) un mouseover sur la note cochée s'il y a lieu
+                jQuery(this).find("input:checked").parent().trigger("mouseover");
+            });
+
+        });
+        $(".stars label").contents().remove();
+    </script>
+
+{% endblock %}
+

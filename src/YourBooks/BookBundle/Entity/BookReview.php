@@ -69,7 +69,7 @@ class BookReview
     /**
      * @var string
      *
-     * @ORM\Column(name="critic", type="string", length=200)
+     * @ORM\Column(name="critic", type="text", length=200)
      */
     protected $critic;
 

@@ -2,7 +2,7 @@
 {
     float: right;
     margin: 50px;
-    width: 260px;
+    width: 280px;
     color:white;
 }
 
@@ -32,20 +32,21 @@
     font-size: 22px;
     font-family: "FuturaLT";
     color:#ffffff;
-    padding:5px;
+    padding:5px 10px;
     background:#b40d0a;
     border-radius: 10px;
     border:none;
     float: right;
     clear: both;
     margin-top:20px;
+    margin-right: 55px;
 }
 
 
 .connect input[type=text], input[type=password], input[type=email]
 {
-    width: 190px;
-    height: 30px;
+    width: 80%;
+    height: 33px;
     box-shadow:1px 1px 2px #C0C0C0 inset;
     -o-box-shadow:1px 1px 2px #C0C0C0 inset;
     -moz-box-shadow:1px 1px 2px #C0C0C0 inset;

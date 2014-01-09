@@ -5,7 +5,7 @@ header
     background: -moz-linear-gradient(to top, #000000, #2e2e2e);
     background: -o-linear-gradient(to top, #000000, #2e2e2e);
     background: -ms-linear-gradient(to top, #000000, #2e2e2e);
-    height: 100px;
+    height: 90px;
     width:100%;
     margin:auto;
 }
@@ -72,11 +72,11 @@ header .authenticated a
 
 header .logo
 {
-    margin-top:10px;
+    margin-top:5px;
     float:left;
     width:150px;
     height:83px;
-    margin-left:10px;
+    margin-left:30px;
 }
 
 header .not_authenticated

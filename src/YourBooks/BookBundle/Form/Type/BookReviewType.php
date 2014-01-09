@@ -11,7 +11,7 @@ class BookReviewType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('summary', null, array('label' => 'resumé 2000 caractères max : '))
+            ->add('summary', null, array('label' => 'Résumé (2000 caractères max) : '))
             ->add('criteria1', 'choice', array(
                 'choices'   => array(
                     '1'   => '1',
@@ -20,7 +20,7 @@ class BookReviewType extends AbstractType
                     '4'   => '4',
                     '5'   => '5',
                 ),
-                'label' => 'Style d\'écriture : ',
+                'label' => 'Style d\'écriture',
                 'multiple'  => false,
                 'expanded' => true,
             ))
@@ -32,7 +32,7 @@ class BookReviewType extends AbstractType
                     '4'   => '4',
                     '5'   => '5',
                 ),
-                'label' => 'Péripéties : ',
+                'label' => 'Péripéties',
                 'multiple'  => false,
                 'expanded' => true,
             ))
@@ -44,7 +44,7 @@ class BookReviewType extends AbstractType
                     '4'   => '4',
                     '5'   => '5',
                 ),
-                'label' => 'Interêt : ',
+                'label' => 'Intérêt',
                 'multiple'  => false,
                 'expanded' => true,
             ))
@@ -56,7 +56,7 @@ class BookReviewType extends AbstractType
                     '4'   => '4',
                     '5'   => '5',
                 ),
-                'label' => 'Comprehension : ',
+                'label' => 'Comprehension',
                 'multiple'  => false,
                 'expanded' => true,
             ))
@@ -68,7 +68,7 @@ class BookReviewType extends AbstractType
                     '4'   => '4',
                     '5'   => '5',
                 ),
-                'label' => 'Dénoument : ',
+                'label' => 'Dénouement',
                 'multiple'  => false,
                 'expanded' => true,
             ))
