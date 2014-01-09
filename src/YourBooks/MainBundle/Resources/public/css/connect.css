@@ -42,7 +42,7 @@
 }
 
 
-.connect input[type=text], input[type=password]
+.connect input[type=text], input[type=password], input[type=email]
 {
     width: 190px;
     height: 30px;

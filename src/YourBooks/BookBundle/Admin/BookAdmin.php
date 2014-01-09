@@ -6,6 +6,9 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\DoctrineORMAdminBundle\Tests\Filter\QueryBuilder;
+use Sonata\UserBundle\Model\User;
+use YourBooks\BookBundle\Entity\BookRepository;
 
 class BookAdmin extends Admin
 {
@@ -26,7 +29,7 @@ class BookAdmin extends Admin
                 'required' => false,
                 'help' => '<a href="/'.$currentBook->getWebPath().'">Download File : '.$currentBook->getFileName().'</a>',
             );
-
+        
         $formMapper
             ->add('title', null, array('label' => 'Titre : '))
             ->add('summary', null, array('label' => 'Résumé : '))

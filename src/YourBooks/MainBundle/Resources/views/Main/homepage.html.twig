@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block body %}
-    <div class="background"></div>
   <div class="home">
     <h1 class="home">Your-Books, le trait d'union entre auteurs et éditeurs</h1>
     <ul class="home">
@@ -26,6 +25,16 @@
         <li></li>
         <li></li>
     </ul>
+
+
+    {% for label, flashes in app.session.flashbag.all %}
+          {% for flash in flashes %}
+              <div class="alert alert-{{ label}}">
+                  {{ flash |raw }}
+              </div>
+          {% endfor %}
+      {% endfor %}
+
     <aside class="home">
         <ul>
             <li>

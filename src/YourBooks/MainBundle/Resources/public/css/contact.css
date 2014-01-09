@@ -1,9 +1,12 @@
-.alert
+.home .alert
 {
     font-family: 'FuturaLT';
     font-size: 25px;
-    display: block;
-    margin-top:25px;
+    margin-top:70px;
+    clear:both;
+    background:rgba(11, 195, 98, 0.5);
+    text-align: center;
+    padding: 15px 0;
 }
 
 
