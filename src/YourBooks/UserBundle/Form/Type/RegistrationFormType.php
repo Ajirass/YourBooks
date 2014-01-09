@@ -7,16 +7,38 @@ use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 
 class RegistrationFormType extends BaseType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
+        //if (isset($options['account']) && ('reader' == $options['account']))
+        //{
+            $builder
+                ->add('siret')
+                ->add('fileCV')
+                ->add('fileMotivationLetter')
+            ;
+        //}
+    }
 
+    public function addEditorFields(FormBuilderInterface $builder)
+    {
         $builder
-            ->add('fileCV')
+            ->add('company')
         ;
-        //$builder->add('firstname');
-        //if ('author' === $options['account_type'])
-        //    $builder->add('dateOfBirth');
+
+        return $builder;
+    }
+
+    public function addReaderFields(FormBuilderInterface $builder)
+    {
+        $builder
+            ->add('siret')
+            ->add('fileCV')
+            ->add('fileMotivationLetter')
+        ;
+
+        return $builder;
     }
 
     public function getName()

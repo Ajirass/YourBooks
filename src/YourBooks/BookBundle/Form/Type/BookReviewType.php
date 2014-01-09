@@ -15,7 +15,7 @@ class BookReviewType extends AbstractType
             ->add('criteria1', 'choice', array(
                 'choices'   => array(
                     '1'   => '1',
-                    '2' => '2',
+                    '2'   => '2',
                     '3'   => '3',
                     '4'   => '4',
                     '5'   => '5',
@@ -27,7 +27,7 @@ class BookReviewType extends AbstractType
             ->add('criteria2', 'choice', array(
                 'choices'   => array(
                     '1'   => '1',
-                    '2' => '2',
+                    '2'   => '2',
                     '3'   => '3',
                     '4'   => '4',
                     '5'   => '5',
@@ -39,7 +39,7 @@ class BookReviewType extends AbstractType
             ->add('criteria3', 'choice', array(
                 'choices'   => array(
                     '1'   => '1',
-                    '2' => '2',
+                    '2'   => '2',
                     '3'   => '3',
                     '4'   => '4',
                     '5'   => '5',
@@ -51,7 +51,7 @@ class BookReviewType extends AbstractType
             ->add('criteria4', 'choice', array(
                 'choices'   => array(
                     '1'   => '1',
-                    '2' => '2',
+                    '2'   => '2',
                     '3'   => '3',
                     '4'   => '4',
                     '5'   => '5',
@@ -63,7 +63,7 @@ class BookReviewType extends AbstractType
             ->add('criteria5', 'choice', array(
                 'choices'   => array(
                     '1'   => '1',
-                    '2' => '2',
+                    '2'   => '2',
                     '3'   => '3',
                     '4'   => '4',
                     '5'   => '5',

@@ -20,6 +20,12 @@ class ProfileFormType extends BaseType
         $builder
             ->add('firstname', null, array('label' => 'form.firstname', 'translation_domain' => 'FOSUserBundle'))
             ->add('lastname', null, array('label' => 'form.lastname', 'translation_domain' => 'FOSUserBundle'))
+        ;
+    }
+
+    public function addAuthorFields(FormBuilderInterface $builder)
+    {
+        $builder
             ->add('phone', null, array('label' => 'form.phone', 'translation_domain' => 'FOSUserBundle'))
             ->add('dateOfBirth', 'birthday', array('label' => 'form.dateOfBirth', 'translation_domain' => 'FOSUserBundle'))
             ->add('biography', 'textarea', array('label' => 'form.biography', 'translation_domain' => 'FOSUserBundle'))
@@ -27,6 +33,8 @@ class ProfileFormType extends BaseType
             ->add('zipcode', null, array('label' => 'form.zipcode', 'translation_domain' => 'FOSUserBundle'))
             ->add('city', 'text', array('label' => 'form.city', 'translation_domain' => 'FOSUserBundle'))
         ;
+
+        return $builder;
     }
 
     public function getName()

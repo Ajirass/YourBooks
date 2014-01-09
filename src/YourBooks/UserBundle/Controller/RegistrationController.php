@@ -31,9 +31,9 @@ use YourBooks\UserBundle\ConfirmMail\UserRegisterEvent;
  */
 class RegistrationController extends ContainerAware
 {
-    public function registerAction()
+    public function registerAction($account)
     {
-        $form = $this->container->get('fos_user.registration.form');
+        $form = $this->container->get('fos_user.registration.form', null, $account);
         $formHandler = $this->container->get('fos_user.registration.form.handler');
         $confirmationEnabled = $this->container->getParameter('fos_user.registration.confirmation.enabled');
 
@@ -51,11 +51,11 @@ class RegistrationController extends ContainerAware
             }
 
             // On crée l'évènement avec ses 2 arguments
-            $event = new UserRegisterEvent($user);
+            //$event = new UserRegisterEvent($user);
 
             // On déclenche l'évènement
-            $dispatcher = $this->container->get('event_dispatcher');
-            $dispatcher->dispatch(ConfirmMailEvent::UserRegisterMail, $event);
+            //$dispatcher = $this->container->get('event_dispatcher');
+            //$dispatcher->dispatch(ConfirmMailEvent::UserRegisterMail, $event);
 
             $this->setFlash('fos_user_success', 'registration.flash.user_created');
             $url = $this->container->get('router')->generate($route);

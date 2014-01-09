@@ -377,4 +377,118 @@ class User extends BaseUser
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+    public function setFileMotivationLetter(UploadedFile $fileMotivation = null)
+    {
+        $this->fileMotivationLetter = $fileMotivation;
+        // check if we have an old image path
+        if (isset($this->path)) {
+            // store the old name to delete after the update
+            $this->temp  = $this->path;
+            $this->path = null;
+        } else {
+            $this->path = 'initial';
+        }
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFileMotivationLetter()
+    {
+        return $this->fileMotivationLetter;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getAbsolutePathMotivationLetter()
+    {
+        return null === $this->motivationLetter ? null : $this->getUploadRootDirMotivationLetter().'/'.$this->motivationLetter;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getWebPathMotivationLetter()
+    {
+        return null === $this->motivationLetter ? null : $this->getUploadDirMotivationLetter().'/'.$this->motivationLetter;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUploadRootDirMotivationLetter()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__.'/../../../../../web/'.$this->getUploadDirMotivationLetter();
+    }
+
+    /**
+     * @return string
+     */
+    public function getUploadDirMotivationLetter()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads/reader/motivation';
+    }
+
+
+    public function preUploadMotivationLetter()
+    {
+        if (null !== $this->getFileMotivationLetter()) {
+            // do whatever you want to generate a unique name
+            $motivation = sha1(uniqid(mt_rand(), true));
+            $this->motivationLetter = $motivation.'.'.$this->getFileMotivationLetter()->guessExtension();
+        }
+    }
+
+
+    public function uploadMotivationLetter()
+    {
+        if (null === $this->getFileMotivationLetter()) {
+            return;
+        }
+
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->getFileMotivationLetter()->move($this->getUploadRootDirMotivationLetter(), $this->motivationLetter);
+
+        // check if we have an old file path
+        if (isset($this->temp)) {
+            // check if we have a true path
+            if (is_file($filePath = $this->getUploadRootDirMotivationLetter().'/'.$this->temp)) {
+                // delete the old file
+                unlink($filePath);
+                // clear the temp file path
+                $this->temp = null;
+            }
+        }
+        $this->fileMotivation = null;
+    }
+
+
+    public function removeUploadMotivationLetter()
+    {
+        if ($motivationLetter = $this->getAbsolutePathMotivationLetter()) {
+            unlink($motivationLetter);
+        }
+    }
+
 }

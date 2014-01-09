@@ -16,6 +16,11 @@
             <lifecycle-callback type="postUpdate" method="uploadCV"/>
             <lifecycle-callback type="preUpdate" method="preUploadCV"/>
             <lifecycle-callback type="prePersist" method="preUploadCV"/>
+            <lifecycle-callback type="postRemove" method="removeUploadMotivationLetter"/>
+            <lifecycle-callback type="postPersist" method="uploadMotivationLetter"/>
+            <lifecycle-callback type="postUpdate" method="uploadMotivationLetter"/>
+            <lifecycle-callback type="preUpdate" method="preUploadMotivationLetter"/>
+            <lifecycle-callback type="prePersist" method="preUploadMotivationLetter"/>
         </lifecycle-callbacks>
 
         <field name="company" column="name" type="string" length="255" nullable="true"/>

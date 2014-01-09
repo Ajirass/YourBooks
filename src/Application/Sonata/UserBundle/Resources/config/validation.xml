@@ -15,6 +15,16 @@
                 <option name="mimeTypesMessage">Choisissez un fichier PDF valide</option>
             </constraint>
         </property>
+        <property name="fileMotivationLetter">
+            <constraint name="File">
+                <option name="maxSize">5024k</option>
+                <option name="mimeTypes">
+                    <value>application/pdf</value>
+                    <value>application/x-pdf</value>
+                </option>
+                <option name="mimeTypesMessage">Choisissez un fichier PDF valide</option>
+            </constraint>
+        </property>
     </class>
 
 </constraint-mapping>
