@@ -72,7 +72,7 @@ class BookReviewType extends AbstractType
                 'multiple'  => false,
                 'expanded' => true,
             ))
-            ->add('critic', null, array('label' => 'Analyse objective : '))
+            ->add('critic', null, array('label' => 'Analyse objective (200 caractères max) :  '))
             ->add('problems', null, array('label' => 'Problèmes éventuels : '))
         ;
     }
