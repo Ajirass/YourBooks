@@ -41,7 +41,7 @@ header .authenticated .infos
 {
     float:left;
     text-align:right;
-    margin-top:20px;
+    margin-top:12px;
 }
 header .authenticated img
 {
@@ -49,14 +49,14 @@ header .authenticated img
     width:25px;
     float:right;
     padding-right:25px;
-    margin-top:40px;
+    margin-top:30px;
     margin-left:30px;
 }
 
 header .authenticated p
 {
     font-family:'FuturaLT-Heavy';
-    font-size:26px;
+    font-size:23px;
     color:white;
     margin:0;
 }

@@ -1,0 +1,171 @@
+.review-form h1{
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.uppercase{
+    text-transform: uppercase;
+    font-family: "Novecentowide-DemiBold";
+}
+
+.review-form{
+    margin: 30px 0px;
+    font-family: "Novecentowide-DemiBold";
+}
+
+.review-form .progressbar .uppercase{
+    font-family: "Novecentowide-Book";
+}
+
+.category-content,
+.title,
+.couverture .category{
+    font-family: "FuturaLT";
+    text-transform: none;
+}
+
+.review-form .progressbar{
+    padding-left: 15px;
+}
+
+.review-form
+.progressbar span,
+.review-form
+.progressbar time{
+    margin: 10px 0px;
+    display: block;
+}
+
+.review-form
+.progressbar
+.uppercase{
+    border-bottom: 1px solid black;
+}
+
+.review-form h2{
+    padding-left: 0px;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.review-form .stars{
+    float: left;
+}
+
+.review-form .bloc{
+    float: left;
+    width: 50%;
+    margin: 0px;
+}
+
+.review-form fieldset{
+    border: none;
+}
+
+.review-form .bloc-stars{
+    width: 320px;
+    clear: both;
+    float: none;
+    margin-top: 30px;
+    font-family: "FuturaLT";
+}
+
+.review-form .no-stars{
+    margin-top: 10px;
+}
+
+.review-form textarea{
+    width: 100%;
+    height: 120px;
+    margin-top: 5px;
+}
+
+.review-form label{
+    float: left;
+    margin: 10px 0px 10px 10px;
+}
+
+.no-stars label{
+    float: none;
+    margin-left: 0px;
+}
+
+.review-form .stars label {
+    display:block;
+    text-align:center;
+    line-height:32px;
+    background:url('../images/etoiles/etoile-rouge.png') no-repeat;
+    background-size: 100% 100%;
+    cursor:pointer;
+}
+
+.review-form .stars label,
+.review-form .stars input[type=radio]{
+    float: left;
+    margin: 0;
+    min-height: 30px;
+    min-width: 35px;
+    padding: 0;
+}
+
+.review-form .stars .note-off {
+    background:url('../images/etoiles/etoile-grise.png') no-repeat;
+    background-size: 100% 100%;
+}
+
+.review-form .stars input[type=radio]{
+    display: none;
+}
+
+footer{
+    clear: both;
+}
+
+.clear{
+    clear: both;
+}
+
+.review-form .submit{
+    float: right;
+    margin: 10px 8px 0px 0px;
+    font-family: "Futura LT";
+    font-size: 15px;
+    text-decoration: none;
+    color: #FFF;
+    background: #ca3e3c;
+    padding: 8px 15px;
+    margin-top: 0;
+    display: inline-block;
+    border-radius: 4px;
+    border: none;
+}
+
+.review-form .submit:hover{
+    -moz-box-shadow: inset 0px 0px 5px 0px #000000;
+    -webkit-box-shadow: inset 0px 0px 5px 0px #000000;
+    -o-box-shadow: inset 0px 0px 5px 0px #000000;
+    box-shadow: inset 0px 0px 5px 0px #000000;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=NaN, Strength=5);
+}
+
+.review-form .createdat{
+    float: left;
+}
+
+.Horreur{
+    color: #CA3E3C;
+}
+
+.review-form .category,
+.review-form .createdat{
+    margin: 10px 0px 10px 10px;
+    width: 100%;
+}
+
+.review-form .couverture .category{
+    padding-left: 15px;
+}
+
+.review-form .category{
+    padding: 0px;
+}

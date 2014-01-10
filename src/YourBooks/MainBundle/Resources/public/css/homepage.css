@@ -39,7 +39,6 @@ ul.home li:before {
     margin-top: 15px;
 }
 
-.home input[type=text], input[type=password]{ text-indent: 10px; font-family: FuturaLT;}
 
 .home input::-webkit-input-placeholder { color:#5a5959; text-indent: 10px; font-family: "FuturaLT"; font-size: 17px; }
 .home input::-moz-placeholder { color:#5a5959; text-indent: 10px; font-family: "FuturaLT"; font-size: 17px; } /* firefox 19+ */
