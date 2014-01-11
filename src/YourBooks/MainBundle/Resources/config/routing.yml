@@ -23,3 +23,7 @@ your_books_main_homepage:
 your_books_main_contact:
     pattern:  /contact
     defaults: { _controller: YourBooksMainBundle:Main:contact }
+
+your_books_main_engagements:
+    pattern:  /engagements
+    defaults: { _controller: YourBooksMainBundle:Main:engagements }

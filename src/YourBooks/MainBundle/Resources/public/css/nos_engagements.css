@@ -1,0 +1,27 @@
+.engagements h1
+{
+    font-family: 'Novecentowide-Book';
+    font-size: 30px;
+    border-bottom: 2px solid #cfc7a3;
+    padding-bottom: 10px;
+}
+
+.engagements .content
+{
+    padding-left: 100px;
+    margin: auto ;
+}
+
+.engagements .content h2
+{
+    font-family: "Novecentowide-Book";
+    font-size: 20px;
+    margin: 30px 0 15px 30px;
+}
+
+.engagements .content p
+{
+    font-family: "FuturaLT";
+    font-size: 12px;
+    text-align: justify;
+}
