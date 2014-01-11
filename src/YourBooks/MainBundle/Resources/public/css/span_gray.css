@@ -1,0 +1,16 @@
+#home_reader .manuscrits .book .block_statut .content_statut span.gray
+{
+    font-family: "FuturaLT";
+    font-size: 15px;
+    text-decoration: none;
+    color: #FFF;
+    background: #d8d6d6;
+    padding: 8px 15px;
+    margin-top: 0;
+    display: inline-block;
+    border-radius: 4px;
+    -moz-box-shadow: inset 0px 0px 5px 0px #323232;
+    -webkit-box-shadow: inset 0px 0px 5px 0px #323232;
+    -o-box-shadow: inset 0px 0px 5px 0px #323232;
+    box-shadow: inset 0px 0px 5px 0px #323232;
+}

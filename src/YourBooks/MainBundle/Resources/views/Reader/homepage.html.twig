@@ -20,7 +20,11 @@
                             <span class="statut">Statut :</span>
                             <div class="content_statut">
                                 <a href="{{ path('your_books_main_download_book', { 'id': book.id }) }}">Téléchargez</a>
-                                <a href="{{ path('your_books_review_upload', { 'id': book.id }) }}">Notez ce manuscrit</a>
+                                {% if book.downloadByReader %}
+                                    <a href="{{ path('your_books_review_upload', { 'id': book.id }) }}">Notez ce manuscrit</a>
+                                {% else %}
+                                    <span class="gray">Notez ce manuscrit</span>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

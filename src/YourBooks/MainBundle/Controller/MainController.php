@@ -145,7 +145,10 @@ class MainController extends Controller
         $response->headers->set('Content-Type', 'application/pdf'); // modification du content-type pour forcer le téléchargement (sinon le navigateur internet essaie d'afficher le document)
         $response->headers->set('Content-disposition', sprintf('attachment;filename="%s"', $path));
         //TODO modifier le nom
-        //TODO
+
+        $em = $this->getDoctrine()->getManager();
+        $book->setDownloadByReader(true);
+        $em->flush();
 
         return $response;
     }

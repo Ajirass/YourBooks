@@ -4,6 +4,7 @@ namespace YourBooks\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -75,8 +76,14 @@ class ReaderController extends Controller
      */
     public function reviewAction(Request $request, Book $book)
     {
+        if($book->getDownloadByReader() === false)
+        {
+            throw new AccessDeniedHttpException('Vous ne pouvez pas noter ce livre sans l\'avoir d\'abord téléchargé.');
+        }
+
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('YourBooksBookBundle:BookReview');
+
 
         $reader = $this->getUser();
 
@@ -113,7 +120,7 @@ class ReaderController extends Controller
         $book->setReceivedByReader(true);
         $em->flush();
         $user = $this->getUser();
-        $message = "Vous avez confirmez la reception du livre, vous avez 7jours pour le lire.";
+        $message = "Vous avez confirmé la reception du livre, vous avez 7 jours pour le lire.";
         // On crée l'évènement
         $event = new MailEvent($user, $message);
 

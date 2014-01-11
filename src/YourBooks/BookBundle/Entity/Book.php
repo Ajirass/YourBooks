@@ -88,6 +88,13 @@ class Book
     /**
      * @var bool
      *
+     * @ORM\Column(name="download_by_reader", type="boolean", nullable=true)
+     */
+    protected $downloadByReader;
+
+    /**
+     * @var bool
+     *
      * @ORM\Column(name="send_by_reader", type="boolean", nullable=true)
      */
     protected $sendByReader;
@@ -157,6 +164,7 @@ class Book
     {
         $this->enabled = false;
         $this->receivedByReader = false;
+        $this->downloadByReader = false;
         $this->sendByReader = false;
         $this->readerValidation = false;
         $this->edited = false;
@@ -352,6 +360,29 @@ class Book
     public function getReceivedByReader()
     {
         return $this->receivedByReader;
+    }
+
+    /**
+     * Set downloadByReader
+     *
+     * @param boolean $downloadByReader
+     * @return Book
+     */
+    public function setDownloadByReader($downloadByReader)
+    {
+        $this->downloadByReader = $downloadByReader;
+
+        return $this;
+    }
+
+    /**
+     * Get downloadByReader
+     *
+     * @return boolean
+     */
+    public function getDownloadByReader()
+    {
+        return $this->downloadByReader;
     }
 
 

@@ -56,7 +56,7 @@ class BookReviewType extends AbstractType
                     '4'   => '4',
                     '5'   => '5',
                 ),
-                'label' => 'Comprehension',
+                'label' => 'Compréhension',
                 'multiple'  => false,
                 'expanded' => true,
             ))
