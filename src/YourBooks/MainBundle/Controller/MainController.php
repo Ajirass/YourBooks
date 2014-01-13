@@ -200,6 +200,73 @@ class MainController extends Controller
 
     public function engagementsAction()
     {
-        return $this->render('YourBooksMainBundle:Main:engagements.html.twig');
+        $em = $this->getDoctrine()->getEntityManager();
+        $repo = $em->getRepository('YourBooksMainBundle:Footer');
+        $footer = $repo->find(1);
+        $engagements = $footer->getEngagements();
+
+        return $this->render('YourBooksMainBundle:Main:engagements.html.twig', array(
+            'engagements' => $engagements
+        ));
+    }
+
+    public function presseAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $repo = $em->getRepository('YourBooksMainBundle:Footer');
+        $footer = $repo->find(1);
+        $presse = $footer->getPresse();
+
+        return $this->render('YourBooksMainBundle:Main:presse.html.twig', array(
+            'presse' => $presse
+        ));
+    }
+
+    public function teamAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $repo = $em->getRepository('YourBooksMainBundle:Footer');
+        $footer = $repo->find(1);
+        $team = $footer->getTeam();
+
+        return $this->render('YourBooksMainBundle:Main:team.html.twig', array(
+            'team' => $team
+        ));
+    }
+
+    public function charteAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $repo = $em->getRepository('YourBooksMainBundle:Footer');
+        $footer = $repo->find(1);
+        $charte = $footer->getCharte();
+
+        return $this->render('YourBooksMainBundle:Main:charte.html.twig', array(
+            'charte' => $charte
+        ));
+    }
+
+    public function partenairesAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $repo = $em->getRepository('YourBooksMainBundle:Footer');
+        $footer = $repo->find(1);
+        $partenaires = $footer->getPartenaires();
+
+        return $this->render('YourBooksMainBundle:Main:partenaires.html.twig', array(
+            'partenaires' => $partenaires
+        ));
+    }
+
+    public function mentionslegalesAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $repo = $em->getRepository('YourBooksMainBundle:Footer');
+        $footer = $repo->find(1);
+        $mentionslegales = $footer->getMentionslegales();
+
+        return $this->render('YourBooksMainBundle:Main:mentionslegales.html.twig', array(
+            'mentionslegales' => $mentionslegales
+        ));
     }
 }

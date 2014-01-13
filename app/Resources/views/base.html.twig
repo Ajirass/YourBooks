@@ -63,13 +63,13 @@
         <div class="clear"></div>
         <footer>
             <ul>
-                <li><a href="#">Espace presse</a></li>
-                <li><a href="#">L'équipe YourBooks</a></li>
-                <li><a href="#">Charte d'écriture</a></li>
+                <li><a href="{{ path('your_books_main_presse') }}">Espace presse</a></li>
+                <li><a href="{{ path('your_books_main_team') }}">L'équipe YourBooks</a></li>
+                <li><a href="{{ path('your_books_main_charte') }}">Charte d'écriture</a></li>
                 <li><a href="{{ path('your_books_main_contact') }}">Contact</a></li>
                 <li><a href="{{ path('your_books_main_engagements') }}">Nos engagements</a></li>
-                <li><a href="#">Nos partenaires</a></li>
-                <li><a href="#">Mentions légales</a></li>
+                <li><a href="{{ path('your_books_main_partenaires') }}">Nos partenaires</a></li>
+                <li><a href="{{ path('your_books_main_mentionslegales') }}">Mentions légales</a></li>
                 <li><a href="{{ path('your_books_reader_registration_register', { 'account': 'reader' }) }}">Devenez lecteur</a></li>
                 <li><a href="#">Devenez éditeur partenaire</a></li>
             </ul>
