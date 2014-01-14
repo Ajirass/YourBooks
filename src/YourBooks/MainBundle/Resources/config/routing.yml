@@ -27,3 +27,23 @@ your_books_main_contact:
 your_books_main_engagements:
     pattern:  /engagements
     defaults: { _controller: YourBooksMainBundle:Main:engagements }
+
+your_books_main_presse:
+    pattern:  /presse
+    defaults: { _controller: YourBooksMainBundle:Main:presse }
+
+your_books_main_team:
+    pattern:  /team
+    defaults: { _controller: YourBooksMainBundle:Main:team }
+
+your_books_main_charte:
+    pattern:  /charte
+    defaults: { _controller: YourBooksMainBundle:Main:charte }
+
+your_books_main_partenaires:
+    pattern:  /partenaires
+    defaults: { _controller: YourBooksMainBundle:Main:partenaires }
+
+your_books_main_mentionslegales:
+    pattern:  /legal
+    defaults: { _controller: YourBooksMainBundle:Main:mentionslegales }
