@@ -37,7 +37,18 @@ class RegistrationController extends ContainerAware
         $form = $this->container->get('fos_user.registration.form');
         $formHandler = $this->container->get('fos_user.registration.form.handler');
         $confirmationEnabled = $this->container->getParameter('fos_user.registration.confirmation.enabled');
-        $roles = array("ROLE_AUTHOR");
+        if($account == 'reader')
+        {
+            $roles = array("ROLE_READER");
+        }
+        elseif($account == 'editor')
+        {
+            $roles = array("ROLE_AUTHOR");
+        }
+        else
+        {
+            $roles = array("ROLE_AUTHOR");
+        }
         $process = $formHandler->process($confirmationEnabled);
         if ($process) {
             $user = $form->getData();
