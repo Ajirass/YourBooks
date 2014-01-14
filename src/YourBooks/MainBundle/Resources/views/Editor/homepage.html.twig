@@ -8,12 +8,20 @@
         <ul>
             <h1>Catégories</h1>
             <li>
-                {% for category in categories %}
-                    <ul class="{{ category.colorCategory }}">
-                        <span class="title">{{ category.name }}</span>
-                        <li><img src="{{ asset('bundles/yourbooksmain/images/policier.png') }}" alt="policier">Policier</li>
-                        <li><img src="{{ asset('bundles/yourbooksmain/images/philo.png') }}" alt="philo">Philo</li>
-                        <li><img src="{{ asset('bundles/yourbooksmain/images/horreur.png') }}" alt="horreur">Horreur</li>
+                {% for familyCategory in familyCategories %}
+                    <ul class="{{ familyCategory.colorCategory }}">
+                        <span class="title">{{ familyCategory.name }}</span>
+
+                        {% for category in familyCategory.categories %}
+                            <a href="{{ path('your_books_main_editor_filterCategory', { 'category': category.id }) }}">
+                                <li>
+                                    {% if category.fileName is not null %}
+                                        <img src="{{ asset(category.webPath) }}" alt="category">
+                                    {% endif %}
+                                    {{ category.name }}
+                                </li>
+                            </a>
+                        {% endfor %}
                     </ul>
                 {% endfor %}
             </li>

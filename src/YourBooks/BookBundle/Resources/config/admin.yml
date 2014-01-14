@@ -15,6 +15,14 @@ services:
             - ~
             - YourBooks\BookBundle\Entity\BookCategory
             - ~
+    sonata.admin.book_family_category:
+            class: YourBooks\BookBundle\Admin\BookFamilyCategoryAdmin
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: "Book", label: "FamilyCategory" }
+            arguments:
+                - ~
+                - YourBooks\BookBundle\Entity\BookFamilyCategory
+                - ~
     sonata.admin.book_status:
         class: YourBooks\BookBundle\Admin\BookStatusAdmin
         tags:

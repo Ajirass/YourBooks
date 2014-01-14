@@ -25,3 +25,8 @@ your_books_main_received:
     defaults: { _controller: YourBooksMainBundle:Reader:received }
     requirements:
         id: \d+
+
+your_books_reader_registration_register:
+    pattern:  /{account}
+    defaults: { _controller: YourBooksUserBundle:Registration:register }
+    requirements: { _method: GET }

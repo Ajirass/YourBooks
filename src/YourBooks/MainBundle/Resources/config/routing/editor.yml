@@ -2,6 +2,12 @@ your_books_main_editor_homepage:
     pattern:  /
     defaults: { _controller: YourBooksMainBundle:Editor:index }
 
+your_books_main_editor_filterCategory:
+    pattern:  /{category}
+    defaults: { _controller: YourBooksMainBundle:Editor:filterCategory }
+    requirements:
+        category: \d+
+
 your_books_main_editor_historic:
     pattern:  /historic
     defaults: { _controller: YourBooksMainBundle:Editor:historic }
