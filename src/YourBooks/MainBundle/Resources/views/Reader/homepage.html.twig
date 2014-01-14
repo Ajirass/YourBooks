@@ -19,7 +19,7 @@
                         <div class="block_statut">
                             <span class="statut">Statut :</span>
                             <div class="content_statut">
-                                <a href="{{ path('your_books_main_download_book', { 'id': book.id }) }}">Téléchargez</a>
+                                <a id="download_book" href="{{ path('your_books_main_download_book', { 'id': book.id }) }}">Téléchargez</a>
                                 {% if book.downloadByReader %}
                                     <a href="{{ path('your_books_review_upload', { 'id': book.id }) }}">Notez ce manuscrit</a>
                                 {% else %}
@@ -69,7 +69,5 @@
                     <div class="clear"></div>
                 </div>
     </div>
-
-
 
 {% endblock %}
