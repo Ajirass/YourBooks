@@ -30,4 +30,4 @@ assetic:
 swiftmailer:
     transport:  gmail
     username:   godartrobin@gmail.com
-    password:   jy2dmu4a
+    password:
