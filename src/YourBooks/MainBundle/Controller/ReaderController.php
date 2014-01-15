@@ -121,8 +121,9 @@ class ReaderController extends Controller
         $em->flush();
         $user = $this->getUser();
         $message = "Vous avez confirmé la reception du livre, vous avez 7 jours pour le lire.";
+        $subject = "Confirmation reception livre";
         // On crée l'évènement
-        $event = new MailEvent($user, $message);
+        $event = new MailEvent($user, $message, $subject);
 
         // On déclenche l'évènement
         $this->get('event_dispatcher')

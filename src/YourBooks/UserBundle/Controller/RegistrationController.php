@@ -20,8 +20,8 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Exception\AccountStatusException;
 use FOS\UserBundle\Model\UserInterface;
 
-use YourBooks\UserBundle\ConfirmMail\ConfirmMailEvent;
-use YourBooks\UserBundle\ConfirmMail\UserRegisterEvent;
+use YourBooks\MainBundle\ConfirmMail\ConfirmMailEvent;
+use YourBooks\MainBundle\ConfirmMail\MailEvent;
 
 /**
  * Controller managing the registration
@@ -34,25 +34,54 @@ class RegistrationController extends ContainerAware
     public function registerAction()
     {
         $account = $this->container->get('request')->query->get('account');
-        $form = $this->container->get('fos_user.registration.form');
-        $formHandler = $this->container->get('fos_user.registration.form.handler');
-        $confirmationEnabled = $this->container->getParameter('fos_user.registration.confirmation.enabled');
         if($account == 'reader')
         {
-            $roles = array("ROLE_READER");
+            $template = 'YourBooksUserBundle:Registration:register.html';
         }
         elseif($account == 'editor')
         {
-            $roles = array("ROLE_AUTHOR");
+            $template = 'YourBooksUserBundle:Registration:register.html';
         }
         else
         {
-            $roles = array("ROLE_AUTHOR");
+            $template = 'YourBooksMainBundle:Main:homepage.html';
         }
+
+        $form = $this->container->get('fos_user.registration.form');
+        $formHandler = $this->container->get('fos_user.registration.form.handler');
+        $confirmationEnabled = $this->container->getParameter('fos_user.registration.confirmation.enabled');
         $process = $formHandler->process($confirmationEnabled);
         if ($process) {
             $user = $form->getData();
+            if($account == 'reader')
+            {
+                $roles = array("ROLE_READER");
+                $subject = "Demande d'inscription lecteur";
+                $message = "L'utilisateur ".$user->getUsername()." à fait une demande d'inscription en tant que Lecteur";
+            }
+            elseif($account == 'editor')
+            {
+                $roles = array("ROLE_EDITOR");
+                $subject = "Demande d'inscription Editeur";
+                $message = "L'utilisateur ".$user->getUsername()." à fait une demande d'inscription en tant que Editeur";
+            }
+            else
+            {
+                $roles = array("ROLE_AUTHOR");
+                $message = "";
+                $subject = "";
+            }
+
+
+            // On crée l'évènement
+            $event = new MailEvent($user, $message, $subject);
+
+            // On déclenche l'évènement
+            $dispatcher = $this->container->get('event_dispatcher');
+            $dispatcher->dispatch(ConfirmMailEvent::onMailEvent, $event);
+
             $user->setRoles($roles);
+            $this->container->get('fos_user.user_manager')->updateUser($user);
             $authUser = false;
             if ($confirmationEnabled) {
                 $this->container->get('session')->set('fos_user_send_confirmation_email/email', $user->getEmail());
@@ -62,14 +91,7 @@ class RegistrationController extends ContainerAware
                 $route = 'your_books_main_homepage';
             }
 
-            // On crée l'évènement avec ses 2 arguments
-            //$event = new UserRegisterEvent($user);
-
-            // On déclenche l'évènement
-            //$dispatcher = $this->container->get('event_dispatcher');
-            //$dispatcher->dispatch(ConfirmMailEvent::UserRegisterMail, $event);
-
-            $this->setFlash('fos_user_success', 'Merci, votre inscription a bien été prise en compte. <br> Un mail de confirmation vous a été envoyé !');
+            $this->setFlash('fos_user_success', 'Merci '.$user->getUsername().', votre inscription a bien été prise en compte. <br> Un mail de confirmation vous a été envoyé à l\'adresse '.$user->getEmail().' !');
             $url = $this->container->get('router')->generate($route);
             $response = new RedirectResponse($url);
 
@@ -80,7 +102,7 @@ class RegistrationController extends ContainerAware
             return $response;
         }
 
-        return $this->container->get('templating')->renderResponse('YourBooksMainBundle:Main:homepage.html.'.$this->getEngine(), array(
+        return $this->container->get('templating')->renderResponse($template.'.'.$this->getEngine(), array(
             'form' => $form->createView(),
             'error' => '',
             'last_username' => '',
@@ -118,12 +140,28 @@ class RegistrationController extends ContainerAware
         }
 
         $user->setConfirmationToken(null);
-        $user->setEnabled(true);
         $user->setLastLogin(new \DateTime());
-
+        $roles = $user->getRoles();
+        if(in_array("ROLE_AUTHOR", $roles))
+        {
+            $user->setEnabled(true);
+        }
         $this->container->get('fos_user.user_manager')->updateUser($user);
-        $response = new RedirectResponse($this->container->get('router')->generate('your_books_user_registration_confirmed'));
-        $this->authenticateUser($user, $response);
+        if(in_array("ROLE_EDITOR", $roles) || in_array("ROLE_READER", $roles))
+        {
+            $this->setFlash('fos_user_success', 'Votre compte a été activé avec succes.<br>Cependant celui-ci requiert sa validation par l\'administrateur.  ');
+            $route = 'your_books_main_homepage';
+        }
+        else
+        {
+            $this->setFlash('fos_user_success', 'Votre compte a été activé,<br> merci de compléter votre profil afin que les éditeurs puissent vous contacter');
+            $route = 'your_books_user_profile_show';
+        }
+        $response = new RedirectResponse($this->container->get('router')->generate($route));
+        if(in_array("ROLE_AUTHOR", $roles))
+        {
+            $this->authenticateUser($user, $response);
+        }
 
         return $response;
     }

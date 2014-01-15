@@ -87,6 +87,12 @@ fos_user:
     group:
         group_class: Application\Sonata\UserBundle\Entity\Group
     registration:
+        confirmation:
+            from_email: # Use this node only if you don't want the global email address for the confirmation email
+                address:        godartrobin@gmail.com
+                sender_name:    Contact Yourbooks
+            enabled:    true # change to true for required email confirmation
+            template:   FOSUserBundle:Registration:email.txt.twig
         form:
             type: yourbooks_user_registration
     profile:

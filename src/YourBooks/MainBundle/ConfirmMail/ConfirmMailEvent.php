@@ -5,5 +5,5 @@ namespace YourBooks\MainBundle\ConfirmMail;
 
 class ConfirmMailEvent 
 {
-    const onMailEvent = 'mailbundle.confirmmail.mail_event';
+    const onMailEvent = 'mainbundle.confirmmail.mail_event';
 } 

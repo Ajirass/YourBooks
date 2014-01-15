@@ -15,11 +15,13 @@ class MailEvent extends Event
 {
     protected $user;
     protected $message;
+    protected $subject;
 
-    public function __construct(UserInterface $user, $message)
+    public function __construct(UserInterface $user, $message, $subject)
     {
         $this->user = $user;
         $this->message = $message;
+        $this->subject = $subject;
     }
 
     public function getUser()
@@ -36,6 +38,22 @@ class MailEvent extends Event
     {
         $this->message = $message;
         return $this;
+    }
+
+    /**
+     * @param mixed $subject
+     */
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubject()
+    {
+        return $this->subject;
     }
 
 } 

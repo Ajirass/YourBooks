@@ -389,9 +389,9 @@ class User extends BaseUser
 
 
 
-    public function setFileMotivationLetter(UploadedFile $fileMotivation = null)
+    public function setFileMotivationLetter(UploadedFile $fileMotivationLetter = null)
     {
-        $this->fileMotivationLetter = $fileMotivation;
+        $this->fileMotivationLetter = $fileMotivationLetter;
         // check if we have an old image path
         if (isset($this->path)) {
             // store the old name to delete after the update
@@ -453,8 +453,8 @@ class User extends BaseUser
     {
         if (null !== $this->getFileMotivationLetter()) {
             // do whatever you want to generate a unique name
-            $motivation = sha1(uniqid(mt_rand(), true));
-            $this->motivationLetter = $motivation.'.'.$this->getFileMotivationLetter()->guessExtension();
+            $motivationLetter = sha1(uniqid(mt_rand(), true));
+            $this->motivationLetter = $motivationLetter.'.'.$this->getFileMotivationLetter()->guessExtension();
         }
     }
 
@@ -480,7 +480,7 @@ class User extends BaseUser
                 $this->temp = null;
             }
         }
-        $this->fileMotivation = null;
+        $this->fileMotivationLetter = null;
     }
 
 

@@ -5,6 +5,13 @@
 {% block fos_user_content %}
     <div id="profil">
         <h1>MON PROFIL</h1>
+        {% for label, flashes in app.session.flashbag.all %}
+            {% for flash in flashes %}
+                <div class="alert alert-{{ label}}">
+                    {{ flash |raw }}
+                </div>
+            {% endfor %}
+        {% endfor %}
         {% if profile is defined and profile == 'private' %}
             <a href="{{ path('your_books_user_profile_edit') }}">
                 Modifier profile

@@ -20,13 +20,13 @@ class MailEventListener
         $this->mailer = $mailer;
     }
 
-    protected function sendEmail(UserInterface $user, $message)
+    protected function sendEmail(UserInterface $user, $message, $subject)
     {
         $message = \Swift_Message::newInstance()
-            ->setSubject("Confirmation inscription")
+            ->setSubject($subject)
             ->setFrom('godartrobin@gmail.com')
             ->setTo('godartrobin@gmail.com')
-            ->setBody("Bonjour '".$user->getUsername()."' '".$message."'");
+            ->setBody($message);
 
         $this->mailer->send($message);
     }
@@ -34,7 +34,7 @@ class MailEventListener
     public function onMailEvent(MailEvent $event)
     {
             // On envoie un e-mail à l'utilisateur
-            $this->sendEmail($event->getUser(), $event->getMessage());
+            $this->sendEmail($event->getUser(), $event->getMessage(), $event->getSubject());
 
     }
 } 

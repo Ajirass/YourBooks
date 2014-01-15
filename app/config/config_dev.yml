@@ -28,6 +28,6 @@ assetic:
     use_controller: true
 
 swiftmailer:
-    transport: gmail
-    username:  amelie.vanwaerbeke@gmail.com
-    password:
+    transport:  gmail
+    username:   godartrobin@gmail.com
+    password:   jy2dmu4a

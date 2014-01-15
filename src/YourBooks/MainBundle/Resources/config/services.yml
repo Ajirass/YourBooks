@@ -2,6 +2,11 @@ parameters:
 #    your_books_main.example.class: YourBooks\MainBundle\Example
 
 services:
+    yourbooks.main.mail_event_listener:
+        class: YourBooks\MainBundle\ConfirmMail\MailEventListener
+        arguments: [@mailer]
+        tags:
+            - { name: kernel.event_listener, event: mainbundle.confirmmail.mail_event, method: onMailEvent }
 #    your_books_main.example:
 #        class: %your_books_main.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
