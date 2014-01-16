@@ -1,6 +1,10 @@
 {% extends "YourBooksUserBundle::layout.html.twig" %}
 {% block body %}
 {% block fos_user_content %}
-{% include "YourBooksUserBundle:Registration:register_content.html.twig" %}
+    {% if account == 'reader' %}
+        {% include "YourBooksUserBundle:Registration:register_content_reader.html.twig" %}
+    {% elseif account == 'editor' %}
+        {% include "YourBooksUserBundle:Registration:register_content_editor.html.twig" %}
+    {% endif %}
 {% endblock fos_user_content %}
 {% endblock body %}

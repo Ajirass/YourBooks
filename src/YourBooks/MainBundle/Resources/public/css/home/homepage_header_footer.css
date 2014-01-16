@@ -8,8 +8,6 @@ header
 footer
 {
     background: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    bottom:0;
 }
 
 html

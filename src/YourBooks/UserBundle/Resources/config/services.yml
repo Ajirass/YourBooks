@@ -22,3 +22,16 @@ services:
             arguments: [@mailer]
             tags:
                 - { name: kernel.event_listener, event: userbundle.confirmmail.user_register, method: onUserRegister }
+    yourbooks.mailer.registration:
+          class: YourBooks\UserBundle\Mailer\MailerCustom
+          public: false
+          arguments:
+              - '@mailer'
+              - '@router'
+              - '@templating'
+              -
+                  confirmation.template: '%fos_user.registration.confirmation.template%'
+                  resetting.template: '%fos_user.resetting.email.template%'
+                  from_email:
+                      confirmation: '%fos_user.registration.confirmation.from_email%'
+                      resetting: '%fos_user.resetting.email.from_email%'

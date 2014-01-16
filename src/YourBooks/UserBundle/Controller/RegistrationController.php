@@ -68,17 +68,17 @@ class RegistrationController extends ContainerAware
             else
             {
                 $roles = array("ROLE_AUTHOR");
-                $message = "";
-                $subject = "";
             }
 
+            if($account == 'reader' || $account == 'editor')
+            {
+                // On crée l'évènement
+                $event = new MailEvent($user, $message, $subject);
 
-            // On crée l'évènement
-            $event = new MailEvent($user, $message, $subject);
-
-            // On déclenche l'évènement
-            $dispatcher = $this->container->get('event_dispatcher');
-            $dispatcher->dispatch(ConfirmMailEvent::onMailEvent, $event);
+                // On déclenche l'évènement
+                $dispatcher = $this->container->get('event_dispatcher');
+                $dispatcher->dispatch(ConfirmMailEvent::onMailEvent, $event);
+            }
 
             $user->setRoles($roles);
             $this->container->get('fos_user.user_manager')->updateUser($user);
@@ -107,6 +107,7 @@ class RegistrationController extends ContainerAware
             'error' => '',
             'last_username' => '',
             'csrf_token' => '',
+            'account'   => $account,
         ));
     }
 
