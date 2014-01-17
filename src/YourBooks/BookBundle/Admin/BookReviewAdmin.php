@@ -32,6 +32,7 @@ class BookReviewAdmin extends Admin
         $datagridMapper
             ->add('reader', null, array('label' => 'Lecteur : '))
             ->add('book', null, array('label' => 'Manuscrit : '))
+            ->add('noteGlobale', null, array('label' => 'Note moyenne : '))
 
         ;
     }
@@ -40,7 +41,7 @@ class BookReviewAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id')
+            ->addIdentifier('createdAt', null, array('label' => 'Crée le :'))
             ->add('reader', null, array('label' => 'Lecteur'))
             ->add('book', null, array('label' => 'Manuscrit'))
             ->add('summary', null, array('label' => 'Résumé'))
@@ -51,6 +52,7 @@ class BookReviewAdmin extends Admin
             ->add('criteria5', null, array('label' => 'Critère 5'))
             ->add('critic', null, array('label' => 'Critique'))
             ->add('problems', null, array('label' => 'Problèmes'))
+            ->add('noteGlobale', null, array('label' => 'Note moyenne : '))
         ;
     }
 }

@@ -4,6 +4,7 @@ namespace YourBooks\BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use YourBooks\UserBundle\Entity\User;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use YourBooks\BookBundle\Entity\Book;
 
@@ -23,6 +24,14 @@ class BookReview
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    protected $createdAt;
 
     /**
      * @var string
@@ -67,6 +76,13 @@ class BookReview
     protected $criteria5;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="note_globale", type="float")
+     */
+    protected $noteGlobale;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="critic", type="text", length=200)
@@ -102,6 +118,29 @@ class BookReview
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return BookReview
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 
     /**
@@ -281,11 +320,34 @@ class BookReview
     /**
      * Get criteria5
      *
-     * @return integer 
+     * @return float
      */
     public function getCriteria5()
     {
         return $this->criteria5;
+    }
+
+    /**
+     * Set noteGlobale
+     *
+     * @param integer $noteGlobale
+     * @return BookReview
+     */
+    public function setNoteGlobale($noteGlobale)
+    {
+        $this->noteGlobale = $noteGlobale;
+
+        return $this;
+    }
+
+    /**
+     * Get noteGlobale
+     *
+     * @return integer
+     */
+    public function getNoteGlobale()
+    {
+        return $this->noteGlobale;
     }
 
     /**
@@ -333,5 +395,7 @@ class BookReview
     {
         return $this->reader;
     }
+
+
 
 }

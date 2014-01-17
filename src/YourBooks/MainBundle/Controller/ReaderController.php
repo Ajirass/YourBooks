@@ -95,8 +95,13 @@ class ReaderController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
             $book->setSendByReader(true);
-            $em->persist($form->getData());
-            $em->flush();
+
+        $note = (($form->get('criteria1')->getData()) + ($form->get('criteria2')->getData()) + ($form->get('criteria3')->getData()) + ($form->get('criteria4')->getData()) + ($form->get('criteria5')->getData())) / 5;
+        $note_globale = round($note * 2.0) /2;
+
+        $bookReview->setNoteGlobale($note_globale);
+        $em->persist($form->getData());
+        $em->flush();
 
             return new RedirectResponse($this->generateUrl('your_books_main_reader_homepage'));
         }

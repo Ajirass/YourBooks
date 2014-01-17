@@ -151,10 +151,10 @@ class MainController extends Controller
 
     public function contactAction(Request $request)
     {
-        //$em = $this->getDoctrine()->getEntityManager();
-       // $repo = $em->getRepository('ApplicationSonataUserBundle:User');
-        //$user = $repo->find(1);
-        //$email = $user->getEmail();
+        $em = $this->getDoctrine()->getEntityManager();
+        $repo = $em->getRepository('ApplicationSonataUserBundle:User');
+        $user = $repo->find(1);
+        $email = $user->getEmail();
 
         $form = $this->createForm(new ContactType());
 
@@ -165,12 +165,13 @@ class MainController extends Controller
                 $message = \Swift_Message::newInstance()
                     ->setSubject($form->get('subject')->getData())
                     ->setFrom($form->get('email')->getData())
-                    ->setTo('amelie.vanwaerbeke@gmail.com')
+                    ->setTo($email)
                     ->setBody(
                         $this->renderView(
                             'YourBooksMainBundle:Mail:contact.html.twig',
                             array(
                                 'name' => $form->get('name')->getData(),
+                                'email' => $form->get('email')->getData(),
                                 'message' => $form->get('message')->getData()
                             )
                         )

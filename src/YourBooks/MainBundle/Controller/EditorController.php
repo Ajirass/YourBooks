@@ -14,13 +14,21 @@ class EditorController extends Controller
      *
      * @Secure(roles="ROLE_EDITOR")
      */
-    public function indexAction()
+    public function indexAction($category)
     {
         $em = $this->getDoctrine()->getEntityManager();
         $repo = $em->getRepository('YourBooksBookBundle:Book');
         $repoo = $em->getRepository('YourBooksBookBundle:BookFamilyCategory');
 
-        $books = $repo->findOnlyReading();
+        if($category == null)
+        {
+            $books = $repo->findOnlyReading();
+        }
+        else
+        {
+            $books = $repo->findByCategory($category);
+        }
+
         $familyCategories = $repoo->findAll();
         return $this->render('YourBooksMainBundle:Editor:homepage.html.twig', array(
             'books' => $books,
@@ -42,29 +50,6 @@ class EditorController extends Controller
         return $response;
 
     }
-
-
-    /**
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @Secure(roles="ROLE_EDITOR")
-     */
-    public function filterCategoryAction($category)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('YourBooksBookBundle:Book');
-        $repoo = $em->getRepository('YourBooksBookBundle:BookFamilyCategory');
-
-        $books = $repo->findByCategory($category);
-        $familyCategories = $repoo->findAll();
-        return $this->render('YourBooksMainBundle:Editor:filterCategory.html.twig', array(
-            'books' => $books,
-            'familyCategories' => $familyCategories,
-            'idCategory' => $category,
-        ));
-    }
-
-
 
 
     /**

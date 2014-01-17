@@ -13,7 +13,7 @@
                         <span class="title">{{ familyCategory.name }}</span>
 
                         {% for category in familyCategory.categories %}
-                            <a href="{{ path('your_books_main_editor_filterCategory', { 'category': category.id }) }}">
+                            <a href="{{ path('your_books_main_editor_homepage', { 'category': category.id }) }}">
                                 <li>
                                     {% if category.fileName is not null %}
                                         <img src="{{ asset(category.webPath) }}" alt="category">
@@ -37,7 +37,7 @@
             <!-- Trigger de l'apparition du cadre déroulant, remplacer le href par l'id du livre (ex: #65) -->
             <a class="link" href="#book-content">
                 <div class="filtre-hover">
-                    <img src="{{ asset('bundles/yourbooksmain/images/oeil-hover-blanc.png.png') }}">
+                    <img src="{{ asset('bundles/yourbooksmain/images/oeil-hover-blanc.png') }}">
                 </div>
                 <h3 class="title">{{ book.title }}</h3>
                 <img src="">
