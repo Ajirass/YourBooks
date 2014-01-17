@@ -71,8 +71,9 @@ class AuthorController extends Controller
             $em->flush();
 
             $message = "Manuscrit envoyé";
+            $subject = "Envoi de votre manuscrit";
             // On crée l'évènement
-            $event = new MailEvent($author, $message);
+            $event = new MailEvent($author, $message, $subject);
 
             // On déclenche l'évènement
             $this->get('event_dispatcher')

@@ -3,7 +3,7 @@
 namespace YourBooks\BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use YourBooks\UserBundle\Entity\User;
+use Application\Sonata\UserBundle\Entity\User;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use YourBooks\BookBundle\Entity\Book;
@@ -106,7 +106,7 @@ class BookReview
     /**
      * @var Book
      *
-     * @ORM\ManyToOne(targetEntity="YourBooks\BookBundle\Entity\Book")
+     * @ORM\OneToOne(targetEntity="YourBooks\BookBundle\Entity\Book", inversedBy="review")
      */
     protected $book;
 
@@ -396,6 +396,12 @@ class BookReview
         return $this->reader;
     }
 
-
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->critic;
+    }
 
 }

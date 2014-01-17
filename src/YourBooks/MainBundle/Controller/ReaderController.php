@@ -27,7 +27,6 @@ class ReaderController extends Controller
     {
        
         $currentUser = $this->getUser();
-
         $bookReader = $currentUser->getBooks();
 
         return $this->render('YourBooksMainBundle:Reader:homepage.html.twig'

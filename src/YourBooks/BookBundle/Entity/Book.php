@@ -151,7 +151,7 @@ class Book
     /**
      * @var BookReview
      *
-     * @ORM\OneToMany(targetEntity="YourBooks\BookBundle\Entity\BookReview", mappedBy="book")
+     * @ORM\OneToOne(targetEntity="YourBooks\BookBundle\Entity\BookReview", mappedBy="book")
      */
     protected $review;
 
@@ -709,27 +709,4 @@ class Book
         return $this->title;
     }
 
-
-    /**
-     * Add review
-     *
-     * @param \YourBooks\BookBundle\Entity\BookReview $review
-     * @return Book
-     */
-    public function addReview(\YourBooks\BookBundle\Entity\BookReview $review)
-    {
-        $this->review[] = $review;
-    
-        return $this;
-    }
-
-    /**
-     * Remove review
-     *
-     * @param \YourBooks\BookBundle\Entity\BookReview $review
-     */
-    public function removeReview(\YourBooks\BookBundle\Entity\BookReview $review)
-    {
-        $this->review->removeElement($review);
-    }
 }

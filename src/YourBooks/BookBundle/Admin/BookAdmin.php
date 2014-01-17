@@ -65,6 +65,7 @@ class BookAdmin extends Admin
             ->add('enabled', null, array('label' => 'Autorisé par l\'administrateur ?', 'editable' => true))
             ->add('receivedByReader', null, array('label' => 'reçu par le lecteur ?', 'editable' => true))
             ->add('sendByReader', null, array('label' => 'Notes envoyées ?', 'editable' => true))
+            ->add('review', null, array('label' => 'Review : '))
             ->add('readerValidation', null, array('label' => 'Notes validées ?', 'editable' => true))
             ->add('edited', null, array('label' => 'Édité ?', 'editable' => true))
         ;
