@@ -121,11 +121,11 @@ class Book
     protected $author;
 
     /**
-     * @var ArrayCollection
+     * @var User
      *
-     * @ORM\ManyToMany(targetEntity="Application\Sonata\UserBundle\Entity\User", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User", cascade={"persist"})
      */
-    protected $readers;
+    protected $reader;
 
     /**
      * @var User
@@ -478,38 +478,28 @@ class Book
         return $this->author;
     }
 
+
     /**
-     * Add readers
+     * Set reader
      *
-     * @param \Application\Sonata\UserBundle\Entity\User $readers
+     * @param \Application\Sonata\UserBundle\Entity\User $editor
      * @return Book
      */
-    public function addReader(\Application\Sonata\UserBundle\Entity\User $readers)
+    public function setReader(\Application\Sonata\UserBundle\Entity\User $reader = null)
     {
-        $this->readers[] = $readers;
-        $readers->addBook($this);
+        $this->reader = $reader;
 
         return $this;
     }
 
     /**
-     * Remove readers
+     * Get reader
      *
-     * @param \Application\Sonata\UserBundle\Entity\User $readers
+     * @return \Application\Sonata\UserBundle\Entity\User
      */
-    public function removeReader(\Application\Sonata\UserBundle\Entity\User $readers)
+    public function getReader()
     {
-        $this->readers->removeElement($readers);
-    }
-
-    /**
-     * Get readers
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getReaders()
-    {
-        return $this->readers;
+        return $this->reader;
     }
 
     /**
