@@ -124,7 +124,7 @@ class MainController extends Controller
         if($this->get('security.context')->isGranted('ROLE_ADMIN')){
 
         } elseif ($this->get('security.context')->isGranted('ROLE_READER')){
-            if ($reader !=$user && false === $readerValidation )
+            if ($reader != $user && false === $readerValidation )
                 throw new AccessDeniedHttpException('Vous n\'avez pas les droits pour accéder à cette page.');
         } elseif ($this->get('security.context')->isGranted('ROLE_EDITOR')){
             if (false === $book->getReaderValidation())
@@ -143,6 +143,8 @@ class MainController extends Controller
         $em = $this->getDoctrine()->getManager();
         $book->setDownloadByReader(true);
         $em->flush();
+
+
 
         return $response;
     }

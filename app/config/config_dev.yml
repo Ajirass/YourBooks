@@ -30,4 +30,4 @@ assetic:
 swiftmailer:
     transport:  gmail
     username:   amelie.vanwaerbeke@gmail.com
-    password:   avw2610google!
+    password:

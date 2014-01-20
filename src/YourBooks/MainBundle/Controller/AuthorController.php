@@ -35,7 +35,7 @@ class AuthorController extends Controller
 
         if(($countBooksSubmit) > 0)
         {
-            $percent = (($countBooksRead)/($countBooksSubmit))*100;
+            $percent = round((($countBooksRead)/($countBooksSubmit))*100);
         }
         else
         {
