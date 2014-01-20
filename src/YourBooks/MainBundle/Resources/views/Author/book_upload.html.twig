@@ -1,12 +1,23 @@
 {% extends 'YourBooksMainBundle::base.html.twig' %}
 
 {% block body %}
-    <div class="progressbar">
-        <h1>Upload du manuscrit</h1>
-    </div>
 
-    <form method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
-        <input type="submit">
+    <form method="post" {{ form_enctype(form) }} class="book-upload">
+
+        <div class="bloc">
+            {{ form_row(form.title) }}
+            <div class="category-upload">
+                {{ form_row(form.category) }}
+            </div>
+            {{ form_row(form.file) }}
+        </div>
+
+        <div class="bloc bloc-textarea">
+            {{ form_row(form.summary) }}
+            {{ form_rest(form) }}
+
+            <input type="submit" class="submit">
+        </div>
+        <div class="clear"></div>
     </form>
 {% endblock %}

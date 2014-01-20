@@ -11,11 +11,11 @@ class BookType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('summary')
-            ->add('category')
-            ->add('file')
-            ;
+            ->add('title', null, array('label' => 'Titre de l\'oeuvre : '))
+            ->add('summary', null, array('label' => 'écrivez votre résumé (2000 caractères max) : '))
+            ->add('category', null, array('label' => 'Genre : '))
+            ->add('file', null, array('label' => 'Téléchargez votre manuscrit : '))
+        ;
     }
 
     public function getName()

@@ -29,12 +29,21 @@ class BookAdmin extends Admin
                 'required' => false,
                 'help' => '<a href="/'.$currentBook->getWebPath().'">Download File : '.$currentBook->getFileName().'</a>',
             );
-        
+
+       // $query_user = $this->modelManager->getEntityManager('Application\Sonata\UserBundle\Entity\User‌​')->createQueryBuilder()
+         //   ->add('select', 'u')
+           // ->add('from', 'Application\Sonata\UserBundle\Entity\User u')
+           // ->where($query_user->expr()->in('r.role', 'ROLE_READER'))
+           // ->add('orderBy', 'u.username ASC');
+
+
+
         $formMapper
             ->add('title', null, array('label' => 'Titre : '))
             ->add('summary', null, array('label' => 'Résumé : '))
             ->add('category', null, array('label' => 'Catégorie : '))
             ->add('reader', null, array('label' => 'Lecteur : '))
+           // ->add('reader', null, array('required' => true, 'query_builder' => $query_user))
             ->add('file', 'file', $options)
             ;
     }

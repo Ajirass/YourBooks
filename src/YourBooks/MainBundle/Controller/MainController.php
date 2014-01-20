@@ -117,14 +117,14 @@ class MainController extends Controller
     public function downloadBookAction(Book $book)
     {
         $user = $this->getUser();
-        $readers = $book->getReaders();
+        $reader = $book->getReader();
         $readerValidation = $book->getReaderValidation();
 
 
         if($this->get('security.context')->isGranted('ROLE_ADMIN')){
 
         } elseif ($this->get('security.context')->isGranted('ROLE_READER')){
-            if (false === $readers->contains($user) && false === $readerValidation )
+            if ($reader !=$user && false === $readerValidation )
                 throw new AccessDeniedHttpException('Vous n\'avez pas les droits pour accéder à cette page.');
         } elseif ($this->get('security.context')->isGranted('ROLE_EDITOR')){
             if (false === $book->getReaderValidation())
