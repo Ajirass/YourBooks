@@ -5,6 +5,7 @@ namespace YourBooks\BookBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 class BookType extends AbstractType
 {
@@ -14,7 +15,10 @@ class BookType extends AbstractType
             ->add('title', null, array('label' => 'Titre de l\'oeuvre : '))
             ->add('summary', null, array('label' => 'écrivez votre résumé (2000 caractères max) : '))
             ->add('category', null, array('label' => 'Genre : '))
+            ->add('terms','checkbox', array('mapped' => false,
+                'constraints' => array(new NotNull()), 'label' => 'Conditions d\'utilisations : ', 'required' => 'true'))
             ->add('file', null, array('label' => 'Téléchargez votre manuscrit : '))
+
         ;
     }
 

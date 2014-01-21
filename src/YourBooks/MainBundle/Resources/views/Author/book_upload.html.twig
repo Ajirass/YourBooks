@@ -14,7 +14,17 @@
 
         <div class="bloc bloc-textarea">
             {{ form_row(form.summary) }}
+
+            <div class="checkbox">
+                {{ form_row(form.terms) }} <a href="{{ path('your_books_main_charte') }}"> J'ai lu et accepté les conditions d'utilisations</a>
+            </div>
+            <div class="clear">
+
+            </div>
+
             {{ form_rest(form) }}
+
+
 
             <input type="submit" class="submit">
         </div>
