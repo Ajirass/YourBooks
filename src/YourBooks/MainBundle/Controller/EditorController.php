@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use FOS\UserBundle\Model\UserInterface;
 
 class EditorController extends Controller
 {
@@ -16,7 +17,7 @@ class EditorController extends Controller
      */
     public function indexAction($category)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('YourBooksBookBundle:Book');
         $repoo = $em->getRepository('YourBooksBookBundle:BookFamilyCategory');
 
@@ -38,7 +39,7 @@ class EditorController extends Controller
 
     public function downloadAction($id=null)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $file = $em->find('YourBooksBookBundle:Book',$id);
         $path = $file->getAbsolutePath();
 
@@ -59,34 +60,21 @@ class EditorController extends Controller
      */
     public function historicAction()
     {
-        return $this->render('YourBooksMainBundle:Editor:historic.html.twig');
+        $user = $this->getUser();
+        $books = $user->getViewByEditor();
+        return $this->render('YourBooksMainBundle:Editor:historique.html.twig', array(
+            'books' => $books,
+        ));
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * Show the author profile
      */
-    public function inscriptionAction()
+    public function showAuthorProfileAction($id)
     {
-        return $this->render('YourBooksMainBundle:Editor:inscription.html.twig');
-    }
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->find('ApplicationSonataUserBundle:User',$id);
 
-    /**
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @Secure(roles="ROLE_EDITOR")
-     */
-    public function parametersAction()
-    {
-        return $this->render('YourBooksMainBundle:Editor:parameters.html.twig');
-    }
-
-    /**
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @Secure(roles="ROLE_EDITOR")
-     */
-    public function profileAction()
-    {
-        return $this->render('YourBooksMainBundle:Editor:profile.html.twig');
+        return $this->container->get('templating')->renderResponse('YourBooksUserBundle:Profile:show.html.'.$this->container->getParameter('fos_user.template.engine'), array('user' => $user));
     }
 }

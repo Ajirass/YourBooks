@@ -34,9 +34,20 @@
                                  <li><a href="{{ path ('your_books_main_author_send_book') }}"><img src="{{ asset('bundles/yourbooksmain/images/soumettre-manuscrit-blanc.png') }}" alt="Soumettre son manuscrit" title="Soumettre son manuscrit"></a>
                                  </li>
                              {% endif %}
+                             {% if is_granted('ROLE_EDITOR') %}
+                                <li>
+                                    <a href="{{ path('your_books_main_editor_historic') }}"><img src="{{ asset('bundles/yourbooksmain/images/manuscrit-blanc.png') }}" alt="Mes Manuscrits" title="Mes Manuscrits"></a>
+                                </li>
+                             {% elseif is_granted('ROLE_READER') %}
+                                 <li>
+                                     <a href="#"><img src="{{ asset('bundles/yourbooksmain/images/manuscrit-blanc.png') }}" alt="Mes Manuscrits" title="Mes Manuscrits"></a>
+                                 </li>
+                             {% elseif is_granted('ROLE_AUTHOR') %}
+                                 <li>
+                                     <a href="#"><img src="{{ asset('bundles/yourbooksmain/images/manuscrit-blanc.png') }}" alt="Mes Manuscrits" title="Mes Manuscrits"></a>
+                                 </li>
+                             {% endif %}
 
-                             <li><a href="#"><img src="{{ asset('bundles/yourbooksmain/images/manuscrit-blanc.png') }}" alt="Mes Manuscrits" title="Mes Manuscrits"></a>
-                             </li>
                              <li><a href="{{ path ('your_books_user_profile_edit') }}"><img src="{{ asset('bundles/yourbooksmain/images/reglage-blanc.png') }}" alt="Paramètres" title="Paramètres"></a>
                              </li>
                          </ul>

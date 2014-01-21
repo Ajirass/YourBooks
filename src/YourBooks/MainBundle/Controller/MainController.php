@@ -119,15 +119,19 @@ class MainController extends Controller
         $user = $this->getUser();
         $reader = $book->getReader();
         $readerValidation = $book->getReaderValidation();
-        $em = $this->getDoctrine()->getEntityManager();
-
+        $em = $this->getDoctrine()->getManager();
 
         if($this->get('security.context')->isGranted('ROLE_ADMIN')){
 
         } elseif ($this->get('security.context')->isGranted('ROLE_READER')){
-            if ($reader != $user && false === $readerValidation )
+            if ($reader !=$user && false === $readerValidation )
                 throw new AccessDeniedHttpException('Vous n\'avez pas les droits pour accéder à cette page.');
         } elseif ($this->get('security.context')->isGranted('ROLE_EDITOR')){
+            $viewByEditor = $user->getViewByEditor();
+            if($viewByEditor->contains($book) === false )
+            {
+                $user->addViewByEditor($book);
+            }
             if (false === $book->getReaderValidation())
                 throw new AccessDeniedHttpException('Vous n\'avez pas accès à ce livre.');
         } else

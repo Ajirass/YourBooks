@@ -4,7 +4,11 @@
 
 {% block fos_user_content %}
     <div id="profil">
-        <h1>MON PROFIL</h1>
+        {% if is_granted('ROLE_EDITOR') %}
+            <h1>PROFIL DE L'AUTEUR</h1>
+        {% else %}
+            <h1>MON PROFIL</h1>
+        {% endif %}
         {% for label, flashes in app.session.flashbag.all %}
             {% for flash in flashes %}
                 <div class="alert alert-{{ label}}">
@@ -18,9 +22,11 @@
             </a>
             {% include "YourBooksUserBundle:Profile:show_content_private.html.twig" %}
         {% else %}
-            <a href="{{ path('your_books_user_profile_edit') }}">
-                Modifier profile
-            </a>
+            {% if is_granted('ROLE_AUTHOR') %}
+                <a href="{{ path('your_books_user_profile_edit') }}">
+                    Modifier profile
+                </a>
+            {% endif %}
             {% include "YourBooksUserBundle:Profile:show_content_public.html.twig" %}
         {% endif %}
     </div>

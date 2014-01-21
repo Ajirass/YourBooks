@@ -8,9 +8,11 @@ your_books_main_editor_historic:
     pattern:  /historic
     defaults: { _controller: YourBooksMainBundle:Editor:historic }
 
-your_books_main_editor_inscription:
-    pattern:  /inscription
-    defaults: { _controller: YourBooksMainBundle:Editor:inscription }
+your_books_main_editor_profile_author:
+    pattern:  /show/author/{id}
+    defaults: { _controller: YourBooksMainBundle:Editor:showAuthorProfile }
+    requirements:
+            id: \d+
 
 your_books_main_editor_parameters:
     pattern:  /parameters

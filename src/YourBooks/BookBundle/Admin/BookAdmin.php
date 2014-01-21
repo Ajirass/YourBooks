@@ -7,21 +7,25 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\DoctrineORMAdminBundle\Tests\Filter\QueryBuilder;
-use Sonata\UserBundle\Model\User;
 use YourBooks\BookBundle\Entity\BookRepository;
+use FOS\UserBundle\Doctrine\UserManager;
+use Symfony\Component\DependencyInjection\ContainerAware;
+use Doctrine\ORM\EntityManager;
 
 class BookAdmin extends Admin
 {
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
-        /*
-        $options = array('required' => false);
-        if (($subject = $this->getSubject()) && $subject->getPhoto()) {
-            $path = $subject->getPhotoWebPath();
-            $options['help'] = '<img src="' . $path . '" />';
-        }
-        */
+        //$userManager = $this->container->get('fos_user.user_manager');
+        //$reader = $userManager->findUserBy(array('roles' => 'ROLE_READER'));
+        //$userManager = $this->get('fos_user.user_manager');
+        //$this->getModelManager()->createQuery('Application\Sonata\UserBundle\Entity\User', 'u');
+        //$query = $this->getModelManager()->getEntityManager('Application\Sonata\UserBundle\Entity\User')->createQueryBuilder()
+        //    ->select('u.username')
+        //    ->add('from', 'Application\Sonata\UserBundle\Entity\User')
+        //    ->add('where', 'u.roles = ROLE_READER');
+        //$readers = $qb->getQuery()->getResult();
         static $options = array();
         $currentBook = $this->getSubject();
         if (null !== $currentBook->getFileName())
@@ -43,7 +47,6 @@ class BookAdmin extends Admin
             ->add('summary', null, array('label' => 'Résumé : '))
             ->add('category', null, array('label' => 'Catégorie : '))
             ->add('reader', null, array('label' => 'Lecteur : '))
-           // ->add('reader', null, array('required' => true, 'query_builder' => $query_user))
             ->add('file', 'file', $options)
             ;
     }
@@ -78,5 +81,22 @@ class BookAdmin extends Admin
             ->add('readerValidation', null, array('label' => 'Notes validées ?', 'editable' => true))
             ->add('edited', null, array('label' => 'Édité ?', 'editable' => true))
         ;
+    }
+
+    public function findByRole() {
+        $role = 'ROLE_READER';
+        //$queryBuilder = $this->getModelManager()->getEntityManager($this->getClass())->createQueryBuilder();
+        $userManager = $this->get('fos_user.user_manager');
+        $qb = $userManager->createQueryBuilder();
+        $qb->select('u')
+            ->from('Sonata\UserBundle\Model\User', 'u')
+            ->where('u.roles LIKE :roles')
+            ->setParameter('roles', '%"' . $role . '"%');
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findByRole1()
+    {
+        return $userManager = $this->getModelManager()->findBy(array('roles' => 'ROLE_READER'));
     }
 }

@@ -39,9 +39,19 @@
     text-shadow: 2px 2px 4px #999;
 }
 
+.historique .percent{
+    font-family: 'Quicksand Bold';
+    color: #5e051c;
+    position: absolute;
+    font-size: 48px;
+    top: 125px;
+    right: 75px;
+}
+
 .historique .graph
 {
     text-align:right;
+    position: relative;
 }
 
 
@@ -57,7 +67,7 @@
     width: 15px;
     height: 15px;
     float:left;
-    margin: 12px 20px 0px 0px;
+    margin: 12px 20px 0 0;
 
 
 

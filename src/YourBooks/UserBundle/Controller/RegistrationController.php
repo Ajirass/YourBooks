@@ -56,7 +56,7 @@ class RegistrationController extends ContainerAware
             if($account == 'reader')
             {
                 $roles = array("ROLE_READER");
-                $subject = "Demande d'inscription lecteur";
+                $subject = "Demande d'inscription Lecteur";
                 $message = "L'utilisateur ".$user->getUsername()." a fait une demande d'inscription en tant que Lecteur";
             }
             elseif($account == 'editor')

@@ -76,12 +76,18 @@ class User extends BaseUser
      */
     protected $books;
 
+    /**
+     * @var ArrayCollection
+     */
+    protected $viewByEditor;
+
     private $temp;
 
     public function __construct()
     {
         parent::__construct();
         $this->books = new ArrayCollection();
+        $this->viewByEditor= new ArrayCollection();
     }
 
 
@@ -378,17 +384,6 @@ class User extends BaseUser
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
     public function setFileMotivationLetter(UploadedFile $fileMotivationLetter = null)
     {
         $this->fileMotivationLetter = $fileMotivationLetter;
@@ -489,6 +484,39 @@ class User extends BaseUser
         if ($motivationLetter = $this->getAbsolutePathMotivationLetter()) {
             unlink($motivationLetter);
         }
+    }
+
+    /**
+     * Add viewByEditor
+     *
+     * @param \Yourbooks\BookBundle\Entity\Book $viewByEditor
+     * @return User
+     */
+    public function addViewByEditor(\Yourbooks\BookBundle\Entity\Book $viewByEditor)
+    {
+        $this->viewByEditor[] = $viewByEditor;
+    
+        return $this;
+    }
+
+    /**
+     * Remove viewByEditor
+     *
+     * @param \Yourbooks\BookBundle\Entity\Book $viewByEditor
+     */
+    public function removeViewByEditor(\Yourbooks\BookBundle\Entity\Book $viewByEditor)
+    {
+        $this->viewByEditor->removeElement($viewByEditor);
+    }
+
+    /**
+     * Get viewByEditor
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getViewByEditor()
+    {
+        return $this->viewByEditor;
     }
 
 }

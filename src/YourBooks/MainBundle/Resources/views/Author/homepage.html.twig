@@ -93,6 +93,7 @@
             <div class="graph">
 
                 <input type="text" value="{{ percent }}" class="dial">
+                <span class="percent">%</span>
                 <div class="infos">
 
                     <div class="legend u">
@@ -115,6 +116,7 @@
 
 {% block javascripts %}
    {{ parent() }}
+   <script type="text/javascript" src="{{ asset('bundles/yourbooksmain/js/jquery.knob.js') }}"></script>
     <script>
         $(document).ready(function(){
             $(".dial").knob({
