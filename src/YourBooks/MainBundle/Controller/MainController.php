@@ -119,6 +119,7 @@ class MainController extends Controller
         $user = $this->getUser();
         $reader = $book->getReader();
         $readerValidation = $book->getReaderValidation();
+        $em = $this->getDoctrine()->getEntityManager();
 
 
         if($this->get('security.context')->isGranted('ROLE_ADMIN')){
@@ -136,15 +137,12 @@ class MainController extends Controller
 
         $response = new Response();
         $response->setStatusCode(200);
-        $response->headers->set('Content-Type', 'application/pdf'); // modification du content-type pour forcer le téléchargement (sinon le navigateur internet essaie d'afficher le document)
-        $response->headers->set('Content-disposition', sprintf('attachment;filename="%s"', $path));
-        //TODO modifier le nom
+        $response->setContent(file_get_contents($path));
+        $response->headers->set('Content-Type', 'application/force-download'); // modification du content-type pour forcer le téléchargement (sinon le navigateur internet essaie d'afficher le document)
+        $response->headers->set('Content-disposition', 'filename= "YourBooks _ '.$book->getTitle().'.pdf"');
 
-        $em = $this->getDoctrine()->getManager();
         $book->setDownloadByReader(true);
         $em->flush();
-
-
 
         return $response;
     }
