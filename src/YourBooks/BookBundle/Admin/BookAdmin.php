@@ -2,6 +2,7 @@
 
 namespace YourBooks\BookBundle\Admin;
 
+use Application\Sonata\UserBundle\Entity\User;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -11,6 +12,7 @@ use YourBooks\BookBundle\Entity\BookRepository;
 use FOS\UserBundle\Doctrine\UserManager;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 
 class BookAdmin extends Admin
 {
@@ -46,7 +48,15 @@ class BookAdmin extends Admin
             ->add('title', null, array('label' => 'Titre : '))
             ->add('summary', null, array('label' => 'Résumé : '))
             ->add('category', null, array('label' => 'Catégorie : '))
-            ->add('reader', null, array('label' => 'Lecteur : '))
+            ->add('reader', null, array(
+                'class' => 'ApplicationSonataUserBundle:User',
+                'label' => 'Lecteur : ',
+                'query_builder' => function (EntityRepository $er) {
+                    $qb = $er->createQueryBuilder('u');
+                    $qb->where($qb->expr()->like('u.roles', $qb->expr()->literal('%ROLE_READER%')));
+                    return $qb;
+                }
+            ))
             ->add('file', 'file', $options)
             ;
     }
@@ -81,22 +91,5 @@ class BookAdmin extends Admin
             ->add('readerValidation', null, array('label' => 'Notes validées ?', 'editable' => true))
             ->add('edited', null, array('label' => 'Édité ?', 'editable' => true))
         ;
-    }
-
-    public function findByRole() {
-        $role = 'ROLE_READER';
-        //$queryBuilder = $this->getModelManager()->getEntityManager($this->getClass())->createQueryBuilder();
-        $userManager = $this->get('fos_user.user_manager');
-        $qb = $userManager->createQueryBuilder();
-        $qb->select('u')
-            ->from('Sonata\UserBundle\Model\User', 'u')
-            ->where('u.roles LIKE :roles')
-            ->setParameter('roles', '%"' . $role . '"%');
-        return $qb->getQuery()->getResult();
-    }
-
-    public function findByRole1()
-    {
-        return $userManager = $this->getModelManager()->findBy(array('roles' => 'ROLE_READER'));
     }
 }

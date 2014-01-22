@@ -519,4 +519,9 @@ class User extends BaseUser
         return $this->viewByEditor;
     }
 
+    public function notifyReaderAssign()
+    {
+
+    }
+
 }

@@ -488,7 +488,8 @@ class Book
     public function setReader(\Application\Sonata\UserBundle\Entity\User $reader = null)
     {
         $this->reader = $reader;
-        $reader->addBook($this);
+        if (null !== $reader)
+            $reader->addBook($this);
         return $this;
     }
 
