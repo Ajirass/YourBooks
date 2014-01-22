@@ -52,8 +52,10 @@ class BookRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('b')
             ->select('b')
-            ->where('b.category = :category')
+            ->where('b.readerValidation = :readerValidation')
+            ->andWhere('b.category = :category')
             ->orderBy('b.createdAt', 'DESC')
+            ->setParameter(':readerValidation', true)
             ->setParameter(':category', $categoryId)
         ;
 
