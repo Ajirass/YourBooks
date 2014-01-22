@@ -1,0 +1,133 @@
+/* Début du code copié collé de Robin */
+
+.couverture{
+    width: 125px; height: 175px;
+    background: #FFF;
+    border-left: solid 6px #ca3e3c;
+    float: left;
+    position: relative;
+    -moz-box-shadow: 5px 5px 20px 0px #9b9b9b;
+    -webkit-box-shadow: 5px 5px 20px 0px #9b9b9b;
+    -o-box-shadow: 5px 5px 20px 0px #9b9b9b;
+    box-shadow: 5px 5px 20px 0px #9b9b9b;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#9b9b9b, Direction=134, Strength=20);
+    position: relative; /* ajout*/
+    margin-bottom: 10px; /* ajout*/
+}
+
+.title{
+    font-family: "Futura LT";
+    font-size: 15px;
+    color: #1a0903;
+    padding: 0 15px 0 15px;
+    display: block;
+}
+
+/* Fin du code copié collé de Robin */
+
+.link{
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin-top: -15px;
+}
+
+/* Effet d'apparition de l'oeil */
+.couverture:hover > .link .filtre-hover{
+    opacity: 1;
+    transition: 0.3s ease-in-out;
+}
+
+.filtre-hover{
+    opacity: 0;
+    background: green; /* Mettre la bonne couleur avec le filtre rgba */
+    width: 100%;
+    height: 100%;
+    display: block;
+    transition: 0.3s ease-in-out;
+    position: absolute;
+    text-align: center;
+}
+
+.filtre-hover img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -31.5px;
+    margin-left: -50px;
+}
+
+/* Flèche */
+.arrow {
+    left: 50%;
+    margin-left: -11px;
+    border-width: 11px;
+    border-top-width: 0;
+    border-color: rgba(0, 0, 0, 0);
+    border-bottom-color: #999999;
+    border-bottom-color: green;
+    border-style: solid;
+    display: block;
+    height: 0;
+    position: absolute;
+    width: 0;
+    bottom: -11px;
+    display: none;
+}
+
+.arrow:after{
+    border-style: solid;
+    display: block;
+    height: 0;
+    position: absolute;
+    width: 0;
+    border-color: rgba(0, 0, 0, 0);
+}
+
+/* Faire plusieurs class en fonction des couleurs */
+.green{
+    background: green;
+}
+
+
+/* Style du cadre déroulant*/
+.slide-down{
+    width: 100%;
+    clear: both;
+    display: block;
+    height: auto;
+    color: white;
+    display: none;
+    padding: 10px 0px;
+}
+
+.bloc{
+    float: left;
+    width: 30%;
+    margin: 10px;
+}
+
+.bloc h2,
+.bloc p{
+    margin: 0px;
+    padding: 10px;
+}
+
+.bloc h2{
+    padding-top: 0px;
+}
+
+.bloc p{
+    padding-bottom: 0px;
+}
+
+.bloc-summary{
+    border-right: 1px solid white;
+}
+
+.clear{
+    clear: both;
+    width: 100%;
+    height: 1px;
+    display: block;
+}

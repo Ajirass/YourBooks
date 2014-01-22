@@ -8,7 +8,7 @@
             {% for book in books %}
                 {% if book.receivedByReader and book.sendByReader == false %}
                     <div class="book">
-                        <div class="couverture">
+                        <div class="couverture {{ book.category.familyCategory.colorCategory }}">
                             <h3 class="title">{{ book.title | truncate(30, true, '...') }}</h3>
                             <span class="category">{{ book.category }}</span>
                         </div>
