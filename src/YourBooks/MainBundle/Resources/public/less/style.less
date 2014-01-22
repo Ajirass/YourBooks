@@ -401,3 +401,178 @@
     filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=NaN, Strength=5);
   }
 }
+
+/* ========================================================================== Homepage Editor ========================================================================== */
+
+@bleu: #17239c; @bleu-hover: #878dcc; @rouge: #a60508; @rouge-hover: #d89c9f; @vert: #337330; @vert-hover: #acc5ae; @violet: #7c099d; @violet-hover: #b980cc; @orange: #ec6c26; @orange-hover: #f1b291; @rose: #dd0c6e; @rose-hover: #ee85b6; @bleu-clair: #4594ed; @bleu-clair-hover: #9EC5F4;
+
+.couverture
+{
+  border-left: 6px solid #0480be;
+}
+
+#homepage-editor{
+
+  a{ text-decoration: none; color: #1a0903; }
+
+  .category{ float: left; }
+
+  .category li{ transition: all 0.3s ease-in-out; -webkit-transition: all 0.3s ease-in-out; }
+
+  .category li.bleu:hover{ background: @bleu-hover; }
+
+  .category li.rouge:hover{ background: @rouge-hover; }
+
+  .category li.vert:hover{ background: @vert-hover; }
+
+  .category li.violet:hover{ background: @violet-hover; }
+
+  .category li.orange:hover{ background: @orange-hover; }
+
+  .category li.rose:hover{ background: @rose-hover; }
+
+  .couverture{ margin: 20px; text-align: center; }
+
+  .couverture.bleu .filtre-hover, .bleu .popover{ background: @bleu; }
+
+  .couverture.rouge .filtre-hover, .rouge .popover{ background: @rouge; }
+
+  .couverture.vert .filtre-hover, .vert .popover{ background: @vert; }
+
+  .couverture.violet .filtre-hover, .violet .popover{ background: @violet; }
+
+  .couverture.orange .filtre-hover, .orange .popover{ background: @orange; }
+
+  .couverture.rose .filtre-hover, .rose .popover{ background: @rose; }
+
+  .list-books{ float:left; position: relative; }
+
+  .couverture{ width: 125px; height: 175px; background: #FFF; float: left; position: relative; -moz-box-shadow: 5px 5px 20px 0px #9b9b9b; -webkit-box-shadow: 5px 5px 20px 0px #9b9b9b; -o-box-shadow: 5px 5px 20px 0px #9b9b9b; box-shadow: 5px 5px 20px 0px #9b9b9b; filter:progid:DXImageTransform.Microsoft.Shadow(color=#9b9b9b, Direction=134, Strength=20); position: relative; margin-bottom: 10px; }
+
+  .couverture .title{ font-family: "Futura LT"; font-size: 15px; color: #1a0903; padding: 8px 15px 0 15px; display: block; text-align: left; line-height: 1; }
+
+  .link{ display: block; width: 100%; height: 100%; margin-top: -15px; }
+
+  .couverture:hover > .link .filtre-hover{ opacity: 1; transition: 0.3s ease-in-out; }
+
+  .filtre-hover{ opacity: 0; width: 100%; height: 100%; display: block; transition: 0.3s ease-in-out; position: absolute; text-align: center; }
+
+  .filtre-hover img{ position: absolute; top: 50%; left: 50%; margin-top: -31.5px; margin-left: -50px; }
+
+  .couverture .arrow { left: 50%; margin-left: -11px; border-width: 11px; border-top-width: 0; border-color: rgba(0, 0, 0, 0); border-style: solid; height: 0; position: absolute; width: 0; bottom: -11px; }
+
+  .couverture .arrow:after{ border-style: solid; display: block; height: 0; position: absolute; width: 0; border-color: rgba(0, 0, 0, 0); }
+
+  .couverture{ .arrow.bleu{ border-bottom-color: @bleu; }
+
+    .arrow.vert{ border-bottom-color: @vert; }
+
+    .arrow.rouge{ border-bottom-color: @rouge; }
+
+    .arrow.orange{ border-bottom-color: @orange; }
+
+    .arrow.violet{ border-bottom-color: @violet; }
+
+    .arrow.rose{ border-bottom-color: @rose; } }
+
+  .couverture .review{ display: block; background: url("../images/etoiles/SPRITE.png") no-repeat; }
+
+  .link .review{ height: 20px; width: 100px; margin:20px auto; }
+
+  .link{ .review05{ background-position: -83px 0px; } .review10{ background-position: -80px -20px; }
+
+    .review15{ background-position: -62px 0px; }
+
+    .review20{ background-position: -60px -20px; }
+
+    .review25{ background-position: -41px 0px; }
+
+    .review30{ background-position: -40px -20px; }
+
+    .review35{ background-position: -20px 0px; }
+
+    .review40{ background-position: -20px -20px; }
+
+    .review45{ background-position: 0px 0px; }
+
+    .review50{ background-position: 0px -20px; }
+
+  }
+
+  .popover{
+
+    .review{ height: 50px; width: 200px; margin: 10px 0px; }
+
+    .review05{ background-position: -165px -40px; } .review10{ background-position: -165px -85px; }
+
+    .review15{ background-position: -124px -40px; }
+
+    .review20{ background-position: -125px -85px; }
+
+    .review25{ background-position: -82px -40px; }
+
+    .review30{ background-position: -80px -85px; }
+
+    .review35{ background-position: -40px -40px; }
+
+    .review40{ background-position: -40px -85px; }
+
+    .review45{ background-position: 0px -40px; }
+
+    .review50{ background-position: 0px -85px; }
+
+    h1{ margin: 0px; font-weight: normal; font-family: novecento_wide; text-transform: uppercase; }
+
+    h2{ font-family: novecento_wide_bold; }
+
+    label a{ text-decoration: underline; color: white; }
+
+    .download{ margin-top: 25px; }
+
+    .download .active, .download .disabled{ padding: 8px 10px; -moz-box-shadow: inset 3px 3px 3px 0px #601816; -webkit-box-shadow: inset 3px 3px 3px 0px #601816; -o-box-shadow: inset 3px 3px 3px 0px #601816; box-shadow: inset 3px 3px 3px 0px #601816; filter:progid:DXImageTransform.Microsoft.Shadow(color=#601816, Direction=134, Strength=5); }
+
+    form{ margin-top: 20px; }
+
+  } .container-slide-down{ display: none; }
+
+  .popover{ position: relative !important; left: 0px; }
+
+  .fade{ opacity:0; display: none; z-index: -1; }
+
+  .fade.in{ opacity:1; display: block; z-index: 1; }
+
+  .download .active{ display: none; background: white; color: #1A0903; }
+
+  .download .disabled{ color: #1A0903; background: #c2c2c2; }
+
+  .popover .arrow{ display: none !important; }
+
+  .slide-down{ width: 100%; clear: both; display: block; height: auto; color: white; padding: 10px 0px; }
+
+  .bloc{ float: left; width: 30%; margin: 10px; }
+
+  .bloc h2, .bloc p{ margin: 0px; padding: 10px; }
+
+  .bloc h2{ padding-top: 0px; }
+
+  .bloc p{ padding-bottom: 0px; }
+
+  .bloc-summary{ border-right: 1px solid white; }
+
+  .clear{ clear: both; width: 100%; height: 1px; display: block; }
+
+  .hide{ display: none; } }
+
+.couverture.orange{ border-color: @orange; }
+
+.couverture.rose{ border-color: @rose; }
+
+.couverture.violet{ border-color: @violet; }
+
+.couverture.vert{ border-color: @vert; }
+
+.couverture.rouge{ border-color: @rouge; }
+
+.couverture.bleu{ border-color: @bleu; }
+
+footer ul{ padding: 0px; margin: 0 auto; width: 1000px; }

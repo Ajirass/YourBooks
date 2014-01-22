@@ -10,7 +10,7 @@
                     <h1>Noter un manuscrit</h1>
 
                     <div class="couverture">
-                        <h4 class="title">{{ book.title }}</h4>
+                        <h4 class="title">{{ book.title | truncate(30, true, '...') }}</h4>
                         <span class="category {{ book.category }}">{{ book.category }}</span>
                     </div>
                     <div class="bloc">

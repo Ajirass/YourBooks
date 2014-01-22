@@ -9,7 +9,7 @@
                 {% if book.receivedByReader and book.sendByReader == false %}
                     <div class="book">
                         <div class="couverture">
-                            <h3 class="title">{{ book.title }}</h3>
+                            <h3 class="title">{{ book.title | truncate(30, true, '...') }}</h3>
                             <span class="category">{{ book.category }}</span>
                         </div>
                         <div class="createdat">

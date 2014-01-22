@@ -5,14 +5,14 @@
 
         {% for book in books %}
             <!-- le book cliquable -->
-            <div class="couverture">
+            <div class="couverture {{ book.category.familyCategory.colorCategory }}">
 
                 <!-- Trigger de l'apparition du cadre déroulant, remplacer le href par l'id du livre (ex: #65) -->
                 <a class="link" href="#book-content">
                     <div class="filtre-hover">
                         <img src="{{ asset('bundles/yourbooksmain/images/oeil-hover-blanc.png') }}">
                     </div>
-                    <h3 class="title">{{ book.title }}</h3>
+                    <h3 class="title">{{ book.title | truncate(15, true, '...') }}</h3>
                     <img src="">
                 </a>
                 <a href="{{ path('your_books_main_editor_profile_author', { 'id': book.author.id }) }}">Voir profil auteur</a>
