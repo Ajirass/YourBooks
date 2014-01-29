@@ -18,13 +18,13 @@
         {% endfor %}
         {% if profile is defined and profile == 'private' %}
             <a href="{{ path('your_books_user_profile_edit') }}">
-                Modifier profile
+                Modifier les informations
             </a>
             {% include "YourBooksUserBundle:Profile:show_content_private.html.twig" %}
         {% else %}
             {% if is_granted('ROLE_AUTHOR') %}
                 <a href="{{ path('your_books_user_profile_edit') }}">
-                    Modifier profile
+                    Modifier les informations
                 </a>
             {% endif %}
             {% include "YourBooksUserBundle:Profile:show_content_public.html.twig" %}

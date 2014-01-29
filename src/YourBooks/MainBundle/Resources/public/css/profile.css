@@ -1,0 +1,102 @@
+#profil
+{
+    color:#000;
+}
+#profil h1 {
+    font-family:"Novecentowide-Bold";
+    font-size:24px;
+    margin-bottom: 50px;
+}
+
+#profil a
+{
+    float:right;
+    color:#3f3f3f;
+    display: block-inline;
+    font-size: 20px;
+    font-family: 'Quicksand-Book';
+}
+
+.profile_div
+{
+    float:left;
+    height:280px;
+    font-family:"Quicksand-Book";
+    font-size:20px;
+    color:#000;
+}
+
+.profile_div:nth-child(3), .profile_div:nth-child(1)
+{
+    width: 330px;
+    margin-right: 60px;
+    margin-left:30px;
+}
+
+.profile_div:nth-child(3) p, .profile_div:nth-child(1) p
+{
+    width: 300px;
+}
+
+
+
+.profile_div:nth-child(4), .profile_div:nth-child(2)
+{
+    margin-left: 100px;
+    width: 500px;
+}
+
+.profile_div:nth-child(4), .profile_div:nth-child(2)
+{
+    width: 480px;
+}
+
+.profile_div:nth-child(4) p:last-child
+{
+    height: 162px;
+}
+
+.profile_div h2
+{
+    font-family: "Quicksand-Bold";
+    font-size: 24px;
+    color:#000;
+}
+
+.profile_div span.title
+{
+    font-family:"Quicksand-Book";
+    font-size:20px;
+    color:#6b6b6b;
+
+}
+
+.profile_div span.infos
+{
+    font-family:"Quicksand-Book";
+    font-size:20px;
+    color:#000;
+    float:right;
+}
+
+.profile_div p
+{
+    border-top: 2px solid #d8d8d8;
+    margin-left: 25px;
+    padding:5px;
+    padding-top:10px;
+}
+
+.profile_div p:last-child
+{
+    border-top: 2px solid #d8d8d8;
+    border-bottom: 2px solid #d8d8d8;
+    margin-left: 25px;
+    height:40px;
+}
+
+#profil .clear
+{
+    clear:both;
+    height: 10px;
+}

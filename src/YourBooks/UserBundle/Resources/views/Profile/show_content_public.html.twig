@@ -1,12 +1,28 @@
+<div class="clear"></div>
 <div class="fos_user_user_show">
-    <p>{{ 'profile.show.lastname'|trans({}, 'FOSUserBundle') }}: {{ user.lastname }}</p>
-    <p>{{ 'profile.show.firstname'|trans({}, 'FOSUserBundle') }}: {{ user.firstname }}</p>
-    <p>{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
-    <p>{{ 'profile.show.dateOfBirth'|trans({}, 'FOSUserBundle') }}: {{ user.dateOfBirth|date("d/m/Y") }}</p>
-    <p>{{ 'profile.show.biography'|trans({}, 'FOSUserBundle') }}: {{ user.biography }}</p>
-    <p>{{ 'profile.show.phone'|trans({}, 'FOSUserBundle') }}: {{ user.phone }}</p>
-    <p>{{ 'profile.show.street'|trans({}, 'FOSUserBundle') }}: {{ user.street }}</p>
-    <p>{{ 'profile.show.zipcode'|trans({}, 'FOSUserBundle') }}: {{ user.zipcode }}</p>
-    <p>{{ 'profile.show.city'|trans({}, 'FOSUserBundle') }}: {{ user.city }}</p>
+    <div class="profile_div">
+        <h2>Identité</h2>
+        <p><span class="title">{{ 'profile.show.lastname'|trans({}, 'FOSUserBundle') }}</span><span class="infos"> {{ user.lastname | truncate(10, true, '...') }}</span></p>
+        <p><span class="title">{{ 'profile.show.firstname'|trans({}, 'FOSUserBundle') }}</span><span class="infos"> {{ user.firstname | truncate(10, true, '...') }}</span></p>
+        <p><span class="title">{{ 'profile.show.dateOfBirth'|trans({}, 'FOSUserBundle') }}</span><span class="infos"> {{ user.dateOfBirth|date("d/m/Y")| truncate(10, true, '...')  }}</span></p>
+    </div>
+
+    <div class="profile_div">
+        <h2>Coordonnées</h2>
+        <p><span class="title">{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}</span><span class="infos"> {{ user.email | truncate(10, true, '...') }}</span></p>
+        <p><span class="title">{{ 'profile.show.phone'|trans({}, 'FOSUserBundle') }}</span><span class="infos"> {{ user.phone| truncate(10, true, '...')  }}</span></p>
+    </div>
+
+    <div class="profile_div">
+        <h2>Lieu de résidence</h2>
+        <p><span class="title">{{ 'profile.show.street'|trans({}, 'FOSUserBundle') }}</span><span class="infos"> {{ user.street| truncate(10, true, '...')  }}</span></p>
+        <p><span class="title">{{ 'profile.show.zipcode'|trans({}, 'FOSUserBundle') }}</span><span class="infos"> {{ user.zipcode| truncate(10, true, '...')  }}</span></p>
+        <p><span class="title">{{ 'profile.show.city'|trans({}, 'FOSUserBundle') }}</span><span class="infos"> {{ user.city| truncate(10, true, '...')  }}</span></p>
+    </div>
+
+    <div class="profile_div">
+        <h2>Présentation</h2>
+        <p><span class="infos">{{ user.biography| truncate(30, true, '...')  }}</span></p>
+    </div>
+
 </div>
