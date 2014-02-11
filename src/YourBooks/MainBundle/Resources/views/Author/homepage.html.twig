@@ -10,6 +10,15 @@
                     </div>
                 {% endfor %}
             {% endfor %}
+            {% if  countBooksSubmit == 0 %}
+                <div class="first_connexion">
+                    <h1>Bienvenue</h1>
+                    <p>Vous n'avez pour l'instant aucun manuscrit soumis.</p>
+                    <img src="{{ asset('bundles/yourbooksmain/images/logo_first_connexion.png') }}" alt="logo_yourbooks">
+                    <a href="{{ path ('your_books_main_author_send_book') }}">Soumettre un manuscrit</a>
+                </div>
+            {% else %}
+
             <h1>Mes manuscrits</h1>
 
             {% for book in books %}
@@ -78,6 +87,7 @@
                         </div>
                 </div>
             {% endfor %}
+            {% endif %}
             <div class="clear"></div>
         </div>
 

@@ -1,0 +1,58 @@
+.parametres_div
+{
+    float:left;
+    font-family:"Quicksand-Book";
+    font-size:20px;
+    color:#000;
+    width: 800px;
+}
+
+
+.parametres_div h2
+{
+    font-family: "Quicksand-Bold";
+    font-size: 24px;
+    color:#000;
+}
+
+.parametres_div span.title, .parametres_div a.title
+{
+    font-family:"Quicksand-Book";
+    font-size:20px;
+    color:#6b6b6b;
+}
+
+
+#parametres .parametres_div a.title
+{
+    float:left;
+}
+
+.parametres_div span.infos
+{
+    font-family:"Quicksand-Book";
+    font-size:20px;
+    color:#000;
+}
+
+.parametres_div p
+{
+    border-top: 2px solid #d8d8d8;
+    margin-left: 25px;
+    padding:5px;
+    padding-top:10px;
+}
+
+.parametres_div p:last-child
+{
+    border-top: 2px solid #d8d8d8;
+    border-bottom: 2px solid #d8d8d8;
+    margin-left: 25px;
+    height:40px;
+}
+
+#parametres_div .clear
+{
+    clear:both;
+    height: 10px;
+}
