@@ -1,0 +1,33 @@
+.first_historic
+{
+    color:#9ca0a1;
+    margin:auto;
+    text-align: center;
+}
+
+
+.first_historic h1
+{
+    font-size: 50px;
+    font-family: "Quicksand-Book";
+}
+
+.first_historic p
+{
+    font-family: "Quicksand-Book";
+    font-size: 24px;
+}
+
+.first_historic img
+{
+    margin:20px;
+}
+
+.first_historic a
+{
+    font-size: 48px;
+    font-family: "FuturaLT";
+    text-decoration: none;
+    color:#9ca0a1;
+    display: block;
+}

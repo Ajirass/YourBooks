@@ -4,10 +4,10 @@
 
 {% block fos_user_content %}
     <div id="profil">
-        {% if is_granted('ROLE_EDITOR') %}
-            <h1>PROFIL DE L'AUTEUR</h1>
-        {% else %}
+        {% if app.request.attributes.get('_route') == 'your_books_user_profile_show' %}
             <h1>MON PROFIL</h1>
+        {% else %}
+            <h1>PROFIL DE L'AUTEUR</h1>
         {% endif %}
         {% for label, flashes in app.session.flashbag.all %}
             {% for flash in flashes %}
@@ -22,7 +22,7 @@
             </a>
             {% include "YourBooksUserBundle:Profile:show_content_private.html.twig" %}
         {% else %}
-            {% if is_granted('ROLE_AUTHOR') %}
+            {% if app.request.attributes.get('_route') == 'your_books_user_profile_show' %}
                 <a href="{{ path('your_books_user_profile_edit') }}">
                     Modifier les informations
                 </a>

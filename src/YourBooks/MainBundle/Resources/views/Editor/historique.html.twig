@@ -1,8 +1,17 @@
 {% extends 'YourBooksMainBundle::base.html.twig' %}
 
 {% block body %}
-    <div class="list-books">
 
+    {% if books is empty %}
+        <div class="first_historic">
+            <h1>Historique</h1>
+            <p>Vous n'avez pour l'instant aucun manuscrit dans votre historique.</p>
+            <img src="{{ asset('bundles/yourbooksmain/images/logo_first_connexion.png') }}" alt="logo_yourbooks">
+            <a href="{{ path ('your_books_main_editor_homepage') }}">Revenir sur l'espace éditeur</a>
+        </div>
+    {% else %}
+
+    <div class="list-books">
         {% for book in books %}
             <!-- le book cliquable -->
             <div class="couverture {{ book.category.familyCategory.colorCategory }}">
@@ -83,5 +92,7 @@
 
 
         </script>
+
     {% endblock %}
+    {% endif %}
 {% endblock %}

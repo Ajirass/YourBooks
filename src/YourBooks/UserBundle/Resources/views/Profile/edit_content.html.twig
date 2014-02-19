@@ -1,6 +1,40 @@
 <form action="{{ path('your_books_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+    <div class="profile_edit_div">
+        <h2>Identité</h2>
+        <p><span class="title">{{ form_label(form.username) }}</span>{{ form_widget(form.username) }}</p>
+        <p><span class="title">{{ form_label(form.lastname) }}</span> {{ form_widget(form.lastname) }}</p>
+        <p><span class="title">{{ form_label(form.firstname) }}</span>{{ form_widget(form.firstname) }}</p>
+        <p><span class="title">{{ form_label(form.dateOfBirth) }}</span></p>{{ form_widget(form.dateOfBirth) }}
+    </div>
+
+    <div class="profile_edit_div">
+        <h2>Coordonnées</h2>
+        <p><span class="title">{{ form_label(form.email) }}</span>{{ form_widget(form.email) }}</p>
+        <p><span class="title">{{ form_label(form.phone) }}</span>{{ form_widget(form.phone) }}</p>
+    </div>
+
+    <div class="profile_edit_div">
+        <h2>Lieu de résidence</h2>
+        <p><span class="title">{{ form_label(form.street) }}</span>{{ form_widget(form.street) }}</p>
+        <p><span class="title">{{ form_label(form.zipcode) }}</span>{{ form_widget(form.zipcode) }}</p>
+        <p><span class="title">{{ form_label(form.city) }}</span>{{ form_widget(form.city) }}</p>
+    </div>
+
+    <div class="profile_edit_div">
+        <h2>Présentation</h2>
+        <p>{{ form_widget(form.biography) }}</p>
+    </div>
+
+    <div class="profile_edit_div mdp">
+          {{ form_rest(form) }}
+    </div>
+
+
+
+    <div class="profile_edit">
+        <input  type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
     </div>
 </form>
+
+
+

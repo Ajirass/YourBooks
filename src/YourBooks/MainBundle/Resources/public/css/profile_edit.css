@@ -1,0 +1,134 @@
+.profile_edit_div
+{
+    float:left;
+    height:280px;
+    font-family:"Quicksand-Book";
+    font-size:20px;
+    color:#000;
+    margin-top: 50px;
+}
+
+.profile_edit_div:nth-child(3), .profile_edit_div:nth-child(1) {
+    margin-left: 30px;
+    margin-right: 20px;
+    width: 370px;
+}
+
+.profile_edit_div:nth-child(4), .profile_edit_div:nth-child(2)
+{
+    width: 480px;
+    height: 460px;
+    margin-left: 100px;
+}
+
+.profile_edit_div:nth-child(4) p:last-child
+{
+    height: 162px;
+}
+
+.profile_edit_div h2
+{
+    font-family: "Quicksand-Bold";
+    font-size: 24px;
+    color:#000;
+}
+
+.profile_edit_div span.title {
+    color: #6B6B6B;
+    display: inline-block;
+    float: left;
+    font-family: "Quicksand-Book";
+    font-size: 20px;
+    padding: 0;
+}
+
+.profile_edit_div span.infos
+{
+    font-family:"Quicksand-Book";
+    font-size:20px;
+    color:#000;
+    float:right;
+}
+
+.profile_edit_div p
+{
+    border-top: 2px solid #d8d8d8;
+    margin-left: 25px;
+    padding:5px;
+    padding-top:10px;
+    min-height: 15px;
+}
+
+.profile_edit_div p:last-child
+{
+    border-top: 2px solid #d8d8d8;
+    border-bottom: 2px solid #d8d8d8;
+    margin-left: 25px;
+    height:60px;
+}
+
+#profil .clear
+{
+    clear:both;
+    height: 10px;
+}
+
+.profile_edit_div label
+{
+    clear: both;
+}
+.profile_edit_div input
+{
+    display:block;
+}
+.profile_edit_div input, .profile_edit_div select
+{
+    clear: both;
+    margin:10px;
+}
+
+.profile_edit input[type="submit"]
+{
+    margin: 10px 8px 0px 0px;
+    font-family: "Futura LT";
+    font-size: 15px;
+    text-decoration: none;
+    color: #FFF;
+    background: #ca3e3c;
+    padding: 8px 15px;
+    margin-top: 0;
+    display: inline-block;
+    border-radius: 4px;
+    border: none;
+    float:right;
+    margin-top: 100px;
+}
+
+.profile_edit input[type="submit"]:hover{
+    -moz-box-shadow: inset 0px 0px 5px 0px #000000;
+    -webkit-box-shadow: inset 0px 0px 5px 0px #000000;
+    -o-box-shadow: inset 0px 0px 5px 0px #000000;
+    box-shadow: inset 0px 0px 5px 0px #000000;
+}
+
+.profile_edit_div input[type="hidden"]
+{
+    border : none;
+}
+
+.mdp
+{
+    height: 50px;
+    margin-bottom: 150px;
+    margin-left: 60px;
+}
+
+#fos_user_profile_form_dateOfBirth
+{
+    margin:35px;
+}
+
+.profile_edit_div input[type="email"]
+{
+    font-family: "Quicksand-Book";
+}
