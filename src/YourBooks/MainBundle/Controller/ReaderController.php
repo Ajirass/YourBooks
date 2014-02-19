@@ -79,6 +79,11 @@ class ReaderController extends Controller
         {
             throw new AccessDeniedHttpException('Vous ne pouvez pas noter ce livre sans l\'avoir d\'abord téléchargé.');
         }
+        elseif($book->getSendByReader() === true)
+        {
+            throw new AccessDeniedHttpException('Ce livre a déjà été noté.');
+        }
+
 
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('YourBooksBookBundle:BookReview');
