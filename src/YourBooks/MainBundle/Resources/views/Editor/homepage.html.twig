@@ -83,16 +83,16 @@
                 </div>
             {% endfor %}
         </div>
+        <div class="clear"></div>
     </div>
     {% block javascripts %}
         {{ parent() }}
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="{{ asset('bundles/yourbooksmain/js/bootstrap.min.js')}}"></script>
         <script>
 
 
             $(document).ready(function(){
-
+                $('.arrow').hide();
                 //On lance la fonction popover de bootstrap
                 $(".link").popover(
                         {
@@ -102,7 +102,6 @@
                                 return $($(this).attr("href")).html();
                             }
                         });
-
                 //Customisation de notre popover
                 $(".link").click( function() {
 
@@ -116,7 +115,7 @@
 
                     //Ici le calcul de ouf que même Frankenstein il serait bluffé :p
                     //-position de mon book + position de ma liste - largeur de mon book divisée par 2 - le border-left de mon book qui est de 6px
-                    var calcul = - book + liste;
+                    var calcul = - book + liste + 10;
                             //- ($(this).parent().width())/2 - 6;
 
                     //Et on a plus qu'à donner notre position au popover!
@@ -126,8 +125,7 @@
                     var popoverWidth = $('.container').width();
                     $('.popover').css("width", popoverWidth);
 
-                    //On montre la petite flèche
-                    $('.arrow',$(this).parent()).show();
+                    $(".arrow",$(this).parent()).toggle();
 
                     $(".disabled").click( function(e) {
                         e.preventDefault();
@@ -161,15 +159,10 @@
                     });
                 });
 
-                $('.arrow').hide();
+
 
 
                 $('.container').append('<div class="clear"></div>');
-
-
-
-
-
 
 
             });

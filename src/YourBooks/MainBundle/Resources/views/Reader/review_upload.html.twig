@@ -1,87 +1,90 @@
 {% extends 'YourBooksMainBundle::base.html.twig' %}
 
 {% block body %}
+    {% if book.downloadByReader %}
+        <div id="review-upload">
+            <form method="post" {{ form_enctype(form) }} class="review-form">
 
-    <div id="review-upload">
-        <form method="post" {{ form_enctype(form) }} class="review-form">
+                <div class="bloc">
+                    <div class="progressbar">
+                        <h1>Noter un manuscrit</h1>
 
-            <div class="bloc">
-                <div class="progressbar">
-                    <h1>Noter un manuscrit</h1>
+                        <div class="couverture {{ book.category.familyCategory.colorCategory }}">
+                            <h4 class="title">{{ book.title | truncate(30, true, '...') }}</h4>
+                            <span class="category {{ book.category }}">{{ book.category }}</span>
+                        </div>
+                        <div class="bloc">
+                            <div class="createdat">
+                                <span class="uppercase">Soumis le :</span>
 
-                    <div class="couverture {{ book.category.familyCategory.colorCategory }}">
-                        <h4 class="title">{{ book.title | truncate(30, true, '...') }}</h4>
-                        <span class="category {{ book.category }}">{{ book.category }}</span>
-                    </div>
-                    <div class="bloc">
-                        <div class="createdat">
-                            <span class="uppercase">Soumis le :</span>
+                                <time>{{ book.createdAt|date("d/m/Y") }}</time>
 
-                            <time>{{ book.createdAt|date("d/m/Y") }}</time>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="category">
+                                <span class="uppercase">Catégorie</span>
 
+                                <span class="category-content">{{ book.category }}</span>
+                            </div>
                         </div>
                         <div class="clear"></div>
-                        <div class="category">
-                            <span class="uppercase">Catégorie</span>
-
-                            <span class="category-content">{{ book.category }}</span>
-                        </div>
                     </div>
-                    <div class="clear"></div>
+
+                    <fieldset class="bloc-stars">
+
+                        <h2 class="uppercase">Critères de notation</h2>
+                        <div class="stars">
+                            {{ form_widget(form.criteria1) }}
+                        </div>
+
+                        {{ form_label(form.criteria1) }}
+
+                        <div class="stars">
+                            {{ form_widget(form.criteria2) }}
+                        </div>
+                        {{ form_label(form.criteria2) }}
+
+                        <div class="stars">
+                            {{ form_widget(form.criteria3) }}
+                        </div>
+                        {{ form_label(form.criteria3) }}
+
+                        <div class="stars">
+                            {{ form_widget(form.criteria4) }}
+                        </div>
+                        {{ form_label(form.criteria4) }}
+
+                        <div class="stars">
+                            {{ form_widget(form.criteria5) }}
+                        </div>
+                        {{ form_label(form.criteria5) }}
+                    </fieldset>
                 </div>
 
-                <fieldset class="bloc-stars">
+                <div class="bloc">
+                    <fieldset class="no-stars">
+                        {{ form_label(form.summary) }}
+                        {{ form_widget(form.summary) }}
+                    </fieldset>
+                    <fieldset class="no-stars">
+                        {{ form_label(form.critic) }}
+                        {{ form_widget(form.critic) }}
+                    </fieldset>
+                    <fieldset class="no-stars">
+                        {{ form_row(form.problems) }}
+                    </fieldset>
+                </div>
+                {{ form_rest(form) }}
 
-                    <h2 class="uppercase">Critères de notation</h2>
-                    <div class="stars">
-                        {{ form_widget(form.criteria1) }}
-                    </div>
+                <input class="submit" type="submit">
 
-                    {{ form_label(form.criteria1) }}
+                <div class="clear"></div>
+            </form>
 
-                    <div class="stars">
-                        {{ form_widget(form.criteria2) }}
-                    </div>
-                    {{ form_label(form.criteria2) }}
-
-                    <div class="stars">
-                        {{ form_widget(form.criteria3) }}
-                    </div>
-                    {{ form_label(form.criteria3) }}
-
-                    <div class="stars">
-                        {{ form_widget(form.criteria4) }}
-                    </div>
-                    {{ form_label(form.criteria4) }}
-
-                    <div class="stars">
-                        {{ form_widget(form.criteria5) }}
-                    </div>
-                    {{ form_label(form.criteria5) }}
-                </fieldset>
-            </div>
-
-            <div class="bloc">
-                <fieldset class="no-stars">
-                    {{ form_label(form.summary) }}
-                    {{ form_widget(form.summary) }}
-                </fieldset>
-                <fieldset class="no-stars">
-                    {{ form_label(form.critic) }}
-                    {{ form_widget(form.critic) }}
-                </fieldset>
-                <fieldset class="no-stars">
-                    {{ form_row(form.problems) }}
-                </fieldset>
-            </div>
-            {{ form_rest(form) }}
-
-            <input class="submit" type="submit">
-
-            <div class="clear"></div>
-        </form>
-
-    </div>
+        </div>
+    {% else %}
+        <p>Vous devez dabord telecharger le manuscrit pour pouvoir le noter !</p>
+    {% endif %}
 {% endblock %}
 
 {% block javascripts %}

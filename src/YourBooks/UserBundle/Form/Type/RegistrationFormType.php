@@ -17,6 +17,7 @@ class RegistrationFormType extends BaseType
                 ->add('siret')
                 ->add('fileCV')
                 ->add('fileMotivationLetter')
+                ->add('company')
             ;
         //}
     }

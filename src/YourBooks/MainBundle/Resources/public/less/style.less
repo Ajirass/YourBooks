@@ -442,6 +442,7 @@
 
 #homepage-editor{
 
+  overflow-x: hidden;
   a{ text-decoration: none; color: #1a0903; }
 
   .category{ float: left; }
@@ -488,7 +489,7 @@
 
   .filtre-hover img{ position: absolute; top: 50%; left: 50%; margin-top: -31.5px; margin-left: -50px; }
 
-  .couverture .arrow { left: 50%; margin-left: -11px; border-width: 11px; border-top-width: 0; border-color: rgba(0, 0, 0, 0); border-style: solid; height: 0; position: absolute; width: 0; bottom: -11px; }
+  .couverture .arrow { left: 50%; margin-left: -11px; border-width: 11px; border-top-width: 0; border-color: rgba(0, 0, 0, 0); border-style: solid; height: 0; position: absolute; width: 0; bottom: -11px; z-index: 10; }
 
   .couverture .arrow:after{ border-style: solid; display: block; height: 0; position: absolute; width: 0; border-color: rgba(0, 0, 0, 0); }
 
@@ -530,6 +531,7 @@
 
   .popover{
 
+    width: 820px!important;
     .review{ height: 50px; width: 200px; margin: 10px 0px; }
 
     .review05{ background-position: -165px -40px; } .review10{ background-position: -165px -85px; }

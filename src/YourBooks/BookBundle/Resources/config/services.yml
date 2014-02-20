@@ -10,5 +10,4 @@ services:
         arguments:
             - @event_dispatcher
         tags:
-            - { name: doctrine.event_listener, event: preUpdate }
-            - { name: doctrine.event_listener, event: postUpdate }
+            - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }

@@ -71,14 +71,23 @@ class AuthorController extends Controller
             $em->persist($form->getData());
             $em->flush();
 
-            $message = "Manuscrit envoyé";
-            $subject = "Envoi de votre manuscrit";
+            $message_author = "Manuscrit envoyé";
+            $subject_author = "Envoi de votre manuscrit";
             // On crée l'évènement
-            $event = new MailEvent($author, $message, $subject);
+            $event_author = new MailEvent($author, $message_author, $subject_author);
 
             // On déclenche l'évènement
             $this->get('event_dispatcher')
-                ->dispatch(ConfirmMailEvent::onMailEvent, $event);
+                ->dispatch(ConfirmMailEvent::onMailEvent, $event_author);
+
+            $message_admin = "Nouveau manuscrit envoyé";
+            $subject_admin = "Un manuscrit a été envoyé par l'auteur ".$author->getUsername();
+            // On crée l'évènement
+            $event_admin = new MailEvent($author, $message_admin, $subject_admin);
+
+            // On déclenche l'évènement
+            $this->get('event_dispatcher')
+                ->dispatch(ConfirmMailEvent::onMailEvent, $event_admin);
 
             $request->getSession()->getFlashBag()->add('success', 'Manuscrit envoyé avec succes');
 

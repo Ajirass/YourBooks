@@ -3,6 +3,7 @@
     {{ form_widget(form.username, {'attr': {'placeholder': 'Nom d\'utilisateur'}}) }}
     {{ form_errors(form.email) }}
     {{ form_widget(form.email, {'attr': {'placeholder': 'Email'}}) }}
+    {{ form_widget(form.company, {'attr': {'placeholder': 'Company'}}) }}
     {{ form_errors(form.plainPassword.second) }}
     {{ form_errors(form.plainPassword.first) }}
     {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Mot de passe'}}) }}

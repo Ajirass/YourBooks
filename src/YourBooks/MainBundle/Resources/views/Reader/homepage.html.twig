@@ -20,11 +20,7 @@
                             <span class="statut">Statut :</span>
                             <div class="content_statut">
                                 <a id="download_book" href="{{ path('your_books_main_download_book', { 'id': book.id }) }}">Téléchargez</a>
-                                {% if book.downloadByReader %}
-                                    <a href="{{ path('your_books_review_upload', { 'id': book.id }) }}">Notez ce manuscrit</a>
-                                {% else %}
-                                    <span class="gray">Notez ce manuscrit</span>
-                                {% endif %}
+                                    <a class="link_review {% if book.downloadByReader == false %} disabled{% endif %}" href="{{ path('your_books_review_upload', { 'id': book.id }) }}">Notez ce manuscrit</a>
                             </div>
                         </div>
                     </div>
@@ -69,5 +65,23 @@
                     <div class="clear"></div>
                 </div>
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        // Lorsque le DOM est chargé on applique le Javascript
+        jQuery(document).ready(function() {
+            $('.disabled').click(function(){
+                return false;
+            });
+
+            $('a#download_book').click(function(){
+                $(this).parents('.content_statut').find('a.link_review').removeClass('disabled');
+                console.log($(this).parents('.content_statut'));
+            });
+
+        });
+    </script>
 
 {% endblock %}

@@ -1,4 +1,4 @@
-#home_reader .manuscrits .book .block_statut .content_statut span.gray
+#home_reader .manuscrits .book .block_statut .content_statut .disabled
 {
     font-family: "FuturaLT";
     font-size: 15px;

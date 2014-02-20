@@ -107,6 +107,15 @@ class ReaderController extends Controller
         $em->persist($form->getData());
         $em->flush();
 
+            $message = "Une note a été envoyé par le lecteur ".$reader." vous devez validé ses notes.";
+            $subject = "Nouvelle notes envoyé";
+            // On crée l'évènement
+            $event = new MailEvent($reader, $message, $subject);
+
+            // On déclenche l'évènement
+            $this->get('event_dispatcher')
+                ->dispatch(ConfirmMailEvent::onMailEvent, $event);
+
             return new RedirectResponse($this->generateUrl('your_books_main_reader_homepage'));
         }
 

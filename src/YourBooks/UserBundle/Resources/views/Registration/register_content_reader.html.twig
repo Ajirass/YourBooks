@@ -1,5 +1,21 @@
 <form action="{{ path('your_books_reader_registration_register', {'account' : 'reader'}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
-    {{ form_widget(form) }}
+    {{ form_errors(form.username) }}
+    {{ form_widget(form.username, {'attr': {'placeholder': 'Nom d\'utilisateur'}}) }}
+    {{ form_errors(form.email) }}
+    {{ form_widget(form.email, {'attr': {'placeholder': 'Email'}}) }}
+    {{ form_errors(form.siret) }}
+    {{ form_widget(form.siret, {'attr': {'placeholder': 'Siret'}}) }}
+    {{ form_errors(form.plainPassword.second) }}
+    {{ form_errors(form.plainPassword.first) }}
+    {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Mot de passe'}}) }}
+    {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'Confirmez mot de passe'}}) }}
+    {{ form_errors(form.fileCV) }}
+    {{ form_label(form.fileCV) }}
+    {{ form_widget(form.fileCV) }}
+    {{ form_errors(form.fileMotivationLetter) }}
+    {{ form_label(form.fileMotivationLetter) }}
+    {{ form_widget(form.fileMotivationLetter) }}
+    {{ form_row(form._token) }}
     <div>
         <input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
     </div>
