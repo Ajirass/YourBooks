@@ -10,6 +10,7 @@ use YourBooks\BookBundle\Entity\Book;
 use Application\Sonata\UserBundle\Entity\User;
 use YourBooks\BookBundle\Form\Type\BookType;
 use YourBooks\UserBundle\Form\ProfileType;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use YourBooks\MainBundle\ConfirmMail\ConfirmMailEvent;
@@ -168,5 +169,29 @@ class AuthorController extends Controller
     public function inscriptionAction(Request $request)
     {
         return $this->render('YourBooksMainBundle:Author:inscription.html.twig');
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Secure(roles="ROLE_AUTHOR")
+     */
+    public function deleteBookAction(Request $request, Book $book)
+    {
+        $dateNow = new \DateTime();
+        if(($dateNow->diff($book->getCreatedAt())->format('%a')) > 7)
+        {
+            throw new AccessDeniedHttpException('Votre délai de rétractation est écoulé : vous ne pouvez plus supprimer ce livre.');
+        }
+        else
+        {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($book);
+        $em->flush();
+
+        $request->getSession()->getFlashBag()->add('success', 'Manuscrit supprimé avec succes');
+
+        return $this->redirect($this->generateUrl('your_books_main_author_homepage'));
+        }
     }
 }

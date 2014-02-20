@@ -27,3 +27,9 @@ your_books_main_author_update_profile:
 your_books_main_author_inscription:
     pattern:  /inscription
     defaults: { _controller: YourBooksMainBundle:Author:inscription }
+
+your_books_main_author_delete_book:
+    pattern:  /delete/{id}
+    defaults: { _controller: YourBooksMainBundle:Author:deleteBook }
+    requirements:
+        id: \d+
