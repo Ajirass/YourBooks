@@ -136,6 +136,7 @@ class ReaderController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $book->setReceivedByReader(true);
+        $book->setReceivedByReaderAt(new \DateTime("now"));
         $em->flush();
         $user = $this->getUser();
         $message = "Vous avez confirmé la reception du livre, vous avez 7 jours pour le lire.";

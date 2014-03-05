@@ -61,4 +61,27 @@ class BookRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    public function findDelayOutReader()
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->select('b')
+            ->where('b.receivedByReader = :receivedByReader')
+            ->andWhere('DATE_DIFF(CURRENT_DATE(), b.receivedByReaderAt) > 10')
+            ->setParameter(':receivedByReader', true)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+    public function findDelayConfirmedReader()
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->select('b')
+            ->Where('DATE_DIFF(CURRENT_DATE(), b.sendToReaderAt) > 1')
+            ->andWhere('b.receivedByReader = :receivedByReader')
+            ->setParameter(':receivedByReader', false)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
 }

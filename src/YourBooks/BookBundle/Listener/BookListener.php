@@ -18,18 +18,18 @@ use YourBooks\MainBundle\ConfirmMail\MailEvent;
 class BookListener
 {
     private $ed;
-    private $readerName;
-    private $readerValidation;
 
     public function __construct(EventDispatcher $ed) {
         $this->ed = $ed;
     }
 
-    public function preUpdate(LifecycleEventArgs $args)
+    public function preUpdate(LifecycleEventArgs $eventArgs)
     {
-        if ($args->getEntity() instanceof Book) {
-            if($args->hasChangedField('readerValidation') && $args->getNewValue('readerValidation') == true){
-                $user = $args->getEntity()->getReader();
+        $entity = $eventArgs->getEntity();
+        $em = $eventArgs->getEntityManager();
+        if ($entity instanceof Book) {
+            if($eventArgs->hasChangedField('readerValidation') && $eventArgs->getNewValue('readerValidation') == true){
+                $user = $eventArgs->getEntity()->getReader();
                 $message = "Votre livre à été noté il est désormais mis a disposition sur l'espace des éditeurs";
                 $subject = "Votre livre à été noté";
                 // On crée l'évènement
@@ -38,15 +38,30 @@ class BookListener
                 // On déclenche l'évènement
                 $this->ed->dispatch(ConfirmMailEvent::onMailEvent, $event_readerValidation);
             }
-            if($args->hasChangedField('reader') && $args->getNewValue('reader') != false){
-                $user = $args->getEntity()->getReader();
-                $message = "Vous avez reçu un nouveau livre a lire, vous avez 7 jours pour confirmer sa reception.";
+            if($eventArgs->hasChangedField('reader') && $eventArgs->getNewValue('reader') != false){
+                $book = $eventArgs->getEntity();
+                $user = $book->getReader();
+                $entity->setSendToReaderAt(new \DateTime("now"));
+                $em = $eventArgs->getEntityManager();
+                $uow = $em->getUnitOfWork();
+                $meta = $em->getClassMetadata(get_class($entity));
+                $uow->recomputeSingleEntityChangeSet($meta, $entity);
+                $message = "Vous avez reçu un nouveau livre a lire, vous avez 24h pour confirmer sa reception.";
                 $subject = "Nouveau livre à noter";
+
                 // On crée l'évènement
                 $event_readerValidation = new MailEvent($user, $message, $subject);
 
                 // On déclenche l'évènement
                 $this->ed->dispatch(ConfirmMailEvent::onMailEvent, $event_readerValidation);
+            }
+            if($eventArgs->hasChangedField('reader') && $eventArgs->getNewValue('reader') == false){
+                $entity->setSendToReaderAt(null);
+                $entity->setReceivedByReaderAt(null);
+                $em = $eventArgs->getEntityManager(false);
+                $uow = $em->getUnitOfWork();
+                $meta = $em->getClassMetadata(get_class($entity));
+                $uow->recomputeSingleEntityChangeSet($meta, $entity);
             }
         }
     }

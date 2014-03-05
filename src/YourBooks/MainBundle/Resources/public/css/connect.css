@@ -34,12 +34,12 @@
     color:#ffffff;
     padding:5px 10px;
     background:#b40d0a;
-    border-radius: 10px;
+    border-radius: 5px;
     border:none;
     float: right;
     clear: both;
     margin-top:20px;
-    margin-right: 55px;
+    margin-right: 50px;
 }
 
 
@@ -72,7 +72,7 @@ input[type=checkbox]#remember_me {
 }
 
 input[type=checkbox]#remember_me + label[for=remember_me] {
-    padding-left:20px;
+    padding-left:27px;
     height:17px;
     display:inline-block;
     line-height:15px;

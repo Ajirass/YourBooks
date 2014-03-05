@@ -72,6 +72,13 @@ class Book
     protected $updatedAt;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="send_to_reader_at", type="datetime", nullable=true)
+     */
+    protected $sendToReaderAt;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="enabled", type="boolean", nullable=true)
@@ -84,6 +91,13 @@ class Book
      * @ORM\Column(name="received_by_reader", type="boolean", nullable=true)
      */
     protected $receivedByReader;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="received_by_reader_at", type="datetime", nullable=true)
+     */
+    protected $receivedByReaderAt;
 
     /**
      * @var bool
@@ -698,6 +712,50 @@ class Book
     public function __toString()
     {
         return $this->title;
+    }
+
+    /**
+     * Set sendToReaderAt
+     *
+     * @param \DateTime $sendToReaderAt
+     * @return Book
+     */
+    public function setSendToReaderAt($sendToReaderAt)
+    {
+        $this->sendToReaderAt = $sendToReaderAt;
+        return $this;
+    }
+
+    /**
+     * Get sendToReaderAt
+     *
+     * @return \DateTime
+     */
+    public function getSendToReaderAt()
+    {
+        return $this->sendToReaderAt;
+    }
+
+    /**
+     * Set receivedByReaderAt
+     *
+     * @param \DateTime $receivedByReaderAt
+     * @return Book
+     */
+    public function setReceivedByReaderAt($receivedByReaderAt)
+    {
+        $this->receivedByReaderAt = $receivedByReaderAt;
+        return $this;
+    }
+
+    /**
+     * Get receivedByReaderAt
+     *
+     * @return \DateTime
+     */
+    public function getReceivedByReaderAt()
+    {
+        return $this->receivedByReaderAt;
     }
 
 }

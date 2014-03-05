@@ -1,7 +1,7 @@
 <form action="{{ path('your_books_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
     <div class="profile_edit_div">
         <h2>Identité</h2>
-        <p><span class="title">{{ form_label(form.username) }}</span>{{ form_widget(form.username) }}</p>
+        <p><span class="title">{{ form_label(form.firstname) }}</span>{{ form_widget(form.firstname) }}</p>
         <p><span class="title">{{ form_label(form.lastname) }}</span> {{ form_widget(form.lastname) }}</p>
         <p><span class="title">{{ form_label(form.firstname) }}</span>{{ form_widget(form.firstname) }}</p>
         <p><span class="title">{{ form_label(form.dateOfBirth) }}</span></p>{{ form_widget(form.dateOfBirth) }}
