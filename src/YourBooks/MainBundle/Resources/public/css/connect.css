@@ -43,7 +43,7 @@
 }
 
 
-.connect input[type=text], input[type=password], input[type=email]
+.connect input[type=text], .connect input[type=password], .connect input[type=email]
 {
     text-indent: 10px;
     font-family: FuturaLT;
