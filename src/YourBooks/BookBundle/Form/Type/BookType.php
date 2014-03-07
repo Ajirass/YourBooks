@@ -17,6 +17,8 @@ class BookType extends AbstractType
             ->add('category', null, array('label' => 'Genre : '))
             ->add('terms','checkbox', array('mapped' => false,
                 'constraints' => array(new NotNull()), 'label' => 'Conditions d\'utilisations : ', 'required' => 'true'))
+            ->add('rights','checkbox', array('mapped' => false,
+                'constraints' => array(new NotNull()), 'label' => 'Je confirme détenir l\'intégralité des droits de ce manuscrit ', 'required' => 'true'))
             ->add('file', null, array('label' => 'Téléchargez votre manuscrit : '))
 
         ;
