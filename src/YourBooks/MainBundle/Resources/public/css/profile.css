@@ -60,7 +60,7 @@
     float: left;
     font-family: "Quicksand-Book";
     font-size: 20px;
-    padding: 0;
+    line-height: 45px;
 }
 
 .profile_div span.infos
@@ -69,23 +69,22 @@
     font-size:20px;
     color:#000;
     float:right;
+    line-height: 45px;
 }
 
 .profile_div p
 {
     border-top: 2px solid #d8d8d8;
     margin-left: 25px;
-    padding:5px;
-    padding-top:10px;
-    min-height: 15px;
+    height: 45px;
+    display: block;
+    margin: 0;
 }
 
 .profile_div p:last-child
 {
     border-top: 2px solid #d8d8d8;
     border-bottom: 2px solid #d8d8d8;
-    margin-left: 25px;
-    height:40px;
 }
 
 #profil .clear
