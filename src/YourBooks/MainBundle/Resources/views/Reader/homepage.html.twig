@@ -45,30 +45,34 @@
             {% endfor %}
             <div class="clear"></div>
         </div>
-
                 <div class="historique">
                     <h2>Historique</h2>
-                    {% for book in books %}
-                        {% if book.sendByReader %}
-                            <div class="book">
-                                <div class="couverture">
-                                    <h3 class="title">{{ book.title }}</h3>
-                                    <span class="category">{{ book.category }}</span>
+                    <div class="sliderx">
+                        {% for book in books %}
+                            {% if book.sendByReader %}
+                                <div class="book">
+                                    <div class="couverture">
+                                        <h3 class="title">{{ book.title }}</h3>
+                                        <span class="category">{{ book.category }}</span>
+                                    </div>
+                                    <div class="createdat">
+                                        <span>SOUMIS LE :</span><br>
+                                        <time>{{ book.createdAt|date("d/m/Y") }}</time>
+                                    </div>
                                 </div>
-                                <div class="createdat">
-                                    <span>SOUMIS LE :</span><br>
-                                    <time>{{ book.createdAt|date("d/m/Y") }}</time>
-                                </div>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                     <div class="clear"></div>
                 </div>
+            </div>
     </div>
 
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/yourbooksmain/js/jquery.bxslider.min.js') }}"></script>
     <script>
         // Lorsque le DOM est chargé on applique le Javascript
         jQuery(document).ready(function() {
@@ -81,7 +85,13 @@
                 console.log($(this).parents('.content_statut'));
             });
 
+            //slider historique
+            $('.sliderx').bxSlider({
+                slideWidth: 300,
+                minSlides: 3,
+                maxSlides: 3,
+                slideMargin: 20
+            });
         });
     </script>
-
 {% endblock %}
