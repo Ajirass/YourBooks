@@ -15,7 +15,7 @@ class BookFamilyCategoryAdmin extends Admin
 
         $formMapper
             ->add('name', null, array('label' => 'Nom : '))
-            ->add('colorCategory', 'choice', array('label' => 'Couleur catégorie', 'choices' => array('rouge' => 'rouge', 'bleu' => 'bleu', 'orange' => 'orange', 'vert' => 'vert', 'rose' => 'rose', 'violet' => 'violet')))
+            ->add('colorCategory', 'choice', array('label' => 'Couleur catégorie', 'choices' => array('rouge' => 'rouge', 'bleu' => 'bleu', 'orange' => 'orange', 'vert' => 'vert', 'rose' => 'rose', 'violet' => 'violet', 'bleu-clair' => 'bleu clair')))
         ;
     }
 
