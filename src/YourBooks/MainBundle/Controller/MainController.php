@@ -10,6 +10,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use YourBooks\BookBundle\Entity\Book;
+use YourBooks\MainBundle\Entity\EspacePresse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\Security\Core\SecurityContext;
@@ -200,10 +201,8 @@ class MainController extends Controller
     public function engagementsAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('YourBooksMainBundle:Footer');
-        $footer = $repo->find(1);
-        $engagements = $footer->getEngagements();
-
+        $repo = $em->getRepository('YourBooksMainBundle:Engagements');
+        $engagements = $repo->findAll();
         return $this->render('YourBooksMainBundle:Main:engagements.html.twig', array(
             'engagements' => $engagements
         ));
@@ -212,46 +211,45 @@ class MainController extends Controller
     public function presseAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('YourBooksMainBundle:Footer');
-        $footer = $repo->find(1);
-        $presse = $footer->getPresse();
-
+        $repo = $em->getRepository('YourBooksMainBundle:EspacePresse');
+        $presse = $repo->findAll();
         return $this->render('YourBooksMainBundle:Main:presse.html.twig', array(
             'presse' => $presse
         ));
     }
-
-    public function teamAction()
+    /*
+    @return \Symfony\Component\HttpFoundation\Response
+    * @param EspacePresse $presse
+    *
+    * @ParamConverter("presse", class="YourBooksMainBundle:EspacePresse")
+     *
+     */
+    public function downloadPresseAction(EspacePresse $presse)
     {
-        $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('YourBooksMainBundle:Footer');
-        $footer = $repo->find(1);
-        $team = $footer->getTeam();
-
-        return $this->render('YourBooksMainBundle:Main:team.html.twig', array(
-            'team' => $team
-        ));
+        $path = $presse->getAbsolutePath();
+        $response = new Response();
+        $response->setStatusCode(200);
+        $response->setContent(file_get_contents($path));
+        $response->headers->set('Content-Type', 'application/force-download'); // modification du content-type pour forcer le téléchargement (sinon le navigateur internet essaie d'afficher le document)
+        $response->headers->set('Content-disposition', 'filename= "YourBooks _ '.$presse->getTitle().'.pdf"');
+        return $response;
     }
 
-    public function charteAction()
+    public function conditionsAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('YourBooksMainBundle:Footer');
-        $footer = $repo->find(1);
-        $charte = $footer->getCharte();
-
-        return $this->render('YourBooksMainBundle:Main:charte.html.twig', array(
-            'charte' => $charte
+        $repo = $em->getRepository('YourBooksMainBundle:ConditionsUtilisation');
+        $conditionsUtilisation = $repo->findAll();
+        return $this->render('YourBooksMainBundle:Main:conditions.html.twig', array(
+            'conditionsUtilisation' => $conditionsUtilisation
         ));
     }
 
     public function partenairesAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('YourBooksMainBundle:Footer');
-        $footer = $repo->find(1);
-        $partenaires = $footer->getPartenaires();
-
+        $repo = $em->getRepository('YourBooksMainBundle:Partenaires');
+        $partenaires = $repo->findAll();
         return $this->render('YourBooksMainBundle:Main:partenaires.html.twig', array(
             'partenaires' => $partenaires
         ));
@@ -260,12 +258,20 @@ class MainController extends Controller
     public function mentionslegalesAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('YourBooksMainBundle:Footer');
-        $footer = $repo->find(1);
-        $mentionslegales = $footer->getMentionslegales();
-
+        $repo = $em->getRepository('YourBooksMainBundle:MentionsLegales');
+        $mentionsLegales = $repo->findAll();
         return $this->render('YourBooksMainBundle:Main:mentionslegales.html.twig', array(
-            'mentionslegales' => $mentionslegales
+            'mentionsLegales' => $mentionsLegales
+        ));
+    }
+
+    public function creditsAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $repo = $em->getRepository('YourBooksMainBundle:Credits');
+        $credits = $repo->findAll();
+        return $this->render('YourBooksMainBundle:Main:credits.html.twig', array(
+            'credits' => $credits
         ));
     }
 }

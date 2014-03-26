@@ -32,13 +32,15 @@ your_books_main_presse:
     pattern:  /presse
     defaults: { _controller: YourBooksMainBundle:Main:presse }
 
-your_books_main_team:
-    pattern:  /team
-    defaults: { _controller: YourBooksMainBundle:Main:team }
+your_books_main_download_presse:
+    pattern:  /download/presse/{id}
+    defaults: { _controller: YourBooksMainBundle:Main:downloadPresse }
+    requirements:
+        id: \d+
 
-your_books_main_charte:
+your_books_main_conditions:
     pattern:  /charte
-    defaults: { _controller: YourBooksMainBundle:Main:charte }
+    defaults: { _controller: YourBooksMainBundle:Main:conditions }
 
 your_books_main_partenaires:
     pattern:  /partenaires
@@ -47,3 +49,7 @@ your_books_main_partenaires:
 your_books_main_mentionslegales:
     pattern:  /legal
     defaults: { _controller: YourBooksMainBundle:Main:mentionslegales }
+
+your_books_main_credits:
+    pattern:  /credits
+    defaults: { _controller: YourBooksMainBundle:Main:credits }

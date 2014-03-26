@@ -3,11 +3,12 @@
 
     <div class="engagements">
 
-        <h1>L'équipe YourBooks</h1>
+        <h1>Crédits</h1>
 
         <div class="content">
-
-           {{ team | raw }}
+            {% for credit in credits %}
+                <p>{{ credit.content }}</p>
+            {% endfor %}
         </div>
     </div>
 {% endblock body %}

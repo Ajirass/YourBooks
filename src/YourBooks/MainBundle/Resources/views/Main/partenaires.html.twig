@@ -6,8 +6,51 @@
         <h1>Nos Partenaires</h1>
 
         <div class="content">
-
-           {{ partenaires | raw }}
+            <h2>Les lecteurs</h2>
+            <div class="slidereader">
+                {% for partenaire in partenaires %}
+                    {% if partenaire.statut == 'reader' %}
+                    <div class="reader_partner">
+                        <img src="{{ asset('bundles/yourbooksmain/images/icon-reader-partner.png') }}">
+                        <h3>{{ partenaire.prenom }} {{ partenaire.nom }}</h3>
+                        <p>{{  partenaire.fonction }}</p>
+                    </div>
+                        {% endif %}
+                {% endfor %}
+            </div>
+             <h2>Les éditeurs</h2>
+            <div class="slideeditor">
+                {% for partenaire in partenaires %}
+                    {% if partenaire.statut == 'editor' %}
+                        <div class="editor_partner">
+                            <h3>{{ partenaire.nom }}</h3>
+                            {% if partenaire.webPath is not null %}
+                                <img src="{{ asset(partenaire.webPath) }}">
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/yourbooksmain/js/jquery.bxslider.min.js') }}"></script>
+    <script>
+        // Lorsque le DOM est chargé on applique le Javascript
+        jQuery(document).ready(function() {
+            //slider partenaires
+            $('.slidereader').bxSlider({
+                slideWidth: 500,
+                slideMargin: 20
+            });
+
+            $('.slideeditor').bxSlider({
+                slideWidth: 500,
+                slideMargin: 20
+            });
+        });
+    </script>
+{% endblock %}

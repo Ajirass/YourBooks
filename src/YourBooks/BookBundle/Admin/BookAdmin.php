@@ -46,6 +46,15 @@ class BookAdmin extends Admin
 
         $formMapper
             ->add('title', null, array('label' => 'Titre : '))
+            ->add('author', null, array(
+                'class' => 'ApplicationSonataUserBundle:User',
+                'label' => 'Auteur : ',
+                'query_builder' => function (EntityRepository $er) {
+                        $qb = $er->createQueryBuilder('u');
+                        $qb->where($qb->expr()->like('u.roles', $qb->expr()->literal('%ROLE_AUTHOR%')));
+                        return $qb;
+                    }
+            ))
             ->add('summary', null, array('label' => 'Résumé : '))
             ->add('category', null, array('label' => 'Catégorie : '))
             ->add('reader', null, array(

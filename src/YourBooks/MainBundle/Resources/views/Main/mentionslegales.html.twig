@@ -6,8 +6,10 @@
         <h1>Mentions légales</h1>
 
         <div class="content">
-
-           {{ mentionslegales | raw }}
+            {% for mentionLegale in mentionsLegales %}
+                <h2>{{ mentionLegale.title }}</h2>
+                <p>{{ mentionLegale.content }}</p>
+            {% endfor %}
         </div>
     </div>
 {% endblock body %}

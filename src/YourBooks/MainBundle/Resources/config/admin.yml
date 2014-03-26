@@ -1,9 +1,49 @@
 services:
-    sonata.admin.footer:
-        class: YourBooks\MainBundle\Admin\FooterAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Footer", label: "Footer" }
-        arguments:
-            - ~
-            - YourBooks\MainBundle\Entity\Footer
-            - ~
+    sonata.admin.mentions_legales:
+            class: YourBooks\MainBundle\Admin\MentionsLegalesAdmin
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: "Footer", label: "Mentions Légales" }
+            arguments:
+                - ~
+                - YourBooks\MainBundle\Entity\MentionsLegales
+                - ~
+    sonata.admin.conditions_utilisation:
+                class: YourBooks\MainBundle\Admin\ConditionsUtilisationAdmin
+                tags:
+                    - { name: sonata.admin, manager_type: orm, group: "Footer", label: "Conditions d'utilisation" }
+                arguments:
+                    - ~
+                    - YourBooks\MainBundle\Entity\ConditionsUtilisation
+                    - ~
+    sonata.admin.engagements:
+                    class: YourBooks\MainBundle\Admin\EngagementsAdmin
+                    tags:
+                        - { name: sonata.admin, manager_type: orm, group: "Footer", label: "Nos Engagements" }
+                    arguments:
+                        - ~
+                        - YourBooks\MainBundle\Entity\Engagements
+                        - ~
+    sonata.admin.partenaires:
+                        class: YourBooks\MainBundle\Admin\PartenairesAdmin
+                        tags:
+                            - { name: sonata.admin, manager_type: orm, group: "Footer", label: "Nos Partenaires" }
+                        arguments:
+                            - ~
+                            - YourBooks\MainBundle\Entity\Partenaires
+                            - ~
+    sonata.admin.credits:
+                        class: YourBooks\MainBundle\Admin\CreditsAdmin
+                        tags:
+                            - { name: sonata.admin, manager_type: orm, group: "Footer", label: "Crédits" }
+                        arguments:
+                            - ~
+                            - YourBooks\MainBundle\Entity\Credits
+                            - ~
+    sonata.admin.espace_presse:
+                        class: YourBooks\MainBundle\Admin\EspacePresseAdmin
+                        tags:
+                            - { name: sonata.admin, manager_type: orm, group: "Footer", label: "Espace Presse" }
+                        arguments:
+                            - ~
+                            - YourBooks\MainBundle\Entity\EspacePresse
+                            - ~

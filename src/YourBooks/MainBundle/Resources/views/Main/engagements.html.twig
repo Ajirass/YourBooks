@@ -6,8 +6,10 @@
         <h1>Nos Engagements</h1>
 
         <div class="content">
-
-           {{ engagements | raw }}
+            {% for engagement in engagements %}
+                <h2>{{ engagement.title }}</h2>
+                <p>{{ engagement.content }}</p>
+            {% endfor %}
         </div>
     </div>
 {% endblock body %}

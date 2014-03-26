@@ -6,8 +6,19 @@
         <h1>Espace Presse</h1>
 
         <div class="content">
-
-           {{ presse | raw }}
+            {% for articlePresse in presse %}
+                <h2>{{ articlePresse.title }}</h2>
+                <p>{{ articlePresse.content }}</p>
+                {% if (articlePresse.imageName is not null) %}
+                    <img src="{{ asset(articlePresse.imageWebPath) }}">
+                {% endif %}
+                {% if (articlePresse.fileName is not null) %}
+                    <a href="{{ path('your_books_main_download_presse', { 'id': articlePresse.id }) }}">Téléchargez</a>
+                {% endif %}
+                {% if (articlePresse.url is not null) %}
+                    <iframe width="560" height="315" src="http://www.youtube.com/embed/{{ articlePresse.url }}" frameborder="0" allowfullscreen></iframe>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 {% endblock body %}

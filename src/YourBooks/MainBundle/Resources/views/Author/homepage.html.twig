@@ -87,7 +87,7 @@
                         </div>
                         {% if date(book.createdAt) >  date('-7days')  %}
                             <div class="btn_suppr">
-                                <a href="{{ path('your_books_main_author_delete_book', { 'id': book.id })}}">Retirer son manuscrit</a>
+                                <a href="{{ path('your_books_main_author_delete_book', { 'id': book.id })}}">Me rétracter</a>
                             </div>
                         {% endif %}
                 </div>

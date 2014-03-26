@@ -1,0 +1,15 @@
+{% extends 'YourBooksMainBundle::base.html.twig' %}
+{% block body %}
+
+    <div class="engagements">
+
+        <h1>Conditions d'utilisation</h1>
+
+        <div class="content">
+            {% for conditionsUtilisation in conditionsUtilisation %}
+                <h2>{{ conditionsUtilisation.title }}</h2>
+                <p>{{ conditionsUtilisation.content }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock body %}
