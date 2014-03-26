@@ -16,22 +16,76 @@
             {{ form_row(form.summary) }}
 
             <div class="checkbox">
-                {{ form_row(form.terms) }} <a href="{{ path('your_books_main_charte') }}"> J'ai lu et accepté les conditions d'utilisations</a>
+                {{ form_row(form.terms) }} <a href="{{ path('your_books_main_conditions') }}"> J'ai lu et accepté les conditions d'utilisations</a>
             </div>
-            <div class="clear">
-
-            </div>
+            <div class="clear"></div>
 
             <div class="checkbox2">
-                {{ form_row(form.rights) }}
+                {{ form_row(form.author_rights) }}
+                <ul>
+                    <li>Je suis libre de contrat, ou bien mon contrat actuel ne contient pas de droit de préférence concerné par le manuscrit que je soumets</li>
+                    <li>Je certifie que les renseignements indiqués dans les formulaires à destination des éditeurs sont exacts</li>
+                    <li>Je certifie et je comprends que le manuscrit respecte les conditions particulières de YourBooks</li>
+                    <li>Je comprends que dans le cas contraire, mon manuscrit sera systématiquement rejeté et non lu</li>
+                    <li>En cas de manquement ou de mensonge, mon compte sera supprimé et je ne pourrais prétendre à aucun remboursement</li>
+                </ul>
             </div>
-            <div class="clear">
+            <div class="clear"></div>
 
-            </div>
-
+            <h2>Je certifie l'exactitude des informations suivantes :</h2>
+            <ul>
+                <li>
+                    <div class="checkbox2">
+                        {{ form_row(form.rights) }}
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="checkbox2">
+                        {{ form_row(form.original) }}
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="checkbox2">
+                        {{ form_row(form.laws) }}
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="checkbox2">
+                        {{ form_row(form.french) }}
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="checkbox2">
+                        {{ form_row(form.one_file) }}
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="checkbox2">
+                        {{ form_row(form.only) }}
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="checkbox2">
+                        {{ form_row(form.depot) }}
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li>
+                    <div class="checkbox2">
+                        {{ form_row(form.liar) }}
+                    </div>
+                    <div class="clear"></div>
+                </li>
+            </ul>
             {{ form_rest(form) }}
 
-
+        <a href="{{ path('your_books_main_conditions') }}">Des questions ?</a>
 
             <input type="submit" class="submit">
         </div>

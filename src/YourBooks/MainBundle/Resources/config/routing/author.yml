@@ -28,8 +28,8 @@ your_books_main_author_inscription:
     pattern:  /inscription
     defaults: { _controller: YourBooksMainBundle:Author:inscription }
 
-your_books_main_author_delete_book:
-    pattern:  /delete/{id}
-    defaults: { _controller: YourBooksMainBundle:Author:deleteBook }
+your_books_main_author_retracted_book:
+    pattern:  /retracted/{id}
+    defaults: { _controller: YourBooksMainBundle:Author:retractedBook }
     requirements:
         id: \d+

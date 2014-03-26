@@ -76,6 +76,7 @@ class BookAdmin extends Admin
         $datagridMapper
             ->add('title', null, array('label' => 'Titre : '))
             ->add('author', null, array('label' => 'Auteur : '))
+            ->add('retracted', null, array('label' => 'Auteur rétracté ?'))
             ->add('enabled', null, array('label' => 'Autorisé par l\'administrateur ?'))
             ->add('sendByReader', null, array('label' => 'Envoyé par le lecteur ?'))
             ->add('readerValidation', null, array('label' => 'Validation lecteur ?'))
@@ -93,6 +94,7 @@ class BookAdmin extends Admin
             ->addIdentifier('createdAt', null, array('label' => 'Crée le'))
             ->add('title')
             ->add('author')
+            ->add('retracted', null, array('label' => 'Auteur rétracté ?', 'editable' => true))
             ->add('enabled', null, array('label' => 'Autorisé par l\'administrateur ?', 'editable' => true))
             ->add('receivedByReader', null, array('label' => 'reçu par le lecteur ?', 'editable' => true))
             ->add('sendByReader', null, array('label' => 'Notes envoyées ?', 'editable' => true))

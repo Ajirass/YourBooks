@@ -39,7 +39,7 @@ your_books_main_download_presse:
         id: \d+
 
 your_books_main_conditions:
-    pattern:  /charte
+    pattern:  /conditions
     defaults: { _controller: YourBooksMainBundle:Main:conditions }
 
 your_books_main_partenaires:

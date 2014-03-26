@@ -22,75 +22,77 @@
             <h1>Mes manuscrits</h1>
 
             {% for book in books %}
-                <div class="book">
-                        <div class="couverture {{ book.category.familyCategory.colorCategory }}">
-                            <h3 class="title">{{ book.title | truncate(30, true, '...') }}</h3>
-                            <img src="{{ asset(book.category.webPath) }}">
-                        </div>
-                        <div class="createdat">
-                            <span>SOUMIS LE :</span><br>
-                            <time>{{ book.createdAt|date("d/m/Y") }}</time>
-                        </div>
-                        <div class="block_statut">
-                            <span class="statut">Statut :</span>
-                            <div class="content_statut">
-                                {% if book.readerValidation %}
-                                    Soumis aux éditeurs
-                                    <div class="progress_bar">
-                                        <span class="progress sendeditor"></span>
-                                    </div>
-                                    <span class="pourcentage">100%</span>
-                                    <div class="icone">
-                                        <img id="auteur" src="{{ asset('bundles/yourbooksmain/images/author/auteur.png') }}" alt="Auteur"/>
-                                        <img id="lecteur" src="{{ asset('bundles/yourbooksmain/images/author/lecteur.png') }}" alt="Lecteur"/>
-                                        <img id="editeur" src="{{ asset('bundles/yourbooksmain/images/author/editeur.png') }}" alt="Editeur"/>
-                                        <div class="clear"></div>
-                                    </div>
-                                {% elseif book.sendByReader %}
-                                    En cours de lecture et de notation
-                                    <div class="progress_bar">
-                                        <span class="progress reading"></span>
-                                    </div>
-                                    <span class="pourcentage">50%</span>
-                                    <div class="icone">
-                                        <img id="auteur" src="{{ asset('bundles/yourbooksmain/images/author/auteur.png') }}" alt="Auteur"/>
-                                        <img id="lecteur" src="{{ asset('bundles/yourbooksmain/images/author/lecteur.png') }}" alt="Lecteur"/>
-                                        <img id="editeur" src="{{ asset('bundles/yourbooksmain/images/author/editeur.png') }}" alt="Editeur"/>
-                                        <div class="clear"></div>
-                                    </div>
-                                {% elseif book.enabled %}
-                                    envoyé aux lecteurs
-                                    <div class="progress_bar">
-                                        <span class="progress sendreader"></span>
-                                    </div>
-                                    <span class="pourcentage">25%</span>
-                                    <div class="icone">
-                                        <img id="auteur" src="{{ asset('bundles/yourbooksmain/images/author/auteur.png') }}" alt="Auteur"/>
-                                        <img id="lecteur" src="{{ asset('bundles/yourbooksmain/images/author/lecteur.png') }}" alt="Lecteur"/>
-                                        <img id="editeur" src="{{ asset('bundles/yourbooksmain/images/author/editeur.png') }}" alt="Editeur"/>
-                                        <div class="clear"></div>
-                                    </div>
+                {% if (book.retracted == false) %}
+                    <div class="book">
+                            <div class="couverture {{ book.category.familyCategory.colorCategory }}">
+                                <h3 class="title">{{ book.title | truncate(30, true, '...') }}</h3>
+                                <img src="{{ asset(book.category.webPath) }}">
+                            </div>
+                            <div class="createdat">
+                                <span>SOUMIS LE :</span><br>
+                                <time>{{ book.createdAt|date("d/m/Y") }}</time>
+                            </div>
+                            <div class="block_statut">
+                                <span class="statut">Statut :</span>
+                                <div class="content_statut">
+                                    {% if book.readerValidation %}
+                                        Soumis aux éditeurs
+                                        <div class="progress_bar">
+                                            <span class="progress sendeditor"></span>
+                                        </div>
+                                        <span class="pourcentage">100%</span>
+                                        <div class="icone">
+                                            <img id="auteur" src="{{ asset('bundles/yourbooksmain/images/author/auteur.png') }}" alt="Auteur"/>
+                                            <img id="lecteur" src="{{ asset('bundles/yourbooksmain/images/author/lecteur.png') }}" alt="Lecteur"/>
+                                            <img id="editeur" src="{{ asset('bundles/yourbooksmain/images/author/editeur.png') }}" alt="Editeur"/>
+                                            <div class="clear"></div>
+                                        </div>
+                                    {% elseif book.sendByReader %}
+                                        En cours de lecture et de notation
+                                        <div class="progress_bar">
+                                            <span class="progress reading"></span>
+                                        </div>
+                                        <span class="pourcentage">50%</span>
+                                        <div class="icone">
+                                            <img id="auteur" src="{{ asset('bundles/yourbooksmain/images/author/auteur.png') }}" alt="Auteur"/>
+                                            <img id="lecteur" src="{{ asset('bundles/yourbooksmain/images/author/lecteur.png') }}" alt="Lecteur"/>
+                                            <img id="editeur" src="{{ asset('bundles/yourbooksmain/images/author/editeur.png') }}" alt="Editeur"/>
+                                            <div class="clear"></div>
+                                        </div>
+                                    {% elseif book.enabled %}
+                                        envoyé aux lecteurs
+                                        <div class="progress_bar">
+                                            <span class="progress sendreader"></span>
+                                        </div>
+                                        <span class="pourcentage">25%</span>
+                                        <div class="icone">
+                                            <img id="auteur" src="{{ asset('bundles/yourbooksmain/images/author/auteur.png') }}" alt="Auteur"/>
+                                            <img id="lecteur" src="{{ asset('bundles/yourbooksmain/images/author/lecteur.png') }}" alt="Lecteur"/>
+                                            <img id="editeur" src="{{ asset('bundles/yourbooksmain/images/author/editeur.png') }}" alt="Editeur"/>
+                                            <div class="clear"></div>
+                                        </div>
 
-                                {% else %}
-                                    en attente de validation
-                                    <div class="progress_bar">
-                                    </div>
-                                    <span class="pourcentage">0%</span>
-                                    <div class="icone">
-                                        <img id="auteur" src="{{ asset('bundles/yourbooksmain/images/author/auteur.png') }}" alt="Auteur"/>
-                                        <img id="lecteur" src="{{ asset('bundles/yourbooksmain/images/author/lecteur.png') }}" alt="Lecteur"/>
-                                        <img id="editeur" src="{{ asset('bundles/yourbooksmain/images/author/editeur.png') }}" alt="Editeur"/>
-                                        <div class="clear"></div>
-                                    </div>
-                                {% endif %}
+                                    {% else %}
+                                        en attente de validation
+                                        <div class="progress_bar">
+                                        </div>
+                                        <span class="pourcentage">0%</span>
+                                        <div class="icone">
+                                            <img id="auteur" src="{{ asset('bundles/yourbooksmain/images/author/auteur.png') }}" alt="Auteur"/>
+                                            <img id="lecteur" src="{{ asset('bundles/yourbooksmain/images/author/lecteur.png') }}" alt="Lecteur"/>
+                                            <img id="editeur" src="{{ asset('bundles/yourbooksmain/images/author/editeur.png') }}" alt="Editeur"/>
+                                            <div class="clear"></div>
+                                        </div>
+                                    {% endif %}
+                                </div>
                             </div>
-                        </div>
-                        {% if date(book.createdAt) >  date('-7days')  %}
-                            <div class="btn_suppr">
-                                <a href="{{ path('your_books_main_author_delete_book', { 'id': book.id })}}">Me rétracter</a>
-                            </div>
-                        {% endif %}
-                </div>
+                            {% if date(book.createdAt) >  date('-7days')  %}
+                                <div class="btn_suppr">
+                                    <a href="{{ path('your_books_main_author_retracted_book', { 'id': book.id })}}">Me rétracter</a>
+                                </div>
+                            {% endif %}
+                    </div>
+                {% endif %}
             {% endfor %}
             {% endif %}
             <div class="clear"></div>

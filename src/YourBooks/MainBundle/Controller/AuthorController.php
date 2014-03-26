@@ -185,7 +185,7 @@ class AuthorController extends Controller
      *
      * @Secure(roles="ROLE_AUTHOR")
      */
-    public function deleteBookAction(Request $request, Book $book)
+    public function retractedBookAction(Request $request, Book $book)
     {
         $dateNow = new \DateTime();
         if(($dateNow->diff($book->getCreatedAt())->format('%a')) > 7)
@@ -195,10 +195,10 @@ class AuthorController extends Controller
         else
         {
         $em = $this->getDoctrine()->getManager();
-        $em->remove($book);
+        $book->setRetracted(true);
         $em->flush();
 
-        $request->getSession()->getFlashBag()->add('success', 'Manuscrit supprimé avec succes');
+        $request->getSession()->getFlashBag()->add('success', 'Manuscrit retiré avec succes');
 
         return $this->redirect($this->generateUrl('your_books_main_author_homepage'));
         }

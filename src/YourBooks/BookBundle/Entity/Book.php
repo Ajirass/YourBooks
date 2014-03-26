@@ -81,6 +81,13 @@ class Book
     /**
      * @var bool
      *
+     * @ORM\Column(name="retracted", type="boolean", nullable=true)
+     */
+    protected $retracted;
+
+    /**
+     * @var bool
+     *
      * @ORM\Column(name="enabled", type="boolean", nullable=true)
      */
     protected $enabled;
@@ -176,6 +183,7 @@ class Book
      */
     public function __construct()
     {
+        $this->retracted = false;
         $this->enabled = false;
         $this->receivedByReader = false;
         $this->downloadByReader = false;
@@ -328,6 +336,29 @@ class Book
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set retracted
+     *
+     * @param boolean $retracted
+     * @return Book
+     */
+    public function setRetracted($retracted)
+    {
+        $this->retracted = $retracted;
+
+        return $this;
+    }
+
+    /**
+     * Get retracted
+     *
+     * @return boolean
+     */
+    public function getRetracted()
+    {
+        return $this->retracted;
     }
 
     /**
