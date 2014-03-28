@@ -22,6 +22,11 @@ your_books_user_resetting:
     resource: "@YourBooksUserBundle/Resources/config/routing/fos_resetting_custom.yml"
     prefix:   /resetting
 
+your_books_user_locked:
+    pattern:  /locked
+    defaults: { _controller: YourBooksUserBundle:Default:locked }
+
+
 your_books_user_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: YourBooksUserBundle:Default:index }
