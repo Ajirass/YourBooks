@@ -10,6 +10,57 @@
                 {{ form_row(form.category) }}
             </div>
             {{ form_row(form.file) }}
+
+            <div class="multi-checkbox">
+                <h2>Je certifie l'exactitude des informations suivantes :</h2>
+                <ul>
+                    <li>
+                        {{ form_row(form.rights) }}
+                        <div class="clear"></div>
+                    </li>
+                    <li>
+                            {{ form_row(form.original) }}
+
+                        <div class="clear"></div>
+                    </li>
+                    <li>
+
+                            {{ form_row(form.laws) }}
+
+                        <div class="clear"></div>
+                    </li>
+                    <li>
+
+                            {{ form_row(form.french) }}
+
+                        <div class="clear"></div>
+                    </li>
+                    <li>
+
+                            {{ form_row(form.one_file) }}
+
+                        <div class="clear"></div>
+                    </li>
+                    <li>
+
+                            {{ form_row(form.only) }}
+
+                        <div class="clear"></div>
+                    </li>
+                    <li>
+
+                            {{ form_row(form.depot) }}
+
+                        <div class="clear"></div>
+                    </li>
+                    <li>
+
+                            {{ form_row(form.liar) }}
+
+                        <div class="clear"></div>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <div class="bloc bloc-textarea">
@@ -32,60 +83,10 @@
             </div>
             <div class="clear"></div>
 
-            <h2>Je certifie l'exactitude des informations suivantes :</h2>
-            <ul>
-                <li>
-                    <div class="checkbox2">
-                        {{ form_row(form.rights) }}
-                    </div>
-                    <div class="clear"></div>
-                </li>
-                <li>
-                    <div class="checkbox2">
-                        {{ form_row(form.original) }}
-                    </div>
-                    <div class="clear"></div>
-                </li>
-                <li>
-                    <div class="checkbox2">
-                        {{ form_row(form.laws) }}
-                    </div>
-                    <div class="clear"></div>
-                </li>
-                <li>
-                    <div class="checkbox2">
-                        {{ form_row(form.french) }}
-                    </div>
-                    <div class="clear"></div>
-                </li>
-                <li>
-                    <div class="checkbox2">
-                        {{ form_row(form.one_file) }}
-                    </div>
-                    <div class="clear"></div>
-                </li>
-                <li>
-                    <div class="checkbox2">
-                        {{ form_row(form.only) }}
-                    </div>
-                    <div class="clear"></div>
-                </li>
-                <li>
-                    <div class="checkbox2">
-                        {{ form_row(form.depot) }}
-                    </div>
-                    <div class="clear"></div>
-                </li>
-                <li>
-                    <div class="checkbox2">
-                        {{ form_row(form.liar) }}
-                    </div>
-                    <div class="clear"></div>
-                </li>
-            </ul>
+
             {{ form_rest(form) }}
 
-        <a href="{{ path('your_books_main_conditions') }}">Des questions ?</a>
+        <a href="{{ path('your_books_main_conditions') }}" class="question">Des questions ?</a>
 
             <input type="submit" class="submit">
         </div>
