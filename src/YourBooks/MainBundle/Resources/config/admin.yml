@@ -31,13 +31,13 @@ services:
                             - ~
                             - YourBooks\MainBundle\Entity\Partenaires
                             - ~
-    sonata.admin.credits:
-                        class: YourBooks\MainBundle\Admin\CreditsAdmin
+    sonata.admin.outils:
+                        class: YourBooks\MainBundle\Admin\OutilsAdmin
                         tags:
-                            - { name: sonata.admin, manager_type: orm, group: "Footer", label: "Crédits" }
+                            - { name: sonata.admin, manager_type: orm, group: "Footer", label: "Outils" }
                         arguments:
                             - ~
-                            - YourBooks\MainBundle\Entity\Credits
+                            - YourBooks\MainBundle\Entity\Outils
                             - ~
     sonata.admin.espace_presse:
                         class: YourBooks\MainBundle\Admin\EspacePresseAdmin

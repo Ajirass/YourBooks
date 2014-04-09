@@ -7,12 +7,13 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class CreditsAdmin extends Admin
+class OutilsAdmin extends Admin
 {
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('title', null, array('label' => 'Titre : ', 'attr'=>array('class'=>'ckeditor')))
             ->add('content', null, array('label' => 'Contenu : ', 'attr'=>array('class'=>'ckeditor')))
         ;
     }
@@ -21,6 +22,7 @@ class CreditsAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('title', null, array('label' => 'Titre : '))
             ->add('content', null, array('label' => 'Contenu : '))
         ;
     }
@@ -30,6 +32,7 @@ class CreditsAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
+            ->add('title', null, array('label' => 'Titre : '))
             ->add('content', null, array('label' => 'Contenu : '))
         ;
     }

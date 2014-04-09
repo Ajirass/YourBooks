@@ -265,13 +265,13 @@ class MainController extends Controller
         ));
     }
 
-    public function creditsAction()
+    public function outilsAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
-        $repo = $em->getRepository('YourBooksMainBundle:Credits');
-        $credits = $repo->findAll();
-        return $this->render('YourBooksMainBundle:Main:credits.html.twig', array(
-            'credits' => $credits
+        $repo = $em->getRepository('YourBooksMainBundle:Outils');
+        $outils = $repo->findAll();
+        return $this->render('YourBooksMainBundle:Main:outils.html.twig', array(
+            'outils' => $outils
         ));
     }
 }

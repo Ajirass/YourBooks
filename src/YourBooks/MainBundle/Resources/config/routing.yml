@@ -50,6 +50,6 @@ your_books_main_mentionslegales:
     pattern:  /legal
     defaults: { _controller: YourBooksMainBundle:Main:mentionslegales }
 
-your_books_main_credits:
-    pattern:  /credits
-    defaults: { _controller: YourBooksMainBundle:Main:credits }
+your_books_main_outils:
+    pattern:  /outils
+    defaults: { _controller: YourBooksMainBundle:Main:outils }

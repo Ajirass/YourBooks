@@ -7,12 +7,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Credits
+ * Outils
  *
- * @ORM\Table(name="credits")
- * @ORM\Entity(repositoryClass="YourBooks\MainBundle\Entity\CreditsRepository")
+ * @ORM\Table(name="outils")
+ * @ORM\Entity(repositoryClass="YourBooks\MainBundle\Entity\OutilsRepository")
  */
-class Credits
+class Outils
 {
 
     /**
@@ -23,6 +23,13 @@ class Credits
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255)
+     */
+    protected $title;
 
     /**
      * @var string
@@ -42,10 +49,33 @@ class Credits
     }
 
     /**
+     * Set title
+     *
+     * @param string $title
+     * @return Outils
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
      * Set content
      *
      * @param string $content
-     * @return ConditionsUtilisation
+     * @return Outils
      */
     public function setContent($content)
     {

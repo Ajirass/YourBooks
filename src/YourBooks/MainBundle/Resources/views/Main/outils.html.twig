@@ -3,11 +3,13 @@
 
     <div class="engagements">
 
-        <h1>Crédits</h1>
+        <h1>Boîte à outils</h1>
 
         <div class="content">
-            {% for credit in credits %}
-                <p>{{ credit.content }}</p>
+            {% for outil in outils %}
+                <h2>{{ outil.title }}</h2>
+                <p>{{ outil.content }}</p>
+                <hr>
             {% endfor %}
         </div>
     </div>
