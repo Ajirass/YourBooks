@@ -7,6 +7,13 @@ services:
         arguments: [@mailer]
         tags:
             - { name: kernel.event_listener, event: mainbundle.confirmmail.mail_event, method: onMailEvent }
-#    your_books_main.example:
-#        class: %your_books_main.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    yourbooks.main.delayDaysOut:
+        class: YourBooks\MainBundle\Twig\DelayDaysExtension
+        arguments: ["@service_container"]
+        tags:
+            - { name: twig.extension }
+    yourbooks.main.delayDateOut:
+            class: YourBooks\MainBundle\Twig\DelayDateExtension
+            arguments: ["@service_container"]
+            tags:
+                - { name: twig.extension }

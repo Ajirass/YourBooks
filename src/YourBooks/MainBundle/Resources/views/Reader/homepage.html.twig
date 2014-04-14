@@ -3,83 +3,67 @@
 {% block body %}
     <div id="home_reader">
         <div class="manuscrits">
-            {% if  books is empty %}
-            <div class="first_connexion">
-                <h1>Bienvenue</h1>
-                <p>Vous n'avez aucun manuscrit en attente de lecture.</p>
-                <img src="{{ asset('bundles/yourbooksmain/images/logo_first_connexion.png') }}" alt="logo_yourbooks">
-            </div>
-            {% else %}
-                <h1>Mes manuscrits</h1>
-                {% for book in books %}
-                    {% if book.receivedByReader and book.sendByReader == false %}
-                        <div class="book">
-                            <div class="couverture {{ book.category.familyCategory.colorCategory }}">
-                                <h3 class="title">{{ book.title | truncate(30, true, '...') }}</h3>
-                                <span class="category">{{ book.category }}</span>
-                            </div>
-                            <div class="createdat">
-                                <span>SOUMIS LE :</span><br>
-                                <time>{{ book.createdAt|date("d/m/Y") }}</time>
-                            </div>
-                            <div class="block_statut">
-                                <span class="statut">Statut :</span>
-                                <div class="content_statut">
-                                    <a id="download_book" href="{{ path('your_books_main_download_book', { 'id': book.id }) }}">Téléchargez</a>
-                                        <a class="link_review {% if book.downloadByReader == false %} disabled{% endif %}" href="{{ path('your_books_review_upload', { 'id': book.id }) }}">Notez ce manuscrit</a>
-                                </div>
+            <h1>Mes manuscrits</h1>
+
+            {% for book in books %}
+                {% if book.receivedByReader and book.sendByReader == false %}
+                    <div class="book">
+                        <div class="couverture {{ book.category.familyCategory.colorCategory }}">
+                            <h3 class="title">{{ book.title | truncate(30, true, '...') }}</h3>
+                            <span class="category">{{ book.category }}</span>
+                        </div>
+                        <div class="createdat">
+                            <span>SOUMIS LE :</span><br>
+                            <time>{{ book.createdAt|date("d/m/Y") }}</time>
+                        </div>
+                        <div class="block_statut">
+                            <span class="statut">Statut :</span>
+                            <div class="content_statut">
+                                <a id="download_book" href="{{ path('your_books_main_download_book', { 'id': book.id }) }}">Téléchargez</a>
+                                    <a class="link_review {% if book.downloadByReader == false %} disabled{% endif %}" href="{{ path('your_books_review_upload', { 'id': book.id }) }}">Notez ce manuscrit</a>
                             </div>
                         </div>
-                    {% elseif book.enabled and book.sendByReader == false %}
-                        <div class="book">
-                            <div class="couverture">
-                                <h3 class="title">{{ book.title }}</h3>
-                                <span class="category">{{ book.category }}</span>
-                            </div>
-                            <div class="createdat">
-                                <span>SOUMIS LE :</span><br>
-                                <time>{{ book.createdAt|date("d/m/Y") }}</time>
-                            </div>
-                            <div class="block_statut">
-                                <span class="statut">Statut :</span>
-                                <div class="content_statut">
-                                    <a href="{{ path('your_books_main_received', { 'id': book.id }) }}">Confirmez la réception</a>
-                                </div>
+                    </div>
+                {% elseif book.enabled and book.sendByReader == false %}
+                    <div class="book">
+                        <div class="couverture">
+                            <h3 class="title">{{ book.title }}</h3>
+                            <span class="category">{{ book.category }}</span>
+                        </div>
+                        <div class="createdat">
+                            <span>SOUMIS LE :</span><br>
+                            <time>{{ book.createdAt|date("d/m/Y") }}</time>
+                        </div>
+                        <div class="block_statut">
+                            <span class="statut">Statut :</span>
+                            <div class="content_statut">
+                                <a href="{{ path('your_books_main_received', { 'id': book.id }) }}">Confirmez la réception</a>
                             </div>
                         </div>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
             <div class="clear"></div>
         </div>
+
                 <div class="historique">
                     <h2>Historique</h2>
-                    {% if books is empty %}
-                        <div class="first_connexion">
-                            <p>Vous n'avez aucun manuscrit dans votre historique.</p>
-                            <img src="{{ asset('bundles/yourbooksmain/images/logo_first_connexion.png') }}" alt="logo_yourbooks">
-                        </div>
-                    {% else %}
-                    <div class="sliderx">
-                        {% for book in books %}
-                            {% if book.sendByReader %}
-                                <div class="book">
-                                    <div class="couverture">
-                                        <h3 class="title">{{ book.title }}</h3>
-                                        <span class="category">{{ book.category }}</span>
-                                    </div>
-                                    <div class="createdat">
-                                        <span>SOUMIS LE :</span><br>
-                                        <time>{{ book.createdAt|date("d/m/Y") }}</time>
-                                    </div>
+                    {% for book in books %}
+                        {% if book.sendByReader %}
+                            <div class="book">
+                                <div class="couverture">
+                                    <h3 class="title">{{ book.title }}</h3>
+                                    <span class="category">{{ book.category }}</span>
                                 </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    {% endif %}
+                                <div class="createdat">
+                                    <span>SOUMIS LE :</span><br>
+                                    <time>{{ book.createdAt|date("d/m/Y") }}</time>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                     <div class="clear"></div>
                 </div>
-            </div>
     </div>
 
 {% endblock %}
@@ -88,15 +72,17 @@
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('bundles/yourbooksmain/js/jquery.bxslider.min.js') }}"></script>
     <script>
+        {{ parent() }}
         // Lorsque le DOM est chargé on applique le Javascript
         jQuery(document).ready(function() {
             $('.disabled').click(function(){
+                alert("Veuillez télécharger le manuscrit pour le noter !");
                 return false;
             });
 
             $('a#download_book').click(function(){
                 $(this).parents('.content_statut').find('a.link_review').removeClass('disabled');
-                console.log($(this).parents('.content_statut'));
+                $(this).parents('.content_statut').find('a.link_review').unbind('click');
             });
 
             //slider historique
@@ -108,4 +94,5 @@
             });
         });
     </script>
+
 {% endblock %}

@@ -15,6 +15,7 @@ use YourBooks\BookBundle\Form\Type\BookReviewType;
 
 use YourBooks\MainBundle\ConfirmMail\ConfirmMailEvent;
 use YourBooks\MainBundle\ConfirmMail\MailEvent;
+use YourBooks\MainBundle\Twig\YourbooksExtension;
 
 class ReaderController extends Controller
 {
@@ -29,10 +30,8 @@ class ReaderController extends Controller
         $currentUser = $this->getUser();
         $bookReader = $currentUser->getBooks();
 
-        return $this->render('YourBooksMainBundle:Reader:homepage.html.twig'
-            , array(
-                'books' => $bookReader,
-                //'booksReading' => $booksReading,
+        return $this->render('YourBooksMainBundle:Reader:homepage.html.twig', array(
+            'books' => $bookReader,
         )
     );
 

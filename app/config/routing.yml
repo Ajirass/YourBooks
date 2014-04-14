@@ -1,3 +1,7 @@
+your_books_paypal:
+    resource: "@YourBooksPaypalBundle/Resources/config/routing.yml"
+    prefix:   /
+
 your_books_main:
     resource: "@YourBooksMainBundle/Resources/config/routing.yml"
     prefix:   /

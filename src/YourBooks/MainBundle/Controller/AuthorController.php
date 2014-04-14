@@ -203,4 +203,5 @@ class AuthorController extends Controller
         return $this->redirect($this->generateUrl('your_books_main_author_homepage'));
         }
     }
+
 }

@@ -37,6 +37,7 @@ class AppKernel extends Kernel
             new YourBooks\UserBundle\YourBooksUserBundle(),
             new YourBooks\BookBundle\YourBooksBookBundle(),
             new YourBooks\MainBundle\YourBooksMainBundle(),
+            new YourBooks\PaypalBundle\YourBooksPaypalBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

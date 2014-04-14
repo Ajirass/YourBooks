@@ -49,6 +49,20 @@ class Book
     protected $file;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="payed", type="boolean", nullable=true)
+     */
+    protected $payed;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="payed_at", type="datetime", nullable=true)
+     */
+    protected $payedAt;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="file_path", type="string", length=255)
@@ -172,7 +186,7 @@ class Book
     /**
      * @var BookReview
      *
-     * @ORM\OneToOne(targetEntity="YourBooks\BookBundle\Entity\BookReview", mappedBy="book")
+     * @ORM\OneToOne(targetEntity="YourBooks\BookBundle\Entity\BookReview", mappedBy="book", cascade={"remove"})
      */
     protected $review;
 
@@ -789,4 +803,50 @@ class Book
         return $this->receivedByReaderAt;
     }
 
+
+    /**
+     * Set payed
+     *
+     * @param boolean $payed
+     * @return Book
+     */
+    public function setPayed($payed)
+    {
+        $this->payed = $payed;
+    
+        return $this;
+    }
+
+    /**
+     * Get payed
+     *
+     * @return boolean 
+     */
+    public function getPayed()
+    {
+        return $this->payed;
+    }
+
+    /**
+     * Set payedAt
+     *
+     * @param \DateTime $payedAt
+     * @return Book
+     */
+    public function setPayedAt($payedAt)
+    {
+        $this->payedAt = $payedAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get payedAt
+     *
+     * @return \DateTime 
+     */
+    public function getPayedAt()
+    {
+        return $this->payedAt;
+    }
 }

@@ -33,10 +33,16 @@ class BookListener
                 $message = "Votre livre à été noté il est désormais mis a disposition sur l'espace des éditeurs";
                 $subject = "Votre livre à été noté";
                 // On crée l'évènement
-                $event_readerValidation = new MailEvent($user, $message, $subject);
+                $event_readerValidation_author = new MailEvent($user, $message, $subject);
+
+                $message = "Vos notes concernant le livre".$entity->getTitle()." ont été validé.";
+                $subject = "Notes \"".$entity->getTitle()."\" validé";
+                // On crée l'évènement
+                $event_readerValidation_admin = new MailEvent($user, $message, $subject);
 
                 // On déclenche l'évènement
-                $this->ed->dispatch(ConfirmMailEvent::onMailEvent, $event_readerValidation);
+                $this->ed->dispatch(ConfirmMailEvent::onMailEvent, $event_readerValidation_author);
+                $this->ed->dispatch(ConfirmMailEvent::onMailEvent, $event_readerValidation_admin);
             }
             if($eventArgs->hasChangedField('reader') && $eventArgs->getNewValue('reader') != false){
                 $book = $eventArgs->getEntity();
@@ -63,6 +69,7 @@ class BookListener
                 $meta = $em->getClassMetadata(get_class($entity));
                 $uow->recomputeSingleEntityChangeSet($meta, $entity);
             }
+
         }
     }
 } 
