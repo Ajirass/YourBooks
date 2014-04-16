@@ -30,7 +30,7 @@
                                 {% endif %}
                                 <div class="content_statut">
                                     <a id="download_book" href="{{ path('your_books_main_download_book', { 'id': book.id }) }}">Téléchargez</a>
-                                        <a class="link_review {% if book.downloadByReader == false %} disabled{% endif %}" href="{{ path('your_books_review_upload', { 'id': book.id }) }}">Notez ce manuscrit</a>
+                                        <a class="link_review {% if book.downloadByReader == false %}disabled{% endif %}" href="{{ path('your_books_review_upload', { 'id': book.id }) }}">Notez ce manuscrit</a>
                                 </div>
                             </div>
                         </div>
