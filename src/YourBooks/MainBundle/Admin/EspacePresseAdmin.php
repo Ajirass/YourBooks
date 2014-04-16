@@ -15,8 +15,6 @@ class EspacePresseAdmin extends Admin
         $formMapper
             ->add('title', null, array('label' => 'Titre : '))
             ->add('content', null, array('label' => 'Contenu : '))
-            ->add('url', null, array('label' => 'Vidéo (URL) : ', 'required' => false))
-            ->add('image', 'file', array('label'=> 'Image : ', 'required' => false))
             ->add('file', 'file', array('label' => 'Fichier PDF : ', 'required' => false))
         ;
     }
@@ -37,7 +35,6 @@ class EspacePresseAdmin extends Admin
             ->addIdentifier('id')
             ->add('title', null, array('label' => 'Titre : '))
             ->add('content', null, array('label' => 'Contenu : '))
-            ->add('url', null, array('label' => 'Vidéo Youtube (ID) : '))
         ;
     }
 }
