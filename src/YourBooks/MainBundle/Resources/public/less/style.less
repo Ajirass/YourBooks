@@ -563,7 +563,7 @@
 
   .couverture.rose .filtre-hover, .rose .popover{ background: @rose; }
 
-  .couverture.bleu-clair .filtre-hover, .rose .popover{ background: @bleu-clair; }
+  .couverture.bleu-clair .filtre-hover, .bleu-clair .popover{ background: @bleu-clair; }
 
   .list-books{ float:left; position: relative; }
 
@@ -644,11 +644,11 @@
 
     .review50{ background-position: 0px -85px; }
 
-    h1{ margin: 0px; font-weight: normal; font-family: novecento_wide; text-transform: uppercase; }
+    h1{ margin: 0px; font-weight: normal; font-family:'Novecentowide-Book'; text-transform: uppercase; }
 
-    h2{ font-family: novecento_wide_bold; }
+    h2{ font-family: 'Novecentowide-Bold'; }
 
-    label a{ text-decoration: underline; color: white; }
+    label a{ text-decoration: underline; color: white; font-family: 'Futura LT'}
 
     .download{ margin-top: 25px; }
 
@@ -664,9 +664,9 @@
 
   .fade.in{ opacity:1; display: block; z-index: 1; }
 
-  .download .active{ display: none; background: white; color: #1A0903; }
+  .download .active{ display: none; background: white; color: #1A0903; font-family: 'Futura LT'}
 
-  .download .disabled{ color: #1A0903; background: #c2c2c2; }
+  .download .disabled{ color: #1A0903; background: #c2c2c2; font-family: 'Futura LT'}
 
   .popover .arrow{ display: none !important; }
 
@@ -678,9 +678,20 @@
 
   .bloc h2{ padding-top: 0px; }
 
-  .bloc p{ padding-bottom: 0px; }
+  .bloc p{ padding-bottom: 0px; font-family: 'Futura LT' }
 
   .bloc-summary{ border-right: 1px solid white; }
+
+  .bloc-author {
+    margin: 115px 0 0 280px;
+    text-align: right;
+      a
+      {
+        color:white;
+        font-family: 'Futura LT';
+        text-decoration: underline
+      }
+  }
 
   .clear{ clear: both; width: 100%; height: 1px; display: block; }
 
@@ -701,3 +712,10 @@
 .couverture.bleu-clair{ border-color: @bleu-clair; }
 
 footer ul{ padding: 0px; margin: 0 auto; width: 1000px; }
+
+.historic-editor {
+  padding-bottom: 350px;
+  h1{
+    font-size: 30px;
+    font-family: "Novecentowide-Book";
+  }}
