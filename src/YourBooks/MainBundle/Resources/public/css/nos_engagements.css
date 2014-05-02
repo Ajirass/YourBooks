@@ -26,11 +26,6 @@
     font-size: 24px;
 }
 
-.engagements .content .editor_partner h3
-{
-    float:right;
-}
-
 
 .engagements .content p
 {
@@ -84,3 +79,10 @@
     margin-right: -100px;
 }
 
+.engagements .content .editor_partner h3
+{
+    display: inline;
+    font-family: "FuturaLT";
+    font-size: 24px;
+    padding-left: 40px;
+}

@@ -31,3 +31,12 @@
     color:#9ca0a1;
     display: block;
 }
+
+.first_historic a.back_editor
+{
+    display: inline-block;
+    font-family: 'FuturaLT';
+    font-size: 15px;
+    margin-top: 30px;
+    text-decoration: underline;
+}

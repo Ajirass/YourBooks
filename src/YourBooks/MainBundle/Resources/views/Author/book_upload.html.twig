@@ -1,5 +1,5 @@
 {% extends 'YourBooksMainBundle::base.html.twig' %}
-
+{% block title %}{{ parent() }}Envoi d'un manuscrit{% endblock %}
 {% block body %}
 
     <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -74,7 +74,7 @@
             {{ form_row(form.summary) }}
 
             <div class="checkbox">
-                {{ form_row(form.terms) }} <a href="{{ path('your_books_main_conditions') }}"> J'ai lu et accepté les conditions d'utilisations</a>
+                {{ form_row(form.terms) }} <a href="{{ path('your_books_main_conditions') }}" target="_blank"> J'ai lu et accepté les conditions d'utilisations</a>
             </div>
             <div class="clear"></div>
 
@@ -93,7 +93,7 @@
 
             {{ form_rest(form) }}
 
-        <a href="{{ path('your_books_main_conditions') }}" class="question">Des questions ?</a>
+        <a href="{{ path('your_books_main_conditions') }}" class="question" target="_blank">Des questions ?</a>
 
             <input type="submit" class="submit">
         </div>

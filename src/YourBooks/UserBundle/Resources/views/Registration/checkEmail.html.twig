@@ -1,5 +1,5 @@
 {% extends "YourBooksUserBundle::layout.html.twig" %}
-
+{% block title %}{{ parent() }}Vérification de l'email{% endblock %}
 {% block body %}
 {% block fos_user_content %}
     <p>{{ 'registration.check_email'|trans({'%email%': user.email}, 'FOSUserBundle') }}</p>

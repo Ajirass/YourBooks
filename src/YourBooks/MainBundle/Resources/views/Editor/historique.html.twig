@@ -1,4 +1,5 @@
 {% extends 'YourBooksMainBundle::base.html.twig' %}
+{% block title %}{{ parent() }}Mon historique{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/yourbooksmain/css/bootstrap/bootstrap.css') }}">
@@ -7,6 +8,7 @@
 
     {% if books is empty %}
         <div class="first_historic">
+            <a class="back_editor" href="{{ path('your_books_main_editor_homepage') }}">Revenir aux manuscrits</a>
             <h1>Historique</h1>
             <p>Vous n'avez pour l'instant aucun manuscrit dans votre historique.</p>
             <img src="{{ asset('bundles/yourbooksmain/images/logo_first_connexion.png') }}" alt="logo_yourbooks">
@@ -14,6 +16,7 @@
         </div>
     {% else %}
 <div id="homepage-editor" class="historic-editor">
+    <a class="back_editor" href="{{ path('your_books_main_editor_homepage') }}">Revenir aux manuscrits</a>
     <h1>Historique</h1>
     <div class="list-books">
         {% for book in books %}
@@ -47,7 +50,7 @@
                             <a class="disabled" href="">Télécharger ce manuscrit</a>
                             <form>
                                 <input type="checkbox" class="checkbox">
-                                <label>J'accepte les <a href="{{ path('your_books_main_conditions') }}">conditions d'utilisation</a></label>
+                                <label>J'accepte les <a href="{{ path('your_books_main_conditions') }}" target="_blank">conditions d'utilisation</a></label>
                             </form>
                         </div>
                     </div>

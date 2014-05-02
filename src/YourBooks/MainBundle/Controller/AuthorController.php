@@ -89,7 +89,7 @@ class AuthorController extends Controller
             $this->get('event_dispatcher')
                 ->dispatch(ConfirmMailEvent::onMailEvent, $event_admin);
 
-            $request->getSession()->getFlashBag()->add('success', 'Manuscrit envoyé avec succes');
+            $request->getSession()->getFlashBag()->add('success', 'Manuscrit envoyé avec succès');
 
             return $this->redirect($this->generateUrl('your_books_main_author_homepage'));
         }
@@ -198,7 +198,7 @@ class AuthorController extends Controller
         $book->setRetracted(true);
         $em->flush();
 
-        $request->getSession()->getFlashBag()->add('success', 'Manuscrit retiré avec succes');
+        $request->getSession()->getFlashBag()->add('success', 'Manuscrit retiré avec succès');
 
         return $this->redirect($this->generateUrl('your_books_main_author_homepage'));
         }

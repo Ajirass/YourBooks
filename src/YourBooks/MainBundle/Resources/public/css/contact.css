@@ -1,69 +1,7 @@
-.contactForm input[type=submit]
-{
-    width:90px;
-    background:#d00100;
-    font-family: 'FuturaLT';
-    font-size: 21px;
-    color:white;
-    border-radius: 3px;
-    border:none;
-    margin-top:50px;
-    box-shadow:1px 1px 2px #720100 inset;
-    -o-box-shadow:1px 1px 2px #720100 inset;
-    -moz-box-shadow:1px 1px 2px #720100 inset;
-    -ms-box-shadow:1px 1px 2px #720100 inset;
-    -webkit-box-shadow:1px 1px 2px #720100 inset;
-}
-
-.contactForm input[type=text]
-{
-    border: 1px solid #cfc7a3;
-    width: 302px;
-    height: 30px;
-    box-shadow:1px 1px 2px #C0C0C0 inset;
-    -o-box-shadow:1px 1px 2px #C0C0C0 inset;
-    -moz-box-shadow:1px 1px 2px #C0C0C0 inset;
-    -ms-box-shadow:1px 1px 2px #C0C0C0 inset;
-    -webkit-box-shadow:1px 1px 2px #C0C0C0 inset;
-}
-
-.contactForm textarea
-{
-    border: 1px solid #cfc7a3;
-    width: 302px;
-    height: 142px;
-    box-shadow:1px 1px 2px #C0C0C0 inset;
-    -o-box-shadow:1px 1px 2px #C0C0C0 inset;
-    -moz-box-shadow:1px 1px 2px #C0C0C0 inset;
-    -ms-box-shadow:1px 1px 2px #C0C0C0 inset;
-    -webkit-box-shadow:1px 1px 2px #C0C0C0 inset;
-}
-
-.contactForm input[type=email]
-{
-    border: 1px solid #cfc7a3;
-    width: 302px;
-    height: 30px;
-    box-shadow:1px 1px 2px #C0C0C0 inset;
-    -o-box-shadow:1px 1px 2px #C0C0C0 inset;
-    -moz-box-shadow:1px 1px 2px #C0C0C0 inset;
-    -ms-box-shadow:1px 1px 2px #C0C0C0 inset;
-    -webkit-box-shadow:1px 1px 2px #C0C0C0 inset;
-}
-
-
-.contactForm label
-{
-    font-family: 'FuturaLT';
-    font-size: 19px;
-    display: block;
-    margin-top:25px;
-}
-
 .contactForm h1
 {
     font-family: 'Novecentowide-Book';
-    font-size: 40px;
+    font-size: 30px;
     border-bottom: 2px solid #cfc7a3;
     padding-bottom: 10px;
 }
@@ -77,4 +15,79 @@
 .contactForm
 {
     margin-bottom: 50px;
+}
+
+.contactForm h1
+{
+    font-family: 'Novecentowide-Book';
+    font-size: 30px;
+    border-bottom: 2px solid #cfc7a3;
+    padding-bottom: 10px;
+
+}
+
+.contactForm input, .contactForm textarea
+{
+    font-family: 'Quicksand-Book';
+    font-size: 15px;
+    display: block;
+    width:450px;
+    margin: 50px 0 50px 0;
+    height: 40px;
+}
+
+.contactForm textarea
+{
+    height: 200px;
+}
+
+.contactForm ul li
+{
+    font-family: 'Quicksand-Book';
+    font-size: 15px;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.contactForm .submit input[type=submit]
+{
+    font-family: 'FuturaLT';
+    font-size: 20px;
+    color:white;
+    padding:15px;
+    background: #ca3e3c;
+    padding: 8px 15px;
+    border-radius: 4px;
+    border: none;
+    width:125px;
+
+}
+.contactForm .submit input[type=submit]:hover
+{
+    -moz-box-shadow: inset 0px 0px 5px 0px #000000;
+    -webkit-box-shadow: inset 0px 0px 5px 0px #000000;
+    -o-box-shadow: inset 0px 0px 5px 0px #000000;
+    box-shadow: inset 0px 0px 5px 0px #000000;
+
+}
+
+.contactForm .alert
+{
+    font-family: 'FuturaLT';
+    font-size: 25px;
+    margin:40px 0;
+    clear:both;
+    text-align: center;
+    padding: 15px 0;
+    color: #FFF;
+}
+
+.contactForm .alert-success
+{
+    background:rgba(11, 195, 98, 0.5);
+}
+
+.contactForm .alert-error
+{
+    background: rgba(195, 63, 38, 0.50);
 }

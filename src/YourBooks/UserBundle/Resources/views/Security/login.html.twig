@@ -1,5 +1,5 @@
 {% extends "YourBooksUserBundle::layout.html.twig" %}
-
+{% block title %}{{ parent() }}Connexion{% endblock %}
 {% block body %}
 {% if error %}
     <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
