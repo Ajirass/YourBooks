@@ -1,31 +1,32 @@
 <form action="{{ path('your_books_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
     <div class="profile_edit_div">
         <h2>Identité</h2>
-        <p><span class="title">{{ form_label(form.firstname) }}</span>{{ form_widget(form.firstname) }}</p>
-        <p><span class="title">{{ form_label(form.lastname) }}</span> {{ form_widget(form.lastname) }}</p>
-        <p><span class="title">{{ form_label(form.firstname) }}</span>{{ form_widget(form.firstname) }}</p>
+        <p>{{ form_widget(form.username, {'attr': {'placeholder': 'Nom d\'utilisateur'}}) }}</p>
+        <p>{{ form_widget(form.firstname, {'attr': {'placeholder': 'Prénom'}})  }}</p>
+        <p>{{ form_widget(form.lastname, {'attr': {'placeholder': 'Nom'}}) }}</p>
         <p><span class="title">{{ form_label(form.dateOfBirth) }}</span></p>{{ form_widget(form.dateOfBirth) }}
     </div>
 
     <div class="profile_edit_div">
         <h2>Coordonnées</h2>
-        <p><span class="title">{{ form_label(form.email) }}</span>{{ form_widget(form.email) }}</p>
-        <p><span class="title">{{ form_label(form.phone) }}</span>{{ form_widget(form.phone) }}</p>
+        <p>{{ form_widget(form.email, {'attr': {'placeholder': 'Email'}}) }}</p>
+        <p>{{ form_widget(form.phone, {'attr': {'placeholder': 'Téléphone'}}) }}</p>
     </div>
 
-    <div class="profile_edit_div">
+    <div class="profile_edit_div resid">
         <h2>Lieu de résidence</h2>
-        <p><span class="title">{{ form_label(form.street) }}</span>{{ form_widget(form.street) }}</p>
-        <p><span class="title">{{ form_label(form.zipcode) }}</span>{{ form_widget(form.zipcode) }}</p>
-        <p><span class="title">{{ form_label(form.city) }}</span>{{ form_widget(form.city) }}</p>
+        <p>{{ form_widget(form.street, {'attr': {'placeholder': 'Rue'}}) }}</p>
+        <p>{{ form_widget(form.zipcode, {'attr': {'placeholder': 'Code Postal'}}) }}</p>
+        <p>{{ form_widget(form.city, {'attr': {'placeholder': 'Ville'}}) }}</p>
     </div>
 
     <div class="profile_edit_div">
         <h2>Présentation</h2>
-        <p>{{ form_widget(form.biography) }}</p>
+        <p>{{ form_widget(form.biography, {'attr': {'placeholder': 'Présentation'}}) }}</p>
     </div>
 
     <div class="profile_edit_div mdp">
+            {{ form_widget(form.current_password, {'attr': {'placeholder': 'Mot de passe actuel'}}) }}
           {{ form_rest(form) }}
     </div>
 
