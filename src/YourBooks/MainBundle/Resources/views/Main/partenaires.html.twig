@@ -1,4 +1,5 @@
 {% extends 'YourBooksMainBundle::base.html.twig' %}
+{% block title %}{{ parent() }}Nos partenaires{% endblock %}
 {% block body %}
 
     <div class="engagements">
@@ -15,7 +16,7 @@
                         <h3>{{ partenaire.prenom }} {{ partenaire.nom }}</h3>
                         <p>{{  partenaire.fonction }}</p>
                     </div>
-                        {% endif %}
+                    {% endif %}
                 {% endfor %}
             </div>
              <h2>Les éditeurs</h2>
@@ -23,10 +24,8 @@
                 {% for partenaire in partenaires %}
                     {% if partenaire.statut == 'editor' %}
                         <div class="editor_partner">
+                            <img src="{{ asset(partenaire.webPath) }}">
                             <h3>{{ partenaire.nom }}</h3>
-                            {% if partenaire.webPath is not null %}
-                                <img src="{{ asset(partenaire.webPath) }}">
-                            {% endif %}
                         </div>
                     {% endif %}
                 {% endfor %}
@@ -44,12 +43,18 @@
             //slider partenaires
             $('.slidereader').bxSlider({
                 slideWidth: 500,
-                slideMargin: 20
+                slideMargin: 20,
+                auto:true,
+                pause:3000,
+                autoControls:true
             });
 
             $('.slideeditor').bxSlider({
                 slideWidth: 500,
-                slideMargin: 20
+                slideMargin: 20,
+                pause:3000,
+                auto:true,
+                autoControls:true
             });
         });
     </script>

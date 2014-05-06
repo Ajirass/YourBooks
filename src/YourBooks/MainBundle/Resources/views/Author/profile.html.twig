@@ -1,4 +1,5 @@
 {% extends 'YourBooksMainBundle::base.html.twig' %}
+{% block title %}{{ parent() }}Mon profil{% endblock %}
 {% block body %}
     {{ user.username }}
     {{ user.email }}

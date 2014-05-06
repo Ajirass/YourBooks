@@ -17,8 +17,13 @@
 .profile_edit_div:nth-child(4), .profile_edit_div:nth-child(2)
 {
     width: 480px;
-    height: 460px;
+    height: 380px;
     margin-left: 100px;
+}
+
+.profile_edit_div:nth-child(3), .profile_edit_div:nth-child(4)
+{
+   margin-top: 100px;
 }
 
 .profile_edit_div:nth-child(4) p:last-child
@@ -80,6 +85,12 @@
 .profile_edit_div input
 {
     display:block;
+    width:315px;
+}
+
+.profile_edit_div:nth-child(2) input
+{
+    width:425px;
 }
 .profile_edit_div input, .profile_edit_div select
 {
@@ -114,6 +125,12 @@
 .profile_edit_div input[type="hidden"]
 {
     border : none;
+}
+
+.profile_edit_div textarea
+{
+    width: 440px;
+    height: 150px;
 }
 
 .mdp

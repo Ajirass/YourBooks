@@ -1,98 +1,164 @@
 {% extends 'YourBooksMainBundle::base.html.twig' %}
-
+{% block title %}{{ parent() }}Mon historique{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/yourbooksmain/css/bootstrap/bootstrap.css') }}">
+{% endblock %}
 {% block body %}
 
     {% if books is empty %}
         <div class="first_historic">
+            <a class="back_editor" href="{{ path('your_books_main_editor_homepage') }}">Revenir aux manuscrits</a>
             <h1>Historique</h1>
             <p>Vous n'avez pour l'instant aucun manuscrit dans votre historique.</p>
             <img src="{{ asset('bundles/yourbooksmain/images/logo_first_connexion.png') }}" alt="logo_yourbooks">
             <a href="{{ path ('your_books_main_editor_homepage') }}">Revenir sur l'espace éditeur</a>
         </div>
     {% else %}
-
+<div id="homepage-editor" class="historic-editor">
+    <a class="back_editor" href="{{ path('your_books_main_editor_homepage') }}">Revenir aux manuscrits</a>
+    <h1>Historique</h1>
     <div class="list-books">
         {% for book in books %}
             <!-- le book cliquable -->
-            <div class="couverture {{ book.category.familyCategory.colorCategory }}">
+            <div  class="couverture {{ book.category.familyCategory.colorCategory }}">
 
                 <!-- Trigger de l'apparition du cadre déroulant, remplacer le href par l'id du livre (ex: #65) -->
-                <a class="link" href="#book-content">
+                <a class="link" data-placement="bottom" data-toggle="popover" href="#{{ book.id }}">
                     <div class="filtre-hover">
                         <img src="{{ asset('bundles/yourbooksmain/images/oeil-hover-blanc.png') }}">
                     </div>
                     <h3 class="title">{{ book.title | truncate(15, true, '...') }}</h3>
-                    <img src="">
+                    <img src="{{ asset(book.category.webPath) }}">
+                    {% set review = book.review.noteGlobale * 10 %}
+
+                    <div class="review review{{ review }}"></div>
                 </a>
-                <a href="{{ path('your_books_main_editor_profile_author', { 'id': book.author.id }) }}">Voir profil auteur</a>
-                <div class="arrow"></div>
+                <div class="arrow {{ book.category.familyCategory.colorCategory }}"></div>
+
 
             </div>
 
-            <!-- Cadre déroulant, remplacer l'id par l'id du livre (ex: #65) -->
-            <div id="book-content" class="slide-down green">
-                <div class="bloc">
-                    <h1>{{ book.title }}</h1>
-                    <img src="">
-                    <a href="{{ path('your_books_main_download_book', { 'id': book.id }) }}"><button>Télécharger ce manuscrit</button></a>
-                    <form>
-                        <input type="checkbox">
-                        <label>J'accepte les conditions d'utilisation</label>
-                    </form>
+
+            <div id="{{ book.id }}" class="container-slide-down" style="display: none">
+                <div class="{{ book.category.familyCategory.colorCategory }} slide-down">
+                    <div class="bloc">
+                        <h1>{{ book.title }}</h1>
+                        <div class="review review{{ review }}"></div>
+                        <div class="download">
+                            <a class="active" href="{{ path('your_books_main_download_book', { 'id': book.id }) }}">Télécharger ce manuscrit</a>
+                            <a class="disabled" href="">Télécharger ce manuscrit</a>
+                            <form>
+                                <input type="checkbox" class="checkbox">
+                                <label>J'accepte les <a href="{{ path('your_books_main_conditions') }}" target="_blank">conditions d'utilisation</a></label>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="bloc bloc-summary">
+                        <h2>Résumé</h2>
+                        <p>{{ book.review.summary }}</p>
+                    </div>
+                    <div class="bloc">
+                        <h2>Critique</h2>
+                        <p>{{ book.review.critic }}</p>
+                    </div>
+                    <div class="bloc bloc-author">
+                        <a href="{{ path('your_books_main_editor_profile_author', {'id' : book.author.id}) }}">Voir le profil de l'auteur</a>
+                    </div>
+
+                    <div class="clear"></div>
                 </div>
-                <div class="bloc bloc-summary">
-                    <h2>Résumé</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque bibendum risus sed lectus aliquam dignissim. Nam volutpat id dolor non laoreet. Fusce nec orci a ipsum lobortis mattis vel at velit. Nam consequat sagittis risus, non ullamcorper nulla. Phasellus sit amet egestas justo. Praesent eget imperdiet nibh. Mauris in nunc sed nunc volutpat vulputate eget eget purus. Fusce vitae libero tempus, dictum lorem a, molestie lacus. Nam gravida nunc mi, quis pellentesque urna tristique sed. Nam sagittis velit leo, vitae auctor velit faucibus nec. Phasellus eget ante ut leo lacinia semper et eu erat. Maecenas ullamcorper velit et erat tristique luctus.</p>
-                </div>
-                <div class="bloc">
-                    <h2>Critique</h2>
-                    <p>Duis quis volutpat sapien. Integer in diam nulla. Sed ornare erat justo, non volutpat dui bibendum et. Morbi dui leo, blandit eget libero sit amet, laoreet suscipit dolor. Suspendisse congue non leo mollis accumsan. Praesent ac cursus metus. In hac habitasse platea dictumst. Cras aliquet, enim ac euismod elementum, tortor tortor tempus turpis, at posuere enim purus a purus. Nunc gravida commodo odio sit amet elementum. In tempor arcu egestas congue elementum. Proin quis malesuada dolor. Phasellus non adipiscing velit, eleifend fringilla odio.</p>
-                </div>
-                <a class="close" href="">Close</a>
-                <div class="clear"></div>
 
             </div>
         {% endfor %}
     </div>
-    {% block javascripts %}
-        {{ parent() }}
-        <script>
+    <div class="clear"></div>
+</div>
+    {% endif %}
+        {% block javascripts %}
+            {{ parent() }}
+            <script src="{{ asset('bundles/yourbooksmain/js/bootstrap.min.js')}}"></script>
+            <script>
 
-            //Quand on clique sur un book
-            $('.link').click(function(e){
-                e.preventDefault();
 
-                //On montre la petite flèche correspondant au book
-                var parent = $(this).parent();
-                $('.arrow',parent).show();
-                //On récupère l'ancre du lien
-                var content = $(this).attr("href");
+                $(document).ready(function(){
+                    $('.arrow').hide();
+                    //On lance la fonction popover de bootstrap
+                    $(".link").popover(
+                            {
+                                //on met le html à true pour pouvoir récupérer notre div via notre ancre href
+                                html : true,
+                                content: function() {
+                                    return $($(this).attr("href")).html();
+                                }
+                            });
+                    //Customisation de notre popover
+                    $(".link").click( function() {
 
-                //On insère la div dans le main, car elle doit remplir tout l'écran donc on ne peut pas la laisser dans le container
-                $("body").append($(content));
+                        //On récupère la position en left par rapport à l'écran du book sur lequel on clique
+                        var book = $(this).parent().offset().left;
 
-                //Effet de slide
-                $(content).slideDown();
 
-            });
+                        //On récupère la position en left par rapport à l'écran de notre liste de books
+                        var liste = $('.list-books').offset().left;
 
-            //Quand on clique sur le bouton close
-            $('.close').click(function(e){
-                e.preventDefault();
 
-                //On cache la petite flèche
-                $(".arrow").delay(500).queue(function() {
-                    $(this).hide().dequeue();
+                        //Ici le calcul de ouf que même Frankenstein il serait bluffé :p
+                        //-position de mon book + position de ma liste - largeur de mon book divisée par 2 - le border-left de mon book qui est de 6px
+                        var calcul = - book + liste + 10;
+                        //- ($(this).parent().width())/2 - 6;
+
+                        //Et on a plus qu'à donner notre position au popover!
+                        $( ".popover" ).css( "left" , calcul + 'px');
+
+                        //ici on donne la même width que notre liste à notre popover, comme ça si le site est responsive la largeur s'ajustera automatiquement
+                        var popoverWidth = $('.container').width();
+                        $('.popover').css("width", popoverWidth);
+
+                        $(".arrow",$(this).parent()).toggle();
+
+                        $(".disabled").click( function(e) {
+                            e.preventDefault();
+                            alert('Veuillez accepter les conditions d\'utilisation');
+
+                        });
+
+                        $('input').change(function() {
+                            if ($(this).is(':checked')) {
+                                $(".disabled").hide();
+                                $(".active").show();
+                            } else {
+                                $(".active").hide();
+                                $(".disabled").show();
+                            }
+                        });
+                    });
+
+
+                    //Le bout de code magique que j'ai récupéré pour que lorsqu'on clique en dehors du popover il se ferme automatiquement ;)
+                    //Une alternative à la fonction focusout qui n'est pas compatible avec firefox
+                    //On clique n'importe où sur le body
+                    $('body').on('click', function (e) {
+                        $('.link').each(function () {
+
+                            //On met une condition pour dire de ne pas cacher le popover si on a cliqué sur le trigger qui l'affiche
+                            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                                $(this).popover('hide');
+                                $('.arrow',$(this).parent()).hide();
+                            }
+                        });
+                    });
+
+
+
+
+                    $('.container').append('<div class="clear"></div>');
+
+
                 });
 
-                //On récupère la div parent du bouton close et on la ferme
-                $(this).parent().slideUp();
-            });
 
 
-
-        </script>
-
-    {% endblock %}
-    {% endif %}
+            </script>
+        {% endblock %}
 {% endblock %}

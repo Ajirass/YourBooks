@@ -1,4 +1,5 @@
 {% extends "YourBooksUserBundle::layout.html.twig" %}
+{% block title %}{{ parent() }}Inscription{% endblock %}
 {% block body %}
 {% block fos_user_content %}
     {% if account == 'reader' %}

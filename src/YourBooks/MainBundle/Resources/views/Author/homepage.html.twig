@@ -1,5 +1,5 @@
 {% extends 'YourBooksMainBundle::base.html.twig' %}
-
+{% block title %}{{ parent() }}Espace Auteur{% endblock %}
 {% block body %}
     <div id="home_author">
         <div class="manuscrits">
@@ -10,6 +10,7 @@
                     </div>
                 {% endfor %}
             {% endfor %}
+            <p class="infos-maj" >N'oubliez pas de mettre vos informations régulièrement à jour<br> afin que les éditeurs puissent vous contacter sans problème.</p>
             {% if  countBooksSubmit == 0 %}
                 <div class="first_connexion">
                     <h1>Bienvenue</h1>
@@ -88,7 +89,7 @@
                             </div>
                             {% if date(book.createdAt) >  date('-7days')  %}
                                 <div class="btn_suppr">
-                                    <a href="{{ path('your_books_main_author_retracted_book', { 'id': book.id })}}">Me rétracter</a>
+                                    <a href="{{ path('your_books_main_author_retracted_book', { 'id': book.id })}}" onclick="return verifjs();">Me rétracter</a>
                                 </div>
                             {% endif %}
                     </div>
@@ -149,5 +150,13 @@
                 'height' : '300'
             });
         });
+    </script>
+    <script type="text/javascript">
+        //<![CDATA[
+        function verifjs()
+        {
+            return window.confirm('Votre manuscrit va être retiré de notre site. Confirmez-vous votre rétractation ?');
+        }
+        //]]>
     </script>
 {% endblock %}

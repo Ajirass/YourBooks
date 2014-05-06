@@ -1,5 +1,5 @@
 {% extends 'YourBooksMainBundle::base.html.twig' %}
-
+{% block title %}{{ parent() }}Noter un manuscrit{% endblock %}
 {% block body %}
     {% if book.downloadByReader %}
         <div id="review-upload">

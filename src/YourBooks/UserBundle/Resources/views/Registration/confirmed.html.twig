@@ -1,5 +1,5 @@
 {% extends "YourBooksUserBundle::layout.html.twig" %}
-
+{% block title %}{{ parent() }}Inscription effectuée{% endblock %}
 {% block body %}
 {% block fos_user_content %}
     <p>{{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}</p>
