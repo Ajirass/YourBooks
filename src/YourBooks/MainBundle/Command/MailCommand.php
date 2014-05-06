@@ -41,6 +41,25 @@ class MailCommand extends ContainerAwareCommand
 
             $mailer->send($message);
         }
+        $booksSoonDelayOutReader = $repo->findSoonDelayOutReader();
+        foreach($booksSoonDelayOutReader as $book){
+
+            $mailer = $container->get('mailer');
+            $message = \Swift_Message::newInstance()
+                ->setSubject($book->getReader()->getEmail())
+                ->setFrom('godartrobin@gmail.com')
+                ->setTo('godartrobin@gmail.com')
+                ->setBody("Il vous reste 1 jour de délai autorisé pour la lecture du livre '".$book->getTitle()."' ce livre va vous a étre retiré autrement. ");
+
+            $mailer->send($message);
+            $message = \Swift_Message::newInstance()
+                ->setSubject($book->getReader()->getEmail())
+                ->setFrom('godartrobin@gmail.com')
+                ->setTo('godartrobin@gmail.com')
+                ->setBody("Il reste 1 jour au lecteur '".$book->getReader()."' pour lire le livre '".$book->getTitle()."'.");
+
+            $mailer->send($message);
+        }
         $booksDelayConfirmedReader = $repo->findDelayConfirmedReader();
         foreach($booksDelayConfirmedReader as $book){
 

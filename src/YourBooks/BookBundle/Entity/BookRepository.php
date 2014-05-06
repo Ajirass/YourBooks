@@ -36,6 +36,34 @@ class BookRepository extends EntityRepository
         return $qb->getQuery()->getSingleScalarResult();
     }
 
+    public function findBySearch($search)
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->select('b')
+            ->where('b.readerValidation = :readerValidation')
+            ->andwhere("b.title LIKE :search")
+            ->orderBy('b.title', 'ASC')
+            ->setParameter(':search', '%'.$search.'%')
+            ->setParameter(':readerValidation', true)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function autoCompletion($search)
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->select('b.title')
+            ->where('b.readerValidation = :readerValidation')
+            ->andwhere("b.title LIKE :search")
+            ->orderBy('b.title', 'ASC')
+            ->setParameter(':search', '%'.$search.'%')
+            ->setParameter(':readerValidation', true)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
     public function findOnlyReading()
     {
         $qb = $this->createQueryBuilder('b')
@@ -68,6 +96,17 @@ class BookRepository extends EntityRepository
             ->select('b')
             ->where('b.receivedByReader = :receivedByReader')
             ->andWhere('DATE_DIFF(CURRENT_DATE(), b.receivedByReaderAt) > 10')
+            ->setParameter(':receivedByReader', true)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+    public function findSoonDelayOutReader()
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->select('b')
+            ->where('b.receivedByReader = :receivedByReader')
+            ->andWhere('DATE_DIFF(CURRENT_DATE(), b.receivedByReaderAt) = 9')
             ->setParameter(':receivedByReader', true)
         ;
 

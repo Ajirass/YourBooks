@@ -30,58 +30,25 @@
                 </li>
             </ul>
         </aside>
-
+        <form id="category_recherche" action="{{ path('your_books_main_category_search_book') }}" method="post">
+            {{ form_label(categoryform.alphabetic) }}
+            {{ form_widget(categoryform.alphabetic) }}
+            {{ form_label(categoryform.note) }}
+            {{ form_widget(categoryform.note) }}
+            {{ form_label(categoryform.date) }}
+            {{ form_widget(categoryform.date) }}
+            <input type="submit" value="Rechercher" />
+        </form>
+        <form id="form_recherche" action="{{ path('your_books_main_search_book') }}" method="post">
+            <input id="search" type="text" autocomplete="off" />
+            <input type="submit" value="Rechercher" />
+        </form>
+        <div id="results">
+            {% include 'YourBooksMainBundle:Editor:auto_completion.html.twig' %}
+        </div>
+        <div class="loading"></div>
         <div class="list-books">
-
-            {% for book in books %}
-                <!-- le book cliquable -->
-                <div  class="couverture {{ book.category.familyCategory.colorCategory }}">
-
-                    <!-- Trigger de l'apparition du cadre déroulant, remplacer le href par l'id du livre (ex: #65) -->
-                    <a class="link" data-placement="bottom" data-toggle="popover" href="#{{ book.id }}">
-                        <div class="filtre-hover">
-                            <img src="{{ asset('bundles/yourbooksmain/images/oeil-hover-blanc.png') }}">
-                        </div>
-                        <h3 class="title">{{ book.title | truncate(15, true, '...') }}</h3>
-                        <img src="{{ asset(book.category.webPath) }}">
-                        {% set review = book.review.noteGlobale * 10 %}
-
-                        <div class="review review{{ review }}"></div>
-                    </a>
-                    <div class="arrow {{ book.category.familyCategory.colorCategory }}"></div>
-
-
-                </div>
-
-
-                <div id="{{ book.id }}" class="container-slide-down" style="display: none">
-                    <div class="{{ book.category.familyCategory.colorCategory }} slide-down">
-                        <div class="bloc">
-                            <h1>{{ book.title }}</h1>
-                            <div class="review review{{ review }}"></div>
-                            <div class="download">
-                                <a class="active" href="{{ path('your_books_main_download_book', { 'id': book.id }) }}">Télécharger ce manuscrit</a>
-                                <a class="disabled" href="">Télécharger ce manuscrit</a>
-                                <form>
-                                    <input type="checkbox" class="checkbox">
-                                    <label>J'accepte les <a href="{{ path('your_books_main_conditions') }}">conditions d'utilisation</a></label>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="bloc bloc-summary">
-                            <h2>Résumé</h2>
-                            <p>{{ book.review.summary }}</p>
-                        </div>
-                        <div class="bloc">
-                            <h2>Critique</h2>
-                            <p>{{ book.review.critic }}</p>
-                        </div>
-
-                        <div class="clear"></div>
-                    </div>
-
-                </div>
-            {% endfor %}
+            {% include 'YourBooksMainBundle:Editor:list_books.html.twig' with {'books' : books}  %}
         </div>
         <div class="clear"></div>
     </div>
@@ -90,84 +57,242 @@
         <script src="{{ asset('bundles/yourbooksmain/js/bootstrap.min.js')}}"></script>
         <script>
 
-
             $(document).ready(function(){
-                $('.arrow').hide();
-                //On lance la fonction popover de bootstrap
-                $(".link").popover(
-                        {
-                            //on met le html à true pour pouvoir récupérer notre div via notre ancre href
-                            html : true,
-                            content: function() {
-                                return $($(this).attr("href")).html();
+
+                var delay = (function(){
+                    var timer = 0;
+                    return function(callback, ms){
+                        clearTimeout (timer);
+                        timer = setTimeout(callback, ms);
+                    };
+                })();
+
+                function enterKey()
+                {
+                    $("#search").keyup(function(e){
+                        var search = $(this).val();
+                        var code = e.keyCode || e.which;
+                        var data = 'search=' + search;
+                        delay(function(){
+
+                            if(search.length>1 && code != 38 && code != 40 && code != 13){
+                                $.ajax({
+                                    type: "POST",
+                                    url: "{{ path('your_books_main_auto_completion_search')}}",
+                                    data: data,
+                                    cache: false,
+                                    success: function(data){
+
+                                        $('#results').show();
+                                        $('#results').html(data);
+                                        autocompletion();
+                                    }
+                                });
+                            }
+                            else if(search.length<=1 && code != 40)
+                            {
+                                $('#results').html("");
+                            }
+                            if(search.length==0 && code != 40){
+                                $("#form_recherche").submit();
+                            }
+                        }, 500 );
+                    });
+
+
+                    $("#search").keypress(function(event) {
+                        if (event.which == 13) {
+                            event.preventDefault();
+                            setTimeout(function(){
+                                $("#form_recherche").submit();
+                            },200);
+                        }
+                    });
+                }
+
+
+                enterKey();
+                showpopover();
+
+
+                $('#results').on('click', 'div', function() {
+                    $("#search").val($(this).text());
+                    $('#results').html("");
+                });
+
+                function autocompletion()
+                {
+                    var searchElement = document.getElementById('search'),
+                            results = document.getElementById('results'),
+                            selectedResult = -1, // Permet de savoir quel résultat est sélectionné : -1 signifie « aucune sélection »
+                            previousRequest, // On stocke notre précédente requête dans cette variable
+                            previousValue = searchElement.value; // On fait de même avec la précédente valeur
+
+
+                    function chooseResult(result) { // Choisit un des résultats d'une requête et gère tout ce qui y est attaché
+
+                        searchElement.value = previousValue = result.innerHTML; // On change le contenu du champ de recherche et on enregistre en tant que précédente valeur
+                        results.style.display = 'none'; // On cache les résultats
+                        result.className = ''; // On supprime l'effet de focus
+                        selectedResult = -1; // On remet la sélection à zéro
+                        searchElement.focus(); // Si le résultat a été choisi par le biais d'un clic, alors le focus est perdu, donc on le réattribue
+
+                    }
+
+
+
+                    searchElement.onkeyup = function(e) {
+
+                        e = e || window.event; // On n'oublie pas la compatibilité pour IE
+
+                        var divs = results.getElementsByTagName('div');
+
+                        if (e.keyCode == 38 && selectedResult > -1) { // Si la touche pressée est la flèche « haut »
+
+                            divs[selectedResult--].className = '';
+
+                            if (selectedResult > -1) { // Cette condition évite une modification de childNodes[-1], qui n'existe pas, bien entendu
+                                divs[selectedResult].className = 'result_focus';
+                            }
+
+                        }
+
+                        else if (e.keyCode == 40 && selectedResult < divs.length - 1) { // Si la touche pressée est la flèche « bas »
+
+                            results.style.display = 'block'; // On affiche les résultats
+
+                            if (selectedResult > -1) { // Cette condition évite une modification de childNodes[-1], qui n'existe pas, bien entendu
+                                divs[selectedResult].className = '';
+                            }
+
+                            divs[++selectedResult].className = 'result_focus';
+
+                        }
+
+                        else if (e.keyCode == 13 && selectedResult > -1) { // Si la touche pressée est « Entrée »
+
+                            chooseResult(divs[selectedResult]);
+
+                        }
+
+
+
+                    };
+                }
+
+
+                function showpopover()
+                {
+                    $('.arrow').hide();
+                    //On lance la fonction popover de bootstrap
+                    $(".link").popover(
+                            {
+                                //on met le html à true pour pouvoir récupérer notre div via notre ancre href
+                                html : true,
+                                content: function() {
+                                    return $($(this).attr("href")).html();
+                                }
+                            });
+                    //Customisation de notre popover
+                    $(".link").click( function() {
+                        //On récupère la position en left par rapport à l'écran du book sur lequel on clique
+                        var book = $(this).parent().offset().left;
+
+
+                        //On récupère la position en left par rapport à l'écran de notre liste de books
+                        var liste = $('.list-books').offset().left;
+
+
+                        //Ici le calcul de ouf que même Frankenstein il serait bluffé :p
+                        //-position de mon book + position de ma liste - largeur de mon book divisée par 2 - le border-left de mon book qui est de 6px
+                        var calcul = - book + liste + 10;
+                        //- ($(this).parent().width())/2 - 6;
+
+                        //Et on a plus qu'à donner notre position au popover!
+                        $( ".popover" ).css( "left" , calcul + 'px');
+
+                        //ici on donne la même width que notre liste à notre popover, comme ça si le site est responsive la largeur s'ajustera automatiquement
+                        var popoverWidth = $('.container').width();
+                        $('.popover').css("width", popoverWidth);
+
+                        $(".arrow",$(this).parent()).toggle();
+
+                        $(".disabled").click( function(e) {
+                            e.preventDefault();
+                            alert('Veuillez accepter les conditions d\'utilisation');
+
+                        });
+
+                        $('input').change(function() {
+                            if ($(this).is(':checked')) {
+                                $(".disabled").hide();
+                                $(".active").show();
+                            } else {
+                                $(".active").hide();
+                                $(".disabled").show();
                             }
                         });
-                //Customisation de notre popover
-                $(".link").click( function() {
-
-                    //On récupère la position en left par rapport à l'écran du book sur lequel on clique
-                    var book = $(this).parent().offset().left;
-
-
-                    //On récupère la position en left par rapport à l'écran de notre liste de books
-                    var liste = $('.list-books').offset().left;
-
-
-                    //Ici le calcul de ouf que même Frankenstein il serait bluffé :p
-                    //-position de mon book + position de ma liste - largeur de mon book divisée par 2 - le border-left de mon book qui est de 6px
-                    var calcul = - book + liste + 10;
-                            //- ($(this).parent().width())/2 - 6;
-
-                    //Et on a plus qu'à donner notre position au popover!
-                    $( ".popover" ).css( "left" , calcul + 'px');
-
-                    //ici on donne la même width que notre liste à notre popover, comme ça si le site est responsive la largeur s'ajustera automatiquement
-                    var popoverWidth = $('.container').width();
-                    $('.popover').css("width", popoverWidth);
-
-                    $(".arrow",$(this).parent()).toggle();
-
-                    $(".disabled").click( function(e) {
-                        e.preventDefault();
-                        alert('Veuillez accepter les conditions d\'utilisation');
-
                     });
 
-                    $('input').change(function() {
-                        if ($(this).is(':checked')) {
-                            $(".disabled").hide();
-                            $(".active").show();
-                        } else {
-                            $(".active").hide();
-                            $(".disabled").show();
+                    //Le bout de code magique que j'ai récupéré pour que lorsqu'on clique en dehors du popover il se ferme automatiquement ;)
+                    //Une alternative à la fonction focusout qui n'est pas compatible avec firefox
+                    //On clique n'importe où sur le body
+                    $('body').on('click', function (e) {
+                        $('.link').each(function () {
+
+                            //On met une condition pour dire de ne pas cacher le popover si on a cliqué sur le trigger qui l'affiche
+                            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                                $(this).popover('hide');
+                                $('.arrow',$(this).parent()).hide();
+                            }
+                        });
+                    });
+
+                    $('.container').append('<div class="clear"></div>');
+                }
+
+
+                $("#form_recherche").submit(function(){
+                    $(".loading").show();
+                    var search = $("#form_recherche #search").val();
+                    var DATA = 'search=' + search;
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ path('your_books_main_search_book')}}",
+                        data: DATA,
+                        cache: false,
+                        success: function(data){
+                            $('.list-books').html(data);
+                            enterKey();
+                            showpopover();
                         }
                     });
+                    return false;
                 });
 
 
-                //Le bout de code magique que j'ai récupéré pour que lorsqu'on clique en dehors du popover il se ferme automatiquement ;)
-                //Une alternative à la fonction focusout qui n'est pas compatible avec firefox
-                //On clique n'importe où sur le body
-                $('body').on('click', function (e) {
-                    $('.link').each(function () {
-
-                        //On met une condition pour dire de ne pas cacher le popover si on a cliqué sur le trigger qui l'affiche
-                        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-                            $(this).popover('hide');
-                            $('.arrow',$(this).parent()).hide();
+                $(".loading").hide();
+                $("#category_recherche").submit(function(){
+                    $(".loading").show();
+                    var alphabetic = $("#CategorySearch_alphabetic").val();
+                    var note = $("#CategorySearch_note").val();
+                    var date = $("#CategorySearch_date").val();
+                    var DATA = {alphabetic: alphabetic, note: note, date: date};
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ path('your_books_main_category_search_book')}}",
+                        data: DATA,
+                        cache: false,
+                        success: function(data){
+                            $('.list-books').html(data);
+                            enterKey();
+                            showpopover();
                         }
                     });
+                    return false;
                 });
-
-
-
-
-                $('.container').append('<div class="clear"></div>');
-
 
             });
-
-
 
         </script>
     {% endblock %}

@@ -27,3 +27,18 @@ your_books_main_editor_download:
     defaults: { _controller: YourBooksMainBundle:Editor:download }
     requirements:
         id: \d+
+your_books_main_search_book:
+  pattern: /book/recherche
+  defaults: { _controller: YourBooksMainBundle:Editor:searchBook }
+  requirements:
+    _method: POST
+your_books_main_category_search_book:
+  pattern: /book/category
+  defaults: { _controller: YourBooksMainBundle:Editor:searchCategoryBook }
+  requirements:
+    _method: POST
+your_books_main_auto_completion_search:
+  pattern: /book/autocompletion
+  defaults: { _controller: YourBooksMainBundle:Editor:autoCompletion }
+  requirements:
+    _method: POST

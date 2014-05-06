@@ -1,0 +1,10 @@
+{% if titles is defined %}
+    {% for title in titles %}
+        <div>{{ title.title }}</div>
+    {% endfor %}
+    {% if titles is empty %}
+        <div>
+            Aucun resultat
+        </div>
+    {% endif %}
+{% endif %}

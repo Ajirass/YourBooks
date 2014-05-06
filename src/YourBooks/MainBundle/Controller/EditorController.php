@@ -7,6 +7,8 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\UserBundle\Model\UserInterface;
+use YourBooks\MainBundle\Form\Type\CategorySearchType;
+use YourBooks\MainBundle\Form\Type\SearchType;
 
 class EditorController extends Controller
 {
@@ -20,7 +22,8 @@ class EditorController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('YourBooksBookBundle:Book');
         $repoo = $em->getRepository('YourBooksBookBundle:BookFamilyCategory');
-
+        $search_form = $this->container->get('form.factory')->create(new SearchType());
+        $category_form = $this->container->get('form.factory')->create(new CategorySearchType());
         if($category == null)
         {
             $books = $repo->findOnlyReading();
@@ -34,6 +37,8 @@ class EditorController extends Controller
         return $this->render('YourBooksMainBundle:Editor:homepage.html.twig', array(
             'books' => $books,
             'familyCategories' => $familyCategories,
+            'searchform' => $search_form->createView(),
+            'categoryform' => $category_form->createView(),
         ));
     }
 
@@ -76,5 +81,80 @@ class EditorController extends Controller
         $user = $em->find('ApplicationSonataUserBundle:User',$id);
 
         return $this->container->get('templating')->renderResponse('YourBooksUserBundle:Profile:show.html.'.$this->container->getParameter('fos_user.template.engine'), array('user' => $user));
+    }
+
+
+    public function searchBookAction()
+    {
+        $category = null;
+        $request = $this->container->get('request');
+        if($request->isXmlHttpRequest())
+        {
+            $search = '';
+            $search = $request->request->get('search');
+            $em = $this->container->get('doctrine')->getEntityManager();
+
+            if($search != '')
+            {
+                var_dump($search);
+                $repo = $em->getRepository('YourBooksBookBundle:Book');
+
+                $books = $repo->findBySearch($search);
+            }
+            else {
+                $books = $em->getRepository('YourBooksBookBundle:Book')->findOnlyReading();
+            }
+
+            return $this->render('YourBooksMainBundle:Editor:list_books.html.twig', array(
+                'books' => $books,
+            ));
+        }
+        else {
+            return $this->indexAction($category);
+        }
+    }
+
+    public function searchCategoryBookAction()
+    {
+        $category = null;
+        $request = $this->container->get('request');
+        if($request->isXmlHttpRequest())
+        {
+            $date = $request->request->get('date');
+            $alphabetic = $request->request->get('alphabetic');
+            $note = $request->request->get('note');
+            var_dump($note);
+            die();
+            $em = $this->container->get('doctrine')->getEntityManager();
+
+            $repo = $em->getRepository('YourBooksBookBundle:Book');
+
+            $books = $repo->findBySearch($alphabetic , $note, $date);
+
+
+            return $this->render('YourBooksMainBundle:Editor:list_books.html.twig', array(
+                'books' => $books,
+            ));
+        }
+        else {
+            return $this->indexAction($category);
+        }
+    }
+
+    public function autoCompletionAction()
+    {
+        $request = $this->container->get('request');
+        if($request->isXmlHttpRequest())
+        {
+            $search = $request->request->get('search');
+            $em = $this->container->get('doctrine')->getEntityManager();
+
+            $repo = $em->getRepository('YourBooksBookBundle:Book');
+
+            $titles = $repo->autoCompletion($search);
+            return $this->render('YourBooksMainBundle:Editor:auto_completion.html.twig', array(
+                'titles' => $titles,
+            ));
+        }
     }
 }

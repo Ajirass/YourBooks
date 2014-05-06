@@ -1,0 +1,49 @@
+{% for book in books %}
+    <!-- le book cliquable -->
+    <div  class="couverture {{ book.category.familyCategory.colorCategory }}">
+
+        <!-- Trigger de l'apparition du cadre déroulant, remplacer le href par l'id du livre (ex: #65) -->
+        <a class="link" data-placement="bottom" data-toggle="popover" href="#{{ book.id }}">
+            <div class="filtre-hover">
+                <img src="{{ asset('bundles/yourbooksmain/images/oeil-hover-blanc.png') }}">
+            </div>
+            <h3 class="title">{{ book.title | truncate(15, true, '...') }}</h3>
+            <img src="{{ asset(book.category.webPath) }}">
+            {% set review = book.review.noteGlobale * 10 %}
+
+            <div class="review review{{ review }}"></div>
+        </a>
+        <div class="arrow {{ book.category.familyCategory.colorCategory }}"></div>
+
+
+    </div>
+
+
+    <div id="{{ book.id }}" class="container-slide-down" style="display: none">
+        <div class="{{ book.category.familyCategory.colorCategory }} slide-down">
+            <div class="bloc">
+                <h1>{{ book.title }}</h1>
+                <div class="review review{{ review }}"></div>
+                <div class="download">
+                    <a class="active" href="{{ path('your_books_main_download_book', { 'id': book.id }) }}">Télécharger ce manuscrit</a>
+                    <a class="disabled" href="">Télécharger ce manuscrit</a>
+                    <form>
+                        <input type="checkbox" class="checkbox">
+                        <label>J'accepte les <a href="{{ path('your_books_main_conditions') }}">conditions d'utilisation</a></label>
+                    </form>
+                </div>
+            </div>
+            <div class="bloc bloc-summary">
+                <h2>Résumé</h2>
+                <p>{{ book.review.summary }}</p>
+            </div>
+            <div class="bloc">
+                <h2>Critique</h2>
+                <p>{{ book.review.critic }}</p>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+
+    </div>
+{% endfor %}
