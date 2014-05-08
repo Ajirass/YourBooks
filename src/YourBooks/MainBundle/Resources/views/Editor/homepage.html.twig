@@ -38,11 +38,11 @@
             {{ form_widget(categoryform.note) }}
             {{ form_label(categoryform.date) }}
             {{ form_widget(categoryform.date) }}
-            <input type="submit" value="Rechercher" />
+            <input class="submit"" type="submit" value="Rechercher" />
         </form>
         <form id="form_recherche" action="{{ path('your_books_main_search_book') }}" method="post">
             <input id="search" type="text" autocomplete="off" />
-            <input type="submit" value="Rechercher" />
+            <input class="submit" type="submit" value="Rechercher" />
         </form>
         <div id="results">
             {% include 'YourBooksMainBundle:Editor:auto_completion.html.twig' %}

@@ -737,3 +737,130 @@ footer ul{ padding: 0px; margin: 0 auto; width: 1000px; }
   margin-top: 30px;
   text-decoration: underline;
 }
+
+/* ==========================================================================
+   Filtre de recherche Editor
+   ========================================================================== */
+
+#homepage-editor
+{
+  #category_recherche
+  {
+    float: left;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    padding-left: 20px;
+    label
+    {
+      font-family: "FuturaLT";
+    }
+    select
+    {
+      font-family: "FuturaLT";
+      margin-right: 30px;
+    }
+    input.submit
+    {
+        margin: 10px 8px 0px 0px;
+        font-family: "Futura LT";
+        font-size: 15px;
+        text-decoration: none;
+        color: #FFF;
+        background: #ca3e3c;
+        padding: 8px 15px;
+        margin-top: 0;
+        display: inline-block;
+        border-radius: 4px;
+        border: none;
+    }
+      input.submit:hover{
+        -moz-box-shadow: inset 0px 0px 5px 0px #000000;
+        -webkit-box-shadow: inset 0px 0px 5px 0px #000000;
+        -o-box-shadow: inset 0px 0px 5px 0px #000000;
+        box-shadow: inset 0px 0px 5px 0px #000000;
+        filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=NaN, Strength=5);
+      }
+
+  }
+  #form_recherche
+  {
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    input#search
+    {
+      font-family: "FuturaLT";
+      margin-right: 10px;
+      width:250px;
+    }
+
+    input.submit
+    {
+      margin: 10px 8px 0px 0px;
+      font-family: "Futura LT";
+      font-size: 15px;
+      text-decoration: none;
+      color: #FFF;
+      background: #ca3e3c;
+      padding: 8px 15px;
+      margin-top: 0;
+      display: inline-block;
+      border-radius: 4px;
+      border: none;
+    }
+    input.submit:hover{
+      -moz-box-shadow: inset 0px 0px 5px 0px #000000;
+      -webkit-box-shadow: inset 0px 0px 5px 0px #000000;
+      -o-box-shadow: inset 0px 0px 5px 0px #000000;
+      box-shadow: inset 0px 0px 5px 0px #000000;
+      filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=NaN, Strength=5);
+    }
+  }
+}
+
+/* ==========================================================================
+   Autocomplétion Editor
+   ========================================================================== */
+#homepage-editor
+{
+  #results
+  {
+    margin-bottom: 30px;
+    .none
+    {
+      font-family: "FuturaLT";
+      background-color: rgba(0, 0, 0, 0.7);
+      color:#FFFFFF;
+      font-size:15px;
+      display: inline-block;
+      margin-left: 20px;
+      padding: 8px 0 8px 8px;
+      width:250px;
+
+    }
+    div
+    {
+        font-family: "FuturaLT";
+        background-color: rgba(0, 0, 0, 0.7);
+        color:#FFFFFF;
+        font-size:15px;
+        display: inline-block;
+        margin-left: 20px;
+        padding: 8px 0 8px 8px;
+        margin-bottom: 10px;
+        width: 250px;
+        display: block;
+        cursor: pointer;
+        margin-left: 180px;
+        text-align: left;
+    }
+    div:hover
+    {
+      background-color: rgba(0, 0, 0);
+    }
+    .result_focus
+    {
+      background-color: rgba(0, 0, 0);
+    }
+  }
+}
