@@ -2,6 +2,7 @@
 {
     width:1000px;
     margin:auto;
+    min-height: 1000px;
 }
 
 .home .alert

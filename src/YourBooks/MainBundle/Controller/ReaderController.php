@@ -106,8 +106,18 @@ class ReaderController extends Controller
         $em->persist($form->getData());
         $em->flush();
 
-            $message = "Une note a été envoyé par le lecteur ".$reader." vous devez validé ses notes.";
-            $subject = "Nouvelle notes envoyé";
+            $message = "Bonjour ".$reader->getUsername().",
+                        Votre notation a bien été prise en compte, en voici un récapitulatif:
+                        critère 1: ".$form->get('criteria1')->getData()."
+                        critère 2: ".$form->get('criteria2')->getData()."
+                        critère 3: ".$form->get('criteria3')->getData()."
+                        critère 4: ".$form->get('criteria4')->getData()."
+                        critère 5: ".$form->get('criteria5')->getData()."
+                        ".$note_globale."
+                        Votre résumé: ".$form->get('summary')->getData()."
+                        Votre analyse: ".$form->get('criic')->getData()."
+                        Votre travail est en cours de validation par l’administrateur.";
+            $subject = "Nouvelles notes envoyées";
             // On crée l'évènement
             $event = new MailEvent($reader, $message, $subject);
 
@@ -139,7 +149,7 @@ class ReaderController extends Controller
         $em->flush();
         $user = $this->getUser();
         $message = "Vous avez confirmé la reception du livre, vous avez 7 jours pour le lire.";
-        $subject = "Confirmation reception livre";
+        $subject = "Confirmation de réception d'un nouveau livre";
         // On crée l'évènement
         $event = new MailEvent($user, $message, $subject);
 

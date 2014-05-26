@@ -31,7 +31,8 @@
     font-family: 'Quicksand-Book';
     float:right;
     border:none;
-    margin-right: -25px;
+    margin-right: -40px;
+    margin-top: 10px;
 }
 
 .historique input[type=text]

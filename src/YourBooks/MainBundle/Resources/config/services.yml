@@ -4,7 +4,7 @@ parameters:
 services:
     yourbooks.main.mail_event_listener:
         class: YourBooks\MainBundle\ConfirmMail\MailEventListener
-        arguments: [@mailer]
+        arguments: [@mailer, @twig]
         tags:
             - { name: kernel.event_listener, event: mainbundle.confirmmail.mail_event, method: onMailEvent }
     yourbooks.main.delayDaysOut:

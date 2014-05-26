@@ -40,11 +40,11 @@
                                 </li>
                              {% elseif is_granted('ROLE_READER') %}
                                  <li>
-                                     <a href="#"><img src="{{ asset('bundles/yourbooksmain/images/manuscrit-blanc.png') }}" alt="Mes Manuscrits" title="Mes Manuscrits"></a>
+                                     <a href="{{ path ('your_books_main_homepage') }}"><img src="{{ asset('bundles/yourbooksmain/images/manuscrit-blanc.png') }}" alt="Mes Manuscrits" title="Mes Manuscrits"></a>
                                  </li>
                              {% elseif is_granted('ROLE_AUTHOR') %}
                                  <li>
-                                     <a href="#"><img src="{{ asset('bundles/yourbooksmain/images/manuscrit-blanc.png') }}" alt="Mes Manuscrits" title="Mes Manuscrits"></a>
+                                     <a href="{{ path ('your_books_main_homepage') }}"><img src="{{ asset('bundles/yourbooksmain/images/manuscrit-blanc.png') }}" alt="Mes Manuscrits" title="Mes Manuscrits"></a>
                                  </li>
                              {% endif %}
 

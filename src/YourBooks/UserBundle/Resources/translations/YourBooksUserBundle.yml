@@ -58,10 +58,12 @@ registration:
         message: |
             Bonjour %username% !
 
-            Pour valider votre compte utilisateur, merci de vous rendre sur %confirmationUrl%
+            Merci de votre inscription et bienvenue sur Your-Books!
+
+             Veuillez compléter votre inscription en suivant ce lien : %confirmationUrl%
 
             Cordialement,
-            L'équipe.
+            L'équipe de Your-Books.
 
 # Password resetting
 resetting:
@@ -83,7 +85,7 @@ resetting:
             Pour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%
 
             Cordialement,
-            L'équipe.
+            L'équipe de Your-Books.
 
 # Global strings
 layout:

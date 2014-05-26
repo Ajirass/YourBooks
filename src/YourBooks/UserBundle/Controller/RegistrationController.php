@@ -57,13 +57,24 @@ class RegistrationController extends ContainerAware
             {
                 $roles = array("ROLE_READER");
                 $subject = "Demande d'inscription Lecteur";
-                $message = "L'utilisateur ".$user->getUsername()." a fait une demande d'inscription en tant que Lecteur";
+                $message = "Bonjour admin,!
+                            Un nouveau Lecteur s’est inscrit sur Yourbooks, veuillez trouver ci-dessous les
+                            informations relatives à son compte :
+                            ".$user->getUsername()."
+                            Vous pouvez refuser cette inscription en désactivant ce nouvel utilisateur dans votre
+                            espace administrateur.";
+
             }
             elseif($account == 'editor')
             {
                 $roles = array("ROLE_EDITOR");
                 $subject = "Demande d'inscription Editeur";
-                $message = "L'utilisateur ".$user->getUsername()." a fait une demande d'inscription en tant que Editeur";
+                $message = "Bonjour admin,!
+                            Un nouvel Éditeur s’est inscrit sur Yourbooks, veuillez trouver ci-dessous les
+                            informations relatives à son compte :
+                            ".$user->getUsername()."
+                            Vous pouvez refuser cette inscription en désactivant ce nouvel utilisateur dans votre
+                            espace administrateur.";
             }
             else
             {

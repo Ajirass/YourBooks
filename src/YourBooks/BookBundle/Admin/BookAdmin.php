@@ -33,7 +33,7 @@ class BookAdmin extends Admin
         if (null !== $currentBook->getFileName())
             $options = array(
                 'required' => false,
-                'help' => '<a href="/'.$currentBook->getWebPath().'">Download File : '.$currentBook->getFileName().'</a>',
+                'help' => '<a href="/YourBooks/web/'.$currentBook->getWebPath().'">Download File : '.$currentBook->getFileName().'</a>',
             );
 
        // $query_user = $this->modelManager->getEntityManager('Application\Sonata\UserBundle\Entity\User‌​')->createQueryBuilder()

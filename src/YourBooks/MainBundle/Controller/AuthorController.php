@@ -71,7 +71,10 @@ class AuthorController extends Controller
             $em->persist($form->getData());
             $em->flush();
 
-            $message_author = "Manuscrit envoyé";
+            $message_author =   "Bonjour ".$author->getFirstname()." ".$author->getLastname()."!
+                                Nous vous confirmons l’envoi de votre manuscrit ".$book->getTitle()." qui est
+                                actuellement en cours de validation par notre administrateur. Nous vous notifierons à
+                                chaque évolution du statut de votre manuscrit.";
             $subject_author = "Envoi de votre manuscrit";
             // On crée l'évènement
             $event_author = new MailEvent($author, $message_author, $subject_author);
@@ -81,7 +84,9 @@ class AuthorController extends Controller
                 ->dispatch(ConfirmMailEvent::onMailEvent, $event_author);
 
             $message_admin = "Nouveau manuscrit envoyé";
-            $subject_admin = "Un manuscrit a été envoyé par l'auteur ".$author->getUsername();
+            $subject_admin =    "Bonjour admin,!
+                                Un nouveau manuscrit,".$book->getTitle().", a été soumis par ".$author->getUsername()." et est en attente de validation.";
+
             // On crée l'évènement
             $event_admin = new MailEvent($author, $message_admin, $subject_admin);
 

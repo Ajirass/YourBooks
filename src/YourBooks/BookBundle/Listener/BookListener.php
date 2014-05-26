@@ -30,8 +30,8 @@ class BookListener
         if ($entity instanceof Book) {
             if($eventArgs->hasChangedField('readerValidation') && $eventArgs->getNewValue('readerValidation') == true){
                 $user = $eventArgs->getEntity()->getReader();
-                $message = "Votre livre à été noté il est désormais mis a disposition sur l'espace des éditeurs";
-                $subject = "Votre livre à été noté";
+                $message = "Votre livre a été noté, il est désormais mis a disposition sur l'espace des éditeurs.";
+                $subject = "Votre livre a été noté !";
                 // On crée l'évènement
                 $event_readerValidation_author = new MailEvent($user, $message, $subject);
 
@@ -52,7 +52,11 @@ class BookListener
                 $uow = $em->getUnitOfWork();
                 $meta = $em->getClassMetadata(get_class($entity));
                 $uow->recomputeSingleEntityChangeSet($meta, $entity);
-                $message = "Vous avez reçu un nouveau livre a lire, vous avez 24h pour confirmer sa reception.";
+                $message = "Bonjour ".$user->getFirstname()." ".$user->getLastname().",!
+                            Un nouveau manuscrit est en attente de lecture, rendez-vous vite dans votre espace perso pour valider sa réception !
+                            Nous vous rappelons que vous disposez de 7 jours pour lire le manuscrit à partir de la
+                            date d’accusé de réception.
+                            Bonne lecture !";
                 $subject = "Nouveau livre à noter";
 
                 // On crée l'évènement
