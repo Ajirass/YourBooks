@@ -61,7 +61,9 @@
                         <h4>Dénouement :</h4>
                         <div class="review review{{ criteria5 }}"></div>
                         <div class="download">
-                            <a class="active" href="{{ path('your_books_main_download_book', { 'id': book.id }) }}">Télécharger ce manuscrit</a>
+                            <!--<a class="active" href="{{ path('your_books_main_download_book', { 'id': book.id }) }}">Télécharger ce manuscrit</a>-->
+
+                            <a class="active" href="#" onclick="if (confirm('Vous souhaitez télécharger ce manuscrit et obtenir les coordonnées de l\'auteur. \nAfin de garantir la traçabilité de notre action, merci de nous tenir informé de toute signature de contrat. \n \nLes coordonnées de l\'auteur et le détails des notes du manuscrit sera disponible dans votre espace personnel.')) window.location='{{ path('your_books_main_download_book', { 'id': book.id }) }}';  return false">Télécharger ce manuscrit</a>
                             <a class="disabled" href="">Télécharger ce manuscrit</a>
                             <form>
                                 <input type="checkbox" class="checkbox">
