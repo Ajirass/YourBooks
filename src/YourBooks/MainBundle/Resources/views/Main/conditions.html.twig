@@ -8,8 +8,8 @@
 
         <div class="content">
             {% for conditionsUtilisation in conditionsUtilisation %}
-                <h2>{{ conditionsUtilisation.title }}</h2>
-                <p>{{ conditionsUtilisation.content }}</p>
+                <h2>{{ conditionsUtilisation.title | raw}}</h2>
+                <p>{{ conditionsUtilisation.content | raw }}</p>
             {% endfor %}
         </div>
     </div>

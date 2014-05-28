@@ -29,7 +29,7 @@ class MailEventListener
         $templateContent = $this->twig->loadTemplate($templateFile);
 
         // Render the whole template including any layouts etc
-        $body = $templateContent->render(array("message" => $message));
+        $body = $templateContent->render(array("message" => $message, "subject"=>$subject, "user"=>$user));
 
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)

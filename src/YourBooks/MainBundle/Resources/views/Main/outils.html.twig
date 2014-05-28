@@ -8,8 +8,8 @@
 
         <div class="content">
             {% for outil in outils %}
-                <h2>{{ outil.title }}</h2>
-                <p>{{ outil.content }}</p>
+                <h2>{{ outil.title | raw }}</h2>
+                <p>{{ outil.content | raw }}</p>
                 <hr>
             {% endfor %}
         </div>

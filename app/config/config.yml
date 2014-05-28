@@ -110,6 +110,9 @@ sonata_block:
         # Your other blocks
 
 sonata_user:
+    admin:
+      user:
+        class:    Application\Sonata\UserBundle\Admin\Model\UserAdmin
     security_acl: false
     manager_type: orm # can be orm or mongodb
 

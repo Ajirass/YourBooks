@@ -8,8 +8,8 @@
 
         <div class="content">
             {% for articlePresse in presse %}
-                <h2>{{ articlePresse.title }}</h2>
-                <p>{{ articlePresse.content }}</p>
+                <h2>{{ articlePresse.title | raw }}</h2>
+                <p>{{ articlePresse.content | raw }}</p>
                 {% if (articlePresse.fileName is not null) %}
                     <a class="dl" href="{{ path('your_books_main_download_presse', { 'id': articlePresse.id }) }}">Téléchargez</a>
                 {% endif %}

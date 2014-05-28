@@ -8,8 +8,8 @@
 
         <div class="content">
             {% for mentionLegale in mentionsLegales %}
-                <h2>{{ mentionLegale.title }}</h2>
-                <p>{{ mentionLegale.content }}</p>
+                <h2>{{ mentionLegale.title | raw }}</h2>
+                <p>{{ mentionLegale.content | raw }}</p>
             {% endfor %}
         </div>
     </div>

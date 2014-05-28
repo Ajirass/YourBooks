@@ -55,6 +55,8 @@
             <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
         </form>
 
+        <a class="resetting-request" href="{{ path('your_books_user_resetting_request') }}">Mot de passe oublié</a>
+
         <div class="register">
             <h3>Pas encore membre ?</h3>
             <form action="{{ path('your_books_user_registration_register', {'account' : 'author'}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">

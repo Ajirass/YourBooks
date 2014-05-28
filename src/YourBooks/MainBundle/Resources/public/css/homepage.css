@@ -119,3 +119,13 @@ aside.home li:nth-child(3) img
     height:90px;
     margin-right:-10px;
 }
+
+a.resetting-request
+{
+    font-family: "FuturaLT";
+    font-size: 24px;
+    color:#FFFFFF;
+    display: block;
+    clear:both;
+
+}

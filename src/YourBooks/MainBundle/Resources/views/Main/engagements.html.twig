@@ -8,8 +8,8 @@
 
         <div class="content">
             {% for engagement in engagements %}
-                <h2>{{ engagement.title }}</h2>
-                <p>{{ engagement.content }}</p>
+                <h2>{{ engagement.title | raw }}</h2>
+                <p>{{ engagement.content | raw }}</p>
             {% endfor %}
         </div>
     </div>
