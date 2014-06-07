@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+{% block title %}Erreur : {{ status_text }}{% endblock %}
+{% block body %}
+        <h1>Oups ! Il semlberait qu'une erreur se soit produite.</h1>
+        <h2>L'erreur retournée est la suivante :  "{{ status_code }} {{ status_text }}".</h2>
+
+        <div>
+            Si vous n'arrivez pas à accéder à votre page, envoyez-nous un mail via le formulaire de contact pour nous en informer.
+            Nous nous excusons pour cet inconvénient.
+        </div>
+{% endblock %}

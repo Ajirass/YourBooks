@@ -26,7 +26,7 @@ class UserRegistrationListener
             ->setSubject("Confirmation inscription")
             ->setFrom('godartrobin@gmail.com')
             ->setTo('godartrobin@gmail.com')
-            ->setBody("Bonjour '".$user->getUsername()."' votre insctiption à bien été prise en compte, Bienvenue sur Yourbooks");
+            ->setBody("Bonjour '".$user->getUsername()."' votre inscription a bien été prise en compte. Bienvenue sur Yourbooks !");
 
         $this->mailer->send($message);
     }

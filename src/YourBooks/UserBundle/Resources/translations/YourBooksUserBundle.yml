@@ -56,14 +56,22 @@ registration:
     email:
         subject: Bienvenue %username% !
         message: |
-            Bonjour %username% !
 
-            Merci de votre inscription et bienvenue sur Your-Books!
+            Bonjour et bienvenue sur Your-books.
 
-             Veuillez compléter votre inscription en suivant ce lien : %confirmationUrl%
+            Vous avez demandé l’ouverture d’un espace personnel sur le site www.your-books.fr
 
-            Cordialement,
-            L'équipe de Your-Books.
+            Merci d’ajouter dès à présent notre adresse mail dans vos contacts afin qu’elle soit reconnue comme tel par le serveur de votre messagerie.
+
+            L'identifiant que vous avez renseigné sur le formulaire d’accueil est  %username%. Veillez à le conserver.
+
+            Merci de finaliser dès à présent votre inscription en cliquant sur le lien suivant.
+
+             %confirmationUrl%
+
+            Nous restons à votre disposition
+
+            L’équipe Your-books
 
 # Password resetting
 resetting:
