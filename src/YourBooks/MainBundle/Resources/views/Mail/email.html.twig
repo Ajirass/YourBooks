@@ -744,15 +744,6 @@ body.outlook p {
         border-color: #b9e5ff;
     }
 
-    .header .wrapper
-    {
-        background: #38475e;
-    }
-
-    .footer .wrapper
-    {
-        background: #38475e;
-    }
 
     .footer h5 {
         padding-bottom: 10px;
@@ -781,6 +772,7 @@ body.outlook p {
             padding-right: 10px !important;
         }
     }
+
 </style>
 </head>
 <body>
@@ -802,7 +794,7 @@ body.outlook p {
                                                     <tr>
                                                         <td class="six sub-columns" align="center">
                                                             <center>
-                                                                <img src="http://ns362945.ip-91-121-176.eu/YourBooks/web/bundles/yourbooksmain/images/logo_emailing.png" align="center" style="float:none;" class="center">
+                                                                <img src="http://preprod.your-books.fr/YourBooks/web/bundles/yourbooksmain/images/logo_emailing.png" align="center" style="float:none;" class="center">
                                                             </center>
 
                                                         </td>
@@ -836,7 +828,7 @@ body.outlook p {
                                             <tr>
                                                 <td class="right">
 
-                                                    <p>Bonjour {{ user.username }}</p>
+                                                    <h2>Bonjour {{ user.username }} !</h2>
                                                     <p>{{ subject }}</p>
                                                 </td>
                                                 <td class="expander"></td>
@@ -850,7 +842,7 @@ body.outlook p {
                                         <table class="six columns">
                                             <tr>
                                                 <td class="panel">
-                                                    <img src="http://ns362945.ip-91-121-176.eu/YourBooks/web/bundles/yourbooksmain/images/ordinateur.png" title="Ordinateur Your-Books" alt="Ordinateur Your-Books" style="float:right;">
+                                                    <img src="http://preprod.your-books.fr/YourBooks/web/bundles/yourbooksmain/images/ordinateur.png" title="Ordinateur Your-Books" alt="Ordinateur Your-Books" style="float:right;">
                                                 </td>
                                                 <td class="expander"></td>
                                             </tr>
@@ -865,24 +857,13 @@ body.outlook p {
 
                             <table class="row">
                                 <tr>
-                                    <td class="wrapper last">
-
-                                        <table class="six columns">
-                                            <tr>
-                                                <td class="panel">
-                                                    <img src="http://ns362945.ip-91-121-176.eu/YourBooks/web/bundles/yourbooksmain/images/machineaecrire.png" title="Machine à écrire Your-Books" alt="Machine à écrire Your-Books" style="float:left;">
-                                                </td>
-                                                <td class="expander"></td>
-                                            </tr>
-                                        </table>
-                                    </td>
                                     <td class="wrapper">
 
-                                        <table class="six columns">
+                                        <table class="twelve columns">
                                             <tr>
                                                 <td>
 
-                                                    <p>{{ message | raw}}</p>
+                                                   <p>{{ message | raw}}</p>
 
                                                 </td>
                                                 <td class="expander"></td>
@@ -917,7 +898,7 @@ body.outlook p {
                                                     <tr>
                                                         <td class="six sub-columns" align="center">
                                                             <center>
-                                                                <img src="http://ns362945.ip-91-121-176.eu/YourBooks/web/bundles/yourbooksmain/images/logo_emailing.png" align="center" style="float:none;" class="center">
+                                                                <img src="http://preprod.your-books.fr/YourBooks/web/bundles/yourbooksmain/images/logo_emailing.png" align="center" style="float:none;" class="center">
                                                             </center>
                                                         </td>
                                                         <td class="expander"></td>
