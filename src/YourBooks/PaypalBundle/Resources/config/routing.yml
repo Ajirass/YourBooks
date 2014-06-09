@@ -3,7 +3,7 @@ your_books_paypal_homepage:
     defaults: { _controller: YourBooksPaypalBundle:Default:index }
 your_books_paypal_cancel_payment:
     pattern:  /payment/treatment
-    defaults: { _controller: YourBooksPaypalBundle:payment:treatment }
+    defaults: { _controller: YourBooksPaypalBundle:Payment:treatment }
 your_books_paypal_success_payment:
     pattern:  /payment/success
-    defaults: { _controller: YourBooksPaypalBundle:payment:success }
+    defaults: { _controller: YourBooksPaypalBundle:Payment:success }

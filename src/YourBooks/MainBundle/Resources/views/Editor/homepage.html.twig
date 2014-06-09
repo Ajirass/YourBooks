@@ -60,6 +60,7 @@
 
             $(document).ready(function(){
 
+                var get_variable = '{{ get_category }}';
                 var delay = (function(){
                     var timer = 0;
                     return function(callback, ms){
@@ -73,13 +74,21 @@
                     $("#search").keyup(function(e){
                         var search = $(this).val();
                         var code = e.keyCode || e.which;
-                        var data = 'search=' + search;
                         delay(function(){
 
                             if(search.length>1 && code != 38 && code != 40 && code != 13){
+                                if(get_variable.length >= 1){
+                                    data = {search: search, cat: get_variable};
+                                    console.log(data);
+                                    var url = "{{ path('your_books_main_auto_completion_search_cat')}}";
+                                }
+                                else{
+                                    var data = 'search=' + search;
+                                    var url = "{{ path('your_books_main_auto_completion_search')}}";
+                                }
                                 $.ajax({
                                     type: "POST",
-                                    url: "{{ path('your_books_main_auto_completion_search')}}",
+                                    url: url,
                                     data: data,
                                     cache: false,
                                     success: function(data){
@@ -97,7 +106,7 @@
                             if(search.length==0 && code != 40){
                                 $("#form_recherche").submit();
                             }
-                        }, 500 );
+                        }, 300 );
                     });
 
 
@@ -193,7 +202,7 @@
                                 content: function() {
                                     return $($(this).attr("href")).html();
                                 }
-                            });
+                    });
                     //Customisation de notre popover
                     $(".link").click( function() {
                         //On récupère la position en left par rapport à l'écran du book sur lequel on clique
@@ -252,15 +261,113 @@
                     $('.container').append('<div class="clear"></div>');
                 }
 
+                $(document).on('submit','#form_recherche',function(){
+                    alert(this.val());
+
+                });
+
+                $("#CategorySearch_alphabetic").change(function() {
+                    console.log($(this).val());
+                    if($(this).val() != "empty_value"){
+                        alert($(this).val());
+                        var order = $(this).val();
+                        var params = "alphabetic";
+                        if(get_variable.length >= 1){
+                            data = {order: order, params : params, cat: get_variable};
+                            var url = "{{ path('your_books_main_order_book_cat')}}";
+                        }
+                        else{
+                            var data = {order: order, params: params};
+                            var url = "{{ path('your_books_main_order_book')}}";
+                        }
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: data,
+                            cache: false,
+                            success: function(data){
+                                $('.list-books').html(data);
+                                enterKey();
+                                showpopover();
+                            }
+                        });
+                    }
+                });
+
+                $("#CategorySearch_note").change(function() {
+                    console.log($(this).val());
+                    if($(this).val() != "empty_value"){
+                        alert($(this).val());
+                        var order = $(this).val();
+                        var params = "note";
+                        if(get_variable.length >= 1){
+                            data = {order: order, params : params, cat: get_variable};
+                            var url = "{{ path('your_books_main_order_book_cat')}}";
+                        }
+                        else{
+                            var data = {order: order, params: params};
+                            var url = "{{ path('your_books_main_order_book')}}";
+                        }
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: data,
+                            cache: false,
+                            success: function(data){
+                                $('.list-books').html(data);
+                                enterKey();
+                                showpopover();
+                            }
+                        });
+                    }
+                });
+
+                $("#CategorySearch_date").change(function() {
+                    console.log($(this).val());
+                    if($(this).val() != "empty_value"){
+                        alert($(this).val());
+                        var order = $(this).val();
+                        var params = "date";
+                        if(get_variable.length >= 1){
+                            data = {order: order, params : params, cat: get_variable};
+                            var url = "{{ path('your_books_main_order_book_cat')}}";
+                        }
+                        else{
+                            var data = {order: order, params: params};
+                            var url = "{{ path('your_books_main_order_book')}}";
+                        }
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: data,
+                            cache: false,
+                            success: function(data){
+                                $('.list-books').html(data);
+                                enterKey();
+                                showpopover();
+                            }
+                        });
+                    }
+                });
 
                 $("#form_recherche").submit(function(){
                     $(".loading").show();
                     var search = $("#form_recherche #search").val();
-                    var DATA = 'search=' + search;
+
+                    if(get_variable.length >= 1){
+                        data = {search: search, cat: get_variable};
+                        console.log(data);
+                        console.log("test");
+                        var url = "{{ path('your_books_main_search_book_cat')}}";
+                    }
+                    else{
+                        var data = 'search=' + search;
+                        var url = "{{ path('your_books_main_search_book')}}";
+                    }
                     $.ajax({
                         type: "POST",
-                        url: "{{ path('your_books_main_search_book')}}",
-                        data: DATA,
+                        url: url,
+                        data: data,
                         cache: false,
                         success: function(data){
                             $('.list-books').html(data);

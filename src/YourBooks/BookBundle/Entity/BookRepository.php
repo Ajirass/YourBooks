@@ -50,6 +50,23 @@ class BookRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function findBySearchCat($search, $cat)
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->leftJoin('b.category',  'c')
+            ->select('b')
+            ->where('b.readerValidation = :readerValidation')
+            ->andwhere("b.title LIKE :search")
+            ->andWhere("c.id = :cat")
+            ->orderBy('b.title', 'ASC')
+            ->setParameter(':search', '%'.$search.'%')
+            ->setParameter(':cat', $cat)
+            ->setParameter(':readerValidation', true)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
     public function autoCompletion($search)
     {
         $qb = $this->createQueryBuilder('b')
@@ -64,12 +81,66 @@ class BookRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function autoCompletionCat($search, $cat)
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->leftJoin('b.category',  'c')
+            ->select('b.title')
+            ->where('b.readerValidation = :readerValidation')
+            ->andwhere("b.title LIKE :search")
+            ->andWhere("c.id = :cat")
+            ->orderBy('b.title', 'ASC')
+            ->setParameter(':search', '%'.$search.'%')
+            ->setParameter(':cat', $cat)
+            ->setParameter(':readerValidation', true)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
     public function findOnlyReading()
     {
         $qb = $this->createQueryBuilder('b')
             ->select('b')
             ->where('b.readerValidation = :readerValidation')
             ->orderBy('b.createdAt', 'DESC')
+            ->setParameter(':readerValidation', true)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findByOrderAlphabetic($order)
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->select('b')
+            ->where('b.readerValidation = :readerValidation')
+            ->orderBy('b.title', $order)
+            ->setParameter(':readerValidation', true)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findByOrderNote($order)
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->select('b')
+            ->leftJoin('b.review',  'r')
+            ->where('b.readerValidation = :readerValidation')
+            ->orderBy('r.noteGlobale', $order)
+            ->setParameter(':readerValidation', true)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findByOrderDate($order)
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->select('b')
+            ->where('b.readerValidation = :readerValidation')
+            ->orderBy('b.createdAt', $order)
             ->setParameter(':readerValidation', true)
         ;
 
@@ -123,4 +194,5 @@ class BookRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
 }

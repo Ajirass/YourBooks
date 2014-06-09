@@ -19,7 +19,7 @@ class PaymentController extends Controller
         /* Derniere mise a jour: 15-02-2014 */
 
         /* ADRESSE E-MAIL DU VENDEUR */
-        $emailto = "yourbooksbusiness@gmail.com";
+        $emailto = "yourbooks_socity@gmail.com";
         /* ADRESSE E-MAIL DE L'EMETTEUR DE CE MAIL (le FROM), DOIT ETRE UN VRAI COMPTE MAIL. */
         $emailfrom = "godartrobin@gmail.com";
         /* PREFIX AU SUJET DU MAIL POUR FILTRE ANTI-SPAM */
@@ -48,12 +48,6 @@ class PaymentController extends Controller
         die();
         // variables
         $item_name = $_POST['item_name'];
-        $item_number = $_POST['item_number'];
-        $item_number1 = $_POST['item_number1'];
-        $item_number2 = $_POST['item_number2'];
-        $item_number3 = $_POST['item_number3'];
-        $item_number4 = $_POST['item_number4'];
-        $item_number5 = $_POST['item_number5'];
         $quantity = $_POST['quantity'];
         $business = $_POST['business'];
         $item_number = $_POST['item_number'];
@@ -110,6 +104,7 @@ class PaymentController extends Controller
             while (!feof($fp)) {
                 $res = fgets ($fp, 1024);
                 if (strcmp ($res, "VERIFIED") == 0) {
+                    mail("godartrobin@gmail.com", 'paypal', $payment_date);
 
         // Envoi du mail
                     $mail_To = $emailto;

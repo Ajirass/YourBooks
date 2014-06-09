@@ -32,6 +32,21 @@ your_books_main_search_book:
   defaults: { _controller: YourBooksMainBundle:Editor:searchBook }
   requirements:
     _method: POST
+your_books_main_search_book_cat:
+  pattern: /book/recherche/cat
+  defaults: { _controller: YourBooksMainBundle:Editor:searchBookCat }
+  requirements:
+    _method: POST
+your_books_main_order_book:
+  pattern: /book/order
+  defaults: { _controller: YourBooksMainBundle:Editor:orderBook }
+  requirements:
+    _method: POST
+your_books_main_order_book_cat:
+  pattern: /book/recherche/cat
+  defaults: { _controller: YourBooksMainBundle:Editor:orderBookCat }
+  requirements:
+    _method: POST
 your_books_main_category_search_book:
   pattern: /book/category
   defaults: { _controller: YourBooksMainBundle:Editor:searchCategoryBook }
@@ -40,5 +55,10 @@ your_books_main_category_search_book:
 your_books_main_auto_completion_search:
   pattern: /book/autocompletion
   defaults: { _controller: YourBooksMainBundle:Editor:autoCompletion }
+  requirements:
+    _method: POST
+your_books_main_auto_completion_search_cat:
+  pattern: /book/autocompletion/cat
+  defaults: { _controller: YourBooksMainBundle:Editor:autoCompletionCat }
   requirements:
     _method: POST

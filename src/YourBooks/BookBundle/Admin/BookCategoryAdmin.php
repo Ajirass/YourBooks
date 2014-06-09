@@ -15,8 +15,8 @@ class BookCategoryAdmin extends Admin
 
         $formMapper
 
-            //->add('name', null, array('label' => 'Nom : '))
-            //->add('file', 'file', array('label'=> 'Image : '))
+            ->add('name', null, array('label' => 'Nom : '))
+            ->add('file', 'file', array('label'=> 'Image : '))
             ->add('familyCategory', null, array('label' => 'Catégorie Parente :'))
         ;
     }

@@ -18,14 +18,11 @@ class CategorySearchType extends AbstractType
     {
         $builder
             ->add('alphabetic', 'choice', array(
-                'choices' => array('asc' => 'Ordre croissant', 'desc' => 'Ordre décroissant'),
-                'preferred_choices' => array('asc'), 'label' => 'Ordre alphabétique'))
+                'choices' => array('empty_value' => 'Ordre alphabétique', 'asc' => 'Ordre croissant', 'desc' => 'Ordre décroissant')))
             ->add('note', 'choice', array(
-                'choices' => array('asc' => 'Ordre croissant', 'desc' => 'Ordre décroissant'),
-                'preferred_choices' => array('asc'), 'label' => 'Note'))
+                'choices' => array('empty_value' => 'Note', 'asc' => 'Ordre croissant', 'desc' => 'Ordre décroissant')))
             ->add('date', 'choice', array(
-                'choices' => array('asc' => 'Ordre croissant', 'desc' => 'Ordre décroissant'),
-                'preferred_choices' => array('asc'), 'label' => 'Date'))
+                'choices' => array('empty_value' => 'Date', 'asc' => 'Ordre croissant', 'desc' => 'Ordre décroissant')))
         ;
     }
 

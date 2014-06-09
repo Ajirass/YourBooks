@@ -39,6 +39,7 @@ class EditorController extends Controller
             'familyCategories' => $familyCategories,
             'searchform' => $search_form->createView(),
             'categoryform' => $category_form->createView(),
+            'get_category' => $category,
         ));
     }
 
@@ -114,6 +115,71 @@ class EditorController extends Controller
         }
     }
 
+    public function searchBookCatAction()
+    {
+        $category = null;
+        $request = $this->container->get('request');
+        if($request->isXmlHttpRequest())
+        {
+            $search = '';
+            $search = $request->request->get('search');
+            $cat = $request->request->get('cat');
+            $em = $this->container->get('doctrine')->getEntityManager();
+
+            //if($search != '')
+            //{
+                $repo = $em->getRepository('YourBooksBookBundle:Book');
+
+                $books = $repo->findBySearchCat($search, $cat);
+            //}
+            //else {
+            //    $books = $em->getRepository('YourBooksBookBundle:Book')->findOnlyReading();
+            //}
+
+            return $this->render('YourBooksMainBundle:Editor:list_books.html.twig', array(
+                'books' => $books,
+            ));
+        }
+        else {
+            return $this->indexAction($category);
+        }
+    }
+
+    public function orderBookAction()
+    {
+        $category = null;
+        $request = $this->container->get('request');
+        if($request->isXmlHttpRequest())
+        {
+            $order = '';
+            $order = $request->request->get('order');
+            $params = $request->request->get('params');
+            $em = $this->container->get('doctrine')->getEntityManager();
+
+            if($params == "alphabetic"){
+                $repo = $em->getRepository('YourBooksBookBundle:Book');
+                $books = $repo->findByOrderAlphabetic($order);
+            }
+
+            if($params == "note"){
+                $repo = $em->getRepository('YourBooksBookBundle:Book');
+                $books = $repo->findByOrderNote($order);
+            }
+
+            if($params == "date"){
+                $repo = $em->getRepository('YourBooksBookBundle:Book');
+                $books = $repo->findByOrderDate($order);
+            }
+
+            return $this->render('YourBooksMainBundle:Editor:list_books.html.twig', array(
+                'books' => $books,
+            ));
+        }
+        else {
+            return $this->indexAction($category);
+        }
+    }
+
     public function searchCategoryBookAction()
     {
         $category = null;
@@ -123,8 +189,6 @@ class EditorController extends Controller
             $date = $request->request->get('date');
             $alphabetic = $request->request->get('alphabetic');
             $note = $request->request->get('note');
-            var_dump($note);
-            die();
             $em = $this->container->get('doctrine')->getEntityManager();
 
             $repo = $em->getRepository('YourBooksBookBundle:Book');
@@ -152,6 +216,24 @@ class EditorController extends Controller
             $repo = $em->getRepository('YourBooksBookBundle:Book');
 
             $titles = $repo->autoCompletion($search);
+            return $this->render('YourBooksMainBundle:Editor:auto_completion.html.twig', array(
+                'titles' => $titles,
+            ));
+        }
+    }
+
+    public function autoCompletionCatAction()
+    {
+        $request = $this->container->get('request');
+        if($request->isXmlHttpRequest())
+        {
+            $search = $request->request->get('search');
+            $cat = $request->request->get('cat');
+            $em = $this->container->get('doctrine')->getEntityManager();
+
+            $repo = $em->getRepository('YourBooksBookBundle:Book');
+
+            $titles = $repo->autoCompletionCat($search, $cat);
             return $this->render('YourBooksMainBundle:Editor:auto_completion.html.twig', array(
                 'titles' => $titles,
             ));
