@@ -24,16 +24,16 @@ security:
 # Profile
 profile:
     show:
-        username:     Nom d'utilisateur
-        email:        Adresse e-mail
-        firstname:    Prénom
-        lastname:     Nom
-        dateOfBirth:  Date de naissance
-        biography:    Présentation
-        phone:        Tel
-        city:         Ville
-        zipcode:      Code postal
-        street:       Rue
+        username:    Nom d'utilisateur
+        email:       Adresse e-mail
+        firstname:   Prénom
+        lastname:    Nom
+        dateOfBirth: Date de naissance
+        biography:   Présentation
+        phone:       Tel
+        city:        Ville
+        zipcode:     Code postal
+        street:      Rue
     edit:
         submit: Mettre à jour
     flash:
@@ -56,22 +56,12 @@ registration:
     email:
         subject: Bienvenue %username% !
         message: |
+           Bonjour %username% !
 
-            Bonjour et bienvenue sur Your-books.
+            Pour valider votre compte utilisateur, merci de vous rendre sur %confirmationUrl%
 
-            Vous avez demandé l’ouverture d’un espace personnel sur le site www.your-books.fr
-
-            Merci d’ajouter dès à présent notre adresse mail dans vos contacts afin qu’elle soit reconnue comme tel par le serveur de votre messagerie.
-
-            L'identifiant que vous avez renseigné sur le formulaire d’accueil est  %username%. Veillez à le conserver.
-
-            Merci de finaliser dès à présent votre inscription en cliquant sur le lien suivant.
-
-             %confirmationUrl%
-
-            Nous restons à votre disposition
-
-            L’équipe Your-books
+            Cordialement,
+            L'équipe.
 
 # Password resetting
 resetting:
@@ -88,12 +78,12 @@ resetting:
     email:
         subject: Réinitialisation de votre mot de passe
         message: |
-            Bonjour %username% !
+           Bonjour %username% !
 
             Pour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%
 
             Cordialement,
-            L'équipe de Your-Books.
+            L'équipe.
 
 # Global strings
 layout:
@@ -118,5 +108,5 @@ form:
     biography: "Présentation"
     phone: "Tel"
     city: "Ville"
-    zipcode:  "Code postal"
+    zipcode: "Code postal"
     street: "Rue"

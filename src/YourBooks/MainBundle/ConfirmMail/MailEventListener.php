@@ -14,19 +14,30 @@ use YourBooks\MainBundle\ConfirmMail\MailEvent;
 class MailEventListener
 {
     protected $mailer;
+    protected $twig;
 
-    public function __construct(\Swift_Mailer $mailer)
+    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig)
     {
         $this->mailer = $mailer;
+        $this->twig = $twig;
+
     }
 
     protected function sendEmail(UserInterface $user, $message, $subject)
     {
+        $templateFile = "YourBooksMainBundle:Mail:email.html.twig";
+        $templateContent = $this->twig->loadTemplate($templateFile);
+
+        // Render the whole template including any layouts etc
+        $body = $templateContent->render(array("message" => $message, "subject"=>$subject, "user"=>$user));
+
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)
             ->setFrom('godartrobin@gmail.com')
             ->setTo('godartrobin@gmail.com')
-            ->setBody($message);
+            //->setBody($message);
+            ->setContentType('text/html')
+            ->setBody($body);
 
         $this->mailer->send($message);
     }

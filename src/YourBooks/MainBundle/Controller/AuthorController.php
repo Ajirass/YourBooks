@@ -71,7 +71,14 @@ class AuthorController extends Controller
             $em->persist($form->getData());
             $em->flush();
 
-            $message_author = "Manuscrit envoyé";
+            $message_author =   "Bonjour ".$author->getFirstname()." ".$author->getLastname().",
+                                Nous vous confirmons l’envoi de votre manuscrit ".$book->getTitle().".
+                                Que va-t-il se passer à présent ?
+                                A l’expiration du délai de rétractation, votre manuscrit sera automatiquement transmis à l’un de nos lecteurs.
+                                Vous en serez informé par un autre mail.
+                                Nous vous remercions pour votre confiance.
+                                L’équipe Your-books.";
+
             $subject_author = "Envoi de votre manuscrit";
             // On crée l'évènement
             $event_author = new MailEvent($author, $message_author, $subject_author);
@@ -81,7 +88,14 @@ class AuthorController extends Controller
                 ->dispatch(ConfirmMailEvent::onMailEvent, $event_author);
 
             $message_admin = "Nouveau manuscrit envoyé";
-            $subject_admin = "Un manuscrit a été envoyé par l'auteur ".$author->getUsername();
+            $subject_admin =    "Bonjour admin,
+                                 Nous vous informons qu’un nouveau manuscrit, ".$book->getTitle().", vient d’être transmis à Your-books par ".$author->getUsername().".
+                                 Ce manuscrit entre à présent en délai de rétractation de 7 jours francs.
+                                 Au terme de ce délai de rétractation, vous recevrez un autre mail vous invitant à valider ce manuscrit,
+                                 c’est à dire à vérifier étape par étape sa conformité avec les CGV Your-books.
+                                    A très bientôt
+                                    L’équipe";
+
             // On crée l'évènement
             $event_admin = new MailEvent($author, $message_admin, $subject_admin);
 

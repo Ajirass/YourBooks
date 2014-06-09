@@ -31,8 +31,8 @@
         <field name="zipcode" column="zipcode" type="integer" nullable="true"/>
         <field name="city" column="city" type="string" length="255" nullable="true"/>
 
-        <one-to-many field="books" target-entity="\Yourbooks\BookBundle\Entity\Book" mapped-by="reader" />
-        <many-to-many field="viewByEditor" target-entity="Yourbooks\BookBundle\Entity\Book">
+        <one-to-many field="books" target-entity="YourBooks\BookBundle\Entity\Book" mapped-by="reader" />
+        <many-to-many field="viewByEditor" target-entity="YourBooks\BookBundle\Entity\Book">
             <join-table name="editor_book">
                 <join-columns>
                     <join-column name="user_id" referenced-column-name="id" nullable="false" unique="false" />

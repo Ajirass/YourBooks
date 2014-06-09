@@ -31,27 +31,31 @@
                 </li>
             </ul>
         </aside>
-        <form id="category_recherche" action="{{ path('your_books_main_category_search_book') }}" method="post">
-            {{ form_label(categoryform.alphabetic) }}
-            {{ form_widget(categoryform.alphabetic) }}
-            {{ form_label(categoryform.note) }}
-            {{ form_widget(categoryform.note) }}
-            {{ form_label(categoryform.date) }}
-            {{ form_widget(categoryform.date) }}
-            <input type="submit" value="Rechercher" />
-        </form>
-        <form id="form_recherche" action="{{ path('your_books_main_search_book') }}" method="post">
-            <input id="search" type="text" autocomplete="off" />
-            <input type="submit" value="Rechercher" />
-        </form>
-        <div id="results">
-            {% include 'YourBooksMainBundle:Editor:auto_completion.html.twig' %}
+        <div class="content">
+            <form id="category_recherche" action="{{ path('your_books_main_category_search_book') }}" method="post">
+                {{ form_label(categoryform.alphabetic) }}
+                {{ form_widget(categoryform.alphabetic) }}
+                {{ form_label(categoryform.note) }}
+                {{ form_widget(categoryform.note) }}
+                {{ form_label(categoryform.date) }}
+                {{ form_widget(categoryform.date) }}
+            </form>
+            <div class="clear"></div>
+            <div class="ajax">
+                <form id="form_recherche" action="{{ path('your_books_main_search_book') }}" method="post">
+                    <input id="search" type="text" autocomplete="off" />
+                    <input class="submit" type="submit" value="Rechercher" />
+                </form>
+                <div id="results">
+                    {% include 'YourBooksMainBundle:Editor:auto_completion.html.twig' %}
+                </div>
+            </div>
+            <div class="loading"></div>
+            <div class="list-books">
+                {% include 'YourBooksMainBundle:Editor:list_books.html.twig' with {'books' : books}  %}
+            </div>
+            <div class="clear"></div>
         </div>
-        <div class="loading"></div>
-        <div class="list-books">
-            {% include 'YourBooksMainBundle:Editor:list_books.html.twig' with {'books' : books}  %}
-        </div>
-        <div class="clear"></div>
     </div>
     {% block javascripts %}
         {{ parent() }}

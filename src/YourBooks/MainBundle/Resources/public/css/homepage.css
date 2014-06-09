@@ -2,6 +2,7 @@
 {
     width:1000px;
     margin:auto;
+    min-height: 1000px;
 }
 
 .home .alert
@@ -117,4 +118,14 @@ aside.home li:nth-child(3) img
     width:170px;
     height:90px;
     margin-right:-10px;
+}
+
+a.resetting-request
+{
+    font-family: "FuturaLT";
+    font-size: 24px;
+    color:#FFFFFF;
+    display: block;
+    clear:both;
+
 }

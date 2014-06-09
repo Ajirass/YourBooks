@@ -30,8 +30,8 @@ class BookListener
         if ($entity instanceof Book) {
             if($eventArgs->hasChangedField('readerValidation') && $eventArgs->getNewValue('readerValidation') == true){
                 $user = $eventArgs->getEntity()->getReader();
-                $message = "Votre livre à été noté il est désormais mis a disposition sur l'espace des éditeurs";
-                $subject = "Votre livre à été noté";
+                $message = "Votre livre a été noté, il est désormais mis a disposition sur l'espace des éditeurs.";
+                $subject = "Votre livre a été noté !";
                 // On crée l'évènement
                 $event_readerValidation_author = new MailEvent($user, $message, $subject);
 
@@ -52,7 +52,19 @@ class BookListener
                 $uow = $em->getUnitOfWork();
                 $meta = $em->getClassMetadata(get_class($entity));
                 $uow->recomputeSingleEntityChangeSet($meta, $entity);
-                $message = "Vous avez reçu un nouveau livre a lire, vous avez 24h pour confirmer sa reception.";
+                $message = "Bonjour ".$user->getFirstname()." ".$user->getLastname().",
+                            Un nouveau manuscrit est en attente de lecture.
+                            Merci de vous rendre dès à présent sur votre espace personnel et accuser bonne réception de ce manuscrit.
+                            Nous vous rappelons que vous disposez d’un délai de 48 heures à compter de la date d’envoi de ce mail pour accuser réception de ce manuscrit.
+                            Passé ce délai, le manuscrit sera automatiquement attribué à un autre lecteur.
+                            À compter de cet accusé de réception, vous disposez d’un délai de 18 jours pour lire le manuscrit et rédiger sa fiche de lecture
+                            exclusivement au format fourni par Your-books sur votre espace personnel.
+                            Une fois cette fiche remplie, merci de la transmettre pour validation à l’administration du site à partir de votre espace personnel.
+                            Une fois votre fiche validée, vous recevrez un nouveau mail de confirmation.
+                            Nous vous souhaitons bonne lecture et restons à votre disposition.
+
+                            L’équipe Your-books. ";
+
                 $subject = "Nouveau livre à noter";
 
                 // On crée l'évènement

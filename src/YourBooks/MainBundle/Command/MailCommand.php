@@ -49,14 +49,39 @@ class MailCommand extends ContainerAwareCommand
                 ->setSubject($book->getReader()->getEmail())
                 ->setFrom('godartrobin@gmail.com')
                 ->setTo('godartrobin@gmail.com')
-                ->setBody("Il vous reste 1 jour de délai autorisé pour la lecture du livre '".$book->getTitle()."' ce livre va vous a étre retiré autrement. ");
+                ->setBody("
+                            Bonjour ".$book->getReader().",
+
+                            Vous avez confirmé le ".$book->getReceivedByReaderAt()." un manuscrit en lecture intitulé ".$book->getTitle().".
+
+                            Si vous avez déjà transmis votre fiche de lecture concernant ce manuscrit, merci de ne pas tenir compte de ce mail.
+
+                            Nous vous rappelons le cas échéant qu’il ne vous reste plus que 24 heures pour envoyer votre fiche de lecture de ce manuscrit
+
+                            Passé ce délai, ainsi que précisé dans le contrat signé entre nous, ce manuscrit sera automatiquement réaffecté à un autre Lecteur
+                            et la prestation considérée comme non effectuée.
+
+                            Une fois cette fiche remplie, merci de la transmettre pour validation à l’administration du site à partir de votre espace personnel.
+
+                            Nous restons à votre disposition
+
+                            L’équipe Your-books.");
 
             $mailer->send($message);
             $message = \Swift_Message::newInstance()
                 ->setSubject($book->getReader()->getEmail())
                 ->setFrom('godartrobin@gmail.com')
                 ->setTo('godartrobin@gmail.com')
-                ->setBody("Il reste 1 jour au lecteur '".$book->getReader()."' pour lire le livre '".$book->getTitle()."'.");
+                ->setBody("
+                            Bonjour admin,
+
+                            Nous vous rappelons qu’il ne reste plus qu'un jour au lecteur ".$book->getReader()." pour envoyer sa
+                            critique sur le manuscrit ".$book->getTitle().".
+
+                            Pensez à effectuer les relances nécessaires
+
+                            Your-books
+                            ");
 
             $mailer->send($message);
         }
@@ -79,7 +104,7 @@ class MailCommand extends ContainerAwareCommand
             $spool->flushQueue($transport);
             $output->writeln('Envoyé!');
         }else{
-            $output->writeln('Aucun message à envoyé!');
+            $output->writeln('Aucun message à envoyer !');
         }
     }
 }

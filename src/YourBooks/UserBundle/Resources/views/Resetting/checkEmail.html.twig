@@ -1,8 +1,15 @@
 {% extends "YourBooksUserBundle::layout.html.twig" %}
+{% block title %}{{ parent() }}Réinitialisation{% endblock %}
 {% block body %}
 {% block fos_user_content %}
-<p>
-{{ 'resetting.check_email'|trans({'%email%': email}, 'FOSUserBundle') }}
-</p>
+
+    <div class="first_historic">
+        <h1>Réinitialisation du mot de passe réussie</h1>
+        <p>
+            {{ 'resetting.check_email'|trans({'%email%': email}, 'FOSUserBundle') }}
+        </p>
+        <img src="{{ asset('bundles/yourbooksmain/images/logo_first_connexion.png') }}" alt="logo_yourbooks">
+        <a href="{{ path ('your_books_main_homepage') }}">Revenir à l'accueil</a>
+    </div>
 {% endblock %}
 {% endblock body %}

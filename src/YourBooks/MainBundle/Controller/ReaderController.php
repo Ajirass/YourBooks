@@ -106,8 +106,28 @@ class ReaderController extends Controller
         $em->persist($form->getData());
         $em->flush();
 
-            $message = "Une note a été envoyé par le lecteur ".$reader." vous devez validé ses notes.";
-            $subject = "Nouvelle notes envoyé";
+            $message = "Bonjour ".$reader->getUsername().",
+                        Nous accusons réception de votre fiche de lecture, laquelle a bien été prise en compte. Nous vous remercions pour cet envoi. En voici un récapitulatif :
+                        <ul>
+                             <li>critère 1: ".$form->get('criteria1')->getData()."</li>
+                             <li>critère 2: ".$form->get('criteria2')->getData()."</li>
+                             <li>critère 3: ".$form->get('criteria3')->getData()."</li>
+                             <li>critère 4: ".$form->get('criteria4')->getData()."</li>
+                             <li>critère 5: ".$form->get('criteria5')->getData()."</li>
+                             <li>".$note_globale."</li>
+                        </ul>
+                        <ul>
+                            <li><p>Votre résumé: ".$form->get('summary')->getData()."</p></li>
+                            <li><p>Votre analyse: ".$form->get('criic')->getData()."</p></li>
+                        <ul>
+                        Votre fiche de lecture est en cours de validation par un administrateur.
+
+                        Nous restons à votre disposition.
+
+                        L’équipe Your-books
+                        ";
+
+            $subject = "Nouvelles notes envoyées";
             // On crée l'évènement
             $event = new MailEvent($reader, $message, $subject);
 
@@ -139,7 +159,7 @@ class ReaderController extends Controller
         $em->flush();
         $user = $this->getUser();
         $message = "Vous avez confirmé la reception du livre, vous avez 7 jours pour le lire.";
-        $subject = "Confirmation reception livre";
+        $subject = "Confirmation de réception d'un nouveau livre";
         // On crée l'évènement
         $event = new MailEvent($user, $message, $subject);
 

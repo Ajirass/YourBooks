@@ -97,7 +97,7 @@ class EditorController extends Controller
 
             if($search != '')
             {
-                var_dump($search);
+                //var_dump($search);
                 $repo = $em->getRepository('YourBooksBookBundle:Book');
 
                 $books = $repo->findBySearch($search);

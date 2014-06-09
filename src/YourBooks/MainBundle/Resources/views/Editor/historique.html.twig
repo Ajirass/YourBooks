@@ -8,7 +8,6 @@
 
     {% if books is empty %}
         <div class="first_historic">
-            <a class="back_editor" href="{{ path('your_books_main_editor_homepage') }}">Revenir aux manuscrits</a>
             <h1>Historique</h1>
             <p>Vous n'avez pour l'instant aucun manuscrit dans votre historique.</p>
             <img src="{{ asset('bundles/yourbooksmain/images/logo_first_connexion.png') }}" alt="logo_yourbooks">
@@ -30,8 +29,13 @@
                     </div>
                     <h3 class="title">{{ book.title | truncate(15, true, '...') }}</h3>
                     <img src="{{ asset(book.category.webPath) }}">
+                    <!-- Ici, on prépare toutes les variables pour les notes du Book -->
                     {% set review = book.review.noteGlobale * 10 %}
-
+                    {% set criteria1 = book.review.criteria1 * 10 %}
+                    {% set criteria2 = book.review.criteria2 * 10 %}
+                    {% set criteria3 = book.review.criteria3 * 10 %}
+                    {% set criteria4 = book.review.criteria4 * 10 %}
+                    {% set criteria5 = book.review.criteria5 * 10 %}
                     <div class="review review{{ review }}"></div>
                 </a>
                 <div class="arrow {{ book.category.familyCategory.colorCategory }}"></div>
@@ -44,9 +48,22 @@
                 <div class="{{ book.category.familyCategory.colorCategory }} slide-down">
                     <div class="bloc">
                         <h1>{{ book.title }}</h1>
+                        <h4>Note globale :</h4>
                         <div class="review review{{ review }}"></div>
+                        <h4>Style d'écriture :</h4>
+                        <div class="review review{{ criteria1 }}"></div>
+                        <h4>Péripéties :</h4>
+                        <div class="review review{{ criteria2 }}"></div>
+                        <h4>Intérêt :</h4>
+                        <div class="review review{{ criteria3 }}"></div>
+                        <h4>Compréhension :</h4>
+                        <div class="review review{{ criteria4 }}"></div>
+                        <h4>Dénouement :</h4>
+                        <div class="review review{{ criteria5 }}"></div>
                         <div class="download">
-                            <a class="active" href="{{ path('your_books_main_download_book', { 'id': book.id }) }}">Télécharger ce manuscrit</a>
+                            <!--<a class="active" href="{{ path('your_books_main_download_book', { 'id': book.id }) }}">Télécharger ce manuscrit</a>-->
+
+                            <a class="active" href="#" onclick="if (confirm('Vous souhaitez télécharger ce manuscrit et obtenir les coordonnées de l\'auteur. \nAfin de garantir la traçabilité de notre action, merci de nous tenir informé de toute signature de contrat. \n \nLes coordonnées de l\'auteur et le détails des notes du manuscrit sera disponible dans votre espace personnel.')) window.location='{{ path('your_books_main_download_book', { 'id': book.id }) }}';  return false">Télécharger ce manuscrit</a>
                             <a class="disabled" href="">Télécharger ce manuscrit</a>
                             <form>
                                 <input type="checkbox" class="checkbox">
@@ -65,10 +82,8 @@
                     <div class="bloc bloc-author">
                         <a href="{{ path('your_books_main_editor_profile_author', {'id' : book.author.id}) }}">Voir le profil de l'auteur</a>
                     </div>
-
                     <div class="clear"></div>
                 </div>
-
             </div>
         {% endfor %}
     </div>
@@ -148,17 +163,8 @@
                             }
                         });
                     });
-
-
-
-
                     $('.container').append('<div class="clear"></div>');
-
-
                 });
-
-
-
             </script>
         {% endblock %}
 {% endblock %}

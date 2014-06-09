@@ -41,7 +41,7 @@
         box-shadow: 1px 1px 8px 0px #9b9b9b;
         text-align: center;
         filter:progid:DXImageTransform.Microsoft.Shadow(color=#9b9b9b, Direction=134, Strength=8);
-        .title{font-family: "FuturaLT"; font-size: 15px; color: #1a0903; padding: 0 15px 0 15px; display: block;}
+        .title{font-family: "FuturaLT"; font-size: 15px; color: #1a0903; padding: 0 15px 0 15px; display: block;  min-height: 30px;}
         .category{font-family: "FuturaLT"; font-size: 15px; padding: 0 15px 15px 15px; display: block; color: #ca3e3c;}
         img{margin:15px;}
       }
@@ -157,7 +157,7 @@
       -o-box-shadow: 1px 1px 8px 0px #9b9b9b;
       box-shadow: 1px 1px 8px 0px #9b9b9b;
       filter:progid:DXImageTransform.Microsoft.Shadow(color=#9b9b9b, Direction=134, Strength=8);
-      .title{font-family: "FuturaLT"; font-size: 15px; color: #1a0903; padding: 0 15px 0 15px; display: block;}
+      .title{font-family: "FuturaLT"; font-size: 15px; color: #1a0903; padding: 0 15px 0 15px; display: block; min-height: 30px; }
       .category{font-family: "FuturaLT"; font-size: 15px; padding: 0 15px 15px 15px; display: block; color: #ca3e3c;}
     }
     .createdat
@@ -393,6 +393,7 @@
         padding :0;
         font-size: 18px;
 
+
       }
 
       li{
@@ -432,10 +433,10 @@
   }
 
   label{
-    font-family: "Novecentowide-DemiBold";
-    text-transform: uppercase;
+    font-family: FuturaLT;
     width: 100%;
     min-width: 400px;
+    font-size: 16px;
   }
 
   input, select, textarea{
@@ -536,7 +537,6 @@
 
 #homepage-editor{
 
-  overflow-x: hidden;
   a{ text-decoration: none; color: #1a0903; }
 
   .category{ float: left; }
@@ -577,7 +577,7 @@
 
   .couverture{ width: 125px; height: 175px; background: #FFF; float: left; position: relative; -moz-box-shadow: 1px 1px 8px 0px #9b9b9b; -webkit-box-shadow: 1px 1px 8px 0px #9b9b9b; -o-box-shadow: 1px 1px 8px 0px #9b9b9b; box-shadow: 1px 1px 8px 0px #9b9b9b; filter:progid:DXImageTransform.Microsoft.Shadow(color=#9b9b9b, Direction=134, Strength=8); position: relative; margin-bottom: 10px; }
 
-  .couverture .title{ font-family: "Futura LT"; font-size: 15px; color: #1a0903; padding: 8px 15px 0 15px; display: block; text-align: left; line-height: 1; }
+  .couverture .title{ font-family: "Futura LT"; font-size: 15px; color: #1a0903; padding: 8px 15px 0 15px; display: block; text-align: left; line-height: 1; min-height: 30px;}
 
   .link{ display: block; width: 100%; height: 100%; margin-top: -15px; }
 
@@ -632,7 +632,9 @@
   .popover{
 
     width: 820px!important;
-    .review{ height: 50px; width: 200px; margin: 10px 0px; }
+    max-height: 500px;
+    overflow: auto;
+    .review{ height: 50px; width: 200px; margin-bottom: 10px; }
 
     .review05{ background-position: -165px -40px; } .review10{ background-position: -165px -85px; }
 
@@ -652,9 +654,11 @@
 
     .review50{ background-position: 0px -85px; }
 
-    h1{ margin: 0px; font-weight: normal; font-family:'Novecentowide-Book'; text-transform: uppercase; }
+    h1{ margin: 0px; margin-bottom: 25px; font-weight: normal; font-family:'Novecentowide-Book'; text-transform: uppercase; }
 
     h2{ font-family: 'Novecentowide-Bold'; }
+
+    h4 {font-family: 'Novecentowide-Book'; margin: 5px 0;}
 
     label a{ text-decoration: underline; color: white; font-family: 'Futura LT'}
 
@@ -736,4 +740,137 @@ footer ul{ padding: 0px; margin: 0 auto; width: 1000px; }
   font-size: 15px;
   margin-top: 30px;
   text-decoration: underline;
+}
+
+/* ==========================================================================
+   Filtre de recherche Editor
+   ========================================================================== */
+
+#homepage-editor
+{
+  #category_recherche
+  {
+    float: left;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    padding-left: 20px;
+    label
+    {
+      font-family: "FuturaLT";
+    }
+    select
+    {
+      font-family: "FuturaLT";
+      margin-right: 30px;
+    }
+    input.submit
+    {
+        margin: 10px 8px 0px 0px;
+        font-family: "Futura LT";
+        font-size: 15px;
+        text-decoration: none;
+        color: #FFF;
+        background: #ca3e3c;
+        padding: 8px 15px;
+        margin-top: 0;
+        display: inline-block;
+        border-radius: 4px;
+        border: none;
+    }
+      input.submit:hover{
+        -moz-box-shadow: inset 0px 0px 5px 0px #000000;
+        -webkit-box-shadow: inset 0px 0px 5px 0px #000000;
+        -o-box-shadow: inset 0px 0px 5px 0px #000000;
+        box-shadow: inset 0px 0px 5px 0px #000000;
+        filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=NaN, Strength=5);
+      }
+
+  }
+  #form_recherche
+  {
+    display: inline-block;
+    input#search
+    {
+      font-family: "FuturaLT";
+      margin-right: 10px;
+      width:250px;
+      height: 30px;
+    }
+
+    input.submit
+    {
+      margin: 10px 8px 0px 0px;
+      font-family: "Futura LT";
+      font-size: 15px;
+      text-decoration: none;
+      color: #FFF;
+      background: #ca3e3c;
+      padding: 8px 15px;
+      margin-top: 0;
+      display: inline-block;
+      border-radius: 4px;
+      border: none;
+    }
+    input.submit:hover{
+      -moz-box-shadow: inset 0px 0px 5px 0px #000000;
+      -webkit-box-shadow: inset 0px 0px 5px 0px #000000;
+      -o-box-shadow: inset 0px 0px 5px 0px #000000;
+      box-shadow: inset 0px 0px 5px 0px #000000;
+      filter:progid:DXImageTransform.Microsoft.Shadow(color=#000000, Direction=NaN, Strength=5);
+    }
+  }
+}
+
+/* ==========================================================================
+   Autocomplétion Editor
+   ========================================================================== */
+#homepage-editor
+{
+  .content
+  {
+    float: left;
+  }
+  .ajax
+  {
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    width: 400px;
+  }
+  #results
+  {
+    position: absolute;
+    z-index: 1;
+    .none
+    {
+      font-family: "FuturaLT";
+      background:#ca3d3b;
+      color:#FFFFFF;
+      font-size:15px;
+      display: inline-block;
+      padding: 8px 0 8px 8px;
+      width:250px;
+    }
+    div
+    {
+        font-family: "FuturaLT";
+        background:#ca3d3b;
+        color:#FFFFFF;
+        font-size:15px;
+        display: inline-block;
+        padding: 8px 0 8px 8px;
+        width: 250px;
+        cursor: pointer;
+        text-align: left;
+        border-bottom: 1px solid #FFFFFF;
+    }
+    div:hover
+    {
+      background:#ac3433;
+    }
+    .result_focus
+    {
+      background:#ac3433;
+    }
+  }
 }
