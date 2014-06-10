@@ -107,8 +107,9 @@ class ReaderController extends Controller
         $em->flush();
 
             $subject = "Nouvelles notes envoyées";
-            $message = "Bonjour ".$reader->getUsername().",
-                        Nous accusons réception de votre fiche de lecture, laquelle a bien été prise en compte. Nous vous remercions pour cet envoi. En voici un récapitulatif :
+            $message = "Bonjour ".$reader->getUsername().",<br>
+                        Nous accusons réception de votre fiche de lecture, laquelle a bien été prise en compte.<br>
+                         Nous vous remercions pour cet envoi. En voici un récapitulatif :
                         <ul>
                              <li>critère 1: ".$form->get('criteria1')->getData()."</li>
                              <li>critère 2: ".$form->get('criteria2')->getData()."</li>
@@ -121,9 +122,9 @@ class ReaderController extends Controller
                             <li><p>Votre résumé: ".$form->get('summary')->getData()."</p></li>
                             <li><p>Votre analyse: ".$form->get('criic')->getData()."</p></li>
                         <ul>
-                        Votre fiche de lecture est en cours de validation par un administrateur.
+                        Votre fiche de lecture est en cours de validation par un administrateur.<br><br>
 
-                        Nous restons à votre disposition.
+                        Nous restons à votre disposition.<br><br>
 
                         L’équipe Your-books
                         ";
@@ -135,14 +136,18 @@ class ReaderController extends Controller
                 ->dispatch(ConfirmMailEvent::onMailEvent, $event);
 
             $subject = "Nouvelles notes envoyées";
-            $message = "Bonjour admin,
-                Une nouvelle fiche de lecture du lecteur (prénom et nom) pour le manuscrit (titre) est en attente de validation.
-                Cliquez sur ce lien pour prendre connaissance de cette fiche de lecture : lien vers le manuscrit noté
-                Attention : avant de valider cette fiche de lecture, vous devez vous assurer que son contenu respecte le contrat signé par le lecteur, en particulier mais pas seulement :
+            $message = "Bonjour admin,<br>
+                Une nouvelle fiche de lecture du lecteur ".$book->getReader()->getFirstname()." ".$book->getReader()->getLastname()."
+                 pour le manuscrit ".$book->getTitle()." est en attente de validation.<br>
+                Attention : avant de valider cette fiche de lecture, vous devez vous assurer que son contenu respecte le contrat signé par le lecteur,
+                 en particulier mais pas seulement :
                 (voir doc pour la suite des contenus)";
 
             // On crée l'évènement
-            $event = new MailEvent($reader, $message, $subject);
+            $repo_user = $em->getRepository('ApplicationSonataUserBundle:User');
+            $admin = $repo_user->find(1);
+
+            $event = new MailEvent($admin, $message, $subject);
 
             // On déclenche l'évènement
             $this->get('event_dispatcher')
@@ -170,19 +175,33 @@ class ReaderController extends Controller
         $book->setReceivedByReader(true);
         $book->setReceivedByReaderAt(new \DateTime("now"));
         $em->flush();
-        $user = $this->getUser();
-        $message = "Vous avez confirmé la reception du livre, vous avez 7 jours pour le lire.";
+
+        /*Mail au lecteur, puis à l'admin mais en fait non.
+         * $repo = $em->getRepository('ApplicationSonataUserBundle:User');
+        $user = $repo->find(1);
+
+        $message = "Bonjour admin,
+                    Le lecteur ".$this->getUser()." a bien accusé réception du manuscrit ".$book->getTitle().",<br>
+                    A compter de cette date, il dispose de 18 jours pour le lire et rédiger sa fiche de lecture<br>
+                    Pensez le cas échéant au mail de relance 48 heures avant expiration de ce délai.<br>
+                    Vous n’avez pas d’autres actions à effectuer pour le moment concernant ce manuscrit.<br>
+                    Your-books";
         $subject = "Confirmation de réception d'un nouveau livre";
+
         // On crée l'évènement
         $event = new MailEvent($user, $message, $subject);
 
         // On déclenche l'évènement
         $this->get('event_dispatcher')
-            ->dispatch(ConfirmMailEvent::onMailEvent, $event);
+            ->dispatch(ConfirmMailEvent::onMailEvent, $event);*/
 
         $user = $book->getAuthor();
-        $message = "Un lecteur a pris en charge la lecture de votre manuscrit il sera noté dans les 7 jours qui suivent";
-        $subject = "Un lecteur a pris en charge votre manuscrit".$book->getTitle();
+        $message = "Bonjour !<br>
+                    Un lecteur vient d'accepter votre manuscrit, celui-ci est désormais en cours de lecture.<br>
+                    Vous recevrez un récapitulatif de la fiche de lecture de votre manuscrit une fois que l'administrateur l'aura validé.<br><br>
+                    L'équipe Your-Books
+                    ";
+        $subject = "Un lecteur a pris en charge votre manuscrit ".$book->getTitle();
 
         // On crée l'évènement
         $event = new MailEvent($user, $message, $subject);
@@ -193,13 +212,13 @@ class ReaderController extends Controller
 
         $repo = $em->getRepository("ApplicationSonataUserBundle:User");
         $user = $repo->find(1);
-        $message = "Bonjour admin,
-            Le lecteur ".$book->getReader()->getFirstname()." ".$book->getReader()->getLastname()." a bien accusé réception du manuscrit ".$book->getTitle().",\n\n
-            A compter de cette date, il dispose de 18 jours pour le lire et rédiger sa fiche de lecture\n\n
-            Pensez le cas échéant au mail de relance 48 heures avant expiration de ce délai.\n\n
-            Vous n’avez pas d’autres actions à effectuer pour le moment concernant ce manuscrit\n\n
+        $message = "Bonjour admin,<br>
+            Le lecteur ".$book->getReader()->getFirstname()." ".$book->getReader()->getLastname()." a bien accusé réception du manuscrit ".$book->getTitle().",<br><br>
+            A compter de cette date, il dispose de 18 jours pour le lire et rédiger sa fiche de lecture.<br><br>
+            Pensez le cas échéant au mail de relance 48 heures avant expiration de ce délai.<br><br>
+            Vous n’avez pas d’autres actions à effectuer pour le moment concernant ce manuscrit.<br><br>
             Your-books";
-        $subject = "NOTIFICATION D'ACCUSE DE RECEPTION D'UN MANUSCRIT PAR LE LECTEUR";
+        $subject = "Notification d'accusé de réception par le lecteur. ";
 
         // On crée l'évènement
         $event = new MailEvent($user, $message, $subject);

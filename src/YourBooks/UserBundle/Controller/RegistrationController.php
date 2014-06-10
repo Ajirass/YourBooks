@@ -57,25 +57,23 @@ class RegistrationController extends ContainerAware
             {
                 $roles = array("ROLE_READER");
                 $subject = "Demande d'inscription Lecteur";
-                $message = "Bonjour admin,!
+                $message = "Bonjour admin !<br>
                             Un nouveau Lecteur s’est inscrit sur Yourbooks, veuillez trouver ci-dessous les
-                            informations relatives à son compte :
-                            ".$user->getUsername()."
+                            informations relatives à son compte :<br>
+                            ".$user->getUsername()."<br><br>
                             Vous pouvez refuser cette inscription en désactivant ce nouvel utilisateur dans votre
                             espace administrateur.";
 
                 // email d'information d'inscription
                 $subject_info = "Informations inscription lecteur";
-                $message_info = "Bonjour et bienvenue sur Your-books,
-                    Vous avez demandé l’ouverture d’un espace personnel « Lecteur » sur le site www.your-books.fr
-                    Merci d’ajouter dès à présent notre adresse mail dans vos contacts afin qu’elle soit reconnue comme tel par le serveur de votre messagerie.
-                    Voici les identifiants que vous avez renseignés, veillez à les conserver :
-                    email: (email)
-                    mot de passe: (mot de passe)
-                    Merci de finaliser dès à présent l’ouverture de votre espace en suivant ce lien vers la seconde partie du formulaire d’inscription : lien vers le formulaire d’inscription
-                    Une fois votre espace ouvert, vous recevrez votre contrat Your-books en pièce jointe dans un autre mail. N’oubliez pas de l’imprimer et de nous le renvoyer en deux exemplaires remplis et signés. Dès réception, nous vous renverrons votre exemplaire signé et tamponné, et votre compte deviendra définitivement actif.
+                $message_info = "Bonjour et bienvenue sur Your-books,<br>
+                    Vous avez demandé l’ouverture d’un espace personnel « Lecteur » sur le site www.your-books.fr.<br>
+                    Merci d’ajouter dès à présent notre adresse mail dans vos contacts afin qu’elle soit reconnue comme tel par le serveur de votre messagerie.<br>
+                    Une fois votre espace ouvert, vous recevrez votre contrat Your-books en pièce jointe dans un autre mail.<br>
+                    N’oubliez pas de l’imprimer et de nous le renvoyer en deux exemplaires remplis et signés.<br>
+                    Dès réception, nous vous renverrons votre exemplaire signé et tamponné, et votre compte deviendra définitivement actif.<br><br>
 
-                    Nous restons à votre disposition
+                    Nous restons à votre disposition<br><br>
 
                     L’équipe Your-books";
             }
@@ -83,17 +81,27 @@ class RegistrationController extends ContainerAware
             {
                 $roles = array("ROLE_EDITOR");
                 $subject = "Demande d'inscription Editeur";
-                $message = "Bonjour admin,!
+                $message = "Bonjour admin !<br><br>
                             Un nouvel Éditeur s’est inscrit sur Yourbooks, veuillez trouver ci-dessous les
-                            informations relatives à son compte :
-                            ".$user->getUsername()."
+                            informations relatives à son compte :<br>
+                            ".$user->getUsername()."<br><br>
                             Vous pouvez refuser cette inscription en désactivant ce nouvel utilisateur dans votre
                             espace administrateur.";
 
                 // email d'information d'inscription
-                // TODO Set message email
+
                 $subject_info = "Informations inscription éditeur";
-                $message_info = "";
+                $message_info = "Bonjour et bienvenue sur Your-books,<br>
+                                Vous avez demandé l’ouverture d’un espace personnel « éditeur » sur le site www.your-books.fr.<br>
+                                Merci d’ajouter dès à présent notre adresse mail dans vos contacts afin qu’elle soit reconnue comme tel par le serveur
+                                de votre messagerie.<br><br>
+                                Nous avons fait le choix de ne pas envoyer de mail à chaque fois qu’un manuscrit arrive sur votre espace personnel. <br>
+                                Nous vous enverrons juste un mail par semaine pour rappel. Vous pouvez bien sûr vous connecter à tout moment sur votre espace personnel
+                                afin de prendre connaissance des nouveaux manuscrits.<br><br>
+
+                                Nous restons à votre disposition<br><br>
+
+                                L’équipe Your-books";
             }
             else
             {
@@ -103,8 +111,10 @@ class RegistrationController extends ContainerAware
             if($account == 'reader' || $account == 'editor')
             {
                 // On crée l'évènement
-                // TODO Modifier $user = admin
-                $event = new MailEvent($user, $message, $subject);
+                $em = $this->getDoctrine()->getEntityManager();
+                $repo = $em->getRepository('ApplicationSonataUserBundle:User');
+                $admin = $repo->find(1);
+                $event = new MailEvent($admin, $message, $subject);
 
                 $event_info = new MailEvent($user, $message_info, $subject_info);
                 // On déclenche l'évènement

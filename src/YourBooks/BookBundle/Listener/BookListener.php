@@ -52,16 +52,16 @@ class BookListener
                 $uow = $em->getUnitOfWork();
                 $meta = $em->getClassMetadata(get_class($entity));
                 $uow->recomputeSingleEntityChangeSet($meta, $entity);
-                $message = "Bonjour ".$user->getFirstname()." ".$user->getLastname().",
-                            Un nouveau manuscrit est en attente de lecture.
-                            Merci de vous rendre dès à présent sur votre espace personnel et accuser bonne réception de ce manuscrit.
-                            Nous vous rappelons que vous disposez d’un délai de 48 heures à compter de la date d’envoi de ce mail pour accuser réception de ce manuscrit.
-                            Passé ce délai, le manuscrit sera automatiquement attribué à un autre lecteur.
+                $message = "Bonjour ".$user->getFirstname()." ".$user->getLastname().",<br>
+                            Un nouveau manuscrit est en attente de lecture.<br><br>
+                            Merci de vous rendre dès à présent sur votre espace personnel et accuser bonne réception de ce manuscrit.<br>
+                            Nous vous rappelons que vous disposez d’un délai de 48 heures à compter de la date d’envoi de ce mail pour accuser réception de ce manuscrit.<br>
+                            Passé ce délai, le manuscrit sera automatiquement attribué à un autre lecteur.<br>
                             À compter de cet accusé de réception, vous disposez d’un délai de 18 jours pour lire le manuscrit et rédiger sa fiche de lecture
-                            exclusivement au format fourni par Your-books sur votre espace personnel.
-                            Une fois cette fiche remplie, merci de la transmettre pour validation à l’administration du site à partir de votre espace personnel.
-                            Une fois votre fiche validée, vous recevrez un nouveau mail de confirmation.
-                            Nous vous souhaitons bonne lecture et restons à votre disposition.
+                            exclusivement au format fourni par Your-books sur votre espace personnel.<br>
+                            Une fois cette fiche remplie, merci de la transmettre pour validation à l’administration du site à partir de votre espace personnel.<br>
+                            Une fois votre fiche validée, vous recevrez un nouveau mail de confirmation.<br>
+                            Nous vous souhaitons bonne lecture et restons à votre disposition.<br><br>
 
                             L’équipe Your-books. ";
 

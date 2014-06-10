@@ -36,9 +36,9 @@ class MailCommand extends ContainerAwareCommand
 
             $mailer = $container->get('mailer');
             $message = \Swift_Message::newInstance()
-                ->setSubject($book->getReader()->getEmail())
-                ->setFrom('godartrobin@gmail.com')
-                ->setTo('godartrobin@gmail.com')
+                ->setSubject('Livre retiré')
+                ->setFrom('contact@your-books.fr')
+                ->setTo($book->getReader()->getEmail())
                 ->setBody("Vous avez dépassé le délai autorisé pour la lecture du livre '".$book->getTitle()."' ce livre vous a été retiré. ");
 
             $mailer->send($message);
@@ -50,40 +50,30 @@ class MailCommand extends ContainerAwareCommand
 
             $mailer = $container->get('mailer');
             $message = \Swift_Message::newInstance()
-                ->setSubject($book->getReader()->getEmail())
-                ->setFrom('godartrobin@gmail.com')
-                ->setTo('godartrobin@gmail.com')
+                ->setSubject('Fin de votre délai de lecture')
+                ->setFrom('contact@your-books.fr')
+                ->setTo($book->getReader()->getEmail())
                 ->setBody("
-                            Bonjour ".$book->getReader().",
-
-                            Vous avez confirmé le ".$book->getReceivedByReaderAt()." un manuscrit en lecture intitulé ".$book->getTitle().".
-
-                            Si vous avez déjà transmis votre fiche de lecture concernant ce manuscrit, merci de ne pas tenir compte de ce mail.
-
-                            Nous vous rappelons le cas échéant qu’il ne vous reste plus que 24 heures pour envoyer votre fiche de lecture de ce manuscrit
-
+                            Bonjour ".$book->getReader()->getFirstName()." ".$book->getReader()->getLastName().",<br>
+                            Vous avez confirmé le ".$book->getReceivedByReaderAt()." un manuscrit en lecture intitulé ".$book->getTitle().".<br>
+                            Si vous avez déjà transmis votre fiche de lecture concernant ce manuscrit, merci de ne pas tenir compte de ce mail.<br>
+                            Nous vous rappelons le cas échéant qu’il ne vous reste plus que 24 heures pour envoyer votre fiche de lecture de ce manuscrit.<br><br>
                             Passé ce délai, ainsi que précisé dans le contrat signé entre nous, ce manuscrit sera automatiquement réaffecté à un autre Lecteur
-                            et la prestation considérée comme non effectuée.
-
-                            Une fois cette fiche remplie, merci de la transmettre pour validation à l’administration du site à partir de votre espace personnel.
-
-                            Nous restons à votre disposition
-
+                            et la prestation considérée comme non effectuée.<br><br>
+                            Une fois cette fiche remplie, merci de la transmettre pour validation à l’administration du site à partir de votre espace personnel.<br><br>
+                            Nous restons à votre disposition<br><br>
                             L’équipe Your-books.");
 
             $mailer->send($message);
             $message = \Swift_Message::newInstance()
-                ->setSubject($book->getReader()->getEmail())
-                ->setFrom('godartrobin@gmail.com')
-                ->setTo('godartrobin@gmail.com')
+                ->setSubject('Fin du délai de lecture pour '.$book->getTitle())
+                ->setFrom('contact@your-books.fr')
+                ->setTo('admin@your-books.fr')
                 ->setBody("
-                            Bonjour admin,
-
+                            Bonjour admin,<br><br>
                             Nous vous rappelons qu’il ne reste plus qu'un jour au lecteur ".$book->getReader()." pour envoyer sa
-                            critique sur le manuscrit ".$book->getTitle().".
-
-                            Pensez à effectuer les relances nécessaires
-
+                            critique sur le manuscrit ".$book->getTitle().".<br>
+                            Pensez à effectuer les relances nécessaires.<br>
                             Your-books
                             ");
 
@@ -96,9 +86,9 @@ class MailCommand extends ContainerAwareCommand
 
             $mailer = $container->get('mailer');
             $message = \Swift_Message::newInstance()
-                ->setSubject($book->getReader()->getEmail())
-                ->setFrom('godartrobin@gmail.com')
-                ->setTo('godartrobin@gmail.com')
+                ->setSubject('Délai de lecture dépassé')
+                ->setFrom('contact@your-books.fr')
+                ->setTo($book->getReader()->getEmail())
                 ->setBody("Vous avez dépassé le délai autorisé pour la confirmation de reception du livre '".$book->getTitle()."' ce livre peut vous être retiré. ");
 
             $mailer->send($message);
@@ -111,14 +101,14 @@ class MailCommand extends ContainerAwareCommand
 
             $mailer = $container->get('mailer');
             $message = \Swift_Message::newInstance()
-                ->setSubject($book->getReader()->getEmail())
-                ->setFrom('godartrobin@gmail.com')
-                ->setTo('godartrobin@gmail.com')
-                ->setBody("Bonjour admin\n
+                ->setSubject('Nouveau manuscrit sorti de son délai de rétractation : '.$book->getTitle())
+                ->setFrom('contact@your-books.fr')
+                ->setTo('admin@your-books.fr')
+                ->setBody("Bonjour admin,<br><br>
 
-                    Un nouveau manuscrit transmis à Your-books est sorti de délai de rétractation.\n
-                    Il est à présent en attente de votre validation.\n\n
-                    Avant toute validation, vous devez effectuez une par une les six vérifications suivantes.\n\n
+                    Un nouveau manuscrit transmis à Your-books est sorti de délai de rétractation.<br>
+                    Il est à présent en attente de votre validation.<br><br>
+                    Avant toute validation, vous devez effectuez une par une les six vérifications suivantes.<br><br>
                     IMPORTANT : si l’une de ces étapes ne peut-être validée, le manuscrit doit être rejeté,
                     supprimé de la base de donnée. Vous devez alors envoyer le mail de rejet à l’auteur
                     et procéder à son remboursement par chèque sous 45 jours à l’adresse postale indiquée

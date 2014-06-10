@@ -24,7 +24,7 @@
                 {% for partenaire in partenaires %}
                     {% if partenaire.statut == 'editor' %}
                         <div class="editor_partner">
-                            <img src="{{ asset(partenaire.webPath) }}">
+                            <img src="{{ asset('bundles/yourbooksmain/images/icon-editor-partner.png') }}">
                             <h3>{{ partenaire.nom }}</h3>
                         </div>
                     {% endif %}
@@ -46,7 +46,8 @@
                 slideMargin: 20,
                 auto:true,
                 pause:3000,
-                autoControls:true
+                autoControls:true,
+                mode:'fade'
             });
 
             $('.slideeditor').bxSlider({
@@ -54,7 +55,8 @@
                 slideMargin: 20,
                 pause:3000,
                 auto:true,
-                autoControls:true
+                autoControls:true,
+                mode:'fade'
             });
         });
     </script>

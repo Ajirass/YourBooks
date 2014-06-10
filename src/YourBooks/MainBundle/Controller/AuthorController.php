@@ -72,12 +72,12 @@ class AuthorController extends Controller
             $em->flush();
 
             $subject_author = "Envoi de votre manuscrit";
-            $message_author =   "Bonjour ".$author->getFirstname()." ".$author->getLastname().",
-                                Nous vous confirmons l’envoi de votre manuscrit ".$book->getTitle().".
-                                Que va-t-il se passer à présent ?
-                                A l’expiration du délai de rétractation, votre manuscrit sera automatiquement transmis à l’un de nos lecteurs.
-                                Vous en serez informé par un autre mail.
-                                Nous vous remercions pour votre confiance.
+            $message_author =   "Bonjour ".$author->getFirstname()." ".$author->getLastname().",<br>
+                                Nous vous confirmons l’envoi de votre manuscrit ".$book->getTitle().".<br>
+                                Que va-t-il se passer à présent ?<br>
+                                A l’expiration du délai de rétractation, votre manuscrit sera automatiquement transmis à l’un de nos lecteurs.<br>
+                                Vous en serez informé par un autre mail.<br>
+                                Nous vous remercions pour votre confiance.<br><br>
                                 L’équipe Your-books.";
 
             // On crée l'évènement
@@ -88,12 +88,12 @@ class AuthorController extends Controller
                 ->dispatch(ConfirmMailEvent::onMailEvent, $event_author);
 
             $subject_admin = "Nouveau manuscrit envoyé";
-            $message_admin =    "Bonjour admin,
-                                 Nous vous informons qu’un nouveau manuscrit, ".$book->getTitle().", vient d’être transmis à Your-books par ".$author->getUsername().".
-                                 Ce manuscrit entre à présent en délai de rétractation de 7 jours francs.
+            $message_admin =    "Bonjour admin,<br>
+                                 Nous vous informons qu’un nouveau manuscrit, ".$book->getTitle().", vient d’être transmis à Your-books par ".$author->getUsername().".<br>
+                                 Ce manuscrit entre à présent en délai de rétractation de 7 jours francs.<br>
                                  Au terme de ce délai de rétractation, vous recevrez un autre mail vous invitant à valider ce manuscrit,
-                                 c’est à dire à vérifier étape par étape sa conformité avec les CGV Your-books.
-                                    A très bientôt
+                                 c’est à dire à vérifier étape par étape sa conformité avec les CGV Your-books.<br><br>
+                                    A très bientôt<br><br>
                                     L’équipe";
 
             // On crée l'évènement
