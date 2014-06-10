@@ -71,6 +71,7 @@ class AuthorController extends Controller
             $em->persist($form->getData());
             $em->flush();
 
+            $subject_author = "Envoi de votre manuscrit";
             $message_author =   "Bonjour ".$author->getFirstname()." ".$author->getLastname().",
                                 Nous vous confirmons l’envoi de votre manuscrit ".$book->getTitle().".
                                 Que va-t-il se passer à présent ?
@@ -79,7 +80,6 @@ class AuthorController extends Controller
                                 Nous vous remercions pour votre confiance.
                                 L’équipe Your-books.";
 
-            $subject_author = "Envoi de votre manuscrit";
             // On crée l'évènement
             $event_author = new MailEvent($author, $message_author, $subject_author);
 
@@ -87,8 +87,8 @@ class AuthorController extends Controller
             $this->get('event_dispatcher')
                 ->dispatch(ConfirmMailEvent::onMailEvent, $event_author);
 
-            $message_admin = "Nouveau manuscrit envoyé";
-            $subject_admin =    "Bonjour admin,
+            $subject_admin = "Nouveau manuscrit envoyé";
+            $message_admin =    "Bonjour admin,
                                  Nous vous informons qu’un nouveau manuscrit, ".$book->getTitle().", vient d’être transmis à Your-books par ".$author->getUsername().".
                                  Ce manuscrit entre à présent en délai de rétractation de 7 jours francs.
                                  Au terme de ce délai de rétractation, vous recevrez un autre mail vous invitant à valider ce manuscrit,

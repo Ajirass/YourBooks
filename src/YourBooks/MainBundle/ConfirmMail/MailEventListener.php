@@ -33,7 +33,7 @@ class MailEventListener
 
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)
-            ->setFrom('godartrobin@gmail.com')
+            ->setFrom('mailbidon@gmail.com')
             ->setTo('godartrobin@gmail.com')
             //->setBody($message);
             ->setContentType('text/html')

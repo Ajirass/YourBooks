@@ -30,8 +30,8 @@ class BookListener
         if ($entity instanceof Book) {
             if($eventArgs->hasChangedField('readerValidation') && $eventArgs->getNewValue('readerValidation') == true){
                 $user = $eventArgs->getEntity()->getReader();
-                $message = "Votre livre a été noté, il est désormais mis a disposition sur l'espace des éditeurs.";
                 $subject = "Votre livre a été noté !";
+                $message = "Votre livre a été noté, il est désormais mis a disposition sur l'espace des éditeurs.";
                 // On crée l'évènement
                 $event_readerValidation_author = new MailEvent($user, $message, $subject);
 

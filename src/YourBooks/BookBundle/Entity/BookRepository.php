@@ -183,6 +183,15 @@ class BookRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+    public function findDelayOutRetracted()
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->select('b')
+            ->andWhere('DATE_DIFF(CURRENT_DATE(), b.createdAt) = 7')
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
     public function findDelayConfirmedReader()
     {
         $qb = $this->createQueryBuilder('b')

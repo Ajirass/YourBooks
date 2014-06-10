@@ -29,6 +29,8 @@ class MailCommand extends ContainerAwareCommand
         $container = $this->getContainer();
         $em = $container->get('doctrine')->getManager();
         $repo = $em->getRepository('YourBooksBookBundle:Book');
+
+        // On récupère la liste des livres dont le délai de lecture est dépassé
         $booksDelayOutReader = $repo->findDelayOutReader();
         foreach($booksDelayOutReader as $book){
 
@@ -41,6 +43,8 @@ class MailCommand extends ContainerAwareCommand
 
             $mailer->send($message);
         }
+
+        // On récupère la liste des livres dont le délai de lecture ce termine dans 24h
         $booksSoonDelayOutReader = $repo->findSoonDelayOutReader();
         foreach($booksSoonDelayOutReader as $book){
 
@@ -85,6 +89,8 @@ class MailCommand extends ContainerAwareCommand
 
             $mailer->send($message);
         }
+
+        // On récupère la liste des livres dont le délai de confirmation de réception est dépassé
         $booksDelayConfirmedReader = $repo->findDelayConfirmedReader();
         foreach($booksDelayConfirmedReader as $book){
 
@@ -97,6 +103,31 @@ class MailCommand extends ContainerAwareCommand
 
             $mailer->send($message);
         }
+
+
+        // On récupère la liste des livres dont le délai de rétractation est aujourd'hui
+        $booksDelayOutRetracted = $repo->findDelayOutRetracted();
+        foreach($booksDelayOutRetracted as $book){
+
+            $mailer = $container->get('mailer');
+            $message = \Swift_Message::newInstance()
+                ->setSubject($book->getReader()->getEmail())
+                ->setFrom('godartrobin@gmail.com')
+                ->setTo('godartrobin@gmail.com')
+                ->setBody("Bonjour admin\n
+
+                    Un nouveau manuscrit transmis à Your-books est sorti de délai de rétractation.\n
+                    Il est à présent en attente de votre validation.\n\n
+                    Avant toute validation, vous devez effectuez une par une les six vérifications suivantes.\n\n
+                    IMPORTANT : si l’une de ces étapes ne peut-être validée, le manuscrit doit être rejeté,
+                    supprimé de la base de donnée. Vous devez alors envoyer le mail de rejet à l’auteur
+                    et procéder à son remboursement par chèque sous 45 jours à l’adresse postale indiquée
+                    par l’auteur lors de son inscription.   ");
+
+            $mailer->send($message);
+        }
+
+        // Envoie des mails
         if(isset($mailer)){
             $spool = $mailer->getTransport()->getSpool();
             $transport = $container->get('swiftmailer.transport.real');

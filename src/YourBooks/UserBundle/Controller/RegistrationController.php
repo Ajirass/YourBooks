@@ -64,6 +64,20 @@ class RegistrationController extends ContainerAware
                             Vous pouvez refuser cette inscription en désactivant ce nouvel utilisateur dans votre
                             espace administrateur.";
 
+                // email d'information d'inscription
+                $subject_info = "Informations inscription lecteur";
+                $message_info = "Bonjour et bienvenue sur Your-books,
+                    Vous avez demandé l’ouverture d’un espace personnel « Lecteur » sur le site www.your-books.fr
+                    Merci d’ajouter dès à présent notre adresse mail dans vos contacts afin qu’elle soit reconnue comme tel par le serveur de votre messagerie.
+                    Voici les identifiants que vous avez renseignés, veillez à les conserver :
+                    email: (email)
+                    mot de passe: (mot de passe)
+                    Merci de finaliser dès à présent l’ouverture de votre espace en suivant ce lien vers la seconde partie du formulaire d’inscription : lien vers le formulaire d’inscription
+                    Une fois votre espace ouvert, vous recevrez votre contrat Your-books en pièce jointe dans un autre mail. N’oubliez pas de l’imprimer et de nous le renvoyer en deux exemplaires remplis et signés. Dès réception, nous vous renverrons votre exemplaire signé et tamponné, et votre compte deviendra définitivement actif.
+
+                    Nous restons à votre disposition
+
+                    L’équipe Your-books";
             }
             elseif($account == 'editor')
             {
@@ -75,6 +89,11 @@ class RegistrationController extends ContainerAware
                             ".$user->getUsername()."
                             Vous pouvez refuser cette inscription en désactivant ce nouvel utilisateur dans votre
                             espace administrateur.";
+
+                // email d'information d'inscription
+                // TODO Set message email
+                $subject_info = "Informations inscription éditeur";
+                $message_info = "";
             }
             else
             {
@@ -84,11 +103,14 @@ class RegistrationController extends ContainerAware
             if($account == 'reader' || $account == 'editor')
             {
                 // On crée l'évènement
+                // TODO Modifier $user = admin
                 $event = new MailEvent($user, $message, $subject);
 
+                $event_info = new MailEvent($user, $message_info, $subject_info);
                 // On déclenche l'évènement
                 $dispatcher = $this->container->get('event_dispatcher');
                 $dispatcher->dispatch(ConfirmMailEvent::onMailEvent, $event);
+                $dispatcher->dispatch(ConfirmMailEvent::onMailEvent, $event_info);
             }
 
             $user->setRoles($roles);
