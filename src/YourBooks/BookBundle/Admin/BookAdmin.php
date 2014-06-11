@@ -16,6 +16,12 @@ use Doctrine\ORM\EntityRepository;
 
 class BookAdmin extends Admin
 {
+
+    protected $datagridValues = array(
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'createdAt'
+    );
+
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
