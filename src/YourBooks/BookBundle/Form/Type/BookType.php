@@ -14,7 +14,7 @@ class BookType extends AbstractType
         $builder
             ->add('title', null, array('label' => 'Titre de l\'oeuvre : '))
             ->add('summary', null, array('label' => 'écrivez votre résumé (2000 caractères max) : '))
-            ->add('category', null, array('label' => 'Genre : '))
+            ->add('category', null, array('label' => 'Genre : ', 'required' => 'true'))
             ->add('terms','checkbox', array('mapped' => false,
                 'constraints' => array(new NotNull()), 'label' => 'Conditions d\'utilisations : ', 'required' => 'true'))
             ->add('file', null, array('label' => 'Téléchargez votre manuscrit : '))
