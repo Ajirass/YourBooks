@@ -50,6 +50,8 @@ class PaypalController extends Controller
     {
         $data = $request->request->all();
 
+        return new Response(var_dump($data));
+
         if (!in_array('payment_status', $data))
             throw new BadRequestHttpException('`payment_status` must be defined');
 
