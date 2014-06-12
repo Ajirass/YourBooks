@@ -48,22 +48,9 @@ class PaypalController extends Controller
 
     public function treatmentAction(Request $request)
     {
-        /**
-         * @var \Symfony\Bridge\Monolog\Logger
-         */
-        $logger = $this->get('logger');
-
-
         $data = $request->request->all();
 
-        $text = null;
-
-        foreach ($data as $key => $value)
-            $text .= '['.$key.']'.$value.'  /  ';
-
-        $logger->error($text);
-
-        if (!in_array('payment_status', $data))
+        if (!isset($data['payment_status']))
             throw new BadRequestHttpException('`payment_status` must be defined');
 
         $payment = new Payment();
