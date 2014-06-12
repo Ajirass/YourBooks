@@ -51,9 +51,10 @@ class PaypalController extends Controller
         $logger = $this->get('logger');
 
         $logger->error('PaypalTreatment');
-        $logger->error($request->__toString());
-        $logger->error(serialize($request->headers->all()));
-        $logger->error($request->getMethod());
+        $logger->error(serialize($request->query->all()));
+        //$logger->error($request->__toString());
+        //$logger->error(serialize($request->headers->all()));
+        //$logger->error($request->getMethod());
 
         $message = \Swift_Message::newInstance()
             ->setSubject('YourBooks')
