@@ -2,15 +2,40 @@
 
 namespace YourBooks\PaymentBundle\Controller;
 
+use Application\Sonata\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use JMS\SecurityExtraBundle\Annotation\Secure;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use YourBooks\BookBundle\Entity\Book;
 
 class PaypalController extends Controller
 {
-    public function indexAction()
+    /**
+     * @param Request $request
+     * @param $userSalt
+     * @param \YourBooks\BookBundle\Entity\Book $book
+     * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
+     * @internal param $bookId
+     * @return mixed
+     *
+     * @ParamConverter("book", options={"mapping": {"bookId": "id"}})
+     * @Secure(roles="ROLE_AUTHOR")
+     */
+    public function indexAction(Request $request, $userSalt, Book $book)
     {
-        return $this->render('YourBooksPaymentBundle:Paypal:index.html.twig');
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if ($userSalt !== $user->getSalt())
+            throw new AccessDeniedHttpException('Vous n\'avez pas accès à cette page !');
+
+        return $this->render('YourBooksPaymentBundle:Paypal:index.html.twig', [
+            'user' => $user,
+            'book' => $book,
+        ]);
     }
 
     public function paymentAction()
@@ -27,7 +52,7 @@ class PaypalController extends Controller
 
         $logger->error('PaypalTreatment');
         $logger->error($request->__toString());
-        $logger->error($request->headers);
+        $logger->error(serialize($request->headers->all()));
         $logger->error($request->getMethod());
 
         $message = \Swift_Message::newInstance()

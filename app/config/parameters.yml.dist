@@ -16,5 +16,8 @@ parameters:
     paypal_signature:  ~
     paypal_sandbox:    true
 
+    ga_tracking:       ~
+    paypal_business_email: ~
+
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt

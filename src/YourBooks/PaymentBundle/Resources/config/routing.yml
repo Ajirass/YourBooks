@@ -1,12 +1,18 @@
-your_books_paypal_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: YourBooksPaymentBundle:Default:index }
+your_books_payment_paypal:
+    pattern: /paypal-{userSalt}-{bookId}
+    defaults: { _controller: YourBooksPaymentBundle:Paypal:index }
+    requirements:
+        userSalt: \w+
+        bookId:   \d+
 your_books_payment_treatment_payment:
     pattern:  /payment/treatment
     defaults: { _controller: YourBooksPaymentBundle:Paypal:treatment }
 your_books_payment_success_payment:
     pattern:  /payment/success
-    defaults: { _controller: YourBooksPaymentBundle:payment:success }
-your_books_payment_paypal:
-    pattern: /paypal
-    defaults: { _controller: YourBooksPaymentBundle:Paypal:index }
+    defaults: { _controller: YourBooksPaymentBundle:Payment:success }
+your_books_payment_waiting_payment:
+    pattern:  /payment/waiting/{userSalt}-{bookId}
+    defaults: { _controller: YourBooksPaymentBundle:Payment:waitingPayment }
+    requirements:
+        userSalt: \w+
+        bookId:   \d+
