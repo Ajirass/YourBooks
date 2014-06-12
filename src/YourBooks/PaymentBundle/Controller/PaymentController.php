@@ -8,18 +8,51 @@
 
 namespace YourBooks\PaymentBundle\Controller;
 
+use Exporter\Exception\InvalidMethodCallException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use YourBooks\BookBundle\Entity\Book;
+use YourBooks\PaymentBundle\Entity\Payment;
 
 class PaymentController extends Controller
 {
     /**
+     * @param $userSalt
+     * @param $bookId
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function waitingPaymentAction()
+    public function waitingPaymentAction($userSalt, $bookId)
     {
         return $this->render('YourBooksPaymentBundle:Payment:waitingPayment.html.twig', [
-            'book' => true,
+            'bookId' => $bookId,
         ]);
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param Book $book
+     * @throws \Exporter\Exception\InvalidMethodCallException
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     *
+     * @ParamConverter("book")
+     */
+    public function isPaidAjaxAction(Request $request, Book $book)
+    {
+        if(true === $request->isXmlHttpRequest())
+            return new Response((int) $book->getPayed());
+        else
+            throw new InvalidMethodCallException('Only Ajax');
+    }
+
+    /**
+     * @return Response
+     */
+    public function successAction()
+    {
+        return $this->render('YourBooksPaymentBundle:Payment:success.html.twig');
     }
 
 //    public function treatmentAction(){

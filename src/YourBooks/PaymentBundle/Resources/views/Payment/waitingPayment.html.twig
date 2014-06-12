@@ -8,6 +8,41 @@
     <div class="first_historic">
         <h1>Paiement de votre manuscrit en cours</h1>
         <p>Veuillez patienter, le traitement de votre paiement est en cours.</p>
-        <img src="{{ asset('bundles/yourbooksmain/images/logo_first_connexion.png') }}" alt="logo_yourbooks">
+        <div>
+            <img src="{{ asset('bundles/yourbooksmain/images/loader.gif') }}" alt="loader" style="display: inline-block;">
+            <img src="{{ asset('bundles/yourbooksmain/images/logo_first_connexion.png') }}" alt="logo_yourbooks" style="display: inline-block;position: relative;top: -80px;">
+        </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        (function(){
+            var number = 0;
+            function isBookPayd() {
+                $.ajax({
+                    url: '{{ path('your_books_payment_is_paid_ajax', {'id': bookId}) }}',
+                    type: 'post',
+                    success: function(data, status, object) {
+                        if (1 === data) {
+                            window.location = '{{ path('your_books_payment_success_payment') }}';
+                        } else {
+                            if (number < 2)
+                                setTimeout(function(){isBookPayd()}, 3000);
+                            else {
+                                $('h1').text('Une erreur s\'est produite lors de la vérification de votre paiement.').css({'color':'red'});
+                                setTimeout(function(){window.location = '{{ path('your_books_main_author_homepage') }}';}, 3000);
+                            }
+                            number++;
+                        }
+                    },
+                    error: function(data, status, object){
+                        alert('Une erreur s\'est produite lors de la vérification de votre paiement.');
+                    }
+                });
+            }
+            isBookPayd();
+        })();
+    </script>
 {% endblock %}

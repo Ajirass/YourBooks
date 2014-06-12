@@ -41,27 +41,36 @@ class PaypalController extends Controller
         ]);
     }
 
-    public function paymentAction()
-    {
-
-    }
-
+    /**
+     * @param Request $request
+     * @return Response
+     * @throws \Symfony\Component\HttpKernel\Exception\BadRequestHttpException
+     */
     public function treatmentAction(Request $request)
     {
         $data = $request->request->all();
 
-        if (!isset($data['payment_status']))
-            throw new BadRequestHttpException('`payment_status` must be defined');
+        if (!isset($data['payment_status']) && !isset($data['payment_status']))
+            throw new BadRequestHttpException('`payment_status` and `custom` must be defined');
+
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
 
         $payment = new Payment();
         $payment->setStatus($data['payment_status']);
         $payment->setData($data);
 
-        /** @var EntityManager $em */
-        $em = $this->getDoctrine()->getManager();
+        if ('Completed' === $data['payment_status']) {
+            $bookId = explode('|', $data['custom'])[1];
+            $book = $em->getRepository('YourBooksBookBundle:Book')->find($bookId);
+            $book->setPayment($payment);
+            $book->setPaid(true);
+        }
+
         $em->persist($payment);
         $em->flush();
 
+        // Envoyer le message
         $message = \Swift_Message::newInstance()
             ->setSubject('YourBooks')
             ->setFrom('thibaud.bardin+yourbooks@gmail.com')

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Gedmo\Mapping\Annotation as Gedmo;
+use YourBooks\PaymentBundle\Entity\Payment;
 
 /**
  * Book
@@ -189,6 +190,13 @@ class Book
      * @ORM\OneToOne(targetEntity="YourBooks\BookBundle\Entity\BookReview", mappedBy="book", cascade={"remove"})
      */
     protected $review;
+
+    /**
+     * @var Payment
+     *
+     * @ORM\OneToOne(targetEntity="YourBooks\PaymentBundle\Entity\Payment", cascade={"persist"})
+     */
+    protected $payment;
 
     private $temp;
 
@@ -541,7 +549,8 @@ class Book
     /**
      * Set reader
      *
-     * @param \Application\Sonata\UserBundle\Entity\User $editor
+     * @param \Application\Sonata\UserBundle\Entity\User $reader
+     * @internal param \Application\Sonata\UserBundle\Entity\User $editor
      * @return Book
      */
     public function setReader(\Application\Sonata\UserBundle\Entity\User $reader = null)
@@ -848,5 +857,24 @@ class Book
     public function getPayedAt()
     {
         return $this->payedAt;
+    }
+
+    /**
+     * @param \YourBooks\PaymentBundle\Entity\Payment $payment
+     * @return $this
+     */
+    public function setPayment($payment)
+    {
+        $this->payment = $payment;
+
+        return $this;
+    }
+
+    /**
+     * @return \YourBooks\PaymentBundle\Entity\Payment
+     */
+    public function getPayment()
+    {
+        return $this->payment;
     }
 }

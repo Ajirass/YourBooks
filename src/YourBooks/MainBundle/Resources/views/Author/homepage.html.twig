@@ -92,6 +92,11 @@
                                     <a href="{{ path('your_books_main_author_retracted_book', { 'id': book.id })}}" onclick="return verifjs();">Me rétracter</a>
                                 </div>
                             {% endif %}
+                            {% if false == book.paid %}
+                                <div class="btn_suppr">
+                                    <a href="{{ path('your_books_payment_paypal', {'userSalt':app.user.salt,'bookId':book.id})}}">Payer</a>
+                                </div>
+                            {% endif %}
                     </div>
                 {% endif %}
             {% endfor %}
