@@ -1,6 +1,6 @@
 <?php
 
-namespace YourBooks\PaypalBundle\Tests\Controller;
+namespace YourBooks\PaymentBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

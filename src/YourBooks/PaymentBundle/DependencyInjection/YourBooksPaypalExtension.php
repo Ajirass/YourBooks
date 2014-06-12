@@ -1,6 +1,6 @@
 <?php
 
-namespace YourBooks\PaypalBundle\DependencyInjection;
+namespace YourBooks\PaymentBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

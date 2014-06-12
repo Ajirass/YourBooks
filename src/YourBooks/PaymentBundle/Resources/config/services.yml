@@ -1,5 +1,5 @@
 parameters:
-#    your_books_paypal.example.class: YourBooks\PaypalBundle\Example
+#    your_books_paypal.example.class: YourBooks\PaymentBundle\Example
 
 services:
 #    your_books_paypal.example:

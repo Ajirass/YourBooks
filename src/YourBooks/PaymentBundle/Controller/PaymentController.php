@@ -6,7 +6,7 @@
  * Time: 15:29
  */
 
-namespace YourBooks\PaypalBundle\Controller;
+namespace YourBooks\PaymentBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -194,6 +194,6 @@ class PaymentController extends Controller
         return $_POST;
     }
     public function successAction(){
-        return $this->render('YourBooksPaypalBundle:Main:success.html.twig');
+        return $this->render('YourBooksPaymentBundle:Main:success.html.twig');
     }
 } 

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Paypal Test</title>
+</head>
+<body>
+    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="business" value="thibaud.bardin+business@gmail.com">
+        <input type="hidden" name="return" value="URLspecificToThisTransaction">
+        <input type="hidden" name="notify_url" value="{{ url('your_books_payment_treatment_payment') }}">
+        <input type="hidden" name="bn" value="YourBooks_BuyNow_Book_FR">
+        <input type="hidden" name="amount" value="4.99">
+        <input type="hidden" name="currency_code" value="EUR">
+        <!-- HTML Variables for Filling Out PayPal Checkout Pages Automatically -->
+        <input type="hidden" name="address1" value="33 rue de la Treille">
+        <input type="hidden" name="country" value="FR">
+        <input type="hidden" name="email" value="thibaud.bardin@gmail.com">
+        <input type="hidden" name="first_name" value="Thibaud">
+        <input type="hidden" name="last_name" value="BARDIN">
+        <input type="hidden" name="lc" value="FR">
+        <input type="hidden" name="charset" value="UTF-8">
+
+        <input type="image" src="https://www.sandbox.paypal.com/fr_FR/FR/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - la solution de paiement en ligne la plus simple et la plus sécurisée !">
+        <img alt="" border="0" src="https://www.sandbox.paypal.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+    </form>
+</body>
+</html>

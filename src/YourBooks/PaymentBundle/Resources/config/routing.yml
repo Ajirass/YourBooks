@@ -1,0 +1,12 @@
+your_books_paypal_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: YourBooksPaymentBundle:Default:index }
+your_books_payment_treatment_payment:
+    pattern:  /payment/treatment
+    defaults: { _controller: YourBooksPaymentBundle:Paypal:treatment }
+your_books_payment_success_payment:
+    pattern:  /payment/success
+    defaults: { _controller: YourBooksPaymentBundle:payment:success }
+your_books_payment_paypal:
+    pattern: /paypal
+    defaults: { _controller: YourBooksPaymentBundle:Paypal:index }
