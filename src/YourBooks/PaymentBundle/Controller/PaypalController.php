@@ -26,7 +26,7 @@ class PaypalController extends Controller
         $logger = $this->get('logger');
 
         $logger->error('PaypalTreatment');
-        $logger->error(print_r($request));
+        $logger->error($request->__toString());
         $logger->error($request->headers);
         $logger->error($request->getMethod());
 
@@ -34,10 +34,10 @@ class PaypalController extends Controller
             ->setSubject('YourBooks')
             ->setFrom('thibaud.bardin+yourbooks@gmail.com')
             ->setTo('thibaud.bardin@gmail.com')
-            ->setBody(print_r($request))
+            ->setBody($request->__toString())
         ;
         $this->get('mailer')->send($message);
 
-        return new Response(print_r($message));
+        return new Response($request);
     }
 }
