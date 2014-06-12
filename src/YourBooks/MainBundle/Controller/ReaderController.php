@@ -112,11 +112,11 @@ class ReaderController extends Controller
                         Nous accusons réception de votre fiche de lecture, laquelle a bien été prise en compte.<br>
                          Nous vous remercions pour cet envoi. En voici un récapitulatif :
                         <ul>
-                             <li>critère 1: ".$form->get('criteria1')->getData()."</li>
-                             <li>critère 2: ".$form->get('criteria2')->getData()."</li>
-                             <li>critère 3: ".$form->get('criteria3')->getData()."</li>
-                             <li>critère 4: ".$form->get('criteria4')->getData()."</li>
-                             <li>critère 5: ".$form->get('criteria5')->getData()."</li>
+                             <li>Impression Générale : ".$form->get('criteria1')->getData()."</li>
+                             <li>Intrigue/Histoire :".$form->get('criteria2')->getData()."</li>
+                             <li>Intérêt/Sujet : ".$form->get('criteria3')->getData()."</li>
+                             <li>Editing : ".$form->get('criteria4')->getData()."</li>
+                             <li>Pertinence/Attrait : ".$form->get('criteria5')->getData()."</li>
                              <li>".$note_globale."</li>
                         </ul>
                         <ul>

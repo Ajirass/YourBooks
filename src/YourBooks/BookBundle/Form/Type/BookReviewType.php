@@ -20,7 +20,7 @@ class BookReviewType extends AbstractType
                     '4'   => '4',
                     '5'   => '5',
                 ),
-                'label' => 'Style d\'écriture',
+                'label' => 'Impression Générale',
                 'multiple'  => false,
                 'expanded' => true,
             ))
@@ -32,7 +32,7 @@ class BookReviewType extends AbstractType
                     '4'   => '4',
                     '5'   => '5',
                 ),
-                'label' => 'Péripéties',
+                'label' => 'Intrigue/Histoire',
                 'multiple'  => false,
                 'expanded' => true,
             ))
@@ -44,7 +44,7 @@ class BookReviewType extends AbstractType
                     '4'   => '4',
                     '5'   => '5',
                 ),
-                'label' => 'Intérêt',
+                'label' => 'Intérêt/Sujet',
                 'multiple'  => false,
                 'expanded' => true,
             ))
@@ -56,7 +56,7 @@ class BookReviewType extends AbstractType
                     '4'   => '4',
                     '5'   => '5',
                 ),
-                'label' => 'Compréhension',
+                'label' => 'Editing',
                 'multiple'  => false,
                 'expanded' => true,
             ))
@@ -68,7 +68,7 @@ class BookReviewType extends AbstractType
                     '4'   => '4',
                     '5'   => '5',
                 ),
-                'label' => 'Dénouement',
+                'label' => 'Pertinence/Attrait',
                 'multiple'  => false,
                 'expanded' => true,
             ))

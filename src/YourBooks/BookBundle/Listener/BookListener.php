@@ -64,28 +64,28 @@ class BookListener
                     Veuillez trouver ci-dessous le contenu de cette fiche de lecture :<br><br>
                     <ul>
                         <li>
-                            critère 1: ".$entity->getReview()->getCriteria1()."
+                            Impression Générale : ".$entity->getReview()->getCriteria1()."
                         </li>
                         <li>
-                            critère 2: ".$entity->getReview()->getCriteria2()."
+                            Intrigue/Histoire : ".$entity->getReview()->getCriteria2()."
                         </li>
                         <li>
-                            critère 3: ".$entity->getReview()->getCriteria3()."
+                            Intérêt/Sujet : ".$entity->getReview()->getCriteria3()."
                         </li>
                         <li>
-                            critère 4: ".$entity->getReview()->getCriteria4()."
+                            Editing : ".$entity->getReview()->getCriteria4()."
                         </li>
                         <li>
-                            critère 5: ".$entity->getReview()->getCriteria5()."
+                            Pertinence/Attrait : ".$entity->getReview()->getCriteria5()."
                         </li>
                         <li>
-                            note globale : ".$entity->getReview()->getNoteGlobale()."
+                            Note globale : ".$entity->getReview()->getNoteGlobale()."
                         </li>
                     </ul><br>
 
-                    Le résumé de notre lecteur:<br>
+                    Le résumé de notre lecteur :<br>
                     ".$entity->getReview()->getSummary()."<br><br>
-                    L’analyse de notre lecteur:<br>
+                    L’analyse de notre lecteur :<br>
                     ".$entity->getReview()->getCritic()."<br><br>
 
                     Nous vous rappelons qu’au terme de nos conditions générales, nos lecteurs sont des prestataires indépendants et que leur avis est à la fois souverain et non révisable par le même lecteur ou un autre.<br><br>
