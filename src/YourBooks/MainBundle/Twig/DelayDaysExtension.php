@@ -31,10 +31,10 @@ class DelayDaysExtension extends \Twig_Extension
     public function delayDaysFunction($daysCompare)
     {
         $dateNow = new \DateTime();
-        $daysCompare->modify('-7 day');
+        $daysCompare->modify('-18 day');
         $interval = $dateNow->diff($daysCompare, null);
         $day = $interval->format('%d');
-        $delayOut = 7 - $day;
+        $delayOut = 18 - $day;
         return $delayOut;
     }
 

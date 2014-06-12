@@ -166,7 +166,7 @@ class BookRepository extends EntityRepository
         $qb = $this->createQueryBuilder('b')
             ->select('b')
             ->where('b.receivedByReader = :receivedByReader')
-            ->andWhere('DATE_DIFF(CURRENT_DATE(), b.receivedByReaderAt) > 10')
+            ->andWhere('DATE_DIFF(CURRENT_DATE(), b.receivedByReaderAt) > 18')
             ->setParameter(':receivedByReader', true)
         ;
 
@@ -177,7 +177,7 @@ class BookRepository extends EntityRepository
         $qb = $this->createQueryBuilder('b')
             ->select('b')
             ->where('b.receivedByReader = :receivedByReader')
-            ->andWhere('DATE_DIFF(CURRENT_DATE(), b.receivedByReaderAt) = 9')
+            ->andWhere('DATE_DIFF(CURRENT_DATE(), b.receivedByReaderAt) = 17')
             ->setParameter(':receivedByReader', true)
         ;
 

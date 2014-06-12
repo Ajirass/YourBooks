@@ -9,7 +9,7 @@
 namespace YourBooks\MainBundle\ConfirmMail;
 
 use Symfony\Component\EventDispatcher\Event;
-use FOS\UserBundle\Model\UserInterface;
+use Application\Sonata\UserBundle\Entity\User;
 
 class MailEvent extends Event
 {
@@ -17,7 +17,7 @@ class MailEvent extends Event
     protected $message;
     protected $subject;
 
-    public function __construct(UserInterface $user, $message, $subject)
+    public function __construct(User $user, $message, $subject)
     {
         $this->user = $user;
         $this->message = $message;

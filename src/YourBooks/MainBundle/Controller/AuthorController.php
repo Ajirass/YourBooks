@@ -42,7 +42,6 @@ class AuthorController extends Controller
         {
             $percent = 0;
         }
-
         return $this->render('YourBooksMainBundle:Author:homepage.html.twig', array(
             'books' => $books,
             'countBooksSubmit' => $countBooksSubmit,
@@ -96,8 +95,10 @@ class AuthorController extends Controller
                                     A très bientôt<br><br>
                                     L’équipe";
 
+            $repo_user = $em->getRepository("ApplicationSonataUserBundle:User");
+            $admin = $repo_user->find(143);
             // On crée l'évènement
-            $event_admin = new MailEvent($author, $message_admin, $subject_admin);
+            $event_admin = new MailEvent($admin, $message_admin, $subject_admin);
 
             // On déclenche l'évènement
             $this->get('event_dispatcher')

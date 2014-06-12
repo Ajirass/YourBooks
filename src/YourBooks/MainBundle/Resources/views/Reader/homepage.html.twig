@@ -26,7 +26,7 @@
                             <div class="block_statut">
                                 <span class="statut">Date limite :</span>
                                 {% if book.receivedByReaderAt %}
-                                    <p class="delay">{{ delayDateOut(book.receivedByReaderAt)|date("d/m/Y") }} - {{ delayDaysDiff(book.receivedByReaderAt) }} jour{% if delayDaysDiff(book.receivedByReaderAt) > 1 %}s{% endif %} restant </p>
+                                    <p class="delay">{{ delayDateOut(book.receivedByReaderAt)|date("d/m/Y") }} ( {{ delayDaysDiff(book.receivedByReaderAt) }} jour{% if delayDaysDiff(book.receivedByReaderAt) > 1 %}s{% endif %} restant ) </p>
                                 {% endif %}
                                 <div class="content_statut">
                                     <a id="download_book" href="{{ path('your_books_main_download_book', { 'id': book.id }) }}">Téléchargez</a>

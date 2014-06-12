@@ -8,7 +8,7 @@
 
 namespace YourBooks\MainBundle\ConfirmMail;
 
-use FOS\UserBundle\Model\UserInterface;
+use Application\Sonata\UserBundle\Entity\User;
 use YourBooks\MainBundle\ConfirmMail\MailEvent;
 
 class MailEventListener
@@ -23,7 +23,7 @@ class MailEventListener
 
     }
 
-    protected function sendEmail(UserInterface $user, $message, $subject)
+    protected function sendEmail(User $user, $message, $subject)
     {
         $templateFile = "YourBooksMainBundle:Mail:email.html.twig";
         $templateContent = $this->twig->loadTemplate($templateFile);
@@ -31,6 +31,8 @@ class MailEventListener
         // Render the whole template including any layouts etc
         $body = $templateContent->render(array("message" => $message, "subject"=>$subject, "user"=>$user));
 
+        $email = $user->getEmail();
+        //TODO changer le destinataire de l'email
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)
             ->setFrom('mailbidon@gmail.com')
