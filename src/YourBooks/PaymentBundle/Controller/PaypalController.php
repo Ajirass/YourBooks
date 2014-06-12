@@ -55,7 +55,13 @@ class PaypalController extends Controller
 
 
         $data = $request->request->all();
-        $logger->error(serialize($data));
+
+        $text = null;
+
+        foreach ($data as $key => $value)
+            $text .= '['.$key.']'.$value.'  /  ';
+
+        $logger->error($text);
 
         if (!in_array('payment_status', $data))
             throw new BadRequestHttpException('`payment_status` must be defined');
