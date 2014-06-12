@@ -144,7 +144,7 @@ class ReaderController extends Controller
                 (voir doc pour la suite des contenus)";
 
             $repo_user = $em->getRepository("ApplicationSonataUserBundle:User");
-            $admin = $repo_user->find(143);
+            $admin = $repo_user->find(1);
 
             // On crée l'évènement
             $event = new MailEvent($admin, $message, $subject);
@@ -199,7 +199,7 @@ class ReaderController extends Controller
             ->dispatch(ConfirmMailEvent::onMailEvent, $event);
 
         $repo_user = $em->getRepository("ApplicationSonataUserBundle:User");
-        $admin = $repo_user->find(143);
+        $admin = $repo_user->find(1);
         $message = "Bonjour admin,<br>
             Le lecteur ".$book->getReader()->getFirstname()." ".$book->getReader()->getLastname()." a bien accusé réception du manuscrit ".$book->getTitle().",<br><br>
             A compter de cette date, il dispose de 18 jours pour le lire et rédiger sa fiche de lecture.<br><br>

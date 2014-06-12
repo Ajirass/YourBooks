@@ -99,7 +99,7 @@ class AuthorController extends Controller
                                     L’équipe";
 
             $repo_user = $em->getRepository("ApplicationSonataUserBundle:User");
-            $admin = $repo_user->find(143);
+            $admin = $repo_user->find(1);
             // On crée l'évènement
             $event_admin = new MailEvent($admin, $message_admin, $subject_admin);
 
