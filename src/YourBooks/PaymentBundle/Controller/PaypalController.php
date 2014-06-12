@@ -51,7 +51,7 @@ class PaypalController extends Controller
         $logger = $this->get('logger');
 
         $logger->error('PaypalTreatment');
-        $logger->error(serialize($request->query->all()));
+        $logger->error(serialize($request->request->all()));
         //$logger->error($request->__toString());
         //$logger->error(serialize($request->headers->all()));
         //$logger->error($request->getMethod());
