@@ -3,13 +3,16 @@
 namespace YourBooks\PaymentBundle\Controller;
 
 use Application\Sonata\UserBundle\Entity\User;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use YourBooks\BookBundle\Entity\Book;
+use YourBooks\PaymentBundle\Entity\Payment;
 
 class PaypalController extends Controller
 {
@@ -45,16 +48,19 @@ class PaypalController extends Controller
 
     public function treatmentAction(Request $request)
     {
-        /**
-         * @var \Symfony\Bridge\Monolog\Logger
-         */
-        $logger = $this->get('logger');
+        $data = $request->request->all();
 
-        $logger->error('PaypalTreatment');
-        $logger->error(serialize($request->request->all()));
-        //$logger->error($request->__toString());
-        //$logger->error(serialize($request->headers->all()));
-        //$logger->error($request->getMethod());
+        if (!in_array('payment_status', $data))
+            throw new BadRequestHttpException('`payment_status` must be defined');
+
+        $payment = new Payment();
+        $payment->setStatus($data['payment_status']);
+        $payment->setData($data);
+
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($payment);
+        $em->flush();
 
         $message = \Swift_Message::newInstance()
             ->setSubject('YourBooks')
