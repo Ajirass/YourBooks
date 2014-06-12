@@ -2,6 +2,7 @@
 
 namespace YourBooks\MainBundle\Controller;
 
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,12 +52,14 @@ class AuthorController extends Controller
     }
 
     /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Secure(roles="ROLE_AUTHOR")
      */
     public function sendAction(Request $request)
     {
+        /** @var $em EntityManager */
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository('YourBooksBookBundle:Book');
 
@@ -106,7 +109,10 @@ class AuthorController extends Controller
 
             $request->getSession()->getFlashBag()->add('success', 'Manuscrit envoyé avec succès');
 
-            return $this->redirect($this->generateUrl('your_books_main_author_homepage'));
+            return $this->redirect($this->generateUrl('your_books_payment_paypal', [
+                'userSalt'  => $this->getUser()->getSalt(),
+                'bookId'    => $book->getId(),
+            ]));
         }
 
         return $this->render('YourBooksMainBundle:Author:book_upload.html.twig', array(
@@ -161,7 +167,7 @@ class AuthorController extends Controller
 
     /**
      * @param Request $request
-     * @param User $user
+     * @internal param \Application\Sonata\UserBundle\Entity\User $user
      * @return Response
      */
     public function updateProfileAction(Request $request)
@@ -188,6 +194,7 @@ class AuthorController extends Controller
     }
 
     /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function inscriptionAction(Request $request)
@@ -196,6 +203,9 @@ class AuthorController extends Controller
     }
 
     /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \YourBooks\BookBundle\Entity\Book $book
+     * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Secure(roles="ROLE_AUTHOR")

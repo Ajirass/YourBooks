@@ -20,6 +20,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         $userAdmin->setEmail('admin@yourbooks.fr');
         $userAdmin->addGroup($this->getReference('group-super-admin'));
         $userAdmin->setEnabled(true);
+        $userAdmin->addRole('ROLE_SONATA_ADMIN');
         $manager->persist($userAdmin);
 
         $userAuthor = new User();
@@ -28,6 +29,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         $userAuthor->setEmail('author@yourbooks.fr');
         $userAuthor->setEnabled(true);
         $userAuthor->addGroup($this->getReference('group-author'));
+        $userAdmin->addRole('ROLE_AUTHOR');
         $manager->persist($userAuthor);
 
         $userReader = new User();
@@ -36,6 +38,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         $userReader->setEmail('reader@yourbooks.fr');
         $userReader->setEnabled(true);
         $userReader->addGroup($this->getReference('group-reader'));
+        $userAdmin->addRole('ROLE_READER');
         $manager->persist($userReader);
 
         $userEditor = new User();
@@ -44,6 +47,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         $userEditor->setEmail('editor@yourbooks.fr');
         $userEditor->setEnabled(true);
         $userEditor->addGroup($this->getReference('group-editor'));
+        $userAdmin->addRole('ROLE_EDITOR');
         $manager->persist($userEditor);
 
         $manager->flush();
