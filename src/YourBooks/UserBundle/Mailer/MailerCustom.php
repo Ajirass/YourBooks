@@ -69,7 +69,7 @@ class MailerCustom implements MailerInterface
 
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)
-            ->setFrom($fromEmail)
+            ->setFrom('contact@your-books.fr')
             ->setTo($toEmail)
             ->setBody($body);
 

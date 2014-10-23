@@ -28,20 +28,25 @@ class MailEventListener
         $templateFile = "YourBooksMainBundle:Mail:email.html.twig";
         $templateContent = $this->twig->loadTemplate($templateFile);
 
+
+        $sendMail = \Swift_Message::newInstance();
+
+        $imgUrl = $sendMail->embed(\Swift_Image::fromPath('http://localhost/YourBooks/web/bundles/yourbooksmain/images/logo_emailing.png'));
+
         // Render the whole template including any layouts etc
-        $body = $templateContent->render(array("message" => $message, "subject"=>$subject, "user"=>$user));
+        $body = $templateContent->render(array("message" => $message, "subject"=>$subject, "user"=>$user, "imgUrl"=>$imgUrl));
 
         $email = $user->getEmail();
         //TODO changer le destinataire de l'email
-        $message = \Swift_Message::newInstance()
+
+        $sendMail
             ->setSubject($subject)
-            ->setFrom('mailbidon@gmail.com')
-            ->setTo('godartrobin@gmail.com')
-            //->setBody($message);
+            ->setFrom(array('contact.yourbooks@gmail.fr' => 'Contact Your-Books'))
+            ->setTo($email)
             ->setContentType('text/html')
             ->setBody($body);
 
-        $this->mailer->send($message);
+        $this->mailer->send($sendMail);
     }
 
     public function onMailEvent(MailEvent $event)

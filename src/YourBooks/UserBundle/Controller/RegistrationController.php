@@ -111,7 +111,7 @@ class RegistrationController extends ContainerAware
             if($account == 'reader' || $account == 'editor')
             {
                 // On crée l'évènement
-                $em = $this->getDoctrine()->getEntityManager();
+                $em = $this->container->get('doctrine')->getEntityManager();
                 $repo = $em->getRepository('ApplicationSonataUserBundle:User');
                 $admin = $repo->find(1);
                 $event = new MailEvent($admin, $message, $subject);

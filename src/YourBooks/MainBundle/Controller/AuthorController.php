@@ -99,7 +99,7 @@ class AuthorController extends Controller
                                     L’équipe";
 
             $repo_user = $em->getRepository("ApplicationSonataUserBundle:User");
-            $admin = $repo_user->find(1);
+            $admin = $repo_user->find(143);
             // On crée l'évènement
             $event_admin = new MailEvent($admin, $message_admin, $subject_admin);
 
@@ -107,12 +107,13 @@ class AuthorController extends Controller
             $this->get('event_dispatcher')
                 ->dispatch(ConfirmMailEvent::onMailEvent, $event_admin);
 
-            $request->getSession()->getFlashBag()->add('success', 'Manuscrit envoyé avec succès');
+            //$request->getSession()->getFlashBag()->add('success', 'Manuscrit envoyé avec succès');
 
-            return $this->redirect($this->generateUrl('your_books_payment_paypal', [
+            /*return $this->redirect($this->generateUrl('your_books_payment_paypal', [
                 'userSalt'  => $this->getUser()->getSalt(),
                 'bookId'    => $book->getId(),
-            ]));
+            ]));*/
+            return $this->render('YourBooksMainBundle:Author:uploadSuccess.html.twig');
         }
 
         return $this->render('YourBooksMainBundle:Author:book_upload.html.twig', array(

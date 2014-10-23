@@ -1,0 +1,11 @@
+{% extends 'YourBooksMainBundle::base.html.twig' %}
+{% block title %}{{ parent() }}Paiement{% endblock %}
+{% block body %}
+    <div class="first_historic">
+        <h1>Paiement de votre manuscrit</h1>
+        <p>Montant dû: 195,00 €</p>
+        <p>Votre manuscrit a bien été envoyé. Vous allez recevoir un e-mail concernant les modalité de paiemant</p>
+        <img src="{{ asset('bundles/yourbooksmain/images/logo_first_connexion.png') }}" alt="logo_yourbooks">
+        <a href="{{ path ('your_books_main_author_homepage') }}">Retour à mon espace personnel</a>
+    </div>
+{% endblock %}

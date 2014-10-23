@@ -37,7 +37,7 @@ class MailCommand extends ContainerAwareCommand
             $mailer = $container->get('mailer');
             $message = \Swift_Message::newInstance()
                 ->setSubject('Livre retiré')
-                ->setFrom('contact@your-books.fr')
+                ->setFrom('contact.yourbooks@gmail.com')
                 ->setTo($book->getReader()->getEmail())
                 ->setBody("Vous avez dépassé le délai autorisé pour la lecture du livre '".$book->getTitle()."' ce livre vous a été retiré. ");
 
@@ -51,7 +51,7 @@ class MailCommand extends ContainerAwareCommand
             $mailer = $container->get('mailer');
             $message = \Swift_Message::newInstance()
                 ->setSubject('Fin de votre délai de lecture')
-                ->setFrom('contact@your-books.fr')
+                ->setFrom('contact.yourbooks@gmail.com')
                 ->setTo($book->getReader()->getEmail())
                 ->setBody("
                             Bonjour ".$book->getReader()->getFirstName()." ".$book->getReader()->getLastName().",<br>
@@ -67,8 +67,8 @@ class MailCommand extends ContainerAwareCommand
             $mailer->send($message);
             $message = \Swift_Message::newInstance()
                 ->setSubject('Fin du délai de lecture pour '.$book->getTitle())
-                ->setFrom('contact@your-books.fr')
-                ->setTo('admin@your-books.fr')
+                ->setFrom('contact.yourbooks@gmail.com')
+                ->setTo('adm.yourbooks@gmail.com')
                 ->setBody("
                             Bonjour admin,<br><br>
                             Nous vous rappelons qu’il ne reste plus qu'un jour au lecteur ".$book->getReader()." pour envoyer sa
@@ -87,7 +87,7 @@ class MailCommand extends ContainerAwareCommand
             $mailer = $container->get('mailer');
             $message = \Swift_Message::newInstance()
                 ->setSubject('Délai de lecture dépassé')
-                ->setFrom('contact@your-books.fr')
+                ->setFrom('contact.yourbooks@gmail.com')
                 ->setTo($book->getReader()->getEmail())
                 ->setBody("Vous avez dépassé le délai autorisé pour la confirmation de reception du livre '".$book->getTitle()."' ce livre peut vous être retiré. ");
 
@@ -102,8 +102,8 @@ class MailCommand extends ContainerAwareCommand
             $mailer = $container->get('mailer');
             $message = \Swift_Message::newInstance()
                 ->setSubject('Nouveau manuscrit sorti de son délai de rétractation : '.$book->getTitle())
-                ->setFrom('contact@your-books.fr')
-                ->setTo('admin@your-books.fr')
+                ->setFrom('contact.yourbooks@gmail.com')
+                ->setTo('adm.yourbooks@gmail.com')
                 ->setBody("Bonjour admin,<br><br>
 
                     Un nouveau manuscrit transmis à Your-books est sorti de délai de rétractation.<br>
@@ -116,6 +116,17 @@ class MailCommand extends ContainerAwareCommand
 
             $mailer->send($message);
         }
+
+	    $mailer = $container->get('mailer');
+	    $message = \Swift_Message::newInstance()
+             ->setSubject('Test email CRON')
+             ->setFrom('contact.yourbooks@gmail.com')
+             ->setTo('godartrobin@gmail.com')
+             ->setBody("Message Test");
+
+	    $mailer->send($message);
+
+
 
         // Envoie des mails
         if(isset($mailer)){

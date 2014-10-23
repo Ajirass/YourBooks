@@ -28,7 +28,7 @@ twig:
     strict_variables: %kernel.debug%
     globals:
         ga_tracking: %ga_tracking%
-        paypal_business_email: %paypal_business_email%
+#        paypal_business_email: %paypal_business_email%
 
 # Assetic Configuration
 assetic:
@@ -68,10 +68,13 @@ doctrine:
 # Swiftmailer Configuration
 swiftmailer:
     transport: %mailer_transport%
+    encryption: %mailer_encryption%
+    auth_mode: %mailer_auth%
     host:      %mailer_host%
     username:  %mailer_user%
     password:  %mailer_password%
-    spool:     { type: memory }
+    spool:
+        type: memory
 
 # Faker Configuration
 bazinga_faker:
