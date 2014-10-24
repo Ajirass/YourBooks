@@ -31,7 +31,7 @@ class MailEventListener
 
         $sendMail = \Swift_Message::newInstance();
 
-        $imgUrl = $sendMail->embed(\Swift_Image::fromPath('ns506711.ip-192-99-2.net/bundles/yourbooksmain/images/logo_emailing.png'));
+        $imgUrl = $sendMail->embed(\Swift_Image::fromPath('ns506711.ip-192-99-2.net/web/bundles/yourbooksmain/images/logo_emailing.png'));
 
         // Render the whole template including any layouts etc
         $body = $templateContent->render(array("message" => $message, "subject"=>$subject, "user"=>$user, "imgUrl"=>$imgUrl));
