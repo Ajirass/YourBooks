@@ -117,16 +117,6 @@ class MailCommand extends ContainerAwareCommand
             $mailer->send($message);
         }
 
-	    $mailer = $container->get('mailer');
-	    $message = \Swift_Message::newInstance()
-             ->setSubject('Test email CRON')
-             ->setFrom('contact.yourbooks@gmail.com')
-             ->setTo('godartrobin@gmail.com')
-             ->setBody("Message Test");
-
-	    $mailer->send($message);
-
-
 
         // Envoie des mails
         if(isset($mailer)){

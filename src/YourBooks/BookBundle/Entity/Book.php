@@ -822,7 +822,9 @@ class Book
     public function setPayed($payed)
     {
         $this->payed = $payed;
-    
+
+	    $this->payedAt = new \DateTime("now");
+
         return $this;
     }
 

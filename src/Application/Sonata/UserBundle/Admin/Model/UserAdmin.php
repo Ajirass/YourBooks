@@ -110,7 +110,7 @@ class UserAdmin extends BaseForm
         if (null !== $currentUser->getCv())
             $optionsCv = array(
                 'required' => false,
-                'help' => '<a href="/YourBooks/web/'.$currentUser->getWebPathCv().'">Download File : '.$currentUser->getCv().'</a>',
+                'help' => '<a href="http://ns506711.ip-192-99-2.net/'.$currentUser->getWebPathCv().'">Download File : '.$currentUser->getCv().'</a>',
                 'label' => 'CV'
             );
         if(null == $currentUser->getCv())
@@ -124,7 +124,7 @@ class UserAdmin extends BaseForm
         if (null !== $currentUser->getMotivationLetter())
             $optionsLetter = array(
                 'required' => false,
-                'help' => '<a href="/YourBooks/web/'.$currentUser->getWebPathMotivationLetter().'">Download File : '.$currentUser->getMotivationLetter().'</a>',
+                'help' => '<a href="http://ns506711.ip-192-99-2.net/'.$currentUser->getWebPathMotivationLetter().'">Download File : '.$currentUser->getMotivationLetter().'</a>',
                 'label' => 'Lettre de Motivation'
             );
         if(null == $currentUser->getMotivationLetter())

@@ -39,7 +39,7 @@ class BookAdmin extends Admin
         if (null !== $currentBook->getFileName())
             $options = array(
                 'required' => false,
-                'help' => '<a href="http://ns506711.ip-192-99-2.net/'.$currentBook->getWebPath().'">Download File : '.$currentBook->getFileName().'</a>',
+                'help' => '<a target="_blank" href="http://ns506711.ip-192-99-2.net/'.$currentBook->getWebPath().'">Download File : '.$currentBook->getFileName().'</a>',
             );
 
        // $query_user = $this->modelManager->getEntityManager('Application\Sonata\UserBundle\Entity\User‌​')->createQueryBuilder()
@@ -98,9 +98,11 @@ class BookAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('createdAt', null, array('label' => 'Crée le'))
+	        ->addIdentifier('payedAt', null, array('label' => 'Payé le'))
             ->add('title')
             ->add('author')
             ->add('retracted', null, array('label' => 'Auteur rétracté ?', 'editable' => true))
+	        ->add('payed', null, array('label' => 'Livre payé ?', 'editable' => true))
             ->add('enabled', null, array('label' => 'Autorisé par l\'administrateur ?', 'editable' => true))
             ->add('receivedByReader', null, array('label' => 'reçu par le lecteur ?', 'editable' => true))
             ->add('sendByReader', null, array('label' => 'Notes envoyées ?', 'editable' => true))
