@@ -112,7 +112,7 @@ class MailCommand extends ContainerAwareCommand
                     IMPORTANT : si l’une de ces étapes ne peut-être validée, le manuscrit doit être rejeté,
                     supprimé de la base de donnée. Vous devez alors envoyer le mail de rejet à l’auteur
                     et procéder à son remboursement par chèque sous 45 jours à l’adresse postale indiquée
-                    par l’auteur lors de son inscription.");
+                    par l’auteur lors de son inscription. ");
 
             $mailer->send($message);
         }
