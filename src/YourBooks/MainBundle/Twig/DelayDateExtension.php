@@ -29,7 +29,7 @@ class DelayDateExtension extends \Twig_Extension
 
     public function delayDateFunction($dateCompare)
     {
-        $delayDateOut = $dateCompare->modify('+18 day');
+        $delayDateOut = $dateCompare->modify('+2 day');
         return $delayDateOut;
     }
 
